@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "Nombre": "Fecha de Creación"
+  },
+  {
+    "id": 1,
+    "Nombre": "Última Modificación"
+  },
+  {
+    "id": 2,
+    "Nombre": "Estado"
+  },
+  {
+    "id": 3,
+    "Nombre": "SLA"
+  },
+  {
+    "id": 4,
+    "Nombre": "Tipo"
+  }
+]

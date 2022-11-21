@@ -80,8 +80,8 @@
   align-items: center;
   justify-content: center;
   border-bottom: 4px solid rgba(0, 53, 108, 1);
-  border-left: 4px solid rgba(0, 53, 108, 1);
-  border-right: 2px solid rgba(0, 53, 108, 1);
+  border-left: 2px solid rgba(0, 53, 108, 1);
+  border-right: 4px solid rgba(0, 53, 108, 1);
   color: rgba(106, 176, 249, 1);
   cursor: pointer;
   z-index: 2;

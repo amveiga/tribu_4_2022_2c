@@ -3,6 +3,7 @@ import { BiSort } from "react-icons/bi";
 import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import { useState } from "react";
 import MenuFiltro from "../Components/Filtro/MenuFiltro";
+import MenuOrden from "../Components/Orden/MenuOrder";
 
 function Soporte() {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
@@ -10,10 +11,12 @@ function Soporte() {
 
   const handleFilterClick = () => {
     setFiltroAbierto(!filtroAbierto);
+    setOrdenAbierto(false);
   };
 
   const handleOrdenClick = () => {
     setOrdenAbierto(!ordenAbierto);
+    setFiltroAbierto(false);
   };
 
   return (
@@ -38,10 +41,14 @@ function Soporte() {
           onClick={handleOrdenClick}
         >
           <div className={styles.textIcon}>
-            <BiSort size={"1.5vw"} color={"white"} />
+            <BiSort
+              size={"1.5vw"}
+              color={ordenAbierto ? "rgba(106, 176, 249, 1)" : "white"}
+            />
             Orden
           </div>
         </div>
+        {ordenAbierto && <MenuOrden />}
       </div>
       <div></div>
       <div></div>
