@@ -8,7 +8,7 @@
 }
 
 .calendarioContainer {
-  font-family: "Manrope", sans-serif;
+  font-family: sans-serif, "Manrope";
   border: none;
   box-shadow: 0px 2px 9px 1px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
@@ -21,7 +21,7 @@
   padding-bottom: 3%;
   padding-left: 1%;
   padding-right: 1%;
-  font-family: "Manrope", sans-serif;
+  font-family: sans-serif, "Manrope";
   text-align: center;
   color: rgba(0, 53, 108, 1);
   background-color: white;

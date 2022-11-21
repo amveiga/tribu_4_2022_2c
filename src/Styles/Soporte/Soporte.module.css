@@ -1,7 +1,7 @@
 .soporteContainer {
   width: 100%;
   height: 85vh;
-  font-family: "Manrope", sans-serif;
+  font-family: sans-serif, "Manrope";
   text-align: center;
   font-size: 4vw;
   color: rgba(0, 53, 108, 1);
@@ -21,7 +21,7 @@
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
   color: white;
-  font-family: "Manrope", sans-serif;
+  font-family: sans-serif, "Manrope";
   font-size: 1.5vw;
 }
 
@@ -69,6 +69,22 @@
   border-right: 4px solid rgba(0, 53, 108, 1);
   border-left: 2px solid rgba(0, 53, 108, 1);
   cursor: pointer;
+}
+
+.ordenSelected {
+  width: 50%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 4px solid rgba(0, 53, 108, 1);
+  border-left: 4px solid rgba(0, 53, 108, 1);
+  border-right: 2px solid rgba(0, 53, 108, 1);
+  color: rgba(106, 176, 249, 1);
+  cursor: pointer;
+  z-index: 2;
 }
 
 .textIcon {

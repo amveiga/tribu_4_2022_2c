@@ -12,6 +12,10 @@ function Soporte() {
     setFiltroAbierto(!filtroAbierto);
   };
 
+  const handleOrdenClick = () => {
+    setOrdenAbierto(!ordenAbierto);
+  };
+
   return (
     <div className={styles.soporteContainer}>
       <div className={styles.filtros}>
@@ -29,7 +33,10 @@ function Soporte() {
           </div>
         </div>
         {filtroAbierto && <MenuFiltro setFiltroAbierto={setFiltroAbierto} />}
-        <div className={styles.orden}>
+        <div
+          className={ordenAbierto ? styles.ordenSelected : styles.orden}
+          onClick={handleOrdenClick}
+        >
           <div className={styles.textIcon}>
             <BiSort size={"1.5vw"} color={"white"} />
             Orden

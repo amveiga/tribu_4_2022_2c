@@ -23,7 +23,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  font-family: "Monrope", sans-serif;
+  font-family: sans-serif, "Monrope";
   font-weight: bold;
   color: rgba(0, 53, 108, 1);
   font-size: 1.2vw;
