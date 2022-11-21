@@ -1,0 +1,73 @@
+.menuFiltro {
+  width: 49%;
+  padding-bottom: 1.5%;
+  padding-left: 1%;
+  background-color: rgba(106, 176, 249, 1);
+  box-shadow: 0px 0px 9px rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 21vh;
+  left: 0;
+  z-index: 1;
+}
+
+.filtrado {
+  width: 95%;
+  display: flex;
+  margin-top: 3%;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Monrope", sans-serif;
+  font-weight: bold;
+  color: rgba(0, 53, 108, 1);
+  font-size: 1.2vw;
+}
+
+.submitButtons {
+  width: 87%;
+  margin-top: 3%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.applyButton,
+.cancelButton {
+  width: 20%;
+  border-radius: 25px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  font-family: sans-serif, "Manrope";
+  font-weight: bolder;
+  font-size: 1.2vw;
+  box-shadow: 0px 3px 2px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.applyButton {
+  background-color: rgba(0, 53, 108, 1);
+  color: white;
+  margin-left: 2%;
+}
+
+.applyButton:hover {
+  background-color: rgb(23, 86, 152);
+}
+
+.cancelButton {
+  background-color: white;
+  color: rgba(0, 53, 108, 1);
+}
+
+.cancelButton:hover {
+  background-color: rgba(230, 230, 230, 1);
+}

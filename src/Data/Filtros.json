@@ -1,0 +1,44 @@
+[
+  {
+    "Nombre": "Cliente",
+    "Placeholder": "Seleccione un cliente",
+    "Options": [
+      { "value": "Cliente 1", "label": "Cliente 1" },
+      { "value": "Cliente 2", "label": "Cliente 2" },
+      { "value": "Cliente 3", "label": "Cliente 3" }
+    ],
+    "Icon": "cliente"
+  },
+  {
+    "Nombre": "Estado",
+    "Placeholder": "Seleccione un estado",
+    "Options": [
+      { "value": "Abierto", "label": "Abierto" },
+      { "value": "Análisis", "label": "Análisis" },
+      { "value": "Derivado", "label": "Derivado" },
+      { "value": "Resuelto", "label": "Resuelto" },
+      { "value": "Cancelado", "label": "Cancelado" }
+    ],
+    "Icon": "estado"
+  },
+  {
+    "Nombre": "SLA",
+    "Placeholder": "Seleccione un SLA",
+    "Options": [
+      { "value": "Bajo", "label": "Bajo" },
+      { "value": "Medio", "label": "Medio" },
+      { "value": "Alto", "label": "Alto" },
+      { "value": "Crítico", "label": "Crítico" }
+    ],
+    "Icon": "SLA"
+  },
+  {
+    "Nombre": "Tipo",
+    "Placeholder": "Seleccione un tipo",
+    "Options": [
+      { "value": "Consulta", "label": "Consulta" },
+      { "value": "Reclamo", "label": "Reclamo" }
+    ],
+    "Icon": "tipo"
+  }
+]

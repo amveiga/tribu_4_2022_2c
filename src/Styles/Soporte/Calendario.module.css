@@ -1,0 +1,37 @@
+.calendario {
+  width: 60%;
+  display: flex;
+  flex-direction: row;
+  font-weight: lighter;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.calendarioContainer {
+  font-family: "Manrope", sans-serif;
+  border: none;
+  box-shadow: 0px 2px 9px 1px rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  background-color: rgba(0, 53, 108, 1);
+}
+
+.input {
+  width: 70%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 1%;
+  padding-right: 1%;
+  font-family: "Manrope", sans-serif;
+  text-align: center;
+  color: rgba(0, 53, 108, 1);
+  background-color: white;
+  border-radius: 25px;
+  border: none;
+}
+
+.day {
+  color: white;
+}
+.disabledDay {
+  color: gray;
+}
