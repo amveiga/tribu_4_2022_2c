@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Home",
+    "path": "/"
+  },
+  {
+    "id": 2,
+    "name": "Proyectos",
+    "path": "/proyectos"
+  },
+  {
+    "id": 3,
+    "name": "Soporte",
+    "path": "/soporte"
+  },
+  {
+    "id": 4,
+    "name": "Recursos Humanos",
+    "path": "/recursos-humanos"
+  }
+]

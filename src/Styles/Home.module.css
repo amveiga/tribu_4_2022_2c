@@ -1,0 +1,12 @@
+.homeContainer {
+  width: 100%;
+  height: 85vh;
+  font-family: "Manrope", sans-serif;
+  text-align: center;
+  font-size: 4vw;
+  color: rgba(0, 53, 108, 1);
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
