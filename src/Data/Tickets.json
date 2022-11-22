@@ -1,0 +1,67 @@
+[
+  {
+    "titulo": "Titulo 1",
+    "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
+    "tipo": "Consulta",
+    "estado": "Abierto",
+    "medio": "Telefono",
+    "sla": "Crítico",
+    "cliente": "Cliente 1",
+    "usuario": "Roberto Iskandarani",
+    "area": "",
+    "fechaCreacion": "22/11/2022",
+    "ultimaModificacion": "22/11/2022"
+  },
+  {
+    "titulo": "Titulo 2",
+    "descripcion": "Este fue un ticket creado con el objetivo de reclamar la interfaz.",
+    "tipo": "Reclamo",
+    "estado": "Análisis",
+    "medio": "Mail",
+    "sla": "Alto",
+    "cliente": "Cliente 2",
+    "usuario": "Jose Mercado",
+    "area": "Marketing",
+    "fechaCreacion": "21/11/2022",
+    "ultimaModificacion": "22/11/2022"
+  },
+  {
+    "titulo": "Titulo 3",
+    "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
+    "tipo": "Consulta",
+    "estado": "Derivado",
+    "medio": "Telefono",
+    "sla": "Medio",
+    "cliente": "Cliente 1",
+    "usuario": "Roberto Iskandarani",
+    "area": "",
+    "fechaCreacion": "12/11/2022",
+    "ultimaModificacion": "20/11/2022"
+  },
+  {
+    "titulo": "Titulo 4",
+    "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
+    "tipo": "Reclamo",
+    "estado": "Resuelto",
+    "medio": "Telefono",
+    "sla": "Bajo",
+    "cliente": "Cliente 3",
+    "usuario": "Roberto Iskandarani",
+    "area": "Desarrollo",
+    "fechaCreacion": "10/11/2022",
+    "ultimaModificacion": "22/11/2022"
+  },
+  {
+    "titulo": "Titulo 5",
+    "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
+    "tipo": "Reclamo",
+    "estado": "Cancelado",
+    "medio": "Mail",
+    "sla": "Crítico",
+    "cliente": "Cliente 1",
+    "usuario": "Juan Zeo",
+    "area": "",
+    "fechaCreacion": "16/10/2022",
+    "ultimaModificacion": "09/11/2022"
+  }
+]

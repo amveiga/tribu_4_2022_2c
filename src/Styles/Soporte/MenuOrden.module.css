@@ -16,7 +16,17 @@
   z-index: 1;
 }
 
+@keyframes marginTop {
+  from {
+    margin-top: 1%;
+  }
+  to {
+    margin-top: 3%;
+  }
+}
+
 .ordenItem {
+  animation: marginTop 1s;
   width: 90%;
   margin-top: 3%;
   display: flex;

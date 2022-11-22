@@ -1,0 +1,278 @@
+@keyframes inicio {
+  from {
+    padding-right: 4%;
+  }
+  to {
+    padding-right: 0;
+  }
+}
+
+.ticketContainer {
+  animation: inicio 2s;
+  width: 80%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ticket {
+  width: 100%;
+  height: 25vh;
+  padding: 2%;
+  border-radius: 25px;
+  border: 2px solid rgba(0, 53, 108, 1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+}
+
+.sectionOne {
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.3vw;
+}
+
+.titleSection {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-weight: bolder;
+}
+
+.type {
+  margin-left: 2%;
+}
+
+.showType {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 1vw;
+}
+
+.showTypeText {
+  margin-left: -13%;
+  padding-left: 7%;
+  padding-right: 7%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  border-radius: 50px;
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+.blue {
+  background-color: rgba(106, 176, 249, 1);
+}
+
+.red {
+  background-color: red;
+}
+
+.arrow {
+  z-index: 1;
+}
+
+.descripcion {
+  text-align: justify;
+  font-weight: 400;
+}
+
+.footerSection {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  font-weight: 500;
+}
+
+.marginLeft {
+  margin-left: 1%;
+}
+
+.sectionTwo {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.3vw;
+}
+
+.estado {
+  width: 100%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 25px;
+  color: white;
+}
+
+.abierto {
+  background-color: #ff9900;
+}
+.analisis {
+  background-color: #0085ff;
+}
+.derivado {
+  background-color: #ad00ff;
+}
+.resuelto {
+  background-color: #1dcc2e;
+}
+.cancelado {
+  background-color: #ff0000;
+}
+
+.item {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 400;
+}
+
+.tarea {
+  width: 92%;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  padding-left: 4%;
+  padding-right: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  border-radius: 25px;
+  color: white;
+  background-color: rgba(0, 53, 108, 1);
+}
+
+@keyframes iniciar {
+  from {
+    margin-left: -8%;
+  }
+  to {
+    margin-left: -4%;
+  }
+}
+
+.edit,
+.delete,
+.editSelected {
+  width: 8%;
+  height: 25vh;
+  margin-left: -4%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-right: 1%;
+  border-radius: 25px;
+  border: 2px solid rgba(0, 53, 108, 1);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: white;
+  cursor: pointer;
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.edit {
+  animation: iniciar 2s;
+  z-index: 1;
+}
+
+@keyframes backgroundChange {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: rgba(0, 53, 108, 1);
+  }
+}
+
+.selected {
+  animation-name: backgroundChange;
+  animation-duration: 1s;
+  background-color: rgba(0, 53, 108, 1);
+}
+
+.editSelected {
+  height: 31vh;
+  width: 9.3%;
+  padding-right: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  border: none;
+  z-index: 0;
+}
+
+.editConfirm,
+.editCancel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding-right: 12%;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@keyframes confirm {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: #1dcc2e;
+  }
+}
+
+@keyframes cancel {
+  from {
+    background-color: white;
+  }
+  to {
+    background-color: #ff0000;
+  }
+}
+
+.editConfirm {
+  border-bottom-right-radius: 23px;
+  background-color: #1dcc2e;
+  animation-name: confirm;
+  animation-duration: 2s;
+}
+
+.editCancel {
+  border-top-right-radius: 23px;
+  background-color: #ff0000;
+  animation-name: cancel;
+  animation-duration: 2s;
+}
+
+.delete {
+  animation: iniciar 2s;
+  z-index: 0;
+}

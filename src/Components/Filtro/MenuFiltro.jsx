@@ -1,4 +1,4 @@
-import Calendario from "../Calendario";
+// import Calendario from "../Calendario";
 import Filtros from "./../../Data/Filtros.json";
 import Select from "./Select";
 import styles from "./../../Styles/Soporte/MenuFiltro.module.css";
@@ -6,14 +6,14 @@ import styles from "./../../Styles/Soporte/MenuFiltro.module.css";
 function MenuFiltro({ setFiltroAbierto }) {
   return (
     <div className={styles.menuFiltro}>
-      <div className={styles.filtrado}>
+      {/* <div className={styles.filtrado}>
         Fecha de Creación
         <Calendario />
       </div>
       <div className={styles.filtrado}>
         Última Modificación
         <Calendario />
-      </div>
+      </div> */}
       {Filtros.map((filtro) => {
         return (
           <div key={filtro.Nombre} className={styles.filtrado}>
