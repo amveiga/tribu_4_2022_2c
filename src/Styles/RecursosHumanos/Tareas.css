@@ -4,18 +4,6 @@
     margin-left: 22%;
 }
 
-.grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-}
-
-.grid div{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4%;
-}
-
 .table-element{
     display: flex;
     justify-content: space-between;
