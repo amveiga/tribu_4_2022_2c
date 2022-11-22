@@ -5,6 +5,7 @@ import Header from "./Components/Header";
 import Proyectos from "./Pages/Proyectos";
 import Soporte from "./Pages/Soporte";
 import RecursosHumanos from "./Pages/RecursosHumanos";
+import Tareas from "./Pages/RecursosHumanos/Tareas";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/proyectos" element={<Proyectos />} />
           <Route path="/soporte" element={<Soporte />} />
           <Route path="/recursos-humanos" element={<RecursosHumanos />} />
+          <Route path="/recursos-humanos/tareas" element={<Tareas />} />
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </div>
