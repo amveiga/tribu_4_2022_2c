@@ -1,7 +1,8 @@
 import styles from "./../Styles/Soporte/Soporte.module.css";
-import Ticket from "../Components/Ticket";
+import Ticket from "../Components/Tickets/Ticket";
 import Tickets from "./../Data/Tickets.json";
 import Filtros from "../Components/Filtro/Filtros";
+import { FaPlus } from "react-icons/fa";
 
 function Soporte() {
   return (
@@ -12,7 +13,9 @@ function Soporte() {
           return <Ticket ticket={ticket} />;
         })}
       </div>
-      <div></div>
+      <div className={styles.addButton}>
+        <FaPlus size={"2vw"} color={"white"} />
+      </div>
     </div>
   );
 }

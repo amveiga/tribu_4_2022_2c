@@ -10,7 +10,7 @@ import { FiUser } from "react-icons/fi";
 import { HiPhone, HiMail, HiOutlineUserGroup, HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { MdEdit, MdDelete } from "react-icons/md";
-import styles from "./../Styles/Soporte/Ticket.module.css";
+import styles from "./../../Styles/Soporte/Ticket.module.css";
 
 function Ticket({ ticket }) {
   const [typeHovered, setTypeHovered] = useState(false);

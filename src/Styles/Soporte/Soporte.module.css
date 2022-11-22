@@ -19,3 +19,18 @@
   align-items: center;
   justify-content: center;
 }
+
+.addButton {
+  position: fixed;
+  bottom: 3%;
+  right: 1.5%;
+  width: 3vh;
+  height: 3vh;
+  border-radius: 50px;
+  padding: 2%;
+  background-color: rgba(0, 53, 108, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
