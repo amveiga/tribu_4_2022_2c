@@ -1,9 +1,9 @@
-.div-container{
-    
+.hidden{
+    visibility: hidden;
 }
 
-.div-container div{
-    margin-top: 5%;
+.div-container .div-section{
+    margin-top: 3%;
     display: flex;
     justify-content: space-between;
 }
@@ -12,18 +12,60 @@
     background-color: rgb(222, 222, 222);
     padding: 1% 3%;
     border-radius: 10px;
+    margin-right: 26%;
+}
 
+select{
+    background-color: rgb(222, 222, 222);
+    padding: 1% 3%;
+    border-radius: 10px;
+    width: 50%;
 }
 
 .hours-div{
-    display: flex;
     flex-direction: column;
+    width: 50%;
+    justify-content: center;
+}
+
+.hours-div div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom:5%;
+}
+
+
+.work-mode-div input{
+    background-color: rgb(239, 239, 239);
+    padding: 2%;
+    border-radius: 15px;
+    width: 60%;
+    text-align: center;
+}
+
+label,
+.work-mode-div p,
+input,
+select,
+option,
+.buttons-div{
+    font-size: 24px;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+}
+
+input,
+select{
+    border: solid 2px rgb(0, 53, 108);
 }
 
 .buttons-div{
-    margin-top: 20%;
+    position: fixed;
+    width: 60%;
+    bottom: 15%;
     display: flex;
     justify-content: space-between;
+    margin-bottom: -5%;
 }
 
 .button{
@@ -36,14 +78,32 @@
     padding: 1%;
 }
 
+.verificar,
+.bborrador,
+.cancelar{
+    cursor: pointer;
+}
+
 .verificar{
     background-color: rgb(227, 238, 100);
 }
 
-.borrador{
+.bborrador{
     background-color: rgb(198, 201, 197);
 }
 
 .cancelar{
     background-color: rgb(255, 129, 129);
+}
+
+.verificar:hover{
+    background-color: rgb(206, 216, 92);
+}
+
+.bborrador:hover{
+    background-color: rgb(176, 179, 175);
+}
+
+.cancelar:hover{
+    background-color: rgb(228, 115, 115);
 }
