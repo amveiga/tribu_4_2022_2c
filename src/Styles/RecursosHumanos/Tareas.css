@@ -1,7 +1,9 @@
 #main{
-    margin: 20px;
-    width: 70%;
+    margin-top: 20px;
     margin-left: 22%;
+    margin-bottom: 3%;
+    width: 70%;
+    
 }
 
 .table-element{
@@ -77,6 +79,10 @@
     background-color: rgb(238, 100, 100);
 }
 
+.pendiente .validation-button{
+    visibility: visible;
+}
+
 .borrador .validation-button,
 .aprobado .validation-button,
 .desaprobado .validation-button{
@@ -86,7 +92,6 @@
 .header, .special-header{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 24px;
-    overflow-wrap: break-word;
 }
 
 .header div{
@@ -121,11 +126,14 @@ p{
     font-weight: bolder;
 }
 
+.table-element .validation-button,
 .table-element .validation-button{
     width: 65%;
+    word-break: break-all;
 }
 
 .cell p{
     font-size: 21px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
+

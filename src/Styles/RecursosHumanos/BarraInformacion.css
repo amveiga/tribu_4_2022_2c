@@ -1,8 +1,3 @@
-body{
-    margin: 0;
-    display: flex;
-}
-
 #data-bar{
     background-color: rgb(190, 224, 255);
     height: 100vh;
@@ -12,6 +7,7 @@ body{
     flex-direction: column;
     align-items: center;
     position: fixed;
+    left: 0;
 }
 
 #data-bar div{

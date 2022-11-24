@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-route
 import styles from "./../Styles/RecursosHumanos/RecursosHumanos.css";
 import buttonStyle from "./../Styles/RecursosHumanos/Botones.css";
 
-import trabajadores from "./../Img/personas_icon.png";
-import reportes from "./../Img/reportes_icon.png";
+import trabajadores from "./../Img/RecursosHumanos/personas_icon.png";
+import reportes from "./../Img/RecursosHumanos/reportes_icon.png";
 
 
 function RecursosHumanos() {

@@ -35,10 +35,12 @@
 }
 
 .workers-list{
+    height: 65%;
     margin: 0 17%;
     display: flex;
     flex-direction: column;
     margin-top: 25%;
+    overflow-y: none;
 }
 
 .list-element div{
@@ -111,4 +113,19 @@
 .recursos-button:hover{
     background-color: rgb(190, 187, 218);
     cursor: pointer;
+}
+
+@media (max-height: 760px){
+    .workers-list{
+        overflow-y: scroll;
+        margin: inherit 20%;
+    }
+
+    .recursos-button:nth-child(3){
+        top: 40%;
+    }
+    
+    .recursos-button:nth-child(4){
+        top: 60%;
+    }
 }

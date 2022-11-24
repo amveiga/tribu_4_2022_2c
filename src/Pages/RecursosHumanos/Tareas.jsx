@@ -1,14 +1,38 @@
-import barStyles from "./../../Styles/RecursosHumanos/BarraInformacion.css";
-import styles from "./../../Styles/RecursosHumanos/Tareas.css";
-import buttonStyles from "./../../Styles/RecursosHumanos/Botones.css";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
-import fotoPerfil from "./../../Img/perfil.png";
-import imagenModificar from "./../../Img/modificar_icon.png";
-import imagenBorrar from "./../../Img/borrar_icon.png";
-import imagenValidar from "./../../Img/yes_icon.png";
-import imagenRechazar from "./../../Img/no_icon.png";
+import barStyles from "./../../Styles/RecursosHumanos/BarraInformacion.css";
+import buttonStyles from "./../../Styles/RecursosHumanos/Botones.css";
+import taskStyles from "./../../Styles/RecursosHumanos/Tareas.css";
+
+import fotoPerfil from "./../../Img/RecursosHumanos/perfil.png";
+import imagenModificar from "./../../Img/RecursosHumanos/modificar_icon.png";
+import imagenBorrar from "./../../Img/RecursosHumanos/borrar_icon.png";
+import imagenValidar from "./../../Img/RecursosHumanos/yes_icon.png";
+import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
 
 function Tareas() {
+    let navigate = useNavigate();
+
+    function cargarAdministrativas(){
+        navigate("/recursos-humanos/tareas/cargar-administrativas");
+    }
+
+    function cargarGuardias(){
+        navigate("/recursos-humanos/tareas/cargar-guardias");
+    }
+
+    function CargarIncidencias(){
+        navigate("/recursos-humanos/tareas/cargar-incidencias");
+    }
+
+    function CargarLicencias(){
+        navigate("/recursos-humanos/tareas/cargar-licencias");
+    }
+
+    function cargarTareas(){
+        navigate("/recursos-humanos/tareas/cargar-tareas");
+    }
+
     return (
     <div className="body">
         <div id="data-bar">
@@ -21,17 +45,17 @@ function Tareas() {
         </div>
         <div id="main">
             <div class="task-buttons">
-                <input class="task-button work-button" type="button" value="Cargar horas de trabajo en tareas"/>
-                <input class="task-button incidence-button" type="button" value="Cargar horas de trabajo en incidencias"/>
-                <input class="task-button admin-button" type="button" value="Cargar horas de trabajo en tareas administrativas"/>
-                <input class="task-button guard-button" type="button" value="Cargar horas de guardia"/>
-                <input class="task-button license-button" type="button" value="Cargar licencias"/>
+                <input class="task-button work-button" type="button" value="Cargar horas de trabajo en tareas" onClick={cargarTareas}/>
+                <input class="task-button incidence-button" type="button" value="Cargar horas de trabajo en incidencias" onClick={CargarIncidencias}/>
+                <input class="task-button admin-button" type="button" value="Cargar horas de trabajo en tareas administrativas" onClick={cargarAdministrativas}/>
+                <input class="task-button guard-button" type="button" value="Cargar horas de guardia" onClick={cargarGuardias}/>
+                <input class="task-button license-button" type="button" value="Cargar licencias" onClick={CargarLicencias}/>
             </div>
             <p class="title-separator">Tareas trabajadas</p>
             <div id="worked-hours-div">
                 <div class="table-element special-wide special-header">
                     <div><p>Proyecto</p></div>
-                    <div><p>Tarea/Subtarea</p></div>
+                    <div><p>Tarea / Subtarea</p></div>
                     <div><p>Horas declaradas</p></div>
                     <div><p>Modificar</p></div>
                     <div><p>Borrar</p></div>

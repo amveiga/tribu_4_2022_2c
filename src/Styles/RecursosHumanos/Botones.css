@@ -14,6 +14,14 @@
     font-size: 24px;
 }
 
+.work-button,
+.incidence-button,
+.guard-button,
+.license-button,
+.admin-button{
+    cursor: pointer;
+}
+
 .work-button{
     background-color: rgb(124, 245, 172);
 }
@@ -33,3 +41,24 @@
 .admin-button{
     background-color: rgb(124, 165, 245)
 }
+
+.work-button:hover{
+    background-color: rgb(105, 206, 145);
+}
+
+.incidence-button:hover{
+    background-color: rgb(133, 141, 214);
+}
+
+.guard-button:hover{
+    background-color: rgb(209, 97, 105);
+}
+
+.license-button:hover{
+    background-color: rgb(202, 169, 103);
+}
+
+.admin-button:hover{
+    background-color: rgb(105, 139, 206)
+}
+
