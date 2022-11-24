@@ -40,5 +40,14 @@
       { "value": "Reclamo", "label": "Reclamo" }
     ],
     "Icon": "tipo"
+  },
+  {
+    "Nombre": "Medio",
+    "Placeholder": "Seleccione un medio",
+    "Options": [
+      { "value": "Telefono", "label": "Telefono" },
+      { "value": "Mail", "label": "Mail" }
+    ],
+    "Icon": "medio"
   }
 ]

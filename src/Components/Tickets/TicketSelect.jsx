@@ -1,37 +1,15 @@
 import styles from "./../../Styles/Soporte/Select.module.css";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
-import { FaUser, FaWifi } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { BsExclamationCircleFill } from "react-icons/bs";
-import { GrStatusGoodSmall } from "react-icons/gr";
-import { MdContactSupport } from "react-icons/md";
 import { useState } from "react";
 
-function Select({ placeHolder, options, icon, style }) {
+function TicketSelect({ placeHolder, options, style }) {
   const [selected, setSelected] = useState(false);
   const [value, setValue] = useState(placeHolder);
 
   const handleClick = (value) => {
     setValue(value);
     setSelected(false);
-  };
-
-  const getIcon = () => {
-    var component;
-    if (icon === "cliente") {
-      component = <FaUser size={"1vw"} color={"rgba(0,53,108,1)"} />;
-    } else if (icon === "estado") {
-      component = <GrStatusGoodSmall size={"1vw"} color={"rgba(0,53,108,1)"} />;
-    } else if (icon === "SLA") {
-      component = (
-        <BsExclamationCircleFill size={"1vw"} color={"rgba(0,53,108,1)"} />
-      );
-    } else if (icon === "tipo") {
-      component = <MdContactSupport size={"1vw"} color={"rgba(0,53,108,1)"} />;
-    } else {
-      component = <FaWifi size={"1vw"} color={"rgba(0,53,108,1)"} />;
-    }
-    return component;
   };
 
   const getIcons = () => {
@@ -79,10 +57,9 @@ function Select({ placeHolder, options, icon, style }) {
                 onClick={() => {
                   handleClick(option.value);
                 }}
-                className={styles.option}
+                className={styles.optionTicket}
               >
                 {option.label}
-                {getIcon()}
               </div>
             );
           })}
@@ -92,4 +69,4 @@ function Select({ placeHolder, options, icon, style }) {
   );
 }
 
-export default Select;
+export default TicketSelect;

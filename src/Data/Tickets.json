@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "titulo": "Titulo 1",
     "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
     "tipo": "Consulta",
@@ -13,6 +14,7 @@
     "ultimaModificacion": "22/11/2022"
   },
   {
+    "id": 2,
     "titulo": "Titulo 2",
     "descripcion": "Este fue un ticket creado con el objetivo de reclamar la interfaz.",
     "tipo": "Reclamo",
@@ -26,6 +28,7 @@
     "ultimaModificacion": "22/11/2022"
   },
   {
+    "id": 3,
     "titulo": "Titulo 3",
     "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
     "tipo": "Consulta",
@@ -39,6 +42,7 @@
     "ultimaModificacion": "20/11/2022"
   },
   {
+    "id": 4,
     "titulo": "Titulo 4",
     "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
     "tipo": "Reclamo",
@@ -52,6 +56,7 @@
     "ultimaModificacion": "22/11/2022"
   },
   {
+    "id": 5,
     "titulo": "Titulo 5",
     "descripcion": "Este fue un ticket creado con el objetivo de probar la interfaz.",
     "tipo": "Reclamo",

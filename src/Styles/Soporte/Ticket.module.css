@@ -1,14 +1,28 @@
-@keyframes inicio {
-  from {
-    padding-right: 4%;
-  }
-  to {
-    padding-right: 0;
-  }
+.ticketSelector {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+  margin-top: 2%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .ticketContainer {
-  animation: inicio 2s;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ticketContainerEdit {
   width: 80%;
   margin-top: 2%;
   display: flex;
@@ -17,7 +31,8 @@
   justify-content: flex-start;
 }
 
-.ticket {
+.ticket,
+.ticketEdit {
   width: 100%;
   height: 25vh;
   padding: 2%;
@@ -30,6 +45,10 @@
   background-color: white;
   box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
   z-index: 2;
+}
+
+.ticketEdit {
+  z-index: 3;
 }
 
 .sectionOne {
@@ -89,24 +108,32 @@
 }
 
 .descripcion {
+  width: 80%;
   text-align: justify;
   font-weight: 400;
 }
 
-.footerSection {
+.footerSection,
+.footerSectionEdit {
   width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
   font-weight: 500;
+  position: relative;
+}
+
+.footerSectionEdit {
+  justify-content: flex-end;
 }
 
 .marginLeft {
   margin-left: 1%;
 }
 
-.sectionTwo {
+.sectionTwo,
+.sectionTwoEdit {
   width: 25%;
   height: 100%;
   display: flex;
@@ -115,6 +142,10 @@
   align-items: flex-end;
   font-family: sans-serif, "Manrope";
   font-size: 1.3vw;
+}
+
+.sectionTwoEdit {
+  width: 40%;
 }
 
 .estado {
@@ -154,6 +185,19 @@
   font-weight: 400;
 }
 
+.item1 {
+  z-index: 10;
+}
+.item2 {
+  z-index: 9;
+}
+.item3 {
+  z-index: 8;
+}
+.item4 {
+  z-index: 7;
+}
+
 .tarea {
   width: 92%;
   padding-top: 4%;
@@ -167,15 +211,6 @@
   border-radius: 25px;
   color: white;
   background-color: rgba(0, 53, 108, 1);
-}
-
-@keyframes iniciar {
-  from {
-    margin-left: -8%;
-  }
-  to {
-    margin-left: -4%;
-  }
 }
 
 .edit,
@@ -198,23 +233,12 @@
 }
 
 .edit {
-  animation: iniciar 2s;
   z-index: 1;
 }
 
-@keyframes backgroundChange {
-  from {
-    background-color: white;
-  }
-  to {
-    background-color: rgba(0, 53, 108, 1);
-  }
-}
-
 .selected {
-  animation-name: backgroundChange;
-  animation-duration: 1s;
   background-color: rgba(0, 53, 108, 1);
+  cursor: default;
 }
 
 .editSelected {
@@ -240,39 +264,78 @@
   justify-content: flex-end;
 }
 
-@keyframes confirm {
-  from {
-    background-color: white;
-  }
-  to {
-    background-color: #1dcc2e;
-  }
-}
-
-@keyframes cancel {
-  from {
-    background-color: white;
-  }
-  to {
-    background-color: #ff0000;
-  }
-}
-
 .editConfirm {
   border-bottom-right-radius: 23px;
   background-color: #1dcc2e;
-  animation-name: confirm;
-  animation-duration: 2s;
 }
 
 .editCancel {
   border-top-right-radius: 23px;
   background-color: #ff0000;
-  animation-name: cancel;
-  animation-duration: 2s;
 }
 
 .delete {
-  animation: iniciar 2s;
   z-index: 0;
+}
+
+.select {
+  margin-left: 2%;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  width: 20%;
+  margin-right: 0;
+  font-weight: 500;
+  font-size: 1.2vw;
+}
+
+.input {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  width: 20%;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.3vw;
+  font-weight: bolder;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 53, 108, 1);
+}
+
+.inputDescription {
+  height: 15vh;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  padding-left: 2%;
+  padding-right: 2%;
+  width: 100%;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.3vw;
+  font-weight: 400;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 53, 108, 1);
+  resize: none;
+}
+
+.input:focus,
+.inputDescription:focus {
+  outline: 1px solid rgba(0, 53, 108, 1);
+}
+
+.input::placeholder,
+.inputDescription::placeholder {
+  color: rgba(0, 53, 108, 1);
+}
+
+.selectEstado {
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  width: 60%;
+  font-weight: 500;
+  font-size: 1.2vw;
+  padding-top: 3%;
+  padding-bottom: 3%;
+  padding-left: 5%;
+  padding-right: 2%;
 }

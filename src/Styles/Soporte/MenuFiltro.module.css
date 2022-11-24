@@ -83,3 +83,23 @@
 .cancelButton:hover {
   background-color: rgba(230, 230, 230, 1);
 }
+
+.filtro1 {
+  z-index: 10;
+}
+
+.filtro2 {
+  z-index: 9;
+}
+
+.filtro3 {
+  z-index: 8;
+}
+
+.filtro4 {
+  z-index: 7;
+}
+
+.filtro5 {
+  z-index: 6;
+}
