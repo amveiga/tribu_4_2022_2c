@@ -27,7 +27,7 @@ function CargarTareas() {
         </div>
         <div id="main">
             <div class="task-buttons">
-                <input class="task-button work-button" type="button" value="Cargar horas de trabajo en tareas"/>
+                <input class="task-button work-button" type="button" value="Cargar horas de trabajo en tareas" onClick={verTareas}/>
                 <input class="task-button incidence-button hidden" type="button" value="Cargar horas de trabajo en incidencias"/>
                 <input class="task-button admin-button hidden" type="button" value="Cargar horas de trabajo en tareas administrativas"/>
                 <input class="task-button guard-button hidden" type="button" value="Cargar horas de guardia" />

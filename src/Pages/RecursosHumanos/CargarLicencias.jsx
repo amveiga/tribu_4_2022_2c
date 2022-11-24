@@ -31,7 +31,7 @@ function CargarLicencias() {
                 <input class="task-button incidence-button hidden" type="button" value="Cargar horas de trabajo en incidencias"/>
                 <input class="task-button admin-button hidden" type="button" value="Cargar horas de trabajo en tareas administrativas"/>
                 <input class="task-button guard-button hidden" type="button" value="Cargar horas de guardia" />
-                <input class="task-button license-button" type="button" value="Cargar licencias" />
+                <input class="task-button license-button" type="button" value="Cargar licencias" onClick={verTareas}/>
             </div>
             <div className="div-container">
                 <div className="div-section">

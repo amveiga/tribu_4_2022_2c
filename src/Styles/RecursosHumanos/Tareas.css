@@ -51,6 +51,7 @@
 .validation-button{
     display: flex;
     flex-direction: column;
+    cursor: pointer;
 }
 
 .yes, .no{
