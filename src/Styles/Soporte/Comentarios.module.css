@@ -1,0 +1,128 @@
+.container {
+  width: 91%;
+  margin-top: -2%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.comentariosContainer {
+  width: 100%;
+  padding-top: 2.5%;
+  padding-bottom: 1%;
+  background-color: rgba(0, 53, 108, 1);
+  border: 2px solid rgba(0, 53, 108, 1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.2vw;
+  color: white;
+  z-index: 1;
+  cursor: pointer;
+  position: relative;
+}
+
+.title {
+  margin-right: 1%;
+}
+
+.selected {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@keyframes desplegar {
+  from {
+    height: 0;
+  }
+  to {
+    height: 30vh;
+  }
+}
+
+.showComentario {
+  animation: desplegar 1s;
+  width: 96%;
+  height: 30vh;
+  background-color: white;
+  border: 2px solid rgba(0, 53, 108, 1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.2vw;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 2%;
+}
+
+.coments {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+@keyframes aparecer {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.comentario {
+  animation: aparecer 2s;
+  margin-top: 2%;
+  text-align: justify;
+  padding-right: 0.5%;
+}
+
+.sendContainer {
+  animation: aparecer 2s;
+  margin-top: 1%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.send {
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  width: 93%;
+  font-family: sans-serif, "Manrope";
+  font-size: 1.3vw;
+  font-weight: 400;
+  border-radius: 10px;
+  border-bottom-right-radius: 0;
+  border: none;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  color: rgba(0, 53, 108, 1);
+  overflow-x: hidden;
+  resize: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.send:focus {
+  outline: 1px solid rgba(0, 53, 108, 1);
+}
+
+.send::placeholder {
+  color: rgba(0, 53, 108, 1);
+}

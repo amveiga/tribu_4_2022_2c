@@ -10,6 +10,7 @@ import { FiUser } from "react-icons/fi";
 import { HiPhone, HiMail, HiOutlineUserGroup, HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { MdEdit, MdDelete } from "react-icons/md";
+import Comentarios from "../Comentarios";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
@@ -163,7 +164,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
           </div>
         )}
       </div>
-      {/* <div className={styles.comentarios}>Comentarios</div> */}
+      <Comentarios id={ticket.id} />
     </div>
   );
 }
