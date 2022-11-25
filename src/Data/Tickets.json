@@ -8,7 +8,7 @@
     "medio": "Telefono",
     "sla": "Crítico",
     "cliente": "Cliente 1",
-    "usuario": "Roberto Iskandarani",
+    "usuario": "",
     "area": "",
     "fechaCreacion": "22/11/2022",
     "ultimaModificacion": "22/11/2022"
@@ -22,8 +22,8 @@
     "medio": "Mail",
     "sla": "Alto",
     "cliente": "Cliente 2",
-    "usuario": "Jose Mercado",
-    "area": "Marketing",
+    "usuario": "",
+    "area": "",
     "fechaCreacion": "21/11/2022",
     "ultimaModificacion": "22/11/2022"
   },
@@ -36,7 +36,7 @@
     "medio": "Telefono",
     "sla": "Medio",
     "cliente": "Cliente 1",
-    "usuario": "Roberto Iskandarani",
+    "usuario": "",
     "area": "",
     "fechaCreacion": "12/11/2022",
     "ultimaModificacion": "20/11/2022"
@@ -50,8 +50,8 @@
     "medio": "Telefono",
     "sla": "Bajo",
     "cliente": "Cliente 3",
-    "usuario": "Roberto Iskandarani",
-    "area": "Desarrollo",
+    "usuario": "",
+    "area": "",
     "fechaCreacion": "10/11/2022",
     "ultimaModificacion": "22/11/2022"
   },
@@ -64,7 +64,7 @@
     "medio": "Mail",
     "sla": "Crítico",
     "cliente": "Cliente 1",
-    "usuario": "Juan Zeo",
+    "usuario": "",
     "area": "",
     "fechaCreacion": "16/10/2022",
     "ultimaModificacion": "09/11/2022"

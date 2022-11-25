@@ -9,12 +9,15 @@ import { FaPlus } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { HiPhone, HiMail, HiOutlineUserGroup, HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
+import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
 import Comentarios from "../Comentarios";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
+import TicketSelect from "./TicketSelect";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
   const [typeHovered, setTypeHovered] = useState(false);
+  const [escalarSelected, setEscalarSelected] = useState(false);
 
   const getState = (estado) => {
     var style;
@@ -51,47 +54,58 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
       <div className={styles.ticketContainer}>
         <div className={styles.ticket}>
           <div className={styles.sectionOne}>
-            <div className={styles.titleSection}>
-              {ticket.titulo}
-              {ticket.tipo === "Consulta" ? (
-                <BsQuestionCircleFill
-                  onMouseEnter={() => setTypeHovered(true)}
-                  onMouseLeave={() => setTypeHovered(false)}
-                  className={styles.type}
-                  size={"1.3vw"}
-                  color={"rgba(106, 176, 249, 1)"}
-                />
-              ) : (
-                <BsFillExclamationCircleFill
-                  onMouseEnter={() => setTypeHovered(true)}
-                  onMouseLeave={() => setTypeHovered(false)}
-                  className={styles.type}
-                  size={"1.3vw"}
-                  color={"red"}
-                />
-              )}
-              {typeHovered && (
-                <div className={styles.showType}>
-                  <BsFillCaretLeftFill
-                    className={styles.arrow}
-                    size={"1.5vw"}
-                    color={
-                      ticket.tipo === "Consulta"
-                        ? "rgba(106, 176, 249, 1)"
-                        : "red"
-                    }
+            <div className={styles.headerSection}>
+              <div className={styles.titleSection}>
+                {ticket.titulo}
+                {ticket.tipo === "Consulta" ? (
+                  <BsQuestionCircleFill
+                    onMouseEnter={() => setTypeHovered(true)}
+                    onMouseLeave={() => setTypeHovered(false)}
+                    className={styles.type}
+                    size={"1.3vw"}
+                    color={"rgba(106, 176, 249, 1)"}
                   />
-                  <div
-                    className={
-                      (ticket.tipo === "Consulta" ? styles.blue : styles.red) +
-                      " " +
-                      styles.showTypeText
-                    }
-                  >
-                    {ticket.tipo}
+                ) : (
+                  <BsFillExclamationCircleFill
+                    onMouseEnter={() => setTypeHovered(true)}
+                    onMouseLeave={() => setTypeHovered(false)}
+                    className={styles.type}
+                    size={"1.3vw"}
+                    color={"red"}
+                  />
+                )}
+                {typeHovered && (
+                  <div className={styles.showType}>
+                    <BsFillCaretLeftFill
+                      className={styles.arrow}
+                      size={"1.5vw"}
+                      color={
+                        ticket.tipo === "Consulta"
+                          ? "rgba(106, 176, 249, 1)"
+                          : "red"
+                      }
+                    />
+                    <div
+                      className={
+                        (ticket.tipo === "Consulta"
+                          ? styles.blue
+                          : styles.red) +
+                        " " +
+                        styles.showTypeText
+                      }
+                    >
+                      {ticket.tipo}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
+              <div
+                onClick={() => setEscalarSelected(true)}
+                className={styles.escalar}
+              >
+                Escalar ticket
+                <ImMoveUp size={"1.5vw"} color={"white"} />
+              </div>
             </div>
             <div className={styles.descripcion}>{ticket.descripcion}</div>
             <div className={styles.footerSection}>
@@ -165,6 +179,46 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
         )}
       </div>
       <Comentarios id={ticket.id} />
+      {escalarSelected && (
+        <div className={styles.escalarSelectedContainer}>
+          <div className={styles.escalarSelected}>
+            {/* <div className={styles.item + " " + styles.item1}>
+              <TicketSelect
+                placeHolder={"Seleccione un área"}
+                options={[
+                  { value: "Marketing", label: "Marketing" },
+                  { value: "Desarollo", label: "Desarollo" },
+                  { value: "Recursos Humanos", label: "Recursos Humanos" },
+                  { value: "Administración", label: "Administración" },
+                ]}
+                style={styles.selectEstado}
+              />
+            </div>
+            <div className={styles.item + " " + styles.item2}>
+              <TicketSelect
+                placeHolder={"Seleccione un recurso"}
+                options={[
+                  { value: "Recurso 1", label: "Recurso 1" },
+                  { value: "Recurso 2", label: "Recurso 2" },
+                  { value: "Recurso 3", label: "Recurso 3" },
+                ]}
+                style={styles.selectEstado}
+              />
+            </div> */}
+          </div>
+          <div className={styles.editSelected + " " + styles.escalarHeight}>
+            <div
+              onClick={() => setEscalarSelected(false)}
+              className={styles.editCancel}
+            >
+              <IoClose size={"2vw"} color={"white"} />
+            </div>
+            <div className={styles.editConfirm}>
+              <HiCheck size={"2vw"} color={"white"} />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
