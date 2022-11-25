@@ -13,6 +13,14 @@ function RecursosHumanos() {
     navigate("/recursos-humanos/tareas");
   }
 
+  function generarReporteTrabajador(){
+    navigate("/recursos-humanos/GenerarReportesTrabajador");
+  }
+
+  function generarReporteProyecto(){
+    navigate("/recursos-humanos/GenerarReportesProyecto");
+  }
+
   return (
     <div className="body">
       <div className="recursos-humanos-container trabajadores">
@@ -49,10 +57,10 @@ function RecursosHumanos() {
       <div className="recursos-humanos-container reportes">
         <p className="section-title">Reportes</p>
         <img className="recursos-icon" src={reportes} alt="" />
-        <div className="recursos-button">
+        <div className="recursos-button" onClick={generarReporteTrabajador}>
           <p>Generar reporte de horas trabajadas de un trabajador</p>
         </div>
-        <div className="recursos-button">
+        <div className="recursos-button" onClick={generarReporteProyecto}>
           <p>Generar reporte de horas trabajadas por proyecto</p>
         </div>
       </div>

@@ -11,6 +11,8 @@ import CargaHorasGuardia from "./Pages/RecursosHumanos/CargarGuardia";
 import CargaHorasIncidencias from "./Pages/RecursosHumanos/CargarIncidencias";
 import CargaHorasLicencias from "./Pages/RecursosHumanos/CargarLicencias";
 import CargaHorasTareas from "./Pages/RecursosHumanos/CargarTareas";
+import ReportesTrabajador from "./Pages/RecursosHumanos/GenerarReportesTrabajador";
+import ReportesProyecto from "./Pages/RecursosHumanos/GenerarReportesProyecto";
 
 function App() {
   return (
@@ -22,6 +24,8 @@ function App() {
           <Route path="/proyectos" element={<Proyectos />} />
           <Route path="/soporte" element={<Soporte />} />
           <Route path="/recursos-humanos" element={<RecursosHumanos />} />
+          <Route path="/recursos-humanos/GenerarReportesTrabajador" element={<ReportesTrabajador />} />
+          <Route path="/recursos-humanos/GenerarReportesProyecto" element={<ReportesProyecto />} />
           <Route path="/recursos-humanos/tareas" element={<Tareas />} />
           <Route path="/recursos-humanos/tareas/cargar-administrativas" element={<CargaHorasAdministrativas />} />
           <Route path="/recursos-humanos/tareas/cargar-guardias" element={<CargaHorasGuardia />} />
