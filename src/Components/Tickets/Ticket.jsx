@@ -182,7 +182,8 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
       {escalarSelected && (
         <div className={styles.escalarSelectedContainer}>
           <div className={styles.escalarSelected}>
-            {/* <div className={styles.item + " " + styles.item1}>
+            <div className={styles.selection + " " + styles.item1}>
+              <div className={styles.marginLeftEscalar}>Área</div>
               <TicketSelect
                 placeHolder={"Seleccione un área"}
                 options={[
@@ -191,10 +192,11 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                   { value: "Recursos Humanos", label: "Recursos Humanos" },
                   { value: "Administración", label: "Administración" },
                 ]}
-                style={styles.selectEstado}
+                style={styles.selectItem}
               />
             </div>
-            <div className={styles.item + " " + styles.item2}>
+            <div className={styles.selection + " " + styles.item2}>
+              <div className={styles.marginLeftEscalar}>Recurso</div>
               <TicketSelect
                 placeHolder={"Seleccione un recurso"}
                 options={[
@@ -202,9 +204,9 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                   { value: "Recurso 2", label: "Recurso 2" },
                   { value: "Recurso 3", label: "Recurso 3" },
                 ]}
-                style={styles.selectEstado}
+                style={styles.selectItem}
               />
-            </div> */}
+            </div>
           </div>
           <div className={styles.editSelected + " " + styles.escalarHeight}>
             <div

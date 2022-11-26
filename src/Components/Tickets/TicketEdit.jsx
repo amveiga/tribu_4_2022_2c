@@ -18,7 +18,7 @@ function TicketEdit({ ticket, setEditSelected }) {
     <div className={styles.ticketContainerEdit}>
       <div className={styles.ticketEdit}>
         <div className={styles.sectionOne}>
-          <div className={styles.titleSection}>
+          <div className={styles.titleSection + " " + styles.growTitle}>
             <input
               type={"text"}
               defaultValue={ticket.titulo}

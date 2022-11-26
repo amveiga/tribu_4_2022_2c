@@ -20,7 +20,11 @@ function TicketCreate({ setCrearTicket }) {
     <div className={styles.ticketCreateContainer}>
       <div className={styles.ticketCreate}>
         <div className={styles.sectionOne}>
-          <div className={styles.titleSection + " " + styles.column}>
+          <div
+            className={
+              styles.titleSection + " " + styles.growTitle + " " + styles.column
+            }
+          >
             <div className={styles.title}>Titulo</div>
             <input
               type={"text"}
