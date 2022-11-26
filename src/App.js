@@ -11,6 +11,7 @@ import CargaHorasGuardia from "./Pages/RecursosHumanos/CargarGuardia";
 import CargaHorasIncidencias from "./Pages/RecursosHumanos/CargarIncidencias";
 import CargaHorasLicencias from "./Pages/RecursosHumanos/CargarLicencias";
 import CargaHorasTareas from "./Pages/RecursosHumanos/CargarTareas";
+import CargaHoras from "./Pages/RecursosHumanos/CargarHoras";
 import ReportesTrabajador from "./Pages/RecursosHumanos/GenerarReportesTrabajador";
 import ReportesProyecto from "./Pages/RecursosHumanos/GenerarReportesProyecto";
 
@@ -32,6 +33,7 @@ function App() {
           <Route path="/recursos-humanos/tareas/cargar-incidencias" element={<CargaHorasIncidencias />} />
           <Route path="/recursos-humanos/tareas/cargar-licencias" element={<CargaHorasLicencias />} />
           <Route path="/recursos-humanos/tareas/cargar-tareas" element={<CargaHorasTareas />} />
+          <Route path="/recursos-humanos/tareas/cargar-horas" element={<CargaHoras />} />
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </div>

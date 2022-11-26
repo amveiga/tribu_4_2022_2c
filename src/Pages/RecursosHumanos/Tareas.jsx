@@ -13,24 +13,8 @@ import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
 function Tareas() {
     let navigate = useNavigate();
 
-    function cargarAdministrativas(){
-        navigate("/recursos-humanos/tareas/cargar-administrativas");
-    }
-
-    function cargarGuardias(){
-        navigate("/recursos-humanos/tareas/cargar-guardias");
-    }
-
-    function CargarIncidencias(){
-        navigate("/recursos-humanos/tareas/cargar-incidencias");
-    }
-
-    function CargarLicencias(){
-        navigate("/recursos-humanos/tareas/cargar-licencias");
-    }
-
-    function cargarTareas(){
-        navigate("/recursos-humanos/tareas/cargar-tareas");
+    function cargarHoras(){
+        navigate("/recursos-humanos/tareas/cargar-horas");
     }
 
     return (
@@ -45,7 +29,7 @@ function Tareas() {
         </div>
         <div id="main">
             <div class="task-buttons">
-                <input class="task-button work-button" type="button" value="Cargar horas de trabajo en tareas" onClick={cargarTareas}/>
+                <input class="task-button work-button" type="button" value="Cargar horas" onClick={cargarHoras}/>
             </div>
             <div className="hours-section">
                 <div className="hours-section-container">

@@ -3,7 +3,6 @@
     margin-left: 22%;
     margin-bottom: 3%;
     width: 70%;
-    
 }
 
 .hours-section{
@@ -66,6 +65,7 @@
     justify-content: space-between;
     height: 2em;
     margin-top: 5%;
+    font-weight: 700;
 }
 
 .sub-task-element{
@@ -112,14 +112,33 @@
 .delete-button{
     border: 2px solid rgb(0, 53, 108);
     border-radius: 20px;
-    width: 40%;
+    width: 45%;
     display: flex;
     justify-content: center;
+}
+
+p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:rgb(0, 53, 108);
+    font-size: 18px;
 }
 
 .edit-button p,
 .delete-button p{
     margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.edit-button{
+    color: rgb(0, 53, 108);
+}
+
+.delete-button{
+    background-color: rgb(0, 53, 108);
+}
+
+.delete-button p{
+    color: white;
 }
 
 
@@ -134,7 +153,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2%;
+    padding: 3%;
     margin-top: 2%;
     border-right: 4px solid rgb(0, 53, 108);
     border-top: 4px solid rgb(0, 53, 108);
