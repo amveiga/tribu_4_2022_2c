@@ -45,7 +45,7 @@
     "Nombre": "Medio",
     "Placeholder": "Seleccione un medio",
     "Options": [
-      { "value": "Telefono", "label": "Telefono" },
+      { "value": "Teléfono", "label": "Teléfono" },
       { "value": "Mail", "label": "Mail" }
     ],
     "Icon": "medio"

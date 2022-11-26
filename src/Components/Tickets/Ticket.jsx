@@ -109,7 +109,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
             </div>
             <div className={styles.descripcion}>{ticket.descripcion}</div>
             <div className={styles.footerSection}>
-              {ticket.medio === "Telefono" ? (
+              {ticket.medio === "Teléfono" ? (
                 <HiPhone size={"1.2vw"} color={"rgba(0,53,108,1)"} />
               ) : (
                 <HiMail size={"1.4vw"} color={"rgba(0,53,108,1)"} />
