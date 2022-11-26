@@ -19,19 +19,25 @@
     flex-direction: column;
 }
 
+.recursos-humanos-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .section-title{
     font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 45px;
     color: rgb(0, 53, 108);
-    position: fixed;
+    /*position: fixed;
     top: 6%;
-    right: 40%;
+    right: 40%;*/
 }
 
 .recursos-icon{
-    position: fixed;
+    /*position: fixed;
     top: 6%;
-    right: 20%;
+    right: 20%;*/
 }
 
 .workers-list{
@@ -39,7 +45,6 @@
     margin: 0 17%;
     display: flex;
     flex-direction: column;
-    margin-top: 25%;
     overflow-y: none;
 }
 
@@ -58,7 +63,7 @@
 }
 
 .header-list{
-    margin-bottom: -5%;
+    margin-bottom: 1%;
     font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -67,6 +72,7 @@
     display: flex;
     justify-content: space-around;
     font-size: 20px;
+    height: 3em;
 }
 
 .list-element{
@@ -88,8 +94,7 @@
 
 .recursos-button{
     font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
-    margin: 0 10%;
-    position: sticky;
+    margin: 5% 10% 0;
     background-color: rgb(233,239,246);
     font-size: 30px;
     height: 3em;
@@ -99,7 +104,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    
 
+}
+
+.recursos-button p{
+    text-align: center;
 }
 
 .recursos-button:nth-child(3){
@@ -121,11 +131,34 @@
         margin: inherit 20%;
     }
 
+    
+
     .recursos-button:nth-child(3){
         top: 40%;
     }
     
     .recursos-button:nth-child(4){
         top: 60%;
+    }
+}
+
+@media(max-height: 570px){
+    .recursos-button p{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1300px){
+    .section-title{
+        font-size: 30px;
+    }
+
+    .recursos-icon{
+        height: 80px;
+    }
+
+    .header-list p,
+    .recursos-button p{
+        font-size: 20px;
     }
 }

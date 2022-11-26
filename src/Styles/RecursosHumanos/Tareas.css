@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 #main{
     margin-top: 20px;
     margin-left: 22%;
@@ -59,6 +63,12 @@
     justify-content: space-around;
 }
 
+.task-name p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color:rgb(0, 53, 108);
+    font-size: 18px;
+}
+
 .task-name-div{
     display: flex;
     align-items: center;
@@ -117,12 +127,6 @@
     justify-content: center;
 }
 
-p{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color:rgb(0, 53, 108);
-    font-size: 18px;
-}
-
 .edit-button p,
 .delete-button p{
     margin: 0;
@@ -164,4 +168,5 @@ p{
 
 .border-button img{
     margin-left: 70%;
+    max-width: 100%;
 }

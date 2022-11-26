@@ -24,8 +24,10 @@ function RecursosHumanos() {
   return (
     <div className="body">
       <div className="recursos-humanos-container trabajadores">
-        <p className="section-title">Trabajadores</p>
-        <img className="recursos-icon" src={trabajadores} alt="" />
+        <div className="recursos-humanos-title">
+          <p className="section-title">Trabajadores</p>
+          <img className="recursos-icon" src={trabajadores} alt="" />
+        </div>
         <div className="workers-list">
           <div className="header-list">
             <div><p>Nombre</p></div>
@@ -55,8 +57,11 @@ function RecursosHumanos() {
         </div>
       </div>
       <div className="recursos-humanos-container reportes">
-        <p className="section-title">Reportes</p>
-        <img className="recursos-icon" src={reportes} alt="" />
+        <div className="recursos-humanos-title">
+          <p className="section-title">Reportes</p>
+          <img className="recursos-icon" src={reportes} alt="" />
+        </div>
+        
         <div className="recursos-button" onClick={generarReporteTrabajador}>
           <p>Generar reporte de horas trabajadas de un trabajador</p>
         </div>

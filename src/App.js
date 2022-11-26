@@ -6,11 +6,11 @@ import Proyectos from "./Pages/Proyectos";
 import Soporte from "./Pages/Soporte";
 import RecursosHumanos from "./Pages/RecursosHumanos";
 import Tareas from "./Pages/RecursosHumanos/Tareas";
-import CargaHorasAdministrativas from "./Pages/RecursosHumanos/CargarAdministrativas";
-import CargaHorasGuardia from "./Pages/RecursosHumanos/CargarGuardia";
-import CargaHorasIncidencias from "./Pages/RecursosHumanos/CargarIncidencias";
-import CargaHorasLicencias from "./Pages/RecursosHumanos/CargarLicencias";
-import CargaHorasTareas from "./Pages/RecursosHumanos/CargarTareas";
+//import CargaHorasAdministrativas from "./Pages/RecursosHumanos/CargarAdministrativas";
+//import CargaHorasGuardia from "./Pages/RecursosHumanos/CargarGuardia";
+//import CargaHorasIncidencias from "./Pages/RecursosHumanos/CargarIncidencias";
+//import CargaHorasLicencias from "./Pages/RecursosHumanos/CargarLicencias";
+//import CargaHorasTareas from "./Pages/RecursosHumanos/CargarTareas";
 import CargaHoras from "./Pages/RecursosHumanos/CargarHoras";
 import ReportesTrabajador from "./Pages/RecursosHumanos/GenerarReportesTrabajador";
 import ReportesProyecto from "./Pages/RecursosHumanos/GenerarReportesProyecto";
@@ -28,11 +28,11 @@ function App() {
           <Route path="/recursos-humanos/GenerarReportesTrabajador" element={<ReportesTrabajador />} />
           <Route path="/recursos-humanos/GenerarReportesProyecto" element={<ReportesProyecto />} />
           <Route path="/recursos-humanos/tareas" element={<Tareas />} />
-          <Route path="/recursos-humanos/tareas/cargar-administrativas" element={<CargaHorasAdministrativas />} />
-          <Route path="/recursos-humanos/tareas/cargar-guardias" element={<CargaHorasGuardia />} />
-          <Route path="/recursos-humanos/tareas/cargar-incidencias" element={<CargaHorasIncidencias />} />
-          <Route path="/recursos-humanos/tareas/cargar-licencias" element={<CargaHorasLicencias />} />
-          <Route path="/recursos-humanos/tareas/cargar-tareas" element={<CargaHorasTareas />} />
+          {/*<Route path="/recursos-humanos/tareas/cargar-administrativas" element={<CargaHorasAdministrativas />} />*/}
+          {/*<Route path="/recursos-humanos/tareas/cargar-guardias" element={<CargaHorasGuardia />} />*/}
+          {/*<Route path="/recursos-humanos/tareas/cargar-incidencias" element={<CargaHorasIncidencias />} />*/}
+          {/*<Route path="/recursos-humanos/tareas/cargar-licencias" element={<CargaHorasLicencias />} />*/}
+          {/*<Route path="/recursos-humanos/tareas/cargar-tareas" element={<CargaHorasTareas />} />*/}
           <Route path="/recursos-humanos/tareas/cargar-horas" element={<CargaHoras />} />
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
