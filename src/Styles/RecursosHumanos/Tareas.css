@@ -6,135 +6,143 @@
     
 }
 
-.table-element{
+.hours-section{
     display: flex;
-    justify-content: space-between;
-    margin-right: 10%;
-    margin-top: -1%;
 }
 
-.table-element img{
-    width: 40%;
+.hours-section-container{
+    border: 4px solid rgb(0, 53, 108);
+    border-radius: 30px;
+    display: flex;
+    width: fit-content;
+    margin-top: 2%;
 }
 
-.table-element div{
-    width: 100%;
+.border-task-start{
+    background-color: rgb(0, 53, 108);
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1%;
+    border-radius: 20px 0 0 20px;
+    width: 40px;
 }
 
-.table-element div:first-of-type{
-    width: 230%;
-}
-
-.special-wide div:first-of-type{
-    width: 100%;
-}
-
-.first-div{
-    border-radius: 10px 0 0 10px;
-    border-right: 5px white solid;
-}
-
-.mid-div{
-    border-right: 5px white solid;
-    border-left: 5px white solid;
-}
-
-.last-div{
-    border-radius: 0 10px 10px 0;
-    border-left: 5px white solid;
-}
-
-.validation-button{
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.yes, .no{
-    border-top: 2px black solid;
-    border-bottom: 2px black solid;
-}
-
-.no{
-    border-right: 2px black solid;
-    border-radius: 0 10px 10px 0;
-}
-
-.borrador .cell{
-    background-color: rgb(208, 208, 208);
-}
-
-.pendiente .cell{
-    background-color: rgb(217, 238, 100);
-}
-
-.aprobado .cell{
-    background-color: rgb(180, 229, 172);
-}
-
-.desaprobado .cell{
-    background-color: rgb(238, 100, 100);
-}
-
-.pendiente .validation-button{
-    visibility: visible;
-}
-
-.borrador .validation-button,
-.aprobado .validation-button,
-.desaprobado .validation-button{
-    visibility: hidden;
-}
-
-.header, .special-header{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 24px;
-}
-
-.header div{
-    padding: 1%;
-}
-
-.header div:first-of-type{
-    width: 230%;
-}
-
-.special-header .validation-button,
-.header .validation-button{
-    visibility: hidden;
-}
-
-p{
-    margin: 0;
+.border-task-start p{
+    color: white;
+    transform: rotate(270deg);
     text-align: center;
 }
 
-.special-header div{
-    padding: 1%;
+.border-task-end{
+    width: 50px;
 }
 
-.title-separator{
-    text-align: left;
+.task-element-container{
+    display: flex;
+    border-top: 2px solid rgb(0, 53, 108);
+    border-bottom: 2px solid rgb(0, 53, 108);
+    margin-left: 2%;
+}
+
+.task-element-container:first-of-type{
+    border-top: none;
+}
+.task-element-container:last-of-type{
+    border-bottom: none;
+}
+
+.task-element{
+    width: 180px;
+    height: 160px;
+    padding: 0 1%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.task-name-div{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2em;
+    margin-top: 5%;
+}
+
+.sub-task-element{
+    margin-top: -10%;
+}
+
+.sub-task-empty-element p{
+    text-align: center;
+}
+
+.status-dot{
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+}
+
+.grey{
+    background-color: rgb(164, 162, 159)
+}
+
+.yellow{
+    background-color: rgb(227, 238, 100);
+}
+
+.green{
+    background-color: rgb(47, 249, 79);
+}
+
+.orange{
+    background-color: rgb(255, 153, 0);
+}
+
+.hours-amount{
+    margin: 0.5em 0;
+}
+
+.buttons-work-div{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.edit-button,
+.delete-button{
+    border: 2px solid rgb(0, 53, 108);
+    border-radius: 20px;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+}
+
+.edit-button p,
+.delete-button p{
+    margin: 0;
+}
+
+
+.vertical-divisor{
+    background-color: rgb(0, 53, 108);
+    width: 4px;
+    height: 8em;
+    align-self: center;
+}
+
+.border-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2%;
     margin-top: 2%;
-    margin-bottom: -1%;
-    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
-    font-size: 48px;
-    color: rgb(0, 53, 108);
-    font-weight: bolder;
+    border-right: 4px solid rgb(0, 53, 108);
+    border-top: 4px solid rgb(0, 53, 108);
+    border-bottom: 4px solid rgb(0, 53, 108);
+    border-radius: 0 35px 35px 0;
+    margin-left: -25px;
 }
 
-.table-element .validation-button,
-.table-element .validation-button{
-    width: 65%;
-    word-break: break-all;
+.border-button img{
+    margin-left: 70%;
 }
-
-.cell p{
-    font-size: 21px;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-}
-

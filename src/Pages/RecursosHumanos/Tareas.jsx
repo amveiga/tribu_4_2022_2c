@@ -46,113 +46,376 @@ function Tareas() {
         <div id="main">
             <div class="task-buttons">
                 <input class="task-button work-button" type="button" value="Cargar horas de trabajo en tareas" onClick={cargarTareas}/>
-                <input class="task-button incidence-button" type="button" value="Cargar horas de trabajo en incidencias" onClick={CargarIncidencias}/>
-                <input class="task-button admin-button" type="button" value="Cargar horas de trabajo en tareas administrativas" onClick={cargarAdministrativas}/>
-                <input class="task-button guard-button" type="button" value="Cargar horas de guardia" onClick={cargarGuardias}/>
-                <input class="task-button license-button" type="button" value="Cargar licencias" onClick={CargarLicencias}/>
             </div>
-            <p class="title-separator">Tareas trabajadas</p>
-            <div id="worked-hours-div">
-                <div class="table-element special-wide special-header">
-                    <div><p>Proyecto</p></div>
-                    <div><p>Tarea / Subtarea</p></div>
-                    <div><p>Horas declaradas</p></div>
-                    <div><p>Modificar</p></div>
-                    <div><p>Borrar</p></div>
-                    <div><p>Estado</p></div>
-                    <div class="validation-button"><p>Validar</p></div>
-                    <div class="validation-button"><p>Rechazar</p></div>
+            <div className="hours-section">
+                <div className="hours-section-container">
+                    <div className="border-task-start">
+                        <p>Aprobado</p>
+                    </div>
+                    <div className="task-element-main-container">
+                        <div className="task-element-container">
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Tarea 1</p>
+                                            <div className="status-dot grey"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">Cantidad de horas</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div className="vertical-divisor">
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot yellow"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot green"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                        <div className="task-element-container">
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Tarea 1</p>
+                                            <div className="status-dot grey"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">Cantidad de horas</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div className="vertical-divisor">
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot yellow"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot green"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="border-task-end">
+                    </div>
                 </div>
-                <div class="table-element special-wide borrador">
-                    <div class="first-div cell"><p>Nombre del Proyecto 1</p></div>
-                    <div class="mid-div cell"><p>Nombre de la tarea 1</p></div>
-                    <div class="mid-div cell"><p>16 Hs</p></div>
-                    <div class="mid-div cell"><img src={imagenModificar} alt=""/></div>
-                    <div class="mid-div cell"><img src={imagenBorrar} alt=""/></div>
-                    <div class="last-div cell"><p>Borrador</p></div>
-                    <div class="validation-button yes">
-                        <p>Validar</p><img src="img/yes_icon.png" alt=""/>
-                    </div>
-                    <div class="validation-button no">
-                        <p>Rechazar</p><img src={imagenRechazar} alt=""/>
-                    </div>
+                <div className="border-button">
+                    <img src={imagenValidar} alt="" />
                 </div>
             </div>
-            <p class="title-separator">Incidencias resueltas</p>
-            <div id="incidences-solved-div">
-                <div class="table-element normal-wide header">
-                    <div><p>Ticket</p></div>
-                    <div><p>Horas declaradas</p></div>
-                    <div><p>Modificar</p></div>
-                    <div><p>Borrar</p></div>
-                    <div><p>Estado</p></div>
-                    <div class="validation-button"><p>Validar</p></div>
-                    <div class="validation-button"><p>Rechazar</p></div>
+            <div className="hours-section">
+                <div className="hours-section-container">
+                    <div className="border-task-start">
+                        <p>Borrador</p>
+                    </div>
+                    <div className="task-element-main-container">
+                        <div className="task-element-container">
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Tarea 1</p>
+                                            <div className="status-dot grey"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">Cantidad de horas</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div className="vertical-divisor">
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot yellow"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot green"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                        <div className="task-element-container">
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Tarea 1</p>
+                                            <div className="status-dot grey"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">Cantidad de horas</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div className="vertical-divisor">
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot yellow"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        <div className="task-element">
+                            <div className="sub-task-element">
+                                <div className="task-div">
+                                    <div className="task-name-div">
+                                        <p className="task-name">Subtarea 1</p>
+                                        <div className="status-dot green"></div>
+                                    </div>
+                                </div>
+                                <p className="hours-amount">Cantidad de horas</p>
+                            </div>
+                            <div className="buttons-work-div">
+                                    <div className="edit-button">
+                                        <p>Editar</p>
+                                    </div>
+                                    <div className="delete-button">
+                                        <p>Eliminar</p>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+                    </div>
+                    <div className="border-task-end">
+                    </div>
                 </div>
-                <div class="table-element pendiente">
-                    <div class="first-div cell"><p>Numero del Ticket</p></div>
-                    <div class="mid-div cell"><p>5 Hs</p></div>
-                    <div class="mid-div cell"><img src={imagenModificar} alt=""/></div>
-                    <div class="mid-div cell"><img src={imagenBorrar} alt=""/></div>
-                    <div class="last-div cell"><p>Pendiente validación</p></div>
-                    <div class="validation-button yes">
-                        <p>Validar</p><img src={imagenValidar} alt=""/>
-                    </div>
-                    <div class="validation-button no">
-                        <p>Rechazar</p><img src={imagenRechazar} alt=""/>
-                    </div>
+                <div className="border-button">
+                    <img src={imagenValidar} alt="" />
                 </div>
             </div>
-
-            <p class="title-separator">Guardias</p>
-            <div id="guards-div">
-                <div class="table-element normal-wide header">
-                    <div><p>Número de guardia</p></div>
-                    <div><p>Horas declaradas</p></div>
-                    <div><p>Modificar</p></div>
-                    <div><p>Borrar</p></div>
-                    <div><p>Estado</p></div>
-                    <div class="validation-button"><p>Validar</p></div>
-                    <div class="validation-button"><p>Rechazar</p></div>
+            <div className="hours-section">
+                <div className="hours-section-container">
+                    <div className="border-task-start">
+                        <p>Pendiente Validación</p>
+                    </div>
+                    <div className="task-element-main-container">
+                        <div className="task-element-container">
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Guardia</p>
+                                            <div className="status-dot orange"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">4 Hs</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div className="vertical-divisor">
+                            </div>
+                            <div className="task-element">
+                                <div className="sub-task-empty-element">
+                                    <p>No hay subtareas disponibles</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div className="border-task-end">
+                    </div>
                 </div>
-                <div class="table-element aprobado">
-                    <div class="first-div cell"><p>1</p></div>
-                    <div class="mid-div cell"><p>5 Hs</p></div>
-                    <div class="mid-div cell"><img src={imagenModificar} alt=""/></div>
-                    <div class="mid-div cell"><img src={imagenBorrar} alt=""/></div>
-                    <div class="last-div cell"><p>Aprobado</p></div>
-                    <div class="validation-button yes">
-                        <p>Validar</p><img src={imagenValidar} alt=""/>
-                    </div>
-                    <div class="validation-button no">
-                        <p>Rechazar</p><img src={imagenRechazar} alt=""/>
-                    </div>
+                <div className="border-button">
+                    <img src={imagenValidar} alt="" />
                 </div>
             </div>
-
-            <p class="title-separator">Licencias</p>
-            <div id="licenses-div">
-                <div class="table-element header">
-                    <div><p>Tipo de licencia</p></div>
-                    <div><p>Horas declaradas</p></div>
-                    <div><p>Modificar</p></div>
-                    <div><p>Borrar</p></div>
-                    <div><p>Estado</p></div>
-                    <div class="validation-button"><p>Validar</p></div>
-                    <div class="validation-button"><p>Rechazar</p></div>
+            <div className="hours-section">
+                <div className="hours-section-container">
+                    <div className="border-task-start">
+                        <p>Desaprobado</p>
+                    </div>
+                    <div className="task-element-main-container">
+                        <div className="task-element-container">
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Tarea 1</p>
+                                            <div className="status-dot orange"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">5 Hs</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        <div className="vertical-divisor">
+                        </div>
+                            <div className="task-element">
+                                <div className="sub-task-element">
+                                    <div className="task-div">
+                                        <div className="task-name-div">
+                                            <p className="task-name">Tarea 5</p>
+                                            <div className="status-dot yellow"></div>
+                                        </div>
+                                    </div>
+                                    <p className="hours-amount">5 Hs</p>
+                                </div>
+                                <div className="buttons-work-div">
+                                        <div className="edit-button">
+                                            <p>Editar</p>
+                                        </div>
+                                        <div className="delete-button">
+                                            <p>Eliminar</p>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="border-task-end">
+                    </div>
                 </div>
-                <div class="table-element normal-wide desaprobado">
-                    <div class="double-size first-div cell"><p>Licencia por paternidad</p></div>
-                    <div class="mid-div cell"><p>24 Hs</p></div>
-                    <div class="mid-div cell"><img src={imagenModificar} alt=""/></div>
-                    <div class="mid-div cell"><img src={imagenBorrar} alt=""/></div>
-                    <div class="last-div cell"><p>Desaprobado</p></div>
-                    <div class="validation-button yes">
-                        <p>Validar</p><img src={imagenValidar} alt=""/>
-                    </div>
-                    <div class="validation-button no">
-                        <p>Rechazar</p><img src={imagenRechazar} alt=""/>
-                    </div>
+                <div className="border-button">
+                    <img src={imagenModificar} alt="" />
                 </div>
             </div>
         </div>

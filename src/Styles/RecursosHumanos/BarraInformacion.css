@@ -8,6 +8,8 @@
     align-items: center;
     position: fixed;
     left: 0;
+    top: 0;
+    padding-top: 160px;
 }
 
 #data-bar div{
