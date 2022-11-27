@@ -17,6 +17,10 @@ function Tareas() {
         navigate("/recursos-humanos/tareas/cargar-horas");
     }
 
+    function volver(){
+        navigate("/recursos-humanos/");
+    }
+
     return (
     <div className="body">
         <div id="data-bar">
@@ -26,10 +30,14 @@ function Tareas() {
                 <p class="title-person">Junior Dev de CRM</p>
                 <p class="id-person">Legajo: 4</p>
             </div>
+            <div className="button-container">
+                <input class="task-button back-button" type="button" value="Volver" onClick={volver}/>
+            </div>
         </div>
         <div id="main">
-            <div class="task-buttons">
-                <input class="task-button work-button" type="button" value="Cargar horas" onClick={cargarHoras}/>
+            <div className="add-button-container">
+                <p>Cargar horas</p>
+                <input class="add-button" type="button" value="+" onClick={cargarHoras}/>
             </div>
             <div className="hours-section">
                 <div className="hours-section-container">

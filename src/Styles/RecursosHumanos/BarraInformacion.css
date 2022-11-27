@@ -41,3 +41,85 @@
     top: 0;
     z-index: 10;
 }
+
+.button-container{
+    width: 20%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.add-button-container{
+    width: 5em;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: rgb(0, 53, 108);
+    height: 5em;
+    border-radius: 50px;
+    transition: all 0.4s;
+    cursor: pointer;
+    filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.459));
+}
+
+.add-button-container p{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgba(255, 255, 255, 0);
+    display: none;
+    font-size: 18px;
+    width: 20%;
+    
+}
+
+.add-button-container:hover{
+    width: 12em;
+}
+
+.add-button-container:hover p{
+    display: block;
+    margin-right: 30%;
+    color: white;
+}
+
+.add-button{
+    color: white;
+    font-size: 40px;
+    position: absolute;
+    right: 3px;
+    width: 70px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.add-button,
+.back-button{
+    background-color: rgb(0, 53, 108);
+    border-radius: 50px;
+    color: white;
+}
+
+.task-button-div{
+    width: 100%;
+    justify-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.task-button{
+    height: 2em;
+    width: 5em;
+    white-space: normal;
+    border-radius: 30px;
+    border: 0;
+    filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.459));
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+    font-size: 24px;
+    cursor: pointer;
+    justify-self: flex-end;
+    margin-bottom: 15%;
+    text-align: center;
+}

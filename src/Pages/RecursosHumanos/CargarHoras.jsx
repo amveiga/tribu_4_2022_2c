@@ -27,9 +27,6 @@ function CargarHoras() {
             </div>
         </div>
         <div id="main">
-            <div class="task-buttons">
-                <input class="task-button work-button" type="button" value="Cargar horas"/>
-            </div>
             <div className="div-container">
                 <div className="div-section">
                     <label for="project-name">Indique la fecha para cargar horas:</label>

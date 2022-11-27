@@ -125,6 +125,7 @@ body{
     width: 45%;
     display: flex;
     justify-content: center;
+    cursor: pointer;
 }
 
 .edit-button p,
@@ -164,6 +165,7 @@ body{
     border-bottom: 4px solid rgb(0, 53, 108);
     border-radius: 0 35px 35px 0;
     margin-left: -25px;
+    cursor: pointer;
 }
 
 .border-button img{
