@@ -192,7 +192,7 @@ z-index: 3;
 .notStarted  {
     background-color: #b6b1aa;
 }
-.initiated {
+.iniciado {
     background-color: #0085ff;
 }
 .finished {
@@ -321,7 +321,7 @@ font-size: 1.2vw;
     padding-top: 1%;
     padding-bottom: 1%;
     padding-left: 2%;
-    width: 20%;
+    width: 30%;
     font-family: sans-serif, "Manrope";
     font-size: 1.3vw;
     font-weight: bolder;
@@ -332,58 +332,58 @@ font-size: 1.2vw;
 }
 
 .inputTitulo {
-padding-top: 1%;
-padding-bottom: 1%;
-padding-left: 2%;
-width: 30%;
-font-family: sans-serif, "Manrope";
-font-size: 1.3vw;
-font-weight: 400;
-border-radius: 25px;
-border: none;
-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
-color: rgba(0, 53, 108, 1);
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    width: 30%;
+    font-family: sans-serif, "Manrope";
+    font-size: 1.3vw;
+    font-weight: 400;
+    border-radius: 25px;
+    border: none;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 53, 108, 1);
 }
 
 .inputDescription {
-height: 15vh;
-padding-top: 2%;
-padding-bottom: 2%;
-padding-left: 2%;
-padding-right: 2%;
-width: 100%;
-font-family: sans-serif, "Manrope";
-font-size: 1.3vw;
-font-weight: 400;
-border-radius: 10px;
-border-bottom-right-radius: 0;
-border: none;
-box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
-color: rgba(0, 53, 108, 1);
-resize: none;
+    height: 15vh;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 100%;
+    font-family: sans-serif, "Manrope";
+    font-size: 1.3vw;
+    font-weight: 400;
+    border-radius: 10px;
+    border-bottom-right-radius: 0;
+    border: none;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+    color: rgba(0, 53, 108, 1);
+    resize: none;
 }
 
 .input:focus,
 .inputTitulo:focus,
 .inputDescription:focus {
-outline: 1px solid rgba(0, 53, 108, 1);
+    outline: 1px solid rgba(0, 53, 108, 1);
 }
 
 .input::placeholder,
 .inputTitulo::placeholder,
 .inputDescription::placeholder {
-color: rgba(0, 53, 108, 1);
+    color: rgba(0, 53, 108, 1);
 }
 
 .selectEstado {
-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
-width: 60%;
-font-weight: 500;
-font-size: 1.2vw;
-padding-top: 3%;
-padding-bottom: 3%;
-padding-left: 5%;
-padding-right: 2%;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+    width: 60%;
+    font-weight: 500;
+    font-size: 1.2vw;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 5%;
+    padding-right: 2%;
 }
 
 .projectCreateContainer {

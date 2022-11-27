@@ -1,0 +1,15 @@
+[
+    {
+        "Nombre": "Estado",
+        "Placeholder": "Seleccione un estado",
+        "Options": [
+            { "value": "No Iniciado", "label": "No Iniciado" },
+            { "value": "Iniciado", "label": "Iniciado" },
+            { "value": "Desarrollo", "label": "Desarrollo" },
+            { "value": "Pruebas", "label": "Pruebas" },
+            { "value": "Produccion", "label": "Produccion" },
+            { "value": "Post-Produccion", "label": "Post-Produccion"}
+        ],
+        "Icon": "estado"
+    }
+]

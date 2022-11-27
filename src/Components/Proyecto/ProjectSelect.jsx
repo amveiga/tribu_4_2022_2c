@@ -55,7 +55,7 @@ function ProjectSelect({ placeHolder, options, style }) {
             return (
               <div
                 onClick={() => {
-                  handleClick(option.value);
+                  handleClick(option.label);
                 }}
                 className={styles.optionTicket}
               >

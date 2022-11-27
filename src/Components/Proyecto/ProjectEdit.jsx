@@ -6,14 +6,29 @@ import {
   import { IoClose } from "react-icons/io5";
   import { MdEdit } from "react-icons/md";
   import styles from "./../../Styles/Proyectos/Project.module.css";
-//   import Filtros from "./../../Data/Filtros.json";
+  import Filtros from "./../../Data/FiltrosProyectos.json";
   import ProjectSelect from "./ProjectSelect";
+  import { useState, useEffect } from "react";
+  import { GetClients} from "../../Components/Proyecto/ProjectViewList"
   
   function ProjectEdit({ project, setEditSelected }) {
-    // const getOptions = (dato) => {
-    //   return Filtros.find((e) => e.Nombre === dato).Options;
-    // };
-  
+    const getOptions = (dato) => {
+      return Filtros.find((e) => e.Nombre === dato).Options;
+    };
+    
+    const [clients, setClients] = useState([]);
+    var clientsName = [];
+
+    useEffect(() => {
+      console.log("a")
+      GetClients(setClients)
+    }, [])
+
+    clients.map((cliente) => {
+      return  clientsName.push({"value": cliente["id"], 
+          "label": cliente["razon social"]})}     
+    )
+
     return (
       <div className={styles.projectContainerEdit}>
         <div className={styles.projectEdit}>
@@ -21,7 +36,7 @@ import {
             <div className={styles.titleSection + " " + styles.growTitle}>
               <input
                 type={"text"}
-                defaultValue={"ticket.titulo"}
+                defaultValue={project.name}
                 className={styles.input}
               />
               {/* {ticket.tipo === "Consulta" ? (
@@ -54,11 +69,11 @@ import {
           <div className={styles.sectionTwoEdit}>
             <div className={styles.item + " " + styles.item1}>
               Estado
-              {/* <ProjectSelect
+              <ProjectSelect
                 placeHolder={project.status}
                 options={getOptions("Estado")}
                 style={styles.selectEstado}
-              /> */}
+              />
             </div>
             <div className={styles.item + " " + styles.item2}>
               SLA
@@ -70,11 +85,11 @@ import {
             </div>
             <div className={styles.item + " " + styles.item3}>
               Cliente
-              {/* <ProjectSelect
-                placeHolder={"ticket.cliente"}
-                options={getOptions("Cliente")}
+              <ProjectSelect
+                placeHolder={project.assignedClient}
+                options={clientsName}
                 style={styles.selectEstado}
-              /> */}
+              />
             </div>
             <div className={styles.item + " " + styles.item4}>
               Medio

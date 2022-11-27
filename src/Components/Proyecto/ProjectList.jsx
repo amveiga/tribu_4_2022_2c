@@ -1,5 +1,5 @@
 import styles from "../../Styles/Proyectos/Proyectos.module.css"
-import ProjectViewList from "./ProjectViewList"
+import ProjectViewAPI from "./ProjectViewList"
 import ProjectSelector from "./ProjectSelector";
 import { useEffect, useState } from "react";
 
@@ -9,7 +9,7 @@ function ProjectList() {
         <div className={styles.proyectosContainer}>
             <div className={styles.projects}>
                 {useEffect(() => {
-                    ProjectViewList(setProjects)
+                    ProjectViewAPI(setProjects)
                 }, [])}
                 {projects.map((project) => {
                     return <ProjectSelector key={project._id} project={project}/>
