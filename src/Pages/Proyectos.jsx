@@ -1,7 +1,7 @@
-import styles from "./../Styles/Proyectos.module.css";
+import ProjectList from "../Components/Proyecto/ProjectList"
 
 function Proyectos() {
-  return <div className={styles.proyectosContainer}>Proyectos</div>;
+  return <ProjectList />
 }
 
 export default Proyectos;

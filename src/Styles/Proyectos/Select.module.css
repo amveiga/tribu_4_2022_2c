@@ -1,0 +1,100 @@
+.selectContainer {
+    width: 53%;
+    max-height: 10vh;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 1%;
+    margin-right: 4%;
+    border-radius: 25px;
+    background-color: white;
+    color: rgba(0, 53, 108, 1);
+    font-family: sans-serif, "Manrope";
+    font-size: 1vw;
+    cursor: pointer;
+    z-index: 10;
+  }
+  
+  .selected {
+    width: 53%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    padding-right: 1%;
+    margin-right: 4%;
+    border-top-left-radius: 18px;
+    border-top-right-radius: 18px;
+    background-color: white;
+    color: rgba(0, 53, 108, 1);
+    font-family: sans-serif, "Manrope";
+    font-size: 1vw;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .select {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .menu {
+    width: 96%;
+    max-height: 30vh;
+    padding-top: 1%;
+    padding-bottom: 2%;
+    padding-left: 3%;
+    padding-right: 1%;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    background-color: white;
+    color: rgba(0, 53, 108, 1);
+    position: absolute;
+    right: 0.05%;
+    top: 100%;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.4);
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  
+  .icons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .option,
+  .optionProject {
+    width: 97%;
+    height: 100%;
+    text-align: left;
+    margin-top: 1%;
+    padding-top: 1%;
+    font-family: sans-serif, "Manrope";
+    font-size: 1vw;
+    padding-bottom: 2%;
+    padding-left: 1%;
+    padding-right: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .optionProject {
+    padding-left: 6%;
+    font-size: 1.2vw;
+    padding-bottom: 4%;
+    padding-top: 2%;
+  }
+  
+  .option:hover,
+  .optionProject:hover {
+    font-family: sans-serif, "Manrope";
+    font-weight: bolder;
+    font-size: 1.2vw;
+  }
+  

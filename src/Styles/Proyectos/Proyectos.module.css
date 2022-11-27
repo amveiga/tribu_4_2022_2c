@@ -1,0 +1,21 @@
+.proyectosContainer {
+	width: 100%;
+	font-family: sans-serif, "Manrope";
+	text-align: center;
+	font-size: 4vw;
+	color: rgba(0, 53, 108, 1);
+	font-weight: bolder;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.projects {
+	width: 100%;
+	margin-bottom: 2%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
