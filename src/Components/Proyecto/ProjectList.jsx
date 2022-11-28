@@ -2,6 +2,7 @@ import styles from "../../Styles/Proyectos/Proyectos.module.css"
 import ProjectViewAPI, { DeleteProject, GetClients } from "./ProjectViewList"
 import ProjectSelector from "./ProjectSelector";
 import { useEffect, useState } from "react";
+import ProjectCreate from "./ProjectCreate"
 
 function ProjectList() {
     const [projects, setProjects] = useState([]);
@@ -35,7 +36,11 @@ function ProjectList() {
                                 idDelete={setIdDeleteSelected}
                             />
                 })}
+
+
             </div>
+
+            <ProjectCreate/>
         </div>
     )
 } 

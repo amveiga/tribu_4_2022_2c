@@ -19,3 +19,105 @@
 	align-items: center;
 	justify-content: center;
 }
+
+
+@keyframes plus {
+	from {
+	  rotate: 45deg;
+	}
+	to {
+	  rotate: 90deg;
+	}
+  }
+  
+  .rotate {
+	animation: plus 2s;
+	rotate: 90deg;
+	background-color: red;
+  }
+  
+  .addButton {
+	position: fixed;
+	bottom: 3%;
+	right: 1.5%;
+	width: 3vh;
+	height: 3vh;
+	border-radius: 50px;
+	padding: 2%;
+	background-color: rgba(0, 53, 108, 1);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+  }
+  
+  @keyframes cross {
+	from {
+	  rotate: 90deg;
+	}
+	to {
+	  rotate: 45deg;
+	}
+  }
+  
+  .clicked {
+	border: 2px solid rgba(0, 53, 108, 1);
+	background-color: white;
+	bottom: 2.9%;
+	right: 1.35%;
+	rotate: 45deg;
+	animation: cross 2s;
+  }
+  
+  .options {
+	width: 20%;
+	font-family: sans-serif, "Manrope";
+	font-weight: 400;
+	font-size: 1.2vw;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	position: fixed;
+	bottom: 2.9%;
+	right: 9%;
+	z-index: 10;
+  }
+  
+  @keyframes openOptions {
+	from {
+	  margin-top: -18.5%;
+	}
+	to {
+	  margin-top: 5%;
+	}
+  }
+  
+  .option {
+	animation: openOptions 1s;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 5%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 1%;
+	padding-right: 1%;
+	background-color: white;
+	border-radius: 25px;
+	border: 2px solid rgba(0, 53, 108, 1);
+	cursor: pointer;
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8);
+	font-weight: bold;
+  }
+  
+  .link {
+	text-decoration: none;
+	color: rgba(0, 53, 108, 1);
+  }
+  
+  .link:focus {
+	color: rgba(0, 53, 108, 1);
+  }
+  
