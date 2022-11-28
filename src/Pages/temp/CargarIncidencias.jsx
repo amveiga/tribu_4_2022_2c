@@ -20,26 +20,26 @@ function CargarIncidencias() {
         <div id="data-bar">
             <img src={fotoPerfil} alt="" id="profile-image"/>
             <div>
-                <p class="name-person">Juan Gonzales</p>
-                <p class="title-person">Junior Dev de CRM</p>
-                <p class="id-person">Legajo: 4</p>
+                <p className="name-person">Juan Gonzales</p>
+                <p className="title-person">Junior Dev de CRM</p>
+                <p className="id-person">Legajo: 4</p>
             </div>
         </div>
         <div id="main">
-            <div class="task-buttons">
-                <input class="task-button work-button hidden" type="button" value="Cargar horas de trabajo en tareas"/>
-                <input class="task-button incidence-button" type="button" value="Cargar horas de trabajo en incidencias" onClick={verTareas}/>
-                <input class="task-button admin-button hidden" type="button" value="Cargar horas de trabajo en tareas administrativas"/>
-                <input class="task-button guard-button hidden" type="button" value="Cargar horas de guardia" />
-                <input class="task-button license-button hidden" type="button" value="Cargar licencias" />
+            <div className="task-buttons">
+                <input className="task-button work-button hidden" type="button" value="Cargar horas de trabajo en tareas"/>
+                <input className="task-button incidence-button" type="button" value="Cargar horas de trabajo en incidencias" onClick={verTareas}/>
+                <input className="task-button admin-button hidden" type="button" value="Cargar horas de trabajo en tareas administrativas"/>
+                <input className="task-button guard-button hidden" type="button" value="Cargar horas de guardia" />
+                <input className="task-button license-button hidden" type="button" value="Cargar licencias" />
             </div>
             <div className="div-container">
                 <div className="div-section">
-                    <label for="project-name">Indique la fecha para cargar horas:</label>
+                    <label htmlFor="project-name">Indique la fecha para cargar horas:</label>
                     <input type="date" className="calendar"/>
                 </div>
                 <div className="div-section">
-                    <label for="project-select-task">Buscar tarea del proyecto para cargar horas:</label>
+                    <label htmlFor="project-select-task">Buscar tarea del proyecto para cargar horas:</label>
                     <select name="project-task" id="project-task">
                         <optgroup label="Seleccione un ticket">
                             <option disabled selected hidden value=""></option>
@@ -49,7 +49,7 @@ function CargarIncidencias() {
                     </select>
                 </div>
                 <div className="div-section">
-                    <label for="project-hours">Indique la cantidad de horas que trabajó:</label>
+                    <label htmlFor="project-hours">Indique la cantidad de horas que trabajó:</label>
                     <div className="hours-div">
                         <div className="work-mode-div">
                             <p>En la oficina:</p>
@@ -63,16 +63,16 @@ function CargarIncidencias() {
                 </div>
             </div>
 
-            <div class="buttons-div">
-                <div class="button verificar" onClick={verTareas}>
+            <div className="buttons-div">
+                <div className="button verificar" onClick={verTareas}>
                     <p>Enviar para verificar</p>
                     <img src={enviarIcon} alt=""/>
                 </div>
-                <div class="button bborrador" onClick={verTareas}>
+                <div className="button bborrador" onClick={verTareas}>
                     <p>Guardar como borrador</p>
                     <img src={borradorIcon} alt=""/>
                 </div>
-                <div class="button cancelar" onClick={verTareas}>
+                <div className="button cancelar" onClick={verTareas}>
                     <p>Cancelar</p>
                     <img src={cancelarIcon} alt=""/>
                 </div>

@@ -26,18 +26,18 @@ function Tareas() {
         <div id="data-bar">
             <img src={fotoPerfil} alt="" id="profile-image"/>
             <div>
-                <p class="name-person">Juan Gonzales</p>
-                <p class="title-person">Junior Dev de CRM</p>
-                <p class="id-person">Legajo: 4</p>
+                <p className="name-person">Juan Gonzales</p>
+                <p className="title-person">Junior Dev de CRM</p>
+                <p className="id-person">Legajo: 4</p>
             </div>
             <div className="button-container">
-                <input class="task-button back-button" type="button" value="Volver" onClick={volver}/>
+                <input className="task-button back-button" type="button" value="Volver" onClick={volver}/>
             </div>
         </div>
         <div id="main">
             <div className="add-button-container">
                 <p>Cargar horas</p>
-                <input class="add-button" type="button" value="+" onClick={cargarHoras}/>
+                <input className="add-button" type="button" value="+" onClick={cargarHoras}/>
             </div>
             <div className="hours-section">
                 <div className="hours-section-container">
