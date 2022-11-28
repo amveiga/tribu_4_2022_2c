@@ -3,7 +3,7 @@ import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 import { BiSort } from "react-icons/bi";
 import styles from "./../../Styles/Soporte/MenuOrden.module.css";
 
-function OrdenItem({ name }) {
+function OrdenItem({ name, setSortBy, order }) {
   const [selected, setSelected] = useState(0);
 
   const getIcon = () => {
@@ -26,8 +26,10 @@ function OrdenItem({ name }) {
   const handleClick = () => {
     if (selected === 2) {
       setSelected(0);
+      setSortBy([order, 0]);
     } else {
       setSelected(selected + 1);
+      setSortBy([order, selected + 1]);
     }
   };
 

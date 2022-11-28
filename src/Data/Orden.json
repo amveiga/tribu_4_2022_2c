@@ -1,22 +1,27 @@
 [
   {
     "id": 0,
-    "Nombre": "Fecha de Creación"
+    "Nombre": "Fecha de Creación",
+    "order": "createdDate"
   },
   {
     "id": 1,
-    "Nombre": "Última Modificación"
+    "Nombre": "Última Modificación",
+    "order": "lastModifiedDate"
   },
   {
     "id": 2,
-    "Nombre": "Estado"
+    "Nombre": "Estado",
+    "order": "status"
   },
   {
     "id": 3,
-    "Nombre": "SLA"
+    "Nombre": "SLA",
+    "order": "sla"
   },
   {
     "id": 4,
-    "Nombre": "Tipo"
+    "Nombre": "Tipo",
+    "order": "type"
   }
 ]
