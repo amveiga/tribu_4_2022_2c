@@ -1,11 +1,26 @@
-import Tickets from "./../../Data/Tickets.json";
 import Filtros from "./../../Data/Filtros.json";
 import styles from "./../../Styles/Soporte/Reportes.module.css";
 import PieChart from "./PieChart";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ReporteTickets() {
+  const [tickets, setTickets] = useState([]);
+
+  const ticket = axios.create({
+    baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
+  });
+
+  useEffect(() => {
+    const getTickets = async () => {
+      const response = await ticket.get();
+      setTickets(response.data);
+    };
+    getTickets();
+  }, [ticket]);
+
   const getLabels = (label) => {
     var labels = Filtros.find((filter) => filter.Nombre === label).Options.map(
       (option) => {
@@ -18,13 +33,13 @@ function ReporteTickets() {
   const getCantidad = (label, value) => {
     var cantidad;
     if (label === "Estado") {
-      cantidad = Tickets.filter((ticket) => ticket.estado === value).length;
+      cantidad = tickets.filter((ticket) => ticket.status === value).length;
     } else if (label === "SLA") {
-      cantidad = Tickets.filter((ticket) => ticket.sla === value).length;
+      cantidad = tickets.filter((ticket) => ticket.sla === value).length;
     } else if (label === "Tipo") {
-      cantidad = Tickets.filter((ticket) => ticket.tipo === value).length;
+      cantidad = tickets.filter((ticket) => ticket.type === value).length;
     } else {
-      cantidad = Tickets.filter((ticket) => ticket.medio === value).length;
+      cantidad = tickets.filter((ticket) => ticket.origin === value).length;
     }
 
     return cantidad;
@@ -69,7 +84,7 @@ function ReporteTickets() {
           </Link>
         </div>
         <div className={styles.totalTickets}>
-          Total tickets: {Tickets.length}
+          Total tickets: {tickets.length}
         </div>
       </div>
       <div className={styles.chartSection}>

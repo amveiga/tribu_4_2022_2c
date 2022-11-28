@@ -14,10 +14,13 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import Comentarios from "../Comentarios";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
+import axios from "axios";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
   const [typeHovered, setTypeHovered] = useState(false);
   const [escalarSelected, setEscalarSelected] = useState(false);
+  const [areaId, setAreaId] = useState("");
+  const [userId, setUserId] = useState("");
 
   const getState = (estado) => {
     var style;
@@ -49,6 +52,35 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
     return color;
   };
 
+  const deleteTicket = async () => {
+    await axios
+      .delete(
+        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`
+      )
+      .catch((error) => alert(error));
+  };
+
+  const updateTicket = async () => {
+    await axios
+      .put(
+        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`,
+        {
+          title: ticket.title,
+          description: ticket.description,
+          status: ticket.status,
+          type: ticket.type,
+          origin: ticket.origin,
+          sla: ticket.sla,
+          clientId: ticket.clientId,
+          clientProductId: ticket.clientProductId,
+          userId: userId,
+          areaId: areaId,
+        }
+      )
+      .then(setEscalarSelected(false))
+      .catch((error) => alert(error));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.ticketContainer}>
@@ -56,8 +88,8 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
           <div className={styles.sectionOne}>
             <div className={styles.headerSection}>
               <div className={styles.titleSection}>
-                {ticket.titulo}
-                {ticket.tipo === "Consulta" ? (
+                {ticket.title}
+                {ticket.type === "Consulta" ? (
                   <BsQuestionCircleFill
                     onMouseEnter={() => setTypeHovered(true)}
                     onMouseLeave={() => setTypeHovered(false)}
@@ -80,21 +112,21 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                       className={styles.arrow}
                       size={"1.5vw"}
                       color={
-                        ticket.tipo === "Consulta"
+                        ticket.type === "Consulta"
                           ? "rgba(106, 176, 249, 1)"
                           : "red"
                       }
                     />
                     <div
                       className={
-                        (ticket.tipo === "Consulta"
+                        (ticket.type === "Consulta"
                           ? styles.blue
                           : styles.red) +
                         " " +
                         styles.showTypeText
                       }
                     >
-                      {ticket.tipo}
+                      {ticket.type}
                     </div>
                   </div>
                 )}
@@ -107,38 +139,38 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                 <ImMoveUp size={"1.5vw"} color={"white"} />
               </div>
             </div>
-            <div className={styles.descripcion}>{ticket.descripcion}</div>
+            <div className={styles.descripcion}>{ticket.description}</div>
             <div className={styles.footerSection}>
-              {ticket.medio === "Teléfono" ? (
+              {ticket.origin === "Teléfono" ? (
                 <HiPhone size={"1.2vw"} color={"rgba(0,53,108,1)"} />
               ) : (
                 <HiMail size={"1.4vw"} color={"rgba(0,53,108,1)"} />
               )}
-              <div className={styles.marginLeft}>{ticket.cliente}</div>
+              <div className={styles.marginLeft}>{ticket.clientId}</div>
               <div className={styles.marginLeft}>-</div>
               <div className={styles.marginLeft}>
-                Creado el {ticket.fechaCreacion}
+                Emitido: {ticket.createdDate.slice(0, 10)}
               </div>
               <div className={styles.marginLeft}>-</div>
               <div className={styles.marginLeft}>
-                Última modificación el {ticket.ultimaModificacion}
+                Modificado: {ticket.lastModifiedDate.slice(0, 10)}
               </div>
             </div>
           </div>
           <div className={styles.sectionTwo}>
-            <div className={styles.estado + " " + getState(ticket.estado)}>
-              {ticket.estado}
+            <div className={styles.estado + " " + getState(ticket.status)}>
+              {ticket.status}
             </div>
             <div className={styles.item}>
               {ticket.sla}
               <BsCircleFill size={"1.3vw"} color={getSLA(ticket.sla)} />
             </div>
             <div className={styles.item}>
-              {ticket.usuario === "" ? "-" : ticket.usuario}
+              {ticket.userId === "" ? "-" : ticket.userId}
               <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
             </div>
             <div className={styles.item}>
-              {ticket.area === "" ? "-" : ticket.area}
+              {ticket.areaId === "" ? "-" : ticket.areaId}
               <HiOutlineUserGroup size={"1.5vw"} color={"rgba(0,53,108,1)"} />
             </div>
             <div className={styles.tarea}>
@@ -173,7 +205,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
             </div>
           </div>
         ) : (
-          <div className={styles.delete}>
+          <div className={styles.delete} onClick={() => deleteTicket()}>
             <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
           </div>
         )}
@@ -193,6 +225,8 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                   { value: "Administración", label: "Administración" },
                 ]}
                 style={styles.selectItem}
+                setter={setAreaId}
+                value={areaId}
               />
             </div>
             <div className={styles.selection + " " + styles.item2}>
@@ -205,6 +239,8 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                   { value: "Recurso 3", label: "Recurso 3" },
                 ]}
                 style={styles.selectItem}
+                setter={setUserId}
+                value={userId}
               />
             </div>
           </div>
@@ -215,7 +251,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
             >
               <IoClose size={"2vw"} color={"white"} />
             </div>
-            <div className={styles.editConfirm}>
+            <div onClick={() => updateTicket()} className={styles.editConfirm}>
               <HiCheck size={"2vw"} color={"white"} />
             </div>
           </div>

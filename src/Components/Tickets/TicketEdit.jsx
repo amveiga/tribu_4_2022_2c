@@ -8,10 +8,44 @@ import { MdEdit } from "react-icons/md";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 import Filtros from "./../../Data/Filtros.json";
 import TicketSelect from "./TicketSelect";
+import { useState } from "react";
+import axios from "axios";
 
 function TicketEdit({ ticket, setEditSelected }) {
+  const [title, setTitle] = useState(ticket.title);
+  const [description, setDescription] = useState(ticket.description);
+  const [status, setStatus] = useState(ticket.status);
+  const [type, setType] = useState(ticket.type);
+  const [origin, setOrigin] = useState(ticket.origin);
+  const [sla, setSla] = useState(ticket.sla);
+  const [clientId, setClientId] = useState(ticket.clientId);
+  const [clientProductId, setClientProductId] = useState(
+    ticket.clientProductId
+  );
+
   const getOptions = (dato) => {
     return Filtros.find((e) => e.Nombre === dato).Options;
+  };
+
+  const updateTicket = async () => {
+    await axios
+      .put(
+        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`,
+        {
+          title: title,
+          description: description,
+          status: status,
+          type: type,
+          origin: origin,
+          sla: sla,
+          clientId: clientId,
+          clientProductId: clientProductId,
+          userId: ticket.userId,
+          areaId: ticket.areaId,
+        }
+      )
+      .then(setEditSelected(false))
+      .catch((error) => alert(error));
   };
 
   return (
@@ -21,10 +55,11 @@ function TicketEdit({ ticket, setEditSelected }) {
           <div className={styles.titleSection + " " + styles.growTitle}>
             <input
               type={"text"}
-              defaultValue={ticket.titulo}
+              defaultValue={title}
               className={styles.input}
+              onChange={(event) => setTitle(event.target.value)}
             />
-            {ticket.tipo === "Consulta" ? (
+            {type === "Consulta" ? (
               <BsQuestionCircleFill
                 className={styles.type}
                 size={"1.3vw"}
@@ -38,16 +73,19 @@ function TicketEdit({ ticket, setEditSelected }) {
               />
             )}
             <TicketSelect
-              placeHolder={ticket.tipo}
+              placeHolder={"Seleccione un tipo"}
               options={getOptions("Tipo")}
               style={styles.select}
+              setter={setType}
+              value={type}
             />
           </div>
           <div className={styles.descripcion}>
             <textarea
               type={"text"}
-              defaultValue={ticket.descripcion}
+              defaultValue={description}
               className={styles.inputDescription}
+              onChange={(event) => setDescription(event.target.value)}
             />
           </div>
         </div>
@@ -55,33 +93,41 @@ function TicketEdit({ ticket, setEditSelected }) {
           <div className={styles.item + " " + styles.item1}>
             Estado
             <TicketSelect
-              placeHolder={ticket.estado}
+              placeHolder={"Seleccione un estado"}
               options={getOptions("Estado")}
               style={styles.selectEstado}
+              setter={setStatus}
+              value={status}
             />
           </div>
           <div className={styles.item + " " + styles.item2}>
             SLA
             <TicketSelect
-              placeHolder={ticket.sla}
+              placeHolder={"Seleccione un SLA"}
               options={getOptions("SLA")}
               style={styles.selectEstado}
+              setter={setSla}
+              value={sla}
             />
           </div>
           <div className={styles.item + " " + styles.item3}>
             Cliente
             <TicketSelect
-              placeHolder={ticket.cliente}
+              placeHolder={"Seleccione un cliente"}
               options={getOptions("Cliente")}
               style={styles.selectEstado}
+              setter={setClientId}
+              value={clientId}
             />
           </div>
           <div className={styles.item + " " + styles.item4}>
             Medio
             <TicketSelect
-              placeHolder={ticket.medio}
+              placeHolder={"Seleccione un medio"}
               options={getOptions("Medio")}
               style={styles.selectEstado}
+              setter={setOrigin}
+              value={origin}
             />
           </div>
         </div>
@@ -96,7 +142,7 @@ function TicketEdit({ ticket, setEditSelected }) {
         >
           <IoClose size={"2vw"} color={"white"} />
         </div>
-        <div className={styles.editConfirm}>
+        <div onClick={() => updateTicket()} className={styles.editConfirm}>
           <HiCheck size={"2vw"} color={"white"} />
         </div>
       </div>
