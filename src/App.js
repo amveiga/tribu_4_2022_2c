@@ -6,6 +6,7 @@ import Proyectos from "./Pages/Proyectos";
 import Soporte from "./Pages/Soporte";
 import RecursosHumanos from "./Pages/RecursosHumanos";
 import ProyectoPrueba from "./Pages/ProyectoPrueba";
+import Tarea from "./Pages/Tarea"
 function App() {
   return (
     <BrowserRouter>
@@ -18,6 +19,9 @@ function App() {
             <Route path="/proyectos/:id" element={<ProyectoPrueba />}/>
           <Route path="/soporte" element={<Soporte />} />
           <Route path="/recursos-humanos" element={<RecursosHumanos />} />
+          <Route path="/tarea">
+            <Route path=":id" element={<Tarea/>} />
+          </Route>
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>
       </div>

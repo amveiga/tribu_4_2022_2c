@@ -1,0 +1,151 @@
+.tareaContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .tarea{
+  width: 30vh;
+  height: 30vh;
+  font-size: 2vw;
+  /* padding: 2%; */
+  border-radius: 25px;
+  border: 2px solid rgba(0, 53, 108, 1);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  background-color: white;
+  box-shadow: 3px 0px 3px rgba(0, 0, 0, 0.25);
+  z-index: 2;
+  margin:0%
+}
+
+.headerContainer {
+    width: 100%;
+    height: 7vh;
+    margin: 0;
+    border-radius: 22px;
+    background-color: rgba(0, 53, 108, 1);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: white
+  }
+
+  .descripcion{
+    margin: auto;
+    text-align: center;
+    
+  }
+
+  .proyectoHeader {
+    width: 100%;
+    height: 300px;
+    margin: 0;
+    padding: 1%;
+    border-radius: 22px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: rgba(0, 53, 108, 1);
+  }
+
+  .bloqueHeader{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: left;
+  }
+  .seccionTareas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .columnaTareas{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+
+
+  .titulo{
+    font-size: 40px;
+  }
+
+  .datos{
+    color:grey;
+  }
+
+  .column{
+    margin-top: 10px;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .linkRight {
+    width: 100px;
+    height: 80%;
+    margin-right: 10px;
+    border-right: solid #ACC0D8 5px;
+}
+.linkTop {
+  
+  height: 1px;
+  border-top: solid #ACC0D8 5px;
+}
+.etiquetaTarea{
+  font-size: 35px;
+  width: 65%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex;
+  border-radius: 25px;
+  justify-content: center;
+  background-color: rgba(0, 53, 108, 1);
+  color: white;
+}
+
+  
+.estado {
+  width: 50%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 25px;
+  color: white;
+}
+
+.pendiente {
+  background-color: #ff9900;
+}
+.analisis {
+  background-color: #0085ff;
+}
+.enProgreso {
+  background-color: #0085ff;
+}
+.completado {
+  background-color: #1dcc2e;
+}
+.cancelado {
+  background-color: #ff0000;
+}
+

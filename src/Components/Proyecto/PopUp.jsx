@@ -17,21 +17,23 @@ function PopUpProject({ message, setDeleteSelected }) {
                         {message}
                     </div>
                     <div className={styles.actions}>
-                    <Popup
-                        trigger={<button className={styles.buttonModal}> Aceptar </button>}
-                        position="top left"
-                        nested
-                        >
-                    </Popup>
-                    <button
-                        className={styles.buttonModal}
-                        onClick={() => {
-                            close();
-                            setDeleteSelected(false);
-                        }}
-                        >
-                        Cancelar
-                    </button>
+                        <button 
+                            className={styles.buttonModal}
+                            onClick={() => {
+                                setDeleteSelected(true)
+                                close();
+                            }}> 
+                            Aceptar 
+                        </button>
+                        <button
+                            className={styles.buttonModal}
+                            onClick={() => {
+                                close();
+                                setDeleteSelected(false);
+                            }}
+                            >
+                            Cancelar
+                        </button>
                     </div>
                 </div>
             )}

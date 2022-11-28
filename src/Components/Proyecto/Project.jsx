@@ -96,11 +96,13 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
                     </div>
                 ) : (
                     <div className={styles.delete}
-                        onClick={() => setDeleteSelected(true)}>
-                        <PopUpProject 
-                            message={"¿Deseas eliminar el proyecto?"}
-                            setDeleteSelected={setDeleteSelected}
-                        />
+                        onClick={() => {
+                            setDeleteSelected(true);
+                        }}>
+                            <PopUpProject 
+                                message={"¿Deseas eliminar el proyecto?"}
+                                setDeleteSelected={setDeleteSelected}
+                            />
                     </div>
                 )}
             </div>
