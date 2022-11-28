@@ -13,9 +13,8 @@ import { IoClose } from "react-icons/io5";
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
 import ProjectSelect from "./ProjectSelect";
-import Popup from 'reactjs-popup';
 import { NavLink } from "react-router-dom";
-
+import PopUpProject from "./PopUp";
 
 function Project({ project, editSelected, setEditSelected, setClient, setDeleteSelected }) {
     const parseDate = (fecha) => {
@@ -111,37 +110,10 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
                 ) : (
                     <div className={styles.delete}
                         onClick={() => setDeleteSelected(true)}>
-                        <Popup trigger={
-                            <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
-                        } modal nested>
-                            {close => (
-                                <div className={styles.modal}>
-                                    <button className={styles.close} onClick={close}>
-                                    &times;
-                                    </button>
-                                    <div className={styles.content}>
-                                        ¿Desea eliminar este proyecto?
-                                    </div>
-                                    <div className={styles.actions}>
-                                    <Popup
-                                        trigger={<button className={styles.buttonModal}> Aceptar </button>}
-                                        position="top left"
-                                        nested
-                                    >
-                                    </Popup>
-                                    <button
-                                        className={styles.buttonModal}
-                                        onClick={() => {
-                                            close();
-                                            setDeleteSelected(false);
-                                        }}
-                                    >
-                                        Cancelar
-                                    </button>
-                                    </div>
-                                </div>
-                            )}
-                        </Popup>
+                        <PopUpProject 
+                            message={"¿Deseas eliminar el proyecto?"}
+                            setDeleteSelected={setDeleteSelected}
+                        />
                     </div>
                 )}
             </div>

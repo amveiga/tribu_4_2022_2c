@@ -14,7 +14,7 @@ function ProjectList() {
     )
 
     const getRazonSocial = (id) => {
-        return (clients.find((cliente) => (cliente.id === id)))["razon social"]
+        return (clients.find((cliente) => (cliente.id === id)))['razon social']
     }
 
     return (
