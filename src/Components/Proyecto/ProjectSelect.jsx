@@ -3,7 +3,7 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 
-function ProjectSelect({ placeHolder, options, style }) {
+function ProjectSelect({ placeHolder, options, style, setState }) {
   const [selected, setSelected] = useState(false);
   const [value, setValue] = useState(placeHolder);
 
@@ -56,10 +56,12 @@ function ProjectSelect({ placeHolder, options, style }) {
               <div
                 onClick={() => {
                   handleClick(option.label);
+                  setState(option.value)
                 }}
                 className={styles.optionProject}
               >
                 {option.label}
+                
               </div>
             );
           })}

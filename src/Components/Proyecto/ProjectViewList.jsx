@@ -13,4 +13,20 @@ export async function GetClients(state) {
     state(listClient.data)
 }
 
+export async function updateProject(id, data){
+    
+    if (data.status === "Iniciado"){
+        data["initDate"] = Date.now()
+    }
+    if (data.status === "Produccion"){
+        data["endDate"] = Date.now()
+    }
+
+    await axios({
+        method: "put",
+        url: getUrl.concat("/", id),
+        data: data
+    })
+}
+
 export default ProjectViewAPI;

@@ -1,19 +1,30 @@
-// import {
-//     BsQuestionCircleFill,
-//     BsFillExclamationCircleFill,
-//   } from "react-icons/bs";
   import { HiCheck } from "react-icons/hi";
   import { IoClose } from "react-icons/io5";
   import { MdEdit } from "react-icons/md";
   import styles from "./../../Styles/Proyectos/Project.module.css";
   import Filtros from "./../../Data/FiltrosProyectos.json";
   import ProjectSelect from "./ProjectSelect";
+  import { updateProject } from "./ProjectViewList";
+import { useState } from "react";
   
   function ProjectEdit({ project, setEditSelected, clientsName, setClient }) {
     const getOptions = (dato) => {
       return Filtros.find((e) => e.Nombre === dato).Options;
     };
+
+    const [description, setdescription] = useState(project.description);
+    const handleDescriptionChange = event => {
+        setdescription(event.target.value);
+    };
     
+    const [name, setName] = useState(project.name);
+    const handleNameChange = event => {
+      setName(event.target.value);
+  };
+
+    const [statusSelected, setStatusSelected] = useState(project.status);
+    const [clientSelected, setClientSelected] = useState(project.assignedClient)
+
     return (
       <div className={styles.projectContainerEdit}>
         <div className={styles.projectEdit}>
@@ -21,33 +32,17 @@
             <div className={styles.titleSection + " " + styles.growTitle}>
               <input
                 type={"text"}
-                defaultValue={project.name}
+                value = {name}
+                onChange = {handleNameChange}
                 className={styles.input}
               />
-              {/* {ticket.tipo === "Consulta" ? (
-                <BsQuestionCircleFill
-                  className={styles.type}
-                  size={"1.3vw"}
-                  color={"rgba(106, 176, 249, 1)"}
-                />
-              ) : (
-                <BsFillExclamationCircleFill
-                  className={styles.type}
-                  size={"1.3vw"}
-                  color={"red"}
-                />
-              )} */}
-              {/* <ProjectSelect
-                placeHolder={"ticket.tipo"}
-                options={getOptions("Tipo")}
-                style={styles.select}
-              /> */}
             </div>
             <div className={styles.descripcion}>
               <textarea
                 type={"text"}
-                defaultValue={project.description}
+                value= {description}
                 className={styles.inputDescription}
+                onChange={handleDescriptionChange}
               />
             </div>
           </div>
@@ -58,15 +53,9 @@
                 placeHolder={project.status}
                 options={getOptions("Estado")}
                 style={styles.selectEstado}
+                setState = {setStatusSelected}
+                
               />
-            </div>
-            <div className={styles.item + " " + styles.item2}>
-              SLA
-              {/* <ProjectSelect
-                placeHolder={"das"}
-                options={getOptions("SLA")}
-                style={styles.selectEstado}
-              /> */}
             </div>
             <div className={styles.item + " " + styles.item3}>
               Cliente
@@ -74,15 +63,8 @@
                 placeHolder={setClient}
                 options={clientsName}
                 style={styles.selectEstado}
+                setState={setClientSelected}
               />
-            </div>
-            <div className={styles.item + " " + styles.item4}>
-              Medio
-              {/* <ProjectSelect
-                placeHolder={"ticket.medio"}
-                options={getOptions("Medio")}
-                style={styles.selectEstado}
-              /> */}
             </div>
           </div>
         </div>
@@ -96,7 +78,21 @@
           >
             <IoClose size={"2vw"} color={"white"} />
           </div>
-          <div className={styles.editConfirm}>
+          <div 
+            className={styles.editConfirm}
+            onClick = { () => {
+                updateProject( project._id,
+                  {
+                    "name" : name,
+                    "description" : description,
+                    "status" : statusSelected,
+                    "assignedClient" : clientSelected
+                  })
+                window.location.reload(false);
+              }
+            }
+          
+          >
             <HiCheck size={"2vw"} color={"white"} />
           </div>
         </div>
