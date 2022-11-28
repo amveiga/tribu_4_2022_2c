@@ -5,8 +5,10 @@
   import Filtros from "./../../Data/FiltrosProyectos.json";
   import ProjectSelect from "./ProjectSelect";
   import { updateProject } from "./ProjectViewList";
-import { useState } from "react";
-  
+  import { useState } from "react";
+  import {KeyboardDatePicker} from '@material-ui/pickers'; 
+
+
   function ProjectEdit({ project, setEditSelected, clientsName, setClient }) {
     const getOptions = (dato) => {
       return Filtros.find((e) => e.Nombre === dato).Options;
@@ -24,6 +26,8 @@ import { useState } from "react";
 
     const [statusSelected, setStatusSelected] = useState(project.status);
     const [clientSelected, setClientSelected] = useState(project.assignedClient)
+    const [initFechaSelect, setInitFechaSelect] = useState(new Date())
+    const [endFechaSelect, setEndFechaSelect] = useState(new Date())
 
     return (
       <div className={styles.projectContainerEdit}>
@@ -53,9 +57,55 @@ import { useState } from "react";
                 placeHolder={project.status}
                 options={getOptions("Estado")}
                 style={styles.selectEstado}
-                setState = {setStatusSelected}
-                
+                setState = {setStatusSelected}  
               />
+            </div>
+            <div className={styles.item + " " + styles.item2}>
+              <KeyboardDatePicker
+                    autoOk
+                    variant="inline"
+                    inputVariant="outlined"
+                    label="Fecha Inicio Ideal"
+                    format="dd/MM/yyyy"
+                    value={initFechaSelect}
+                    InputAdornmentProps={{ position: "start" }}
+                    onChange={setInitFechaSelect}
+                    inputProps={
+                        {
+                            style: {
+                                fontSize: 14,
+                                height: 14,
+                                width:80,
+                            }
+                        }
+                    }
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                />
+
+                  <KeyboardDatePicker
+                    autoOk
+                    variant="inline"
+                    inputVariant="outlined"
+                    label="Fecha Final Ideal"
+                    format="dd/MM/yyyy"
+                    value={endFechaSelect}
+                    InputAdornmentProps={{ position: "start" }}
+                    onChange={setEndFechaSelect}
+                    inputProps={
+                        {
+                            style: {
+                                fontSize: 14,
+                                height: 14,
+                                width:80,
+                            }
+                        }
+                    }
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                />
             </div>
             <div className={styles.item + " " + styles.item3}>
               Cliente
@@ -86,7 +136,9 @@ import { useState } from "react";
                     "name" : name,
                     "description" : description,
                     "status" : statusSelected,
-                    "assignedClient" : clientSelected
+                    "assignedClient" : clientSelected,
+                    "idealInitDate" : initFechaSelect,
+                    "idealEndDate" : endFechaSelect
                   })
               }
             }
