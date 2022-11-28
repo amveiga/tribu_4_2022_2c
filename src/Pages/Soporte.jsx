@@ -13,6 +13,7 @@ function Soporte() {
   const [optionActivate, setOptionActivate] = useState(false);
   const [crearTicket, setCrearTicket] = useState(false);
   const [tickets, setTickets] = useState([]);
+  const [filtros, setFiltros] = useState("");
 
   const ticket = axios.create({
     baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
@@ -20,15 +21,25 @@ function Soporte() {
 
   useEffect(() => {
     const getTickets = async () => {
-      const response = await ticket.get();
+      var response;
+      if (filtros !== "") {
+        response = await axios
+          .get(
+            "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets?" +
+              filtros
+          )
+          .catch((error) => alert(error));
+      } else {
+        response = await ticket.get().catch((error) => alert(error));
+      }
       setTickets(response.data);
     };
     getTickets();
-  }, [ticket]);
+  }, [ticket, filtros]);
 
   return (
     <div className={styles.soporteContainer}>
-      <Filtros />
+      <Filtros setFiltros={setFiltros} />
       <div className={styles.tickets}>
         {tickets.map((ticket) => {
           return <TicketSelector key={ticket.id} ticket={ticket} />;

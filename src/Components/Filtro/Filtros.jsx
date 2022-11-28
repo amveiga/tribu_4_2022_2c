@@ -5,9 +5,14 @@ import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
 import MenuOrden from "../Orden/MenuOrder";
 
-function Filtros() {
+function Filtros({ setFiltros }) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
+  const [clientId, setClientId] = useState("");
+  const [status, setStatus] = useState("");
+  const [sla, setSla] = useState("");
+  const [type, setType] = useState("");
+  const [origin, setOrigin] = useState("");
 
   const handleFilterClick = () => {
     setFiltroAbierto(!filtroAbierto);
@@ -34,7 +39,22 @@ function Filtros() {
           Filtro
         </div>
       </div>
-      {filtroAbierto && <MenuFiltro setFiltroAbierto={setFiltroAbierto} />}
+      {filtroAbierto && (
+        <MenuFiltro
+          setFiltroAbierto={setFiltroAbierto}
+          setFiltros={setFiltros}
+          clientId={clientId}
+          status={status}
+          type={type}
+          sla={sla}
+          origin={origin}
+          setClientId={setClientId}
+          setStatus={setStatus}
+          setSla={setSla}
+          setType={setType}
+          setOrigin={setOrigin}
+        />
+      )}
       <div
         className={ordenAbierto ? styles.ordenSelected : styles.orden}
         onClick={handleOrdenClick}

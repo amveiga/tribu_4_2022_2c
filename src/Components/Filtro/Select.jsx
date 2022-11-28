@@ -7,12 +7,11 @@ import { GrStatusGoodSmall } from "react-icons/gr";
 import { MdContactSupport } from "react-icons/md";
 import { useState } from "react";
 
-function Select({ placeHolder, options, icon, style }) {
+function Select({ placeHolder, options, icon, style, setter, value }) {
   const [selected, setSelected] = useState(false);
-  const [value, setValue] = useState(placeHolder);
 
-  const handleClick = (value) => {
-    setValue(value);
+  const handleClick = (val) => {
+    setter(val);
     setSelected(false);
   };
 
@@ -42,10 +41,10 @@ function Select({ placeHolder, options, icon, style }) {
     if (selected) {
       component2 = <HiChevronUp size={"1.5vw"} color={"rgba(0,53,108,1)"} />;
     }
-    if (value !== placeHolder) {
+    if (value !== "") {
       component1 = (
         <IoClose
-          onClick={() => setValue(placeHolder)}
+          onClick={() => setter("")}
           size={"1.5vw"}
           color={"rgba(0,53,108,1)"}
         />
@@ -68,7 +67,7 @@ function Select({ placeHolder, options, icon, style }) {
       }
     >
       <div className={styles.select} onClick={() => setSelected(!selected)}>
-        {value}
+        {value === "" ? placeHolder : value}
         <div className={styles.icons}>{getIcons()}</div>
       </div>
       {selected && (
@@ -80,6 +79,7 @@ function Select({ placeHolder, options, icon, style }) {
                   handleClick(option.value);
                 }}
                 className={styles.option}
+                key={option.value}
               >
                 {option.label}
                 {getIcon()}
