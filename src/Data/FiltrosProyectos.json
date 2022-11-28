@@ -5,10 +5,12 @@
         "Options": [
             { "value": "No Iniciado", "label": "No Iniciado" },
             { "value": "Iniciado", "label": "Iniciado" },
+            { "value": "Analisis", "label": "Analisis"},
             { "value": "Desarrollo", "label": "Desarrollo" },
             { "value": "Pruebas", "label": "Pruebas" },
             { "value": "Produccion", "label": "Produccion" },
-            { "value": "Post-Produccion", "label": "Post-Produccion"}
+            { "value": "Post-Produccion", "label": "Post-Produccion"},
+            { "value" : "Cancelado" , "label": "Cancelado"}
         ],
         "Icon": "estado"
     }

@@ -27,6 +27,9 @@ export async function updateProject(id, data){
         url: getUrl.concat("/", id),
         data: data
     })
+    .then((res) => {
+        window.location.reload()
+    })
 }
 
 export default ProjectViewAPI;
