@@ -1,19 +1,20 @@
 import { useState } from "react";
 import {FaPlus} from "react-icons/fa"
 import styles from "../../Styles/Proyectos/Proyectos.module.css"
+import CreateProject from "./CreateProject";
 
-function ProjectCreate() {
+function ProjectCreate({listClient}) {
   const [addButtonClicked, setAddButtonClicked] = useState(false);
   const [rotateActivate, setRotateActivate] = useState(false);
   const [optionActivate, setOptionActivate] = useState(false);
   const [crearProject, setCrearProject] = useState(false);
 
   return (
-    <div className="buttonContainer">
+    <div className={styles.proyectosContainer}>
       <div
         className={
           addButtonClicked
-            ? styles.amddButton + " " + styles.clicked
+            ? styles.addButton + " " + styles.clicked
             : rotateActivate
             ? styles.addButton + " " + styles.rotate
             : styles.addButton
@@ -32,10 +33,14 @@ function ProjectCreate() {
       {addButtonClicked && (
         <div className={styles.options}>
           <div className={styles.option} onClick={() => setCrearProject(true)}>
-            Crear Proyecto (aca iria el post)
+            Crear Proyecto
           </div>
         </div>
       )}
+      {crearProject && <CreateProject 
+                          setCrearProject={setCrearProject}
+                          listClient={listClient}  
+                        />}
     </div>
   );
 }

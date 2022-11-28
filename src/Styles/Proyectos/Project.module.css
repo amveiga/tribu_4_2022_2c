@@ -33,7 +33,7 @@
 
 .project,
 .projectEdit {
-    width: 100%;
+    width: 110%;
     height: 25vh;
     padding: 2%;
     border-radius: 25px;
@@ -48,7 +48,7 @@
 }
 
 .projectEdit {
-z-index: 3;
+    z-index: 3;
 }
 
 .sectionOne {
@@ -258,7 +258,7 @@ z-index: 3;
 .edit,
 .delete,
 .editSelected {
-    width: 8%;
+    width: 12%;
     height: 25vh;
     margin-left: -4%;
     padding-top: 2%;
@@ -414,7 +414,7 @@ font-size: 1.2vw;
 
 .projectCreate {
     width: 80vw;
-    height: 38vh;
+    height: 45vh;
     background-color: white;
     border: 2px solid rgba(0, 53, 108, 1);
     border-radius: 25px;
@@ -427,7 +427,7 @@ font-size: 1.2vw;
 }
 
 .createSelected {
-    height: 45.3vh;
+    height: 40vh;
     width: 8%;
     padding-right: 0;
     padding-top: 0;
@@ -440,23 +440,24 @@ font-size: 1.2vw;
 }
 
 .fechas {
-width: 83%;
-margin-top: 2%;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
+    width: 83%;
+    margin-top: 1%;
+    margin-bottom: 12%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .fecha {
-width: 50%;
-display: flex;
-flex-direction: row;
-align-items: center;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .start {
-justify-content: flex-start;
+    justify-content: flex-start;
 }
 
 .end {
@@ -469,21 +470,21 @@ font-weight: 400;
 }
 
 .escalar {
-width: 25%;
-background-color: rgba(0, 53, 108, 1);
-color: white;
-font-family: sans-serif, "Manrope";
-font-size: 1.2vw;
-font-weight: bold;
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-border-radius: 25px;
-padding: 1.5%;
-padding-left: 2%;
-padding-right: 2%;
-cursor: pointer;
+    width: 25%;
+    background-color: rgba(0, 53, 108, 1);
+    color: white;
+    font-family: sans-serif, "Manrope";
+    font-size: 1.2vw;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 25px;
+    padding: 1.5%;
+    padding-left: 2%;
+    padding-right: 2%;
+    cursor: pointer;
 }
 
 .escalar:hover {

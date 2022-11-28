@@ -10,7 +10,21 @@ function ProyectoHeader({id}) {
          ((new Date(fecha)).toLocaleDateString()) : (""))
    }
 
-    return (
+   const getState = (estado) => {
+      switch (estado) {
+          case "No Iniciado": return styles.notStarted;
+          case "Iniciado" : return styles.initiated;
+          case "Analisis" : return styles.analisys;
+          case "Desarrollo" : return styles.developed;
+          case "Pruebas" : return styles.tested;
+          case "Produccion" : return styles.production;
+          case "Post-Produccion" : return styles.pproduction;
+          case "Cancelado" : return styles.canceled;
+          default : return styles.notStarted;
+      }
+   }
+
+   return (
 
           <div className={styles.proyectoHeader}>
             <div className={styles.bloqueHeader}>
@@ -18,21 +32,20 @@ function ProyectoHeader({id}) {
                         GetProjectId(id, setProject)
                },[])}
              <div className={styles.titulo}>{project.name}</div>
-             {/* <div className={styles.datos}>{"id"}</div> */}
+             <div className={styles.datos}>{project._id}</div>
              <div className={styles.column}>
                 <div>Tipo: </div>
                 <div className={styles.estado + " " + styles.analisis}>Desarrollo</div>
              </div>
              <div className={styles.column}>
                 <div>Estado: </div>
-                <div className={styles.estado + " " + styles.analisis}>{project.status}</div>
+                <div className={styles.estado + " " + getState(project.status)}>{project.status}</div>
              </div>
             </div>
 
             <div className={styles.linkRight}></div>
             <div className={styles.bloqueHeader}>      
                 <div >Descripcion</div>
-                {/* <div className={styles.datos}>Migración del PSA Spring ERP a una plataforma en la nube</div> */}
                 <div className={styles.datos}>{project.description}</div>
                 <div >Fecha de inicio ideal</div>
                 <div className={styles.datos}>{parseDate(project.idealInitDate)}</div>
@@ -40,15 +53,10 @@ function ProyectoHeader({id}) {
                 <div className={styles.datos}>{parseDate(project.idealEndDate)}</div>
                 <div >Product Owner</div>
                 <div className={styles.datos}>Fernando Soluzzia</div>
-                
             </div>
-            
                <div className={styles.linkRight}></div>
-
                <div className={styles.bloqueHeader}>
-                
                <div >Informacion de proyecto</div>
-                
                 <div >Horas estimadas</div>
                 <div className={styles.datos}>120 hs</div>
                 <div >Personal asignado</div>
@@ -56,15 +64,7 @@ function ProyectoHeader({id}) {
                 <div >Total de hs invertidas</div>
                 <div className={styles.datos}>0 hs</div>
                </div>
-
-               
-              
-          </div>
-
-          
-         
-      
-      
+         </div>
     );
   }
   

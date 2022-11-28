@@ -40,7 +40,7 @@ function ProjectList() {
 
             </div>
 
-            <ProjectCreate/>
+            <ProjectCreate listClient={clientsName}/>
         </div>
     )
 } 

@@ -43,10 +43,12 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
                         </div>
                         <div className={styles.footerSection}>
                         <div className={styles.marginLeft}>
-                            <BsFillPersonFill/>
-                            {setClient}
+                            <BsFillPersonFill/> 
+                            <label>
+                                {` ${setClient}`}
+                            </label>
                         </div>
-                            <div className={styles.marginLeft}>-<BsCalendarEventFill/></div>
+                            <div className={styles.marginLeft}> - <BsCalendarEventFill/></div>
                             <div className={styles.marginLeft}>
                                 Inicia {parseDate(project.idealInitDate)}
                             </div>
