@@ -81,14 +81,13 @@ import { useState } from "react";
           <div 
             className={styles.editConfirm}
             onClick = { () => {
-                updateProject( project._id,
+                updateProject(project._id,
                   {
                     "name" : name,
                     "description" : description,
                     "status" : statusSelected,
                     "assignedClient" : clientSelected
                   })
-                window.location.reload(false);
               }
             }
           

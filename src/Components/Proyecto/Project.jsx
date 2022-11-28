@@ -1,20 +1,10 @@
-// import { useState, useEffect} from "react";
-// import {
-//   BsQuestionCircleFill,
-//   BsFillExclamationCircleFill,
-//   BsFillCaretLeftFill,
-//   BsCircleFill,
-// } from "react-icons/bs";
 import { FiUser, FiClock } from "react-icons/fi";
 import { HiCheck } from "react-icons/hi";
 import { BsFillPersonFill, BsCalendarEventFill } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
-// import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
-import ProjectSelect from "./ProjectSelect";
 import Popup from 'reactjs-popup';
-import { NavLink } from "react-router-dom";
 
 
 function Project({ project, editSelected, setEditSelected, setClient, setDeleteSelected }) {
@@ -27,7 +17,7 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
         switch (estado) {
             case "No Iniciado": return styles.notStarted;
             case "Iniciado" : return styles.initiated;
-            case "Analisis" : return styles.analysis;
+            case "Analisis" : return styles.analisys;
             case "Desarrollo" : return styles.developed;
             case "Pruebas" : return styles.tested;
             case "Produccion" : return styles.production;
@@ -36,9 +26,6 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
             default : return styles.notStarted;
         }
     }
-    
-    // const [typeHovered, setTypeHovered] = useState(false);
-    // const [escalarSelected, setEscalarSelected] = useState(false);
     
     return (
         <div className={styles.container}>

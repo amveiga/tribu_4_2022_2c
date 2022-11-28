@@ -196,19 +196,19 @@ z-index: 3;
     background-color: #0085ff;
 }
 .analisys {
-    background-color: #1dcc2e;
+    background-color: #bda145;
 }
 .developed {
-    background-color: #ff0000;
+    background-color: #ac1f99;
 }
 .tested {
-    background-color: #ff0000;
+    background-color: #9c1e2e;
 }
 .production {
-    background-color: #ff0000;
+    background-color: #2df500;
 }
 .pproduction {
-    background-color: #ff0000;
+    background-color: #3a7818;
 }
 .canceled {
     background-color: #ff0000;
