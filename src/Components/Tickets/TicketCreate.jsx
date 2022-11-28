@@ -3,6 +3,7 @@ import { IoClose } from "react-icons/io5";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import Filtros from "./../../Data/Filtros.json";
+import axios from "axios";
 
 function TicketCreate({ setCrearTicket }) {
   var fechaCreacion = new Date();
@@ -14,6 +15,28 @@ function TicketCreate({ setCrearTicket }) {
 
   const getDate = (fecha) => {
     return fecha.getDate() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
+  };
+
+  const createTicket = () => {
+    axios
+      .post(
+        "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
+        {
+          title: "string",
+          description: "string",
+          status: "Abierto",
+          type: "string",
+          origin: "string",
+          sla: "string",
+          clientId: "string",
+          clientProductId: "string",
+          userId: "string",
+          areaId: "string",
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      });
   };
 
   return (
@@ -98,7 +121,10 @@ function TicketCreate({ setCrearTicket }) {
       </div>
       <div className={styles.editSelected + " " + styles.createSelected}>
         <div
-          onClick={() => setCrearTicket(false)}
+          onClick={() => {
+            setCrearTicket(false);
+            createTicket();
+          }}
           className={styles.editCancel}
         >
           <IoClose size={"2vw"} color={"white"} />

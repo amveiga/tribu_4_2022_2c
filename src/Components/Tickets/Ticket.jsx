@@ -56,7 +56,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
           <div className={styles.sectionOne}>
             <div className={styles.headerSection}>
               <div className={styles.titleSection}>
-                {ticket.titulo}
+                {ticket.title}
                 {ticket.tipo === "Consulta" ? (
                   <BsQuestionCircleFill
                     onMouseEnter={() => setTypeHovered(true)}

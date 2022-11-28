@@ -18,10 +18,12 @@
 
 @keyframes marginTop {
   from {
-    margin-top: 1%;
+    margin-top: -3%;
+    opacity: 0;
   }
   to {
     margin-top: 3%;
+    opacity: 1;
   }
 }
 

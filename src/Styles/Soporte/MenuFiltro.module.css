@@ -1,6 +1,4 @@
 .menuFiltro {
-  animation-name: inicio;
-  animation-duration: 5s;
   width: 49%;
   padding-bottom: 1.5%;
   padding-left: 1%;
@@ -20,9 +18,11 @@
 
 @keyframes marginTop {
   from {
-    margin-top: 1%;
+    margin-top: -5%;
+    opacity: 0;
   }
   to {
+    opacity: 1;
     margin-top: 3%;
   }
 }
@@ -30,6 +30,7 @@
 .filtrado {
   animation: marginTop 1s;
   width: 95%;
+  height: auto;
   display: flex;
   margin-top: 3%;
   flex-direction: row;
