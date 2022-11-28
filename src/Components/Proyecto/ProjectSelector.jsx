@@ -6,7 +6,7 @@ import ProjectEdit from "./ProjectEdit";
 function ProjectSelector({ project, listClient, client }) {
     const [editSelected, setEditSelected] = useState(false);
     const [deletedSelected, setDeleteSelected] = useState(false);
-    
+
     return (
         <div className={styles.projectSelector}>
             {editSelected ?  (
@@ -24,7 +24,6 @@ function ProjectSelector({ project, listClient, client }) {
                 setDeleteSelected={setDeleteSelected}
                 />
             )}
-            
         </div>
     );
 }

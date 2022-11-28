@@ -14,6 +14,8 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
 import ProjectSelect from "./ProjectSelect";
 import Popup from 'reactjs-popup';
+import { NavLink } from "react-router-dom";
+
 
 function Project({ project, editSelected, setEditSelected, setClient, setDeleteSelected }) {
     const parseDate = (fecha) => {
@@ -34,8 +36,7 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
             default : return styles.notStarted;
         }
     }
-                // return style;
-    //     inicio, análisis, desarrollo, pruebas, producción, post-producción (garantia)   };
+    
     // const [typeHovered, setTypeHovered] = useState(false);
     // const [escalarSelected, setEscalarSelected] = useState(false);
     
@@ -46,7 +47,9 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
                     <div className={styles.sectionOne}>
                         <div className={styles.headerSection}>
                             <div className={styles.titleSection}>
-                                {project.name}
+                                <a href={"/proyectos/" + project._id}>    
+                                    {project.name}
+                                </a>
                             </div>
                         </div>
                         <div className={styles.descripcion}>
@@ -121,13 +124,13 @@ function Project({ project, editSelected, setEditSelected, setClient, setDeleteS
                                     </div>
                                     <div className={styles.actions}>
                                     <Popup
-                                        trigger={<button className="button"> Aceptar </button>}
-                                        position="top center"
+                                        trigger={<button className={styles.buttonModal}> Aceptar </button>}
+                                        position="top left"
                                         nested
                                     >
                                     </Popup>
                                     <button
-                                        className="button"
+                                        className={styles.buttonModal}
                                         onClick={() => {
                                             close();
                                             setDeleteSelected(false);
