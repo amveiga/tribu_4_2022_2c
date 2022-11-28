@@ -2,27 +2,34 @@ import { HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import styles from "./../../Styles/Proyectos/Project.module.css";
 import ProjectSelect from "./ProjectSelect";
-import Filtros from "./../../Data/FiltrosProyectos.json";
+//import Filtros from "./../../Data/FiltrosProyectos.json";
 import { useState } from "react";
 import {KeyboardDatePicker} from '@material-ui/pickers'
+import {postProject} from "./ProjectViewList" 
 
 function CreateProject({ setCrearProject, listClient }) {
-    const [statusSelected, setStatusSelected] = useState("");
     const [clientSelected, setClientSelected] = useState("");
-
-    var fechaCreacion = new Date();
-    var ultimaModificacion = new Date();
-    const [fechaSelect, setFechaSelect] = useState(new Date());
-
-    const getOptions = (dato) => {
-        return Filtros.find((e) => e.Nombre === dato).Options;
+    
+    const [description, setdescription] = useState("");
+    const handleDescriptionChange = event => {
+        setdescription(event.target.value);
     };
+    
+    const [name, setName] = useState("");
+    const handleNameChange = event => {
+      setName(event.target.value);
+  };
+    
+    const [initFechaSelect, setInitFechaSelect] = useState(new Date());
+    const [endFechaSelect, setEndFechaSelect] = useState(new Date());
 
-    const getDate = (fecha) => {
-        return fecha.getDate() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
-    };
+    // const getOptions = (dato) => {
+    //     return Filtros.find((e) => e.Nombre === dato).Options;
+    // };
 
-    console.log(fechaSelect)
+    // const getDate = (fecha) => {
+    //     return fecha.getDate() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
+    // };
 
     return (
         <div className={styles.projectCreateContainer}>
@@ -36,6 +43,8 @@ function CreateProject({ setCrearProject, listClient }) {
                 <div className={styles.title}>Titulo</div>
                 <input
                 type={"text"}
+                value={name}
+                onChange={handleNameChange}
                 placeholder={"Ingrese un titulo"}
                 className={styles.inputTitulo}
                 />
@@ -44,6 +53,8 @@ function CreateProject({ setCrearProject, listClient }) {
                 <div className={styles.title}>Descripción</div>
                 <textarea
                 type={"text"}
+                value={ description }
+                onChange= { handleDescriptionChange }
                 placeholder={"Ingrese una descripción del ticket"}
                 className={styles.inputDescription}
                 />
@@ -55,9 +66,32 @@ function CreateProject({ setCrearProject, listClient }) {
                     inputVariant="outlined"
                     label="Fecha Inicio Ideal"
                     format="dd/MM/yyyy"
-                    value={fechaSelect}
+                    value={initFechaSelect}
                     InputAdornmentProps={{ position: "start" }}
-                    onChange={setFechaSelect}
+                    onChange={setInitFechaSelect}
+                    inputProps={
+                        {
+                            style: {
+                                fontSize: 14,
+                                height: 14,
+                                width:80,
+                            }
+                        }
+                    }
+                    KeyboardButtonProps={{
+                        'aria-label': 'change date',
+                    }}
+                />
+
+                <KeyboardDatePicker
+                    autoOk
+                    variant="inline"
+                    inputVariant="outlined"
+                    label="Fecha Final Ideal"
+                    format="dd/MM/yyyy"
+                    value={endFechaSelect}
+                    InputAdornmentProps={{ position: "start" }}
+                    onChange={setEndFechaSelect}
                     inputProps={
                         {
                             style: {
@@ -77,17 +111,11 @@ function CreateProject({ setCrearProject, listClient }) {
                     </label>
                     <DatePicker value={fechaSelect} onChange={setFechaSelect}/>
                 </div> */}
-                <div className={styles.fecha + " " + styles.end}>
-                    Última modificación:
-                    <div className={styles.fechaText}>
-                        {getDate(ultimaModificacion)}
-                    </div>
-                </div>
             </div>
             </div>
             <div className={styles.sectionTwoEdit}>
             <div className={styles.item + " " + styles.item1}>
-                SLA
+                LiderDeProyecto (api recursos)
                 {/* <ProjectSelect
                 placeHolder={"Seleccione un SLA"}
                 options={getOptions("SLA")}
@@ -103,35 +131,30 @@ function CreateProject({ setCrearProject, listClient }) {
                     setState={setClientSelected}
                 />
             </div>
-            <div className={styles.item + " " + styles.item3}>
-                Medio
-                {/* <TicketSelect
-                placeHolder={"Seleccione un medio"}
-                options={getOptions("Medio")}
-                style={styles.selectEstado}
-                /> */}
-            </div>
-            <div className={styles.item + " " + styles.item4}>
-                Tipo
-                {/* <TicketSelect
-                placeHolder={"Seleccione un tipo"}
-                options={getOptions("Tipo")}
-                style={styles.selectEstado}
-                /> */}
-            </div>
             </div>
         </div>
         <div className={styles.editSelected + " " + styles.createSelected}>
             <div
             onClick={() => {
                 setCrearProject(false);
-                // createTicket();
             }}
             className={styles.editCancel}
             >
             <IoClose size={"2vw"} color={"white"} />
             </div>
-            <div className={styles.editConfirm}>
+            <div className={styles.editConfirm}
+                 onClick = {() => {
+                    postProject(
+                        {
+                            "name" : name,
+                            "description": description,
+                            "idealInitDate" : initFechaSelect,
+                            "idealEndDate" : endFechaSelect,
+                            "assignedClient" : clientSelected
+                        }
+                    )
+                 }}
+            >
             <HiCheck size={"2vw"} color={"white"} />
             </div>
         </div>

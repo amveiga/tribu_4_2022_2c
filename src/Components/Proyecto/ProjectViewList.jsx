@@ -51,4 +51,18 @@ export async function GetProjectId(id, state) {
     state(result.data)
 }
 
+export async function postProject(data){
+    data["status"] = "No Iniciado";
+
+    await axios({
+        method: "post",
+        url : getUrl,
+        data : data
+    })
+    .then( (res) => {
+        window.location.reload()
+    })
+
+}
+
 export default ProjectViewAPI;
