@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState, useEffect} from "react";
 // import {
 //   BsQuestionCircleFill,
 //   BsFillExclamationCircleFill,
@@ -7,33 +7,37 @@ import { useState } from "react";
 // } from "react-icons/bs";
 import { FiUser, FiClock } from "react-icons/fi";
 import { HiCheck } from "react-icons/hi";
+import { BsFillPersonFill, BsCalendarEventFill } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
-import { ImMoveUp } from "react-icons/im";
+// import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
 import ProjectSelect from "./ProjectSelect";
+import Popup from 'reactjs-popup';
 
-function Project({ project, editSelected, setEditSelected }) {
+function Project({ project, editSelected, setEditSelected, setClient, setDeleteSelected }) {
     const parseDate = (fecha) => {
         const parse = new Date(fecha)
         return parse.toLocaleDateString();
     }
-
+    
     const getState = (estado) => {
-        var style;
-        if (estado === "notStarted") {
-          style = styles.notStarted;
-        } else if (estado === "initiated") {
-          style = styles.initiated;
-        } else if (estado === "finished") {
-          style = styles.finished;
-        } else if (estado === "canceled") {
-          style = styles.canceled;
+        switch (estado) {
+            case "No Iniciado": return styles.notStarted;
+            case "Iniciado" : return styles.initiated;
+            case "Analisis" : return styles.analysis;
+            case "Desarrollo" : return styles.developed;
+            case "Pruebas" : return styles.tested;
+            case "Produccion" : return styles.production;
+            case "Post-Produccion" : return styles.pproduction;
+            case "Cancelado" : return styles.canceled;
+            default : return styles.notStarted;
         }
-        return style;
-    };
+    }
+                // return style;
+    //     inicio, análisis, desarrollo, pruebas, producción, post-producción (garantia)   };
     // const [typeHovered, setTypeHovered] = useState(false);
-    const [escalarSelected, setEscalarSelected] = useState(false);
+    // const [escalarSelected, setEscalarSelected] = useState(false);
     
     return (
         <div className={styles.container}>
@@ -49,8 +53,11 @@ function Project({ project, editSelected, setEditSelected }) {
                             {project.description}
                         </div>
                         <div className={styles.footerSection}>
-                        <div className={styles.marginLeft}>"{project.assignedClient}"</div>
-                            <div className={styles.marginLeft}>-</div>
+                        <div className={styles.marginLeft}>
+                            <BsFillPersonFill/>
+                            {setClient}
+                        </div>
+                            <div className={styles.marginLeft}>-<BsCalendarEventFill/></div>
                             <div className={styles.marginLeft}>
                                 Inicia {parseDate(project.idealInitDate)}
                             </div>
@@ -95,16 +102,47 @@ function Project({ project, editSelected, setEditSelected }) {
                             <IoClose size={"2vw"} color={"white"} />
                         </div>
                         <div className={styles.editConfirm}>
-                        <HiCheck size={"2vw"} color={"white"} />
+                            <HiCheck size={"2vw"} color={"white"} />
                         </div>
                     </div>
                 ) : (
-                    <div className={styles.delete}>
-                        <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+                    <div className={styles.delete}
+                        onClick={() => setDeleteSelected(true)}>
+                        <Popup trigger={
+                            <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+                        } modal nested>
+                            {close => (
+                                <div className={styles.modal}>
+                                    <button className={styles.close} onClick={close}>
+                                    &times;
+                                    </button>
+                                    <div className={styles.content}>
+                                        ¿Desea eliminar este proyecto?
+                                    </div>
+                                    <div className={styles.actions}>
+                                    <Popup
+                                        trigger={<button className="button"> Aceptar </button>}
+                                        position="top center"
+                                        nested
+                                    >
+                                    </Popup>
+                                    <button
+                                        className="button"
+                                        onClick={() => {
+                                            close();
+                                            setDeleteSelected(false);
+                                        }}
+                                    >
+                                        Cancelar
+                                    </button>
+                                    </div>
+                                </div>
+                            )}
+                        </Popup>
                     </div>
                 )}
             </div>
-            {escalarSelected && (
+            {/* {escalarSelected && (
                 <div className={styles.escalarSelectedContainer}>
                     <div className={styles.escalarSelected}>
                         <div className={styles.selection + " " + styles.item1}>
@@ -145,7 +183,7 @@ function Project({ project, editSelected, setEditSelected }) {
                         </div>
                     </div>
                 </div>
-            )}
+            )} */}
         </div>
     )
 }

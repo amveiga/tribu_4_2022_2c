@@ -1,34 +1,19 @@
-import {
-    BsQuestionCircleFill,
-    BsFillExclamationCircleFill,
-  } from "react-icons/bs";
+// import {
+//     BsQuestionCircleFill,
+//     BsFillExclamationCircleFill,
+//   } from "react-icons/bs";
   import { HiCheck } from "react-icons/hi";
   import { IoClose } from "react-icons/io5";
   import { MdEdit } from "react-icons/md";
   import styles from "./../../Styles/Proyectos/Project.module.css";
   import Filtros from "./../../Data/FiltrosProyectos.json";
   import ProjectSelect from "./ProjectSelect";
-  import { useState, useEffect } from "react";
-  import { GetClients} from "../../Components/Proyecto/ProjectViewList"
   
-  function ProjectEdit({ project, setEditSelected }) {
+  function ProjectEdit({ project, setEditSelected, clientsName, setClient }) {
     const getOptions = (dato) => {
       return Filtros.find((e) => e.Nombre === dato).Options;
     };
     
-    const [clients, setClients] = useState([]);
-    var clientsName = [];
-
-    useEffect(() => {
-      console.log("a")
-      GetClients(setClients)
-    }, [])
-
-    clients.map((cliente) => {
-      return  clientsName.push({"value": cliente["id"], 
-          "label": cliente["razon social"]})}     
-    )
-
     return (
       <div className={styles.projectContainerEdit}>
         <div className={styles.projectEdit}>
@@ -86,7 +71,7 @@ import {
             <div className={styles.item + " " + styles.item3}>
               Cliente
               <ProjectSelect
-                placeHolder={project.assignedClient}
+                placeHolder={setClient}
                 options={clientsName}
                 style={styles.selectEstado}
               />

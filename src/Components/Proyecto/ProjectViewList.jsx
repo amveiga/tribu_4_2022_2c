@@ -14,4 +14,3 @@ export async function GetClients(state) {
 }
 
 export default ProjectViewAPI;
-// export default GetClients;
