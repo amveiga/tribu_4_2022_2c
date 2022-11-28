@@ -1,0 +1,17 @@
+[
+    {
+        "legajo": 1,
+        "Nombre": "Mario",
+        "Apellido": "Mendoza"
+    },
+    {
+        "legajo": 2,
+        "Nombre": "Maria",
+        "Apellido": "Perez"
+    },
+    {
+        "legajo": 3,
+        "Nombre": "Patricia",
+        "Apellido": "Gaona"
+    }
+]

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import barStyles from "./../../Styles/RecursosHumanos/BarraInformacion.css";
 import buttonStyles from "./../../Styles/RecursosHumanos/Botones.css";
@@ -10,8 +10,15 @@ import imagenBorrar from "./../../Img/RecursosHumanos/borrar_icon.png";
 import imagenValidar from "./../../Img/RecursosHumanos/yes_icon.png";
 import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
 
+import EmpleadoInfo from "../../Components/RecursosHumanos/FichaEmpleado";
+
+import Empleados from "../../Data/RecursosHumanos/empleados.json";
+
 function Tareas() {
     let navigate = useNavigate();
+
+    let empleadoID = useParams();
+    console.log(empleadoID.empleadoId);
 
     function cargarHoras(){
         navigate("/recursos-humanos/tareas/cargar-horas");
@@ -25,11 +32,8 @@ function Tareas() {
     <div className="body">
         <div id="data-bar">
             <img src={fotoPerfil} alt="" id="profile-image"/>
-            <div>
-                <p className="name-person">Juan Gonzales</p>
-                <p className="title-person">Junior Dev de CRM</p>
-                <p className="id-person">Legajo: 4</p>
-            </div>
+            <EmpleadoInfo key={empleadoID.empleadoId} empleadoID={empleadoID.empleadoId}/>
+            
             <div className="button-container">
                 <input className="task-button back-button" type="button" value="Volver" onClick={volver}/>
             </div>

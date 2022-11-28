@@ -4,7 +4,12 @@ import buttonStyle from "./../Styles/RecursosHumanos/Botones.css";
 
 import trabajadores from "./../Img/RecursosHumanos/personas_icon.png";
 import reportes from "./../Img/RecursosHumanos/reportes_icon.png";
+import { useEffect } from "react";
+import axios from "axios";
 
+import EmpleadoElement from "../Components/RecursosHumanos/Empleado";
+
+import Empleados from "../Data/RecursosHumanos/empleados.json";
 
 function RecursosHumanos() {
   let navigate = useNavigate();
@@ -21,6 +26,18 @@ function RecursosHumanos() {
     navigate("/recursos-humanos/GenerarReportesProyecto");
   }
 
+  /*useEffect(( => {
+    axios
+      .get(
+        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/recursos-psa/1.0.0/m/api/recursos"
+      )
+      .then((response) => {
+        console.log(response.data);
+        set
+      })
+      )
+  }))*/
+
   return (
     <div className="body">
       <div className="recursos-humanos-container trabajadores">
@@ -34,26 +51,9 @@ function RecursosHumanos() {
             <div><p>Apellido</p></div>
             <div><p>Legajo</p></div>
           </div>
-          <div className="list-element">
-            <div><p>Mario</p></div>
-            <div><p>Mendoza</p></div>
-            <div><p>1</p></div>
-          </div>
-          <div className="list-element">
-            <div><p>Maria</p></div>
-            <div><p>Perez</p></div>
-            <div><p>2</p></div>
-          </div>
-          <div className="list-element">
-            <div><p>Patricio</p></div>
-            <div><p>Gaona</p></div>
-            <div><p>3</p></div>
-          </div>
-          <div className="list-element" onClick={verTareas}>
-            <div><p>Juan</p></div>
-            <div><p>Gonzalez</p></div>
-            <div><p>4</p></div>
-          </div>
+          {Empleados.map((empleado) => {
+              return <EmpleadoElement key={empleado.id} empleado={empleado} />
+            })}
         </div>
       </div>
       <div className="recursos-humanos-container reportes">
