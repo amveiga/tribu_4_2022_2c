@@ -2,8 +2,10 @@ import { FiUser, FiClock } from "react-icons/fi";
 import { HiCheck } from "react-icons/hi";
 import { BsFillPersonFill, BsCalendarEventFill } from "react-icons/bs";
 import { IoClose } from "react-icons/io5";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
+import PopUpProject from "./PopUp";
+
 function Project({ project, editSelected, setEditSelected, setClient, setDeleteSelected }) {
     const parseDate = (fecha) => {
         const parse = new Date(fecha)
