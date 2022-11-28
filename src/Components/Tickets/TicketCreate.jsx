@@ -3,7 +3,7 @@ import { IoClose } from "react-icons/io5";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import Filtros from "./../../Data/Filtros.json";
-import axios from "axios";
+// import axios from "axios";
 
 function TicketCreate({ setCrearTicket }) {
   var fechaCreacion = new Date();
@@ -17,27 +17,28 @@ function TicketCreate({ setCrearTicket }) {
     return fecha.getDate() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
   };
 
-  const createTicket = () => {
-    axios
-      .post(
-        "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
-        {
-          title: "string",
-          description: "string",
-          status: "Abierto",
-          type: "string",
-          origin: "string",
-          sla: "string",
-          clientId: "string",
-          clientProductId: "string",
-          userId: "string",
-          areaId: "string",
-        }
-      )
-      .then((response) => {
-        console.log(response.data);
-      });
-  };
+  // const createTicket = () => {
+  //   axios
+  //     .post(
+  //       "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
+  //       {
+  //         title: "string",
+  //         description: "string",
+  //         status: "Abierto",
+  //         type: "string",
+  //         origin: "string",
+  //         sla: "string",
+  //         clientId: "string",
+  //         clientProductId: "string",
+  //         userId: "string",
+  //         areaId: "string",
+  //       }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => alert(error));
+  // };
 
   return (
     <div className={styles.ticketCreateContainer}>
@@ -123,7 +124,7 @@ function TicketCreate({ setCrearTicket }) {
         <div
           onClick={() => {
             setCrearTicket(false);
-            createTicket();
+            // createTicket();
           }}
           className={styles.editCancel}
         >
