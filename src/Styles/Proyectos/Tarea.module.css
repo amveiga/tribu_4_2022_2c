@@ -200,6 +200,7 @@
 .paginaTarea{
   width: 100%;
   height: 100%;
+  
 }
 
 .headerTarea{
@@ -262,6 +263,4 @@
   background-color: #f7efef;
 }
 
-.izquierda{
-  text-align: left;
-}
+

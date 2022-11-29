@@ -55,18 +55,14 @@ function ProyectoHeader({id}) {
             <div className={styles.bloqueHeader}>      
                 <div >Descripcion</div>
                 <div className={styles.datos}>{project.description}</div>
-                <div >Fecha de inicio ideal</div>
-                <div className={styles.datos}>{parseDate(project.idealInitDate)}</div>
-                <div >Fecha fin ideal</div>
-                <div className={styles.datos}>{parseDate(project.idealEndDate)}</div>
-                <div >Product Owner</div>
-                <div className={styles.datos}>{"Fernando Soluzzia"}</div>
             </div>
                <div className={styles.linkRight}></div>
                <div className={styles.bloqueHeader}>
                <div >Informacion de proyecto</div>
-                <div >Horas estimadas</div>
-                <div className={styles.datos}>120 hs</div>
+               <div >Fecha de inicio ideal</div>
+                <div className={styles.datos}>{parseDate(project.idealInitDate)}</div>
+                <div >Fecha fin ideal</div>
+                <div className={styles.datos}>{parseDate(project.idealEndDate)}</div>
                 <div >Personal asignado</div>
                 <div className={styles.datos}>15 </div>
                 <div >Total de hs invertidas</div>

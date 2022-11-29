@@ -8,7 +8,7 @@ import {postProject} from "./ProjectViewList"
 import Filtros from "../../Data/FiltrosProyectos.json"
 
 
-function CreateProject({ setCrearProject, listClient, listRecursos }) {
+function CreateTask({ setCrearProject, listClient, listRecursos }) {
     const [clientSelected, setClientSelected] = useState("");
     
     const [description, setdescription] = useState("");

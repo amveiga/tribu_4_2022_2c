@@ -1,25 +1,31 @@
-import styles from "./../Styles/Proyectos.module.css";
+import styles from "./../Styles/Proyecto.module.css";
 import {useParams} from "react-router-dom"
 import stylesT from "./../Styles/Proyectos/Tarea.module.css"
 import { useState, useEffect } from "react";
 import { addInvertedHours, GetTaskId } from "./../Components/Proyecto/ProjectViewList"
+import Filtros from "./../Data/FiltrosTarea.json"
+
 
 function Tarea() {
   let { tid } = useParams();
   const [task, setTask] = useState([]);
 
   const [hours, setHours] = useState(0);
+  const [stateTask, setStateTask] = useState("")
   const handleHoursChange = event => {
     setHours(event.target.value);
   }
   
+  const getOptions = (dato) => {
+    return Filtros.find((e) => e.Estado === dato).Options;
+  };
 
   const parseDate = (fecha) => {
     return (fecha ? 
        ((new Date(fecha)).toLocaleDateString()) : (""))
   };
   
-  return (<div className={styles.proyectosContainer}>
+  return (<div className={styles.proyectoContainer}>
                 {useEffect(() => {
                     GetTaskId(tid, setTask);
                 },[])}
@@ -91,7 +97,17 @@ function Tarea() {
                 }}
             >Agregar Horas Invertidas
         </button>
-            
+
+        {/* <ProjectSelect
+              placeHolder={setStateTask}
+              options={clientsName}
+              style={styles.selectEstado}
+              setState={setClientSelected}
+                
+          
+        
+        />
+             */}
       </div>
     </div>
    

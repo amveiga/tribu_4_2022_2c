@@ -164,8 +164,8 @@ function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRec
                     "assignedClient" : clientSelected,
                     "idealInitDate" : initFechaSelect,
                     "idealEndDate" : endFechaSelect,
-                    "type": typeSelected
-
+                    "type": typeSelected,
+                    "projectLeader": leaderSelected
                   })
               }
             }

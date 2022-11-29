@@ -23,16 +23,17 @@
 }
 
 .projectContainerEdit {
-    width: 60%;
+    /* width: 280vh; */
     margin-top: 2%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    padding-left: 1em;
 }
 
 .project {
-    width: 300vh;
+    width: 320vh;
     height: 30vh;
     padding: 2%;
     border-radius: 25px;
@@ -47,9 +48,9 @@
 }
 
 .projectEdit {
-    width: 180vh;
-    height: 40vh;
-    padding: 2%;
+    width: 100vh;
+    height: 45vh;
+    padding: 1%;
     border-radius: 25px;
     border: 2px solid rgba(0, 53, 108, 1);
     display: flex;
@@ -186,14 +187,14 @@
 
 .sectionTwo,
 .sectionTwoEdit {
-    width: 25%;
+    width: 20%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-end;
     font-family: sans-serif, "Manrope";
-    font-size: 1.3vw;
+    font-size: 13pt;
 }
 
 .sectionTwoEdit {
@@ -214,33 +215,43 @@
 
 .notStarted  {
     background-color: #b6b1aa;
+    width: 9em;
 }
 .initiated {
     background-color: #0085ff;
+    width: 9em;
 }
 .analisys {
     background-color: #bda145;
+    width: 9em;
 }
 .developed {
     background-color: #ac1f99;
+    width: 9em;
 }
 .tested {
     background-color: #9c1e2e;
+    width: 9em;
 }
 .production {
     background-color: #2df500;
+    width: 9em;
 }
 .pproduction {
     background-color: #3a7818;
+    width: 9em;
 }
 .canceled {
     background-color: #ff0000;
+    width: 9em;
 }
 .implementation {
     background-color: blueviolet;
+    width: 9em;
 }
 .dev {
     background-color: #0085ff;
+    width: 9em;
 }
 
 .item {
@@ -260,7 +271,9 @@
 }
 .item3 {
     z-index: 8;
+    font-size: 10.5pt;
 }
+
 .item4 {
     z-index: 7;
 }
@@ -286,7 +299,7 @@
 
 .edit,
 .delete{
-    width: 15%;
+    width: 20%;
     height: 30vh;
     margin-left: -3%;
     padding-top: 2%;
@@ -327,7 +340,7 @@
     background-color: rgba(0, 53, 108, 1);
     cursor: default;
     width: 10vh;
-    height: 40vh;
+    height: 38vh;
 }
 
 .editSelected {

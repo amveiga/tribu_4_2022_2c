@@ -75,12 +75,12 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                         <div className={styles.estado + " " + getState(project.status)} title="Estado actual del proyecto">
                             {project.status}
                         </div>
-                        <div className={styles.item} title="Lider del proyecto">
+                        <div className={styles.item + " " + styles.item3} title="Lider del proyecto">
                             <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
                             {`${setRecurso}`}
                         </div>
                         <div className={styles.item}>
-                            <FiClock size={"1.5vw"} color={"rgba(0,53,108,1)"}title="Horas invertidas del proyecto" />
+                            <FiClock size={"1.5vw"} color={"rgba(0,53,108,1)"} title="Horas invertidas del proyecto" />
                             {project.invertedHours}
                         </div>
                     </div>
@@ -94,11 +94,11 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                 >
                     <MdEdit
                         size={"1.5vw"}
-                        color={editSelected ? "white" : "rgba(0,53,108,1)"}
+                        color={editSelected ? "white" : "rgba(0,53,108,1)"} title = "Editar proyecto"
                     />
                 </div>
                 {editSelected ? (
-                    <div className={styles.editSelected}>
+                    <div className={styles.editSelected}> 
                         <div
                         className={styles.editCancel}
                         onClick={() => setEditSelected(false)}
@@ -110,7 +110,7 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                         </div>
                     </div>
                 ) : (
-                    <div className={styles.delete}
+                    <div className={styles.delete} title = "Eliminar proyecto"
                         onClick={() => {
                             setDeleteSelected(true)
                         }}>

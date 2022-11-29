@@ -3,6 +3,7 @@ import styles from "./../../Styles/Proyectos/Tarea.module.css";
 import TarjetaTarea from "./TarjetaTarea";
 import { GetAllTask } from "./ProjectViewList";
 import { useParams } from "react-router-dom";
+import ButtonCreateTask from "./ButtonCreateTask";
 
 function SeccionTareas() {
     const [tareas, setTareas] = useState([]);
@@ -53,6 +54,10 @@ function SeccionTareas() {
                     })}
                 </div>
             </div>
+
+            <ButtonCreateTask
+                id = {id}
+            />
         </div>
        
     
