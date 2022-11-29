@@ -19,6 +19,12 @@ function Comentarios({ comentarios, id }) {
     );
   };
 
+  const deleteComents = async () => {
+    await axios.delete(
+      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/ticket-id/${id}`
+    );
+  };
+
   return (
     <div className={styles.container}>
       <div
@@ -31,6 +37,11 @@ function Comentarios({ comentarios, id }) {
       >
         <div className={styles.title}>Comentarios</div>
         <AiOutlineComment size={"1.5vw"} color={"white"} />
+        {comentarioSelected && (
+          <div onClick={() => deleteComents()} className={styles.eliminar}>
+            Eliminar comentarios
+          </div>
+        )}
       </div>
       {comentarioSelected && (
         <div className={styles.showComentario}>
@@ -52,16 +63,6 @@ function Comentarios({ comentarios, id }) {
           )}
           <div className={styles.sendContainer}>
             <textarea
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  if (e.target.value !== "") {
-                    setComent(e.target.value);
-                    sendComent();
-                    e.preventDefault();
-                  }
-                  setComent("");
-                }
-              }}
               type={"text"}
               placeholder={"Ingrese su comentario"}
               className={styles.send}

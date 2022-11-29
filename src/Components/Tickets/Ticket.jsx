@@ -94,14 +94,14 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   });
 
   useEffect(() => {
-    const getTareas = async () => {
-      var tareas = await tareaAxios.get();
-      setTareas(
-        tareas.data.map((t) => {
-          return { label: t._id, value: t.name };
-        })
-      );
-    };
+    // const getTareas = async () => {
+    //   var tareas = await tareaAxios.get();
+    //   setTareas(
+    //     tareas.data.map((t) => {
+    //       return { label: t._id, value: t.name };
+    //     })
+    //   );
+    // };
 
     const getComentarios = async () => {
       var response = await comentario
@@ -115,7 +115,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
     };
 
     getComentarios();
-    getTareas();
+    // getTareas();
   }, [comentario, tareaAxios]);
 
   return (
