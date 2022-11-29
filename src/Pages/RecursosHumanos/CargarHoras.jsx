@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate, useParams } from "react-router-dom";
 
 import barStyles from "./../../Styles/RecursosHumanos/BarraInformacion.css";
 import buttonStyles from "./../../Styles/RecursosHumanos/Botones.css";
@@ -9,11 +9,15 @@ import enviarIcon from "./../../Img/RecursosHumanos/enviar_icon.png";
 import borradorIcon from "./../../Img/RecursosHumanos/borrador_icon.png";
 import cancelarIcon from "./../../Img/RecursosHumanos/cancelar_icon.png";
 
+import FichaEmpleado from "../../Components/RecursosHumanos/FichaEmpleado";
+
 function CargarHoras() {
+    let empleadoID = useParams();
+    
     let navigate = useNavigate();
 
     function verTareas(){
-        navigate("/recursos-humanos/tareas");
+        navigate("/recursos-humanos/" + empleadoID.empleadoId + "/tareas");
     }
 
     function cambiarSeccion(){
@@ -59,11 +63,7 @@ function CargarHoras() {
     <div className="body">
         <div id="data-bar">
             <img src={fotoPerfil} alt="" id="profile-image"/>
-            <div>
-                <p className="name-person">Juan Gonzales</p>
-                <p className="title-person">Junior Dev de CRM</p>
-                <p className="id-person">Legajo: 4</p>
-            </div>
+            <FichaEmpleado key={empleadoID.empleadoId} empleadoID={empleadoID.empleadoId}/>
         </div>
         <div id="main">
             <div className="div-container">

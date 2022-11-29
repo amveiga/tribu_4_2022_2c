@@ -80,6 +80,10 @@ body{
 
 .sub-task-element{
     margin-top: -10%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .sub-task-empty-element p{
@@ -166,9 +170,15 @@ body{
     border-radius: 0 35px 35px 0;
     margin-left: -25px;
     cursor: pointer;
+    min-width: 40px;
 }
 
 .border-button img{
     margin-left: 70%;
     max-width: 100%;
+}
+
+.task-name-edit,
+.hours-amount-edit{
+    width: 120px;
 }

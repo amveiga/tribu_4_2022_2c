@@ -25,6 +25,7 @@
 
 .name-person{
     font-size: 30px;
+    text-align: center;
 }
 
 .id-person{
@@ -123,3 +124,4 @@
     margin-bottom: 15%;
     text-align: center;
 }
+
