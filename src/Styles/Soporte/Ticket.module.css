@@ -556,3 +556,7 @@
 .marginLeftEscalar {
   margin-left: 5%;
 }
+
+.noTickets {
+  font-size: 1.2vw;
+}

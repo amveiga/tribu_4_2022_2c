@@ -93,16 +93,16 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
     baseURL: `https://squad11-proyectos.onrender.com/api/tasks`,
   });
 
-  useEffect(() => {
-    // const getTareas = async () => {
-    //   var tareas = await tareaAxios.get();
-    //   setTareas(
-    //     tareas.data.map((t) => {
-    //       return { label: t._id, value: t.name };
-    //     })
-    //   );
-    // };
+  const getTareas = async () => {
+    var tareas = await tareaAxios.get();
+    setTareas(
+      tareas.data.map((t) => {
+        return { label: t._id, value: t.name };
+      })
+    );
+  };
 
+  useEffect(() => {
     const getComentarios = async () => {
       var response = await comentario
         .get()
@@ -115,8 +115,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
     };
 
     getComentarios();
-    // getTareas();
-  }, [comentario, tareaAxios]);
+  }, [comentario]);
 
   return (
     <div className={styles.container}>
@@ -211,7 +210,10 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               <HiOutlineUserGroup size={"1.5vw"} color={"rgba(0,53,108,1)"} />
             </div>
             <div
-              onClick={() => setTareaSelected(true)}
+              onClick={() => {
+                getTareas();
+                setTareaSelected(true);
+              }}
               className={styles.tarea}
             >
               {tarea === "" ? "Asociar tarea" : tarea}

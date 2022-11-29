@@ -134,7 +134,7 @@ function Soporte() {
           <Filtros setSortBy={setSortBy} setFiltros={setFiltros} />
           <div className={styles.tickets}>
             {tickets.length === 0 ? (
-              <div>No hay tickets cargados</div>
+              <div className={styles.noTickets}>No hay tickets cargados</div>
             ) : (
               tickets.map((ticket) => {
                 return <TicketSelector key={ticket.id} ticket={ticket} />;
