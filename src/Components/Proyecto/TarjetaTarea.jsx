@@ -3,8 +3,10 @@ import { NavLink } from "react-router-dom";
 import styles from "./../../Styles/Proyectos/Tarea.module.css";
 
 
-function TarjetaTarea({titulo,informacion}) {
+function TarjetaTarea({tarea}) {
   //const [editSelected, setEditSelected] = useState(false);
+ 
+
   let element = {
     textDecoration: "none",
     color: "rgba(0, 53, 108, 1)",
@@ -15,21 +17,20 @@ function TarjetaTarea({titulo,informacion}) {
     
     <NavLink
         style={element}
-        to={"/tarea/63799488af3a51a62afb292b"}
+        to={"/tarea/"+tarea._id}
         
       >
         <div className={styles.tarea}>
            
             <div className={styles.headerContainer}>
                 
-                {titulo ? titulo : "Tarea"} 
+                {tarea.name ? tarea.name : "Tarea"} 
             </div>
             <div className={styles.descripcion}>
             
-                {informacion}
+                {tarea.description}
                 
             </div>
-            
         </div>
     </NavLink> 
        
