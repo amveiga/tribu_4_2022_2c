@@ -3,11 +3,22 @@ import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { useState } from "react";
 
-function TicketSelect({ placeHolder, options, style, setter, value }) {
+function TicketSelect({
+  placeHolder,
+  options,
+  style,
+  setter,
+  value,
+  setterId,
+}) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = (val) => {
-    setter(val);
+    console.log(val);
+    setter(val.value);
+    if (setterId) {
+      setterId(val.label);
+    }
     setSelected(false);
   };
 
@@ -22,7 +33,12 @@ function TicketSelect({ placeHolder, options, style, setter, value }) {
     if (value !== "") {
       component1 = (
         <IoClose
-          onClick={() => setter("")}
+          onClick={() => {
+            setter("");
+            if (setterId) {
+              setterId("");
+            }
+          }}
           size={"1.5vw"}
           color={"rgba(0,53,108,1)"}
         />
@@ -54,7 +70,7 @@ function TicketSelect({ placeHolder, options, style, setter, value }) {
             return (
               <div
                 onClick={() => {
-                  handleClick(option.value);
+                  handleClick(option);
                 }}
                 className={styles.optionTicket}
                 key={option.label}

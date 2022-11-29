@@ -18,8 +18,8 @@ function TicketEdit({ ticket, setEditSelected }) {
   const [type, setType] = useState(ticket.type);
   const [origin, setOrigin] = useState(ticket.origin);
   const [sla, setSla] = useState(ticket.sla);
-  const [client, setClient] = useState("");
   const [clients, setClients] = useState([]);
+  const [client, setClient] = useState(ticket.clientId);
 
   useEffect(() => {
     const getClients = async () => {
@@ -28,7 +28,7 @@ function TicketEdit({ ticket, setEditSelected }) {
       );
       setClients(
         response.data.map((client) => {
-          return { label: client.id, value: client.CUIT };
+          return { label: client.CUIT, value: client.CUIT };
         })
       );
     };
@@ -37,10 +37,6 @@ function TicketEdit({ ticket, setEditSelected }) {
 
   const getOptions = (dato) => {
     return Filtros.find((e) => e.Nombre === dato).Options;
-  };
-
-  const getClientId = () => {
-    return clients.find((c) => c.value === client).label;
   };
 
   const updateTicket = async () => {
@@ -54,14 +50,14 @@ function TicketEdit({ ticket, setEditSelected }) {
           type: type,
           origin: origin,
           sla: sla,
-          clientId: getClientId().toString(),
-          clientProductId: ticket.clientProductId,
+          clientId: client,
           userId: ticket.userId,
           areaId: ticket.areaId,
+          taskId: ticket.taskId,
         }
       )
       .then(setEditSelected(false))
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   };
 
   return (

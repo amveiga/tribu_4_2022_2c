@@ -21,6 +21,11 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   const [escalarSelected, setEscalarSelected] = useState(false);
   const [areaId, setAreaId] = useState("");
   const [userId, setUserId] = useState("");
+  const [tarea, setTarea] = useState("");
+  const [tareaId, setTareaId] = useState(ticket.taskId);
+  const [tareas, setTareas] = useState([]);
+  const [tareaSelected, setTareaSelected] = useState(false);
+  const [comentarios, setComentarios] = useState([]);
 
   const getState = (estado) => {
     var style;
@@ -57,7 +62,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
       .delete(
         `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`
       )
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   };
 
   const updateTicket = async () => {
@@ -72,36 +77,46 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
           origin: ticket.origin,
           sla: ticket.sla,
           clientId: ticket.clientId,
-          clientProductId: ticket.clientProductId,
           userId: userId,
           areaId: areaId,
+          taskId: tareaId,
         }
       )
-      .then(setEscalarSelected(false))
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   };
 
-  const [clients, setClients] = useState([]);
+  const comentario = axios.create({
+    baseURL: `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${ticket.id}`,
+  });
+
+  const tareaAxios = axios.create({
+    baseURL: `https://squad11-proyectos.onrender.com/api/tasks`,
+  });
 
   useEffect(() => {
-    const getClients = async () => {
-      var response = await axios.get(
-        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+    const getTareas = async () => {
+      var tareas = await tareaAxios.get();
+      setTareas(
+        tareas.data.map((t) => {
+          return { label: t._id, value: t.name };
+        })
       );
-      setClients(response.data);
     };
-    getClients();
-  }, []);
 
-  const getClient = () => {
-    var client;
-    if (ticket.clientId !== "") {
-      client = clients.find((c) => c.id.toString() === ticket.clientId)?.CUIT;
-    } else {
-      client = "";
-    }
-    return client;
-  };
+    const getComentarios = async () => {
+      var response = await comentario
+        .get()
+        .catch((error) => console.log(error));
+      setComentarios(
+        response.data.sort((a, b) =>
+          a.lastModifiedDatetime < b.lastModifiedDatetime ? 1 : -1
+        )
+      );
+    };
+
+    getComentarios();
+    getTareas();
+  }, [comentario, tareaAxios]);
 
   return (
     <div className={styles.container}>
@@ -168,14 +183,14 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               ) : (
                 <HiMail size={"1.4vw"} color={"rgba(0,53,108,1)"} />
               )}
-              <div className={styles.marginLeft}>{getClient()}</div>
+              <div className={styles.marginLeft}>{ticket.clientId}</div>
               <div className={styles.marginLeft}>-</div>
               <div className={styles.marginLeft}>
-                Emitido: {ticket.createdDate}
+                Emitido: {ticket.createdDatetime}
               </div>
               <div className={styles.marginLeft}>-</div>
               <div className={styles.marginLeft}>
-                Modificado: {ticket.lastModifiedDate}
+                Modificado: {ticket.lastModifiedDatetime}
               </div>
             </div>
           </div>
@@ -195,8 +210,11 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               {ticket.areaId === "" ? "-" : ticket.areaId}
               <HiOutlineUserGroup size={"1.5vw"} color={"rgba(0,53,108,1)"} />
             </div>
-            <div className={styles.tarea}>
-              Agregar tarea
+            <div
+              onClick={() => setTareaSelected(true)}
+              className={styles.tarea}
+            >
+              {tarea === "" ? "Asociar tarea" : tarea}
               <FaPlus size={"1.5vw"} color={"white"} />
             </div>
           </div>
@@ -232,7 +250,45 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
           </div>
         )}
       </div>
-      <Comentarios id={ticket.id} />
+      <Comentarios comentarios={comentarios} id={ticket.id} />
+      {tareaSelected && (
+        <div className={styles.escalarSelectedContainer}>
+          <div className={styles.escalarSelected}>
+            <div className={styles.selection + " " + styles.item1}>
+              <div className={styles.marginLeftEscalar}>Tarea</div>
+              <TicketSelect
+                placeHolder={"Seleccione una tarea"}
+                options={tareas}
+                style={styles.selectItem}
+                setter={setTarea}
+                setterId={setTareaId}
+                value={tarea}
+              />
+            </div>
+          </div>
+          <div className={styles.editSelected + " " + styles.escalarHeight}>
+            <div
+              onClick={() => {
+                setTareaSelected(false);
+                setTarea("");
+                setTareaId(ticket.taskId);
+              }}
+              className={styles.editCancel}
+            >
+              <IoClose size={"2vw"} color={"white"} />
+            </div>
+            <div
+              onClick={() => {
+                updateTicket();
+                setTareaSelected(false);
+              }}
+              className={styles.editConfirm}
+            >
+              <HiCheck size={"2vw"} color={"white"} />
+            </div>
+          </div>
+        </div>
+      )}
       {escalarSelected && (
         <div className={styles.escalarSelectedContainer}>
           <div className={styles.escalarSelected}>
@@ -273,7 +329,13 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
             >
               <IoClose size={"2vw"} color={"white"} />
             </div>
-            <div onClick={() => updateTicket()} className={styles.editConfirm}>
+            <div
+              onClick={() => {
+                updateTicket();
+                setEscalarSelected(false);
+              }}
+              className={styles.editConfirm}
+            >
               <HiCheck size={"2vw"} color={"white"} />
             </div>
           </div>

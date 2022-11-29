@@ -29,16 +29,12 @@ function TicketCreate({ setCrearTicket }) {
       );
       setClients(
         response.data.map((client) => {
-          return { label: client.id, value: client.CUIT };
+          return { label: client.CUIT, value: client.CUIT };
         })
       );
     };
     getClients();
   }, []);
-
-  const getClientId = () => {
-    return clients.find((c) => c.value === client).label;
-  };
 
   const createTicket = () => {
     axios
@@ -51,13 +47,13 @@ function TicketCreate({ setCrearTicket }) {
           type: type,
           origin: origin,
           sla: sla,
-          clientId: getClientId().toString(),
-          clientProductId: "",
+          clientId: client,
           userId: "",
           areaId: "",
+          taskId: "",
         }
       )
-      .catch((error) => alert(error));
+      .catch((error) => console.log(error));
   };
 
   return (

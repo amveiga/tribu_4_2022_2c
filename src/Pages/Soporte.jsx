@@ -98,7 +98,7 @@ function Soporte() {
               setLoading(false);
             }, 2000)
           )
-          .catch((error) => alert(error));
+          .catch((error) => console.log(error));
       } else {
         response = await ticket
           .get()
@@ -107,7 +107,7 @@ function Soporte() {
               setLoading(false);
             }, 2000)
           )
-          .catch((error) => alert(error));
+          .catch((error) => console.log(error));
       }
       if (sortBy.length > 1) {
         sort(response.data);
@@ -133,9 +133,13 @@ function Soporte() {
         <div className={styles.soporteContainer}>
           <Filtros setSortBy={setSortBy} setFiltros={setFiltros} />
           <div className={styles.tickets}>
-            {tickets.map((ticket) => {
-              return <TicketSelector key={ticket.id} ticket={ticket} />;
-            })}
+            {tickets.length === 0 ? (
+              <div>No hay tickets cargados</div>
+            ) : (
+              tickets.map((ticket) => {
+                return <TicketSelector key={ticket.id} ticket={ticket} />;
+              })
+            )}
           </div>
           <div
             className={

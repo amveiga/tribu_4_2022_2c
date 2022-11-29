@@ -63,7 +63,7 @@
 }
 
 .headerSection {
-  width: 80%;
+  width: 97%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -243,15 +243,13 @@
   font-weight: 700;
   border-radius: 25px;
   background-color: rgba(0, 53, 108, 1);
-  position: relative;
+  color: white;
+  cursor: pointer;
 }
 
 .tareaSelect {
   width: 100%;
   color: rgba(0, 53, 108, 1);
-  position: absolute;
-  top: 0;
-  left: 0;
 }
 
 .edit,
