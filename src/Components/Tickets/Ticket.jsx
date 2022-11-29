@@ -21,12 +21,14 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   const [typeHovered, setTypeHovered] = useState(false);
   const [escalarSelected, setEscalarSelected] = useState(false);
   const [areaId, setAreaId] = useState("");
-  const [userId, setUserId] = useState("");
+  const [recurso, setRecurso] = useState("");
+  const [userId, setUserId] = useState(ticket.userId);
   const [tarea, setTarea] = useState("");
   const [tareaId, setTareaId] = useState(ticket.taskId);
   const [tareas, setTareas] = useState([]);
   const [tareaSelected, setTareaSelected] = useState(false);
   const [comentarios, setComentarios] = useState([]);
+  const [recursos, setRecursos] = useState([]);
 
   const getState = (estado) => {
     var style;
@@ -98,6 +100,10 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
     baseURL: `https://squad11-proyectos.onrender.com/api/tasks`,
   });
 
+  const recursosAxios = axios.create({
+    baseURL: `https://squad1220222c-production.up.railway.app/recursos`,
+  });
+
   const getTareas = async () => {
     var tareas = await tareaAxios.get().catch((error) => {
       return <ErrorPage />;
@@ -105,6 +111,17 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
     setTareas(
       tareas.data.map((t) => {
         return { label: t._id, value: t.name };
+      })
+    );
+  };
+
+  const getRecursos = async () => {
+    var recursos = await recursosAxios.get().catch((error) => {
+      return <ErrorPage />;
+    });
+    setRecursos(
+      recursos.data.map((t) => {
+        return { label: t.legajo, value: t.Nombre };
       })
     );
   };
@@ -175,7 +192,10 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                 )}
               </div>
               <div
-                onClick={() => setEscalarSelected(true)}
+                onClick={() => {
+                  getRecursos();
+                  setEscalarSelected(true);
+                }}
                 className={styles.escalar}
               >
                 Escalar ticket
@@ -209,7 +229,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               <BsCircleFill size={"1.3vw"} color={getSLA(ticket.sla)} />
             </div>
             <div className={styles.item}>
-              {ticket.userId === "" ? "-" : ticket.userId}
+              {recurso === "" ? "-" : recurso}
               <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
             </div>
             <div className={styles.item}>
@@ -320,14 +340,11 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               <div className={styles.marginLeftEscalar}>Recurso</div>
               <TicketSelect
                 placeHolder={"Seleccione un recurso"}
-                options={[
-                  { value: "Recurso 1", label: "Recurso 1" },
-                  { value: "Recurso 2", label: "Recurso 2" },
-                  { value: "Recurso 3", label: "Recurso 3" },
-                ]}
+                options={recursos}
                 style={styles.selectItem}
-                setter={setUserId}
-                value={userId}
+                setter={setRecurso}
+                setterId={setUserId}
+                value={recurso}
               />
             </div>
           </div>

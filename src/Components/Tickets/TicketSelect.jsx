@@ -14,7 +14,6 @@ function TicketSelect({
   const [selected, setSelected] = useState(false);
 
   const handleClick = (val) => {
-    console.log(val);
     setter(val.value);
     if (setterId) {
       setterId(val.label);
