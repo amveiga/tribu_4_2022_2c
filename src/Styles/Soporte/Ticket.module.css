@@ -242,8 +242,16 @@
   justify-content: space-between;
   font-weight: 700;
   border-radius: 25px;
-  color: white;
   background-color: rgba(0, 53, 108, 1);
+  position: relative;
+}
+
+.tareaSelect {
+  width: 100%;
+  color: rgba(0, 53, 108, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .edit,

@@ -57,8 +57,9 @@ function TicketSelect({ placeHolder, options, style, setter, value }) {
                   handleClick(option.value);
                 }}
                 className={styles.optionTicket}
+                key={option.label}
               >
-                {option.label}
+                {option.value}
               </div>
             );
           })}

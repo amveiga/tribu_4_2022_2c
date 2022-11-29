@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BsQuestionCircleFill,
   BsFillExclamationCircleFill,
@@ -81,6 +81,28 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
       .catch((error) => alert(error));
   };
 
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    const getClients = async () => {
+      var response = await axios.get(
+        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+      );
+      setClients(response.data);
+    };
+    getClients();
+  }, []);
+
+  const getClient = () => {
+    var client;
+    if (ticket.clientId !== "") {
+      client = clients.find((c) => c.id.toString() === ticket.clientId)?.CUIT;
+    } else {
+      client = "";
+    }
+    return client;
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.ticketContainer}>
@@ -146,14 +168,14 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               ) : (
                 <HiMail size={"1.4vw"} color={"rgba(0,53,108,1)"} />
               )}
-              <div className={styles.marginLeft}>{ticket.clientId}</div>
+              <div className={styles.marginLeft}>{getClient()}</div>
               <div className={styles.marginLeft}>-</div>
               <div className={styles.marginLeft}>
-                Emitido: {ticket.createdDate.slice(0, 10)}
+                Emitido: {ticket.createdDate}
               </div>
               <div className={styles.marginLeft}>-</div>
               <div className={styles.marginLeft}>
-                Modificado: {ticket.lastModifiedDate.slice(0, 10)}
+                Modificado: {ticket.lastModifiedDate}
               </div>
             </div>
           </div>

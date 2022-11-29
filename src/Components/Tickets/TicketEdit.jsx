@@ -8,7 +8,7 @@ import { MdEdit } from "react-icons/md";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 import Filtros from "./../../Data/Filtros.json";
 import TicketSelect from "./TicketSelect";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 function TicketEdit({ ticket, setEditSelected }) {
@@ -18,13 +18,29 @@ function TicketEdit({ ticket, setEditSelected }) {
   const [type, setType] = useState(ticket.type);
   const [origin, setOrigin] = useState(ticket.origin);
   const [sla, setSla] = useState(ticket.sla);
-  const [clientId, setClientId] = useState(ticket.clientId);
-  const [clientProductId, setClientProductId] = useState(
-    ticket.clientProductId
-  );
+  const [client, setClient] = useState("");
+  const [clients, setClients] = useState([]);
+
+  useEffect(() => {
+    const getClients = async () => {
+      var response = await axios.get(
+        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+      );
+      setClients(
+        response.data.map((client) => {
+          return { label: client.id, value: client.CUIT };
+        })
+      );
+    };
+    getClients();
+  }, []);
 
   const getOptions = (dato) => {
     return Filtros.find((e) => e.Nombre === dato).Options;
+  };
+
+  const getClientId = () => {
+    return clients.find((c) => c.value === client).label;
   };
 
   const updateTicket = async () => {
@@ -38,8 +54,8 @@ function TicketEdit({ ticket, setEditSelected }) {
           type: type,
           origin: origin,
           sla: sla,
-          clientId: clientId,
-          clientProductId: clientProductId,
+          clientId: getClientId().toString(),
+          clientProductId: ticket.clientProductId,
           userId: ticket.userId,
           areaId: ticket.areaId,
         }
@@ -114,10 +130,10 @@ function TicketEdit({ ticket, setEditSelected }) {
             Cliente
             <TicketSelect
               placeHolder={"Seleccione un cliente"}
-              options={getOptions("Cliente")}
+              options={clients}
               style={styles.selectEstado}
-              setter={setClientId}
-              value={clientId}
+              setter={setClient}
+              value={client}
             />
           </div>
           <div className={styles.item + " " + styles.item4}>

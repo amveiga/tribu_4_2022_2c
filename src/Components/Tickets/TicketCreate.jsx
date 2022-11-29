@@ -4,7 +4,7 @@ import styles from "./../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import Filtros from "./../../Data/Filtros.json";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function TicketCreate({ setCrearTicket }) {
   const [title, setTitle] = useState("");
@@ -13,13 +13,31 @@ function TicketCreate({ setCrearTicket }) {
   const [type, setType] = useState("");
   const [origin, setOrigin] = useState("");
   const [sla, setSla] = useState("");
-  const [clientId, setClientId] = useState("");
-  const [clientProductId, setClientProductId] = useState("");
+  const [client, setClient] = useState("");
+  const [clients, setClients] = useState([]);
   var fechaCreacion = new Date();
   var ultimaModificacion = new Date();
 
   const getOptions = (dato) => {
     return Filtros.find((e) => e.Nombre === dato).Options;
+  };
+
+  useEffect(() => {
+    const getClients = async () => {
+      var response = await axios.get(
+        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+      );
+      setClients(
+        response.data.map((client) => {
+          return { label: client.id, value: client.CUIT };
+        })
+      );
+    };
+    getClients();
+  }, []);
+
+  const getClientId = () => {
+    return clients.find((c) => c.value === client).label;
   };
 
   const createTicket = () => {
@@ -33,8 +51,8 @@ function TicketCreate({ setCrearTicket }) {
           type: type,
           origin: origin,
           sla: sla,
-          clientId: clientId,
-          clientProductId: clientProductId,
+          clientId: getClientId().toString(),
+          clientProductId: "",
           userId: "",
           areaId: "",
         }
@@ -104,15 +122,14 @@ function TicketCreate({ setCrearTicket }) {
               value={sla}
             />
           </div>
-
-          {/* Obtener clientId */}
           <div className={styles.item + " " + styles.item3}>
             Cliente
             <TicketSelect
               placeHolder={"Seleccione un cliente"}
-              options={getOptions("Cliente")}
+              options={clients}
               style={styles.selectEstado}
-              value={clientId}
+              setter={setClient}
+              value={client}
             />
           </div>
 
