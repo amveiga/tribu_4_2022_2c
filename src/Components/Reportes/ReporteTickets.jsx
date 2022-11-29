@@ -5,6 +5,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ErrorPage from "../ErrorPage";
 
 function ReporteTickets() {
   const [tickets, setTickets] = useState([]);
@@ -15,7 +16,9 @@ function ReporteTickets() {
 
   useEffect(() => {
     const getTickets = async () => {
-      const response = await ticket.get();
+      const response = await ticket.get().catch((error) => {
+        return <ErrorPage />;
+      });
       setTickets(response.data);
     };
     getTickets();

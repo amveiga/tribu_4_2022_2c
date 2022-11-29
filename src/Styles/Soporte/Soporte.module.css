@@ -14,6 +14,14 @@
   background-color: white;
 }
 
+.noTickets {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .soporteContainer {
   width: 100%;
   font-family: sans-serif, "Manrope";

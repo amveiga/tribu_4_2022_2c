@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { MdEdit, MdDelete, MdClose, MdCheck } from "react-icons/md";
 import styles from "./../Styles/Soporte/Comentarios.module.css";
+import ErrorPage from "./ErrorPage";
 
 function Comentario({ comentarioIncluido, coment, id }) {
   const [editSelected, setEditSelected] = useState(false);
@@ -12,17 +13,23 @@ function Comentario({ comentarioIncluido, coment, id }) {
       .delete(
         `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        return <ErrorPage />;
+      });
   };
 
   const updateComent = async (commentId) => {
-    axios.put(
-      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`,
-      {
-        ticketId: id,
-        body: comentEdited,
-      }
-    );
+    axios
+      .put(
+        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`,
+        {
+          ticketId: id,
+          body: comentEdited,
+        }
+      )
+      .catch((error) => {
+        return <ErrorPage />;
+      });
   };
 
   return (

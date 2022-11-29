@@ -4,25 +4,34 @@ import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import axios from "axios";
 import Comentario from "./Comentario";
+import ErrorPage from "./ErrorPage";
 
 function Comentarios({ comentarios, id }) {
   const [comentarioSelected, setComentarioSelected] = useState(false);
   const [coment, setComent] = useState("");
 
   const sendComent = async () => {
-    await axios.post(
-      "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments",
-      {
-        ticketId: id,
-        body: coment,
-      }
-    );
+    await axios
+      .post(
+        "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments",
+        {
+          ticketId: id,
+          body: coment,
+        }
+      )
+      .catch((error) => {
+        return <ErrorPage />;
+      });
   };
 
   const deleteComents = async () => {
-    await axios.delete(
-      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/ticket-id/${id}`
-    );
+    await axios
+      .delete(
+        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/ticket-id/${id}`
+      )
+      .catch((error) => {
+        return <ErrorPage />;
+      });
   };
 
   return (

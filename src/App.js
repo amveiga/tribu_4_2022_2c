@@ -6,6 +6,7 @@ import Proyectos from "./Pages/Proyectos";
 import Soporte from "./Pages/Soporte";
 import RecursosHumanos from "./Pages/RecursosHumanos";
 import ReporteTickets from "./Components/Reportes/ReporteTickets";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           <Route path="/soporte" element={<Soporte />} />
           <Route path="/soporte/reporteTickets" element={<ReporteTickets />} />
           <Route path="/recursos-humanos" element={<RecursosHumanos />} />
-          {/* <Route path="*" element={<PageNotFound />} /> */}
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </div>
     </BrowserRouter>

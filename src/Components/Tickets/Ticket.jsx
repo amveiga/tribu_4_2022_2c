@@ -15,6 +15,7 @@ import Comentarios from "../Comentarios";
 import styles from "./../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import axios from "axios";
+import ErrorPage from "../ErrorPage";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
   const [typeHovered, setTypeHovered] = useState(false);
@@ -62,7 +63,9 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
       .delete(
         `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        return <ErrorPage />;
+      });
   };
 
   const updateTicket = async () => {
@@ -82,7 +85,9 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
           taskId: tareaId,
         }
       )
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        return <ErrorPage />;
+      });
   };
 
   const comentario = axios.create({
@@ -94,7 +99,9 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   });
 
   const getTareas = async () => {
-    var tareas = await tareaAxios.get();
+    var tareas = await tareaAxios.get().catch((error) => {
+      return <ErrorPage />;
+    });
     setTareas(
       tareas.data.map((t) => {
         return { label: t._id, value: t.name };
@@ -104,9 +111,9 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
 
   useEffect(() => {
     const getComentarios = async () => {
-      var response = await comentario
-        .get()
-        .catch((error) => console.log(error));
+      var response = await comentario.get().catch((error) => {
+        return <ErrorPage />;
+      });
       setComentarios(
         response.data.sort((a, b) =>
           a.lastModifiedDatetime < b.lastModifiedDatetime ? 1 : -1
