@@ -3,7 +3,7 @@ import {FaPlus} from "react-icons/fa"
 import styles from "../../Styles/Proyectos/Proyectos.module.css"
 import CreateProject from "./CreateProject";
 
-function ProjectCreate({listClient}) {
+function ButtonCreate({listClient, listRecursos}) {
   const [addButtonClicked, setAddButtonClicked] = useState(false);
   const [rotateActivate, setRotateActivate] = useState(false);
   const [optionActivate, setOptionActivate] = useState(false);
@@ -39,10 +39,11 @@ function ProjectCreate({listClient}) {
       )}
       {crearProject && <CreateProject 
                           setCrearProject={setCrearProject}
-                          listClient={listClient}  
+                          listClient={listClient}
+                          listRecursos={listRecursos}  
                         />}
     </div>
   );
 }
 
-export default ProjectCreate;
+export default ButtonCreate;

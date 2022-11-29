@@ -24,6 +24,14 @@ function ProyectoHeader({id}) {
       }
    }
 
+   const getType = (type) => {
+      switch (type) {
+          case "Desarrollo": return styles.dev;
+          case "Implementacion" : return styles.implementation;
+          default : return styles.developed;
+      }
+   }
+
    return (
 
           <div className={styles.proyectoHeader}>
@@ -35,7 +43,7 @@ function ProyectoHeader({id}) {
              <div className={styles.datos}>{project._id}</div>
              <div className={styles.column}>
                 <div>Tipo: </div>
-                <div className={styles.estado + " " + styles.analisis}>Desarrollo</div>
+                <div className={styles.estado + " " + getType(project.type)}>{project.type}</div>
              </div>
              <div className={styles.column}>
                 <div>Estado: </div>
@@ -52,7 +60,7 @@ function ProyectoHeader({id}) {
                 <div >Fecha fin ideal</div>
                 <div className={styles.datos}>{parseDate(project.idealEndDate)}</div>
                 <div >Product Owner</div>
-                <div className={styles.datos}>Fernando Soluzzia</div>
+                <div className={styles.datos}>{"Fernando Soluzzia"}</div>
             </div>
                <div className={styles.linkRight}></div>
                <div className={styles.bloqueHeader}>
@@ -62,7 +70,7 @@ function ProyectoHeader({id}) {
                 <div >Personal asignado</div>
                 <div className={styles.datos}>15 </div>
                 <div >Total de hs invertidas</div>
-                <div className={styles.datos}>0 hs</div>
+                <div className={styles.datos}>{project.invertedHours} hs</div>
                </div>
          </div>
     );

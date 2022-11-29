@@ -20,7 +20,7 @@ function App() {
           <Route path="/soporte" element={<Soporte />} />
           <Route path="/recursos-humanos" element={<RecursosHumanos />} />
           <Route path="/tarea">
-            <Route path=":id" element={<Tarea/>} />
+            <Route path=":tid" element={<Tarea/>} />
           </Route>
           {/* <Route path="*" element={<PageNotFound />} /> */}
         </Routes>

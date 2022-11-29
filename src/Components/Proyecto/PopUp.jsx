@@ -1,8 +1,11 @@
 import { MdDelete } from "react-icons/md";
 import styles from "../../Styles/Proyectos/Project.module.css"
 import Popup from 'reactjs-popup';
+import {DeleteProject} from "./ProjectViewList";
 
-function PopUpProject({ message, setDeleteSelected }) {
+function PopUpProject({ message, setDeleteSelected, id }) {
+
+    setDeleteSelected(false);
 
     return (
         <Popup trigger={
@@ -20,7 +23,7 @@ function PopUpProject({ message, setDeleteSelected }) {
                         <button 
                             className={styles.buttonModal}
                             onClick={() => {
-                                setDeleteSelected(true)
+                                DeleteProject(id);
                                 close();
                             }}> 
                             Aceptar 
@@ -29,7 +32,6 @@ function PopUpProject({ message, setDeleteSelected }) {
                             className={styles.buttonModal}
                             onClick={() => {
                                 close();
-                                setDeleteSelected(false);
                             }}
                             >
                             Cancelar

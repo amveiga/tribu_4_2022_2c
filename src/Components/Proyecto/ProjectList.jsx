@@ -1,22 +1,24 @@
 import styles from "../../Styles/Proyectos/Proyectos.module.css"
-import ProjectViewAPI, { DeleteProject, GetClients } from "./ProjectViewList"
+import { ProjectViewAPI } from "./ProjectViewList"
 import ProjectSelector from "./ProjectSelector";
 import { useEffect, useState } from "react";
-import ProjectCreate from "./ProjectCreate"
+import ButtonCreate from "./ButtonCreate"
 
-function ProjectList() {
+function ProjectList({ listClient, clientes, listRecursos, recursos }) {
     const [projects, setProjects] = useState([]);
-    const [clients, setClients] = useState([]);
-    const [idDelete, setIdDeleteSelected] = useState(null);
-    const clientsName = []
-
-    clients.map((cliente) => {
-      return  clientsName.push({"value": cliente["id"], 
-          "label": cliente["razon social"]})}     
-    )
 
     const getRazonSocial = (id) => {
-        return (clients.find((cliente) => (cliente.id === id)))['razon social']
+        const a = (clientes.find((cliente) => (cliente.id === id)))
+        // console.log(a);
+        return (a["razon social"]);
+    }
+
+    const getRecurso = (id) => {
+        const a = (recursos.find((recurso) => (
+            recurso.legajo === id
+        )))
+        console.log(`${a.Nombre}, ${a.Apellido}`)
+        return (`${a.Nombre}, ${a.Apellido}`);
     }
 
     return (
@@ -24,23 +26,19 @@ function ProjectList() {
             <div className={styles.projects}>
                 {useEffect(() => {
                     ProjectViewAPI(setProjects)
-                    GetClients(setClients)
                 }, [])}
-                {idDelete ? DeleteProject(idDelete) : console.log("No se puede")}
                 {projects.map((project) => {
                     return <ProjectSelector 
                                 key={project._id} 
                                 project={project} 
-                                listClient={clientsName}
+                                listClient={listClient}
                                 client={getRazonSocial(project.assignedClient)}
-                                idDelete={setIdDeleteSelected}
+                                listRecursos={listRecursos}
+                                recurso={getRecurso(project.projectLeader)}
                             />
                 })}
-
-
             </div>
-
-            <ProjectCreate listClient={clientsName}/>
+            <ButtonCreate listClient={listClient} listRecursos={listRecursos}/>
         </div>
     )
 } 

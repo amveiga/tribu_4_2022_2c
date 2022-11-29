@@ -25,7 +25,7 @@ function SeccionTareas() {
                 <div className={styles.columnaTareas}>
                     <div className={styles.etiquetaTarea + " "+ styles.pendiente}>Pendiente </div> 
                     {getTareasFilter("pending").map((tarea) =>{
-                        return  <TarjetaTarea titulo={tarea.name} informacion={tarea.description}/>
+                        return  <TarjetaTarea tarea={tarea}/>
                     })}    
                 </div>
                 <div className={styles.columnaTareas}>
@@ -33,7 +33,7 @@ function SeccionTareas() {
                         En Proceso
                     </div>
                     {getTareasFilter("inProgress").map((tarea) =>{
-                        return  <TarjetaTarea titulo={tarea.name} informacion={tarea.description}/>
+                        return  <TarjetaTarea  tarea={tarea}/>
                     })}
                 </div>
                 <div className={styles.columnaTareas}>
@@ -41,7 +41,7 @@ function SeccionTareas() {
                     Completada
                     </div>
                     {getTareasFilter("complete").map((tarea) =>{
-                        return  <TarjetaTarea titulo={tarea.name} informacion={tarea.description}/>
+                        return  <TarjetaTarea  tarea={tarea}/>
                     })}
                 </div>
                 <div className={styles.columnaTareas}>
@@ -49,7 +49,7 @@ function SeccionTareas() {
                         Cancelada
                     </div>
                     {getTareasFilter("canceled").map((tarea) =>{
-                        return  <TarjetaTarea titulo={tarea.name} informacion={tarea.description}/>
+                        return  <TarjetaTarea  tarea={tarea}/>
                     })}
                 </div>
             </div>

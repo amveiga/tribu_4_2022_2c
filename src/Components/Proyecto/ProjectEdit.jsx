@@ -1,15 +1,15 @@
-  import { HiCheck } from "react-icons/hi";
-  import { IoClose } from "react-icons/io5";
-  import { MdEdit } from "react-icons/md";
-  import styles from "./../../Styles/Proyectos/Project.module.css";
-  import Filtros from "./../../Data/FiltrosProyectos.json";
-  import ProjectSelect from "./ProjectSelect";
-  import { updateProject } from "./ProjectViewList";
-  import { useState } from "react";
-  import {KeyboardDatePicker} from '@material-ui/pickers'; 
+import { HiCheck } from "react-icons/hi";
+import { IoClose } from "react-icons/io5";
+import { MdEdit } from "react-icons/md";
+import styles from "./../../Styles/Proyectos/Project.module.css";
+import Filtros from "./../../Data/FiltrosProyectos.json";
+import ProjectSelect from "./ProjectSelect";
+import { updateProject } from "./ProjectViewList";
+import { useState } from "react";
+import {KeyboardDatePicker} from '@material-ui/pickers'; 
 
 
-  function ProjectEdit({ project, setEditSelected, clientsName, setClient }) {
+function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRecursos, setRecurso }) {
     const getOptions = (dato) => {
       return Filtros.find((e) => e.Nombre === dato).Options;
     };
@@ -28,12 +28,17 @@
     const [clientSelected, setClientSelected] = useState(project.assignedClient)
     const [initFechaSelect, setInitFechaSelect] = useState(new Date())
     const [endFechaSelect, setEndFechaSelect] = useState(new Date())
+    const [typeSelected, setTypeSelected] = useState(project.type)
+    const [leaderSelected, setLeaderSelected] = useState(project.projectLeader);
 
     return (
       <div className={styles.projectContainerEdit}>
         <div className={styles.projectEdit}>
           <div className={styles.sectionOne}>
             <div className={styles.titleSection + " " + styles.growTitle}>
+              <label>
+                Nombre proyecto 
+              </label>
               <input
                 type={"text"}
                 value = {name}
@@ -42,6 +47,9 @@
               />
             </div>
             <div className={styles.descripcion}>
+              <label className={styles.descriptionTitle}>
+                Descripcion
+              </label>
               <textarea
                 type={"text"}
                 value= {description}
@@ -52,16 +60,43 @@
           </div>
           <div className={styles.sectionTwoEdit}>
             <div className={styles.item + " " + styles.item1}>
+              Lider de proyecto
+              <ProjectSelect
+                placeHolder={setRecurso}
+                options={listRecursos}
+                style={styles.selectEstado}
+                setState={setLeaderSelected}
+              />
+            </div>
+            <div className={styles.item + " "+ styles.item2}>
+              Tipo Proyecto
+              <ProjectSelect
+                placeHolder={"Desarrollo"}
+                options={getOptions("Tipo")}
+                style={styles.selectEstado}
+                setState={setTypeSelected}
+              />
+            </div>
+            <div className={styles.item + " " + styles.item3}>
               Estado
               <ProjectSelect
                 placeHolder={project.status}
                 options={getOptions("Estado")}
                 style={styles.selectEstado}
-                setState = {setStatusSelected}  
+                setState={setStatusSelected}  
               />
             </div>
-            <div className={styles.item + " " + styles.item2}>
-              <KeyboardDatePicker
+            <div className={styles.item + " " + styles.item4}>
+              Cliente
+              <ProjectSelect
+                placeHolder={setClient}
+                options={clientsName}
+                style={styles.selectEstado}
+                setState={setClientSelected}
+              />
+            </div>
+            <div className={styles.item}>
+                  <KeyboardDatePicker
                     autoOk
                     variant="inline"
                     inputVariant="outlined"
@@ -82,8 +117,7 @@
                     KeyboardButtonProps={{
                         'aria-label': 'change date',
                     }}
-                />
-
+                  />
                   <KeyboardDatePicker
                     autoOk
                     variant="inline"
@@ -107,15 +141,6 @@
                     }}
                 />
             </div>
-            <div className={styles.item + " " + styles.item3}>
-              Cliente
-              <ProjectSelect
-                placeHolder={setClient}
-                options={clientsName}
-                style={styles.selectEstado}
-                setState={setClientSelected}
-              />
-            </div>
           </div>
         </div>
         <div className={styles.edit + " " + styles.selected}>
@@ -138,7 +163,9 @@
                     "status" : statusSelected,
                     "assignedClient" : clientSelected,
                     "idealInitDate" : initFechaSelect,
-                    "idealEndDate" : endFechaSelect
+                    "idealEndDate" : endFechaSelect,
+                    "type": typeSelected
+
                   })
               }
             }

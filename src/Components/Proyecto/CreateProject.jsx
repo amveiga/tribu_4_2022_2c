@@ -2,12 +2,13 @@ import { HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import styles from "./../../Styles/Proyectos/Project.module.css";
 import ProjectSelect from "./ProjectSelect";
-//import Filtros from "./../../Data/FiltrosProyectos.json";
 import { useState } from "react";
 import {KeyboardDatePicker} from '@material-ui/pickers'
 import {postProject} from "./ProjectViewList" 
+import Filtros from "../../Data/FiltrosProyectos.json"
 
-function CreateProject({ setCrearProject, listClient }) {
+
+function CreateProject({ setCrearProject, listClient, listRecursos }) {
     const [clientSelected, setClientSelected] = useState("");
     
     const [description, setdescription] = useState("");
@@ -22,14 +23,12 @@ function CreateProject({ setCrearProject, listClient }) {
     
     const [initFechaSelect, setInitFechaSelect] = useState(new Date());
     const [endFechaSelect, setEndFechaSelect] = useState(new Date());
+    const [leaderSelected, setLeaderSelected] = useState(0);
+    const [typeSelected, setTypeSelected]= useState("");
 
-    // const getOptions = (dato) => {
-    //     return Filtros.find((e) => e.Nombre === dato).Options;
-    // };
-
-    // const getDate = (fecha) => {
-    //     return fecha.getDate() + "/" + fecha.getMonth() + "/" + fecha.getFullYear();
-    // };
+    const getOptions = (dato) => {
+        return Filtros.find((e) => e.Nombre === dato).Options;
+    };
 
     return (
         <div className={styles.projectCreateContainer}>
@@ -59,78 +58,82 @@ function CreateProject({ setCrearProject, listClient }) {
                 className={styles.inputDescription}
                 />
             </div>
-            <div className={styles.fechas}>
-                <KeyboardDatePicker
-                    autoOk
-                    variant="inline"
-                    inputVariant="outlined"
-                    label="Fecha Inicio Ideal"
-                    format="dd/MM/yyyy"
-                    value={initFechaSelect}
-                    InputAdornmentProps={{ position: "start" }}
-                    onChange={setInitFechaSelect}
-                    inputProps={
-                        {
-                            style: {
-                                fontSize: 14,
-                                height: 14,
-                                width:80,
-                            }
-                        }
-                    }
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
-                />
-
-                <KeyboardDatePicker
-                    autoOk
-                    variant="inline"
-                    inputVariant="outlined"
-                    label="Fecha Final Ideal"
-                    format="dd/MM/yyyy"
-                    value={endFechaSelect}
-                    InputAdornmentProps={{ position: "start" }}
-                    onChange={setEndFechaSelect}
-                    inputProps={
-                        {
-                            style: {
-                                fontSize: 14,
-                                height: 14,
-                                width:80,
-                            }
-                        }
-                    }
-                    KeyboardButtonProps={{
-                        'aria-label': 'change date',
-                    }}
-                />
-                {/* <div className="grupo">
-                    <label>
-                        Fecha de creación:
-                    </label>
-                    <DatePicker value={fechaSelect} onChange={setFechaSelect}/>
-                </div> */}
-            </div>
             </div>
             <div className={styles.sectionTwoEdit}>
-            <div className={styles.item + " " + styles.item1}>
-                LiderDeProyecto (api recursos)
-                {/* <ProjectSelect
-                placeHolder={"Seleccione un SLA"}
-                options={getOptions("SLA")}
-                style={styles.selectEstado}
-                /> */}
-            </div>
-            <div className={styles.item + " " + styles.item2}>
-                Cliente
-                <ProjectSelect
-                    placeHolder={"Seleccione un cliente"}
-                    options={listClient}
-                    style={styles.selectEstado}
-                    setState={setClientSelected}
-                />
-            </div>
+                <div className={styles.item + " " + styles.item1}>
+                    Lider De Proyecto
+                    <ProjectSelect
+                        placeHolder={"Seleccione lider del proyecto"}
+                        options={listRecursos}
+                        style={styles.selectEstado}
+                        setState={setLeaderSelected}
+                    />
+                </div>
+                <div className={styles.item + " " + styles.item2}>
+                    Cliente
+                    <ProjectSelect
+                        placeHolder={"Seleccione un cliente"}
+                        options={listClient}
+                        style={styles.selectEstado}
+                        setState={setClientSelected}
+                    />
+                </div>
+                <div className={styles.item + " " + styles.item3}>
+                    Tipo
+                    <ProjectSelect
+                        placeHolder={"Seleccione un tipo"}
+                        options={getOptions("Tipo")}
+                        style={styles.selectEstado}
+                        setState={setTypeSelected}
+                    />
+                </div>
+                <div className={styles.item + " " + styles.item4}>
+                    <KeyboardDatePicker
+                        autoOk
+                        variant="inline"
+                        inputVariant="outlined"
+                        label="Fecha Inicio Ideal"
+                        format="dd/MM/yyyy"
+                        value={initFechaSelect}
+                        InputAdornmentProps={{ position: "start" }}
+                        onChange={setInitFechaSelect}
+                        inputProps={
+                            {
+                                style: {
+                                    fontSize: 14,
+                                    height: 14,
+                                    width:80,
+                                }
+                            }
+                        }
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+
+                    <KeyboardDatePicker
+                        autoOk
+                        variant="inline"
+                        inputVariant="outlined"
+                        label="Fecha Final Ideal"
+                        format="dd/MM/yyyy"
+                        value={endFechaSelect}
+                        InputAdornmentProps={{ position: "start" }}
+                        onChange={setEndFechaSelect}
+                        inputProps={
+                            {
+                                style: {
+                                    fontSize: 14,
+                                    height: 14,
+                                    width:80,
+                                }
+                            }
+                        }
+                        KeyboardButtonProps={{
+                            'aria-label': 'change date',
+                        }}
+                    />
+                </div>
             </div>
         </div>
         <div className={styles.editSelected + " " + styles.createSelected}>
@@ -155,7 +158,7 @@ function CreateProject({ setCrearProject, listClient }) {
                     )
                  }}
             >
-            <HiCheck size={"2vw"} color={"white"} />
+                <HiCheck size={"2vw"} color={"white"} />
             </div>
         </div>
         </div>

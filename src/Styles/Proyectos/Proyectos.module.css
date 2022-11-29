@@ -8,8 +8,14 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: flex-start;
+	/* justify-content: flex-start; */
+	
 }
+
+.proyectosContainer::-webkit-scrollbar {
+    width: 1px;
+  }
+
 
 .projects {
 	width: 100%;
@@ -30,7 +36,7 @@
   }
   
 .rotate {
-	animation: plus 2s;
+	animation: plus 400ms;
 	rotate: 90deg;
 	background-color: red;
 }
@@ -50,6 +56,11 @@
 	cursor: pointer;
 }
   
+.addButton:hover{
+	background: rgba(0, 80, 200, 1);
+	box-shadow: rgba(0, 80, 200, 1);
+}
+
 @keyframes cross {
 	from {
 	  rotate: 90deg;
@@ -58,14 +69,15 @@
 	  rotate: 45deg;
 	}
 }
-  
+
+
 .clicked {
 	border: 2px solid rgba(0, 53, 108, 1);
 	background-color: white;
 	bottom: 2.9%;
 	right: 1.35%;
 	rotate: 45deg;
-	animation: cross 2s;
+	animation: cross 400ms;
 }
   
 .options {

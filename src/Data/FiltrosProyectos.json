@@ -13,5 +13,14 @@
             { "value" : "Cancelado" , "label": "Cancelado"}
         ],
         "Icon": "estado"
+    },
+    {
+        "Nombre": "Tipo",
+        "Placeholder": "Seleccione un tipo",
+        "Options": [
+            { "value": "Desarrollo", "label": "Desarrollo" },
+            { "value": "Implementacion", "label": "Implementacion" }
+        ],
+        "Icon": "estado"
     }
 ]

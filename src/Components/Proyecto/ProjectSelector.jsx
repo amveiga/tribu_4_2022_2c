@@ -3,28 +3,30 @@ import styles from "./../../Styles/Proyectos/Project.module.css";
 import Project from "./Project";
 import ProjectEdit from "./ProjectEdit";
 
-function ProjectSelector({ project, listClient, client, idDelete }) {
+function ProjectSelector({ project, listClient, client, listRecursos, recurso }) {
     const [editSelected, setEditSelected] = useState(false);
-    const [deletedSelected, setDeleteSelected] = useState(false);
-
+    
     return (
         <div className={styles.projectSelector}>
-            {(editSelected && !deletedSelected) ?  (
+            {(editSelected) ?  (
                 <ProjectEdit 
-                project={project} 
-                setEditSelected={setEditSelected}  
-                clientsName={listClient}
-                setClient={client}/>
+                    project={project} 
+                    setEditSelected={setEditSelected}  
+                    clientsName={listClient}
+                    setClient={client}
+                    listRecursos={listRecursos}
+                    setRecurso={recurso}
+                />
             ) : ( 
                 <Project
-                project={project}
-                editSelected={editSelected}
-                setEditSelected={setEditSelected}
-                setClient={client}
-                setDeleteSelected={setDeleteSelected}
+                    project={project}
+                    editSelected={editSelected}
+                    setEditSelected={setEditSelected}
+                    setClient={client}
+                    listRecursos={listRecursos}
+                    setRecurso={recurso}
                 />
             )}
-            { deletedSelected ? (idDelete(project._id)) : (idDelete(null))}
         </div>
     );
 }

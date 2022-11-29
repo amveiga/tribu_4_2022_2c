@@ -39,28 +39,45 @@
   .descripcion{
     margin: auto;
     text-align: center;
+    overflow-y: auto;
     
+    
+  }
+
+  .descripcion::-webkit-scrollbar {
+    width: 1px;
   }
 
   .proyectoHeader {
     width: 100%;
-    height: 300px;
-    margin: 0;
-    padding: 1%;
-    border-radius: 22px;
-    font-size: 20px;
+    height: 250px;
+    padding-top: 1%;
+    padding-bottom: 1%;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
     color: rgba(0, 53, 108, 1);
+    font-size: 25px;
+    
   }
 
   .bloqueHeader{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    padding-top: 1%;
+    padding-left: 2%;
+    padding-right: 2%;
     text-align: left;
+    justify-content: flex-start;
+    overflow-y: auto;
+    
+  }
+
+  .bloqueHeader::-webkit-scrollbar {
+    width: 1px;
   }
   .seccionTareas{
     width: 100%;
@@ -98,9 +115,9 @@
   }
 
   .linkRight {
-    width: 100px;
+    width: 5px;
     height: 80%;
-    margin-right: 10px;
+    margin-right: 0;
     border-right: solid #ACC0D8 5px;
 }
 .linkTop {
@@ -122,7 +139,7 @@
 
   
 .estado {
-  width: 50%;
+  width: 64%;
   padding-top: 2%;
   padding-bottom: 2%;
   display: flex;
@@ -172,4 +189,79 @@
 }
 .canceled {
   background-color: #ff0000;
+}
+.implementation {
+  background-color: blueviolet;
+}
+.dev {
+  background-color: #0085ff;
+}
+
+.paginaTarea{
+  width: 100%;
+  height: 100%;
+}
+
+.headerTarea{
+  width: 100%;
+  height: 250px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: rgba(0, 53, 108, 1);
+  font-size: 25px;
+
+}
+
+.contenidoTarea{
+  
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  padding:1%;
+  
+}
+
+.bloqueHeaderTarea{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+  padding-right: 2%;
+  justify-content: center;
+  text-align: left;
+  font-size: 25px;
+}
+
+.personasAsignadas{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 25px;
+  background-color: #bebebe;
+  padding: 1%;
+}
+
+.descripcionTareas{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: flex-start;
+  padding:1%;
+  font-size: 25px;
+  background-color: #f7efef;
+}
+
+.izquierda{
+  text-align: left;
 }
