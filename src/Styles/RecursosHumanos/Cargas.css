@@ -59,7 +59,7 @@
 
 .calendar,
 .project-task,
-select,
+.hours-select,
 input
 {
     width: 230px;

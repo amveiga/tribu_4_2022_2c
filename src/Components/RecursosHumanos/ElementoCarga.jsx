@@ -50,7 +50,7 @@ function ElementoCarga(){
             <div className="work-mode-div">
                 <input type="date" className="calendar"/>
             </div>
-            <select name="task-type" id="task-type" onChange={() => {cambiarSeccion()}}>
+            <select name="task-type" id="task-type" className="hours-select" onChange={() => {cambiarSeccion()}}>
                 <option disabled selected hidden value="">Tipo de tarea</option>
                 <option value="proyecto">Proyecto</option>
                 <option value="incidencia">Incidencia</option>
@@ -63,14 +63,14 @@ function ElementoCarga(){
             <div className="div-loader hidden">
                 <div className="sub-div-loader">
                     <div className="div-section">
-                        <select name="project-task" id="project-task">
+                        <select name="project-task" id="project-task" className="hours-select">
                             <option disabled selected value="">Nombre del proyecto</option>
                             <option value="tarea1">Nombre del proyecto 1</option>
                             <option value="tarea2">Nombre del proyecto 2</option>
                         </select>
                     </div>
                     <div className="div-section">
-                        <select name="project-task" id="project-task">
+                        <select name="project-task" id="project-task" className="hours-select">
                             <option disabled selected hidden value="">Nombre de la tarea</option>
                             <option value="tarea1">Nombre del proyecto 1</option>
                             <option value="tarea2">Nombre del proyecto 2</option>
@@ -88,7 +88,7 @@ function ElementoCarga(){
             <div className="div-loader hidden">
                 <div className="sub-div-loader">
                     <div className="div-section">
-                        <select name="project-task" id="project-task">
+                        <select name="project-task" id="project-task" className="hours-select">
                             <option disabled selected hidden value="">Nombre del ticket</option>
                             <option value="tarea1">Ticket 1</option>
                             <option value="tarea2">Ticket 2</option>
@@ -106,7 +106,7 @@ function ElementoCarga(){
             <div className="div-loader hidden">
                 <div className="sub-div-loader">
                     <div className="div-section">
-                        <select name="project-task" id="project-task">                                
+                        <select name="project-task" id="project-task" className="hours-select">                                
                             <option disabled selected hidden value="">Tarea administrativa</option>
                             <option value="tarea1">Reunión</option>
                             <option value="tarea2">Capacitación</option>
@@ -114,7 +114,7 @@ function ElementoCarga(){
                         </select>
                     </div>
                     <div className="div-section">
-                        <select name="project-task" id="project-task">
+                        <select name="project-task" id="project-task" className="hours-select">
                             <option disabled selected hidden value="">Sector de la reunión</option>
                             <option value="tarea1">Marketing</option>
                             <option value="tarea2">Recursos Humanos</option>
@@ -146,7 +146,7 @@ function ElementoCarga(){
             <div className="div-loader hidden">
                 <div className="sub-div-loader">
                     <div className="div-section">
-                        <select name="project-task" id="project-task">
+                        <select name="project-task" id="project-task" className="hours-select">
                             <option disabled selected hidden value="">Tipo de licencia</option>
                             <option value="tarea1">Licencia anual por vacaciones</option>
                             <option value="tarea1">Licencia por enfermedad</option>
