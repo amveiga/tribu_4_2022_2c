@@ -288,7 +288,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
             <div
               onClick={() => {
                 setTareaSelected(false);
-                setTarea("");
+                setTarea(tarea);
                 setTareaId(ticket.taskId);
               }}
               className={styles.editEscalarCancel}
@@ -326,7 +326,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
             <div
               onClick={() => {
                 setEscalarSelected(false);
-                setRecurso("");
+                setRecurso(recurso);
               }}
               className={styles.editEscalarCancel}
             >
