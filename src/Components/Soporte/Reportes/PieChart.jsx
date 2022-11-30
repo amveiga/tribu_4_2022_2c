@@ -1,12 +1,16 @@
 import { VictoryLabel, VictoryPie } from "victory";
 import styles from "./../../../Styles/Soporte/Reportes.module.css";
 
-function PieChart({ label, data, labels }) {
+function PieChart({ label, data, labels, colorScale }) {
   return (
     <div className={styles.chart}>
       <VictoryPie
         data={data}
-        colorScale={["tomato", "orange", "gold", "springgreen", "cyan"]}
+        colorScale={
+          colorScale
+            ? colorScale
+            : ["tomato", "orange", "gold", "springgreen", "cyan"]
+        }
         labels={labels}
         radius={180}
         innerRadius={100}

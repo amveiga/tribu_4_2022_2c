@@ -106,11 +106,13 @@ function ReporteTickets() {
             label={"Estado"}
             data={getData("Estado")}
             labels={getLabels("Estado")}
+            colorScale={["#ff9900", "#0085ff", "#ad00ff", "#1dcc2e", "#ff0000"]}
           />
           <PieChart
             label={"SLA"}
             data={getData("SLA")}
             labels={getLabels("SLA")}
+            colorScale={["#A8FF64", "#FFED47", "#FFB155", "#FF6262"]}
           />
         </div>
         <div className={styles.chartSection}>
