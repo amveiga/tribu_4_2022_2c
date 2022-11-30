@@ -6,12 +6,9 @@ function SegmentoTarea(estadoTarea){
 
     
 
-    const cambiarAEditar = () => {
-        segmentoActual = segmentoEditar;
-    }
-
-    function cambiarANormal(){
-        segmentoActual = segmento;
+    function mostrarModoEditar(){
+        var editMenu = document.getElementById("edit");
+        editMenu.classList.remove("hidden");
     }
 
     var segmento = (
@@ -45,7 +42,7 @@ function SegmentoTarea(estadoTarea){
 
                 <input className="hours-amount-edit" type="text" value={cantidadHoras}/>
 
-                <BotoneraTareas estadoTarea={estadoTarea.estadoTarea} funcionEditar={cambiarAEditar}/>
+                <BotoneraTareas estadoTarea={estadoTarea.estadoTarea}/>
             </div>
         </div>
     );

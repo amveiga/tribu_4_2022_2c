@@ -182,3 +182,93 @@ body{
 .hours-amount-edit{
     width: 120px;
 }
+
+#edit{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100%;
+}
+
+.not-clickeable{
+    position: fixed;
+    top: 20%;
+    left: 33%;
+    background-color: white;
+    width: 50%;
+    height: 70%;
+    border: rgb(0, 53, 108) 2px solid;
+    border-radius: 10px;
+    filter: drop-shadow(0px 3px 100px rgba(0, 0, 0, 0.459));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.edit-title{
+    background-color: rgb(0, 53, 108);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    margin: 20px;
+    width: 200px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: default;
+}
+
+.edit-title p{
+    margin: 0.5em;
+    font-size: 28px;
+}
+
+.edit-container div,
+.edit-button-container{
+    display: flex;
+}
+
+.edit-container p,
+.edit-input{
+    width: 50%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.edit-button-container{
+    justify-content: space-between;
+    width: 60%;
+    margin-bottom: 3%;
+}
+
+.edit-cancel-button,
+.edit-save-button{
+    width: 200px;
+    color: white;
+    text-align: center;
+    border-radius: 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+    filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.459));
+    cursor: pointer;
+}
+
+.edit-cancel-button p,
+.edit-save-button p{
+    margin: 8px;
+}
+
+.edit-cancel-button{
+    background-color: rgb(248, 109, 109);
+}
+
+.edit-save-button{
+    background-color: rgb(29, 204, 46);
+}
+
+.edit-element{
+    margin-bottom: 15px;
+}

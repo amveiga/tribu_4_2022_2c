@@ -4,14 +4,26 @@ import buttonStyle from "./../Styles/RecursosHumanos/Botones.css";
 
 import trabajadores from "./../Img/RecursosHumanos/personas_icon.png";
 import reportes from "./../Img/RecursosHumanos/reportes_icon.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import EmpleadoElement from "../Components/RecursosHumanos/Empleado";
 
-import Empleados from "../Data/RecursosHumanos/empleados.json";
-
+import EmpleadosList from "../Data/RecursosHumanos/empleados.json";
 function RecursosHumanos() {
+  /*const [name, setName] = useState(null);
+
+
+
+  useEffect(() => {
+    axios.get("https://squad1220222c-production.up.railway.app/recursos")
+    .then((res) => {
+      setName(res.data.name);
+    })
+  }, []);
+*/
+  
+
   let navigate = useNavigate();
 
   function verTareas(){
@@ -26,18 +38,6 @@ function RecursosHumanos() {
     navigate("/recursos-humanos/GenerarReportesProyecto");
   }
 
-  /*useEffect(( => {
-    axios
-      .get(
-        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/recursos-psa/1.0.0/m/api/recursos"
-      )
-      .then((response) => {
-        console.log(response.data);
-        set
-      })
-      )
-  }))*/
-
   return (
     <div className="body">
       <div className="recursos-humanos-container trabajadores">
@@ -51,7 +51,7 @@ function RecursosHumanos() {
             <div><p>Apellido</p></div>
             <div><p>Legajo</p></div>
           </div>
-          {Empleados.map((empleado) => {
+          {EmpleadosList.map((empleado) => {
               return <EmpleadoElement key={empleado.id} empleado={empleado} />
             })}
         </div>

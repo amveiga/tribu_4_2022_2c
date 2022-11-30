@@ -28,6 +28,16 @@ function Tareas() {
         navigate("/recursos-humanos/");
     }
 
+    function mostrarModoEditar(){
+        var editMenu = document.getElementById("edit");
+        editMenu.classList.remove("hidden");
+    }
+
+    function ocultarModoEditar(){
+        var editMenu = document.getElementById("edit");
+        editMenu.classList.add("hidden");
+    }
+
     return (
     <div className="body">
         <div id="data-bar">
@@ -199,6 +209,43 @@ function Tareas() {
                 </div>
                 <div className="border-button">
                     <img src={imagenModificar} alt="" />
+                </div>
+            </div>
+        </div>
+        <div id="edit" className="hidden" onClick={ocultarModoEditar}>
+            <div className="not-clickeable">
+                <div className="edit-title">
+                    <p>Editar tarea</p>
+                </div>
+                <div className="edit-container">
+                    <div className="edit-element">
+                        <p>Fecha de la tarea</p>
+                        <input type="date" className="edit-input"/>
+                    </div>
+                    <div className="edit-element">
+                        <p>Tipo de tarea</p>
+                        <select name="" id="" className="edit-input"></select>
+                    </div>
+                    <div className="edit-element">
+                        <p>Nombre del proyecto</p>
+                        <select name="" id="" className="edit-input"></select>
+                    </div>
+                    <div className="edit-element">
+                        <p>Nombre de la tarea</p>
+                        <select name="" id="" className="edit-input"></select>
+                    </div>
+                    <div className="edit-element">
+                        <p>Cantidad de horas trabajadas</p>
+                        <input type="number" className="edit-input"/>
+                    </div>
+                </div>
+                <div className="edit-button-container">
+                    <div className="edit-cancel-button" onClick={ocultarModoEditar}>
+                        <p>Cancelar</p>
+                    </div>
+                    <div className="edit-save-button" onClick={ocultarModoEditar}>
+                        <p>Guardar cambios</p>
+                    </div>
                 </div>
             </div>
         </div>
