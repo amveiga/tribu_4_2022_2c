@@ -11,15 +11,39 @@ import imagenValidar from "./../../Img/RecursosHumanos/yes_icon.png";
 import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
 import imagenEnviar from "./../../Img/RecursosHumanos/enviar_icon.png";
 
-import EmpleadoInfo from "../../Components/RecursosHumanos/FichaEmpleado";
+import FichaEmpleado from "../../Components/RecursosHumanos/FichaEmpleado";
 
 import ContenedorTareas from "../../Components/RecursosHumanos/ContenedorTareas";
 import SegmentoTarea from "../../Components/RecursosHumanos/SegmentoTarea";
 
+import { useEffect, useState } from "react";
+import axios from "axios";
+import ReactLoading from "react-loading";
+
 function Tareas() {
+    const [isLoading, setLoading] = useState(true);
+    const [listaEmpleados, setPost] = useState(null);
+  
+
+    useEffect(() => {
+        const getEmpleados = async () => {
+            await axios.get("https://squad1220222c-production.up.railway.app/recursos")
+            .then((res) => {
+                setPost(res.data);
+                setLoading(false);
+                console.log("antes de renderizar: " + res.data);
+            })
+        }
+
+        getEmpleados();
+        
+    
+    }, []);
+
     let navigate = useNavigate();
 
     let empleadoID = useParams();
+    
 
     function cargarHoras(){
         navigate("/recursos-humanos/" + empleadoID.empleadoId + "/tareas/cargar-horas");
@@ -39,11 +63,17 @@ function Tareas() {
         editMenu.classList.add("hidden");
     }
 
+    if(isLoading){
+        return(
+            <div>Cargando!!</div>
+        )
+    }
+
     return (
     <div className="body">
         <div id="data-bar">
             <img src={fotoPerfil} alt="" id="profile-image"/>
-            <EmpleadoInfo key={empleadoID.empleadoId} empleadoID={empleadoID.empleadoId}/>
+            <FichaEmpleado key={empleadoID.empleadoId} empleadoID={empleadoID.empleadoId} listaEmpl={listaEmpleados}/>
             
             <div className="button-container">
                 <input className="task-button back-button" type="button" value="Volver" onClick={volver}/>

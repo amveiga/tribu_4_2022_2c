@@ -10,18 +10,13 @@ import ReactLoading from "react-loading";
 
 import EmpleadoElement from "../Components/RecursosHumanos/Empleado";
 
-import EmpleadosList from "../Data/RecursosHumanos/empleados.json";
+//import EmpleadosList from "../Data/RecursosHumanos/empleados.json";
 function RecursosHumanos() {
   const [isLoading, setLoading] = useState(true);
   const [empleados, setPost] = useState(null);
   
 
   useEffect(() => {
-    /*axios.get("https://squad1220222c-production.up.railway.app/recursos")
-    .then((res) => {
-      console.log(res.data);
-      setPost(res.data);
-    })*/
     const getEmpleados = async () => {
       await axios.get("https://squad1220222c-production.up.railway.app/recursos")
       .then((res) => {

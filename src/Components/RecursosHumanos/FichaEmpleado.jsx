@@ -1,8 +1,10 @@
-import empleados from "../../Data/RecursosHumanos/empleados.json"
+//import empleados from "../../Data/RecursosHumanos/empleados.json"
 
-function FichaEmpleado(empleadoID){
+function FichaEmpleado(empleadoID, listaEmpl){
+    console.log("despues de renderizar: " + listaEmpl);
+
     var empleadoActual;
-    empleados.map((empl => {
+    listaEmpl.map((empl => {
         if(empl["legajo"] == empleadoID.empleadoID){
             empleadoActual = empl;
         }
