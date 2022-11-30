@@ -7,7 +7,7 @@ import TicketCreate from "../Components/Soporte/Tickets/TicketCreate";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactLoading from "react-loading";
-// import ErrorPage from "../Components/Soporte/ErrorPage";
+import ErrorPage from "../Components/Soporte/ErrorPage";
 
 function Soporte() {
   const [addButtonClicked, setAddButtonClicked] = useState(false);
@@ -18,6 +18,7 @@ function Soporte() {
   const [filtros, setFiltros] = useState("");
   const [sortBy, setSortBy] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   const ticket = axios.create({
     baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
@@ -98,87 +99,102 @@ function Soporte() {
             setTimeout(() => {
               setLoading(false);
             }, 2000)
-          );
+          )
+          .catch((error) => setError(true));
       } else {
-        response = await ticket.get().then(
-          setTimeout(() => {
-            setLoading(false);
-          }, 2000)
-        );
+        response = await ticket
+          .get()
+          .then(
+            setTimeout(() => {
+              setLoading(false);
+            }, 2000)
+          )
+          .catch((error) => setError(true));
       }
       if (response.status === 200) {
+        setError(false);
         if (sortBy.length > 1) {
           sort(response.data);
         } else {
           setTickets(response.data);
         }
+      } else {
+        setError(true);
       }
     };
     getTickets();
   }, [ticket, filtros, sortBy.length, sortBy]);
 
-  return (
-    <div className={styles.container}>
-      {loading ? (
-        <div className={styles.loading}>
-          <ReactLoading
-            type={"bars"}
-            color={"rgba(0,53,108,1"}
-            height={"10%"}
-            width={"10%"}
-          />
-        </div>
-      ) : (
-        <div className={styles.soporteContainer}>
-          <Filtros setSortBy={setSortBy} setFiltros={setFiltros} />
-          <div className={styles.tickets}>
-            {tickets.length === 0 ? (
-              <div className={styles.noTickets}>No hay tickets cargados</div>
-            ) : (
-              tickets.map((ticket) => {
-                return <TicketSelector key={ticket.id} ticket={ticket} />;
-              })
-            )}
-          </div>
-          <div
-            className={
-              addButtonClicked
-                ? styles.addButton + " " + styles.clicked
-                : rotateActivate
-                ? styles.addButton + " " + styles.rotate
-                : styles.addButton
-            }
-            onClick={() => {
-              setAddButtonClicked(!addButtonClicked);
-              setRotateActivate(true);
-              setOptionActivate(!optionActivate);
-            }}
-          >
-            <FaPlus
-              size={"2vw"}
-              color={addButtonClicked ? "rgba(0,53,108,1)" : "white"}
+  var component;
+
+  if (error) {
+    component = <ErrorPage />;
+  } else {
+    component = (
+      <div className={styles.container}>
+        {loading ? (
+          <div className={styles.loading}>
+            <ReactLoading
+              type={"bars"}
+              color={"rgba(0,53,108,1"}
+              height={"10%"}
+              width={"10%"}
             />
           </div>
-          {addButtonClicked && (
-            <div className={styles.options}>
-              <div className={styles.option}>
-                <Link className={styles.link} to={"/soporte/reporteTickets"}>
-                  Reporte de tickets
-                </Link>
-              </div>
-              <div
-                className={styles.option}
-                onClick={() => setCrearTicket(true)}
-              >
-                Crear ticket
-              </div>
+        ) : (
+          <div className={styles.soporteContainer}>
+            <Filtros setSortBy={setSortBy} setFiltros={setFiltros} />
+            <div className={styles.tickets}>
+              {tickets.length === 0 ? (
+                <div className={styles.noTickets}>No hay tickets cargados</div>
+              ) : (
+                tickets.map((ticket) => {
+                  return <TicketSelector key={ticket.id} ticket={ticket} />;
+                })
+              )}
             </div>
-          )}
-          {crearTicket && <TicketCreate setCrearTicket={setCrearTicket} />}
-        </div>
-      )}
-    </div>
-  );
+            <div
+              className={
+                addButtonClicked
+                  ? styles.addButton + " " + styles.clicked
+                  : rotateActivate
+                  ? styles.addButton + " " + styles.rotate
+                  : styles.addButton
+              }
+              onClick={() => {
+                setAddButtonClicked(!addButtonClicked);
+                setRotateActivate(true);
+                setOptionActivate(!optionActivate);
+              }}
+            >
+              <FaPlus
+                size={"2vw"}
+                color={addButtonClicked ? "rgba(0,53,108,1)" : "white"}
+              />
+            </div>
+            {addButtonClicked && (
+              <div className={styles.options}>
+                <div className={styles.option}>
+                  <Link className={styles.link} to={"/soporte/reporteTickets"}>
+                    Reporte de tickets
+                  </Link>
+                </div>
+                <div
+                  className={styles.option}
+                  onClick={() => setCrearTicket(true)}
+                >
+                  Crear ticket
+                </div>
+              </div>
+            )}
+            {crearTicket && <TicketCreate setCrearTicket={setCrearTicket} />}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return component;
 }
 
 export default Soporte;

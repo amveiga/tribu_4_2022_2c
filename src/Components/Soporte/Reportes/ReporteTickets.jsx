@@ -5,10 +5,11 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import ErrorPage from "../ErrorPage";
+import ErrorPage from "../ErrorPage";
 
 function ReporteTickets() {
   const [tickets, setTickets] = useState([]);
+  const [error, setError] = useState(false);
 
   const ticket = axios.create({
     baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
@@ -16,9 +17,12 @@ function ReporteTickets() {
 
   useEffect(() => {
     const getTickets = async () => {
-      const response = await ticket.get();
+      const response = await ticket.get().catch((error) => setError(true));
       if (response.status === 200) {
+        setError(false);
         setTickets(response.data);
+      } else {
+        setError(true);
       }
     };
     getTickets();
@@ -79,45 +83,53 @@ function ReporteTickets() {
     return cantidades;
   };
 
-  return (
-    <div className={styles.reporteContainer}>
-      <div className={styles.totalTicketsContainer}>
-        <div className={styles.back}>
-          <Link className={styles.backlink} to={"/soporte"}>
-            <IoIosArrowBack size={"1.5vw"} color={"rgba(0,53,108,1)"} />
-            Back
-          </Link>
+  var component;
+
+  if (error) {
+    component = <ErrorPage />;
+  } else {
+    component = (
+      <div className={styles.reporteContainer}>
+        <div className={styles.totalTicketsContainer}>
+          <div className={styles.back}>
+            <Link className={styles.backlink} to={"/soporte"}>
+              <IoIosArrowBack size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+              Back
+            </Link>
+          </div>
+          <div className={styles.totalTickets}>
+            Total tickets: {tickets.length}
+          </div>
         </div>
-        <div className={styles.totalTickets}>
-          Total tickets: {tickets.length}
+        <div className={styles.chartSection}>
+          <PieChart
+            label={"Estado"}
+            data={getData("Estado")}
+            labels={getLabels("Estado")}
+          />
+          <PieChart
+            label={"SLA"}
+            data={getData("SLA")}
+            labels={getLabels("SLA")}
+          />
+        </div>
+        <div className={styles.chartSection}>
+          <PieChart
+            label={"Tipo"}
+            data={getData("Tipo")}
+            labels={getLabels("Tipo")}
+          />
+          <PieChart
+            label={"Medio"}
+            data={getData("Medio")}
+            labels={getLabels("Medio")}
+          />
         </div>
       </div>
-      <div className={styles.chartSection}>
-        <PieChart
-          label={"Estado"}
-          data={getData("Estado")}
-          labels={getLabels("Estado")}
-        />
-        <PieChart
-          label={"SLA"}
-          data={getData("SLA")}
-          labels={getLabels("SLA")}
-        />
-      </div>
-      <div className={styles.chartSection}>
-        <PieChart
-          label={"Tipo"}
-          data={getData("Tipo")}
-          labels={getLabels("Tipo")}
-        />
-        <PieChart
-          label={"Medio"}
-          data={getData("Medio")}
-          labels={getLabels("Medio")}
-        />
-      </div>
-    </div>
-  );
+    );
+  }
+
+  return component;
 }
 
 export default ReporteTickets;

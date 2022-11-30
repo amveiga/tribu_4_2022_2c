@@ -14,7 +14,7 @@ import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import axios from "axios";
-// import ErrorPage from "../ErrorPage";
+import ErrorPage from "../ErrorPage";
 import Comentarios from "../Comentarios/Comentarios";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
@@ -28,6 +28,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   const [tareaSelected, setTareaSelected] = useState(false);
   const [comentarios, setComentarios] = useState([]);
   const [recursos, setRecursos] = useState([]);
+  const [error, setError] = useState(false);
 
   const getState = (estado) => {
     var style;
@@ -95,254 +96,272 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   });
 
   const getTareas = async () => {
-    var tareas = await tareaAxios.get();
+    var tareas = await tareaAxios.get().catch((error) => setError(true));
     if (tareas.status === 200) {
+      setError(false);
       setTareas(
         tareas.data.map((t) => {
           return { label: t._id, value: t.name };
         })
       );
+    } else {
+      setError(true);
     }
   };
 
   const getRecursos = async () => {
-    var recursos = await recursosAxios.get();
+    var recursos = await recursosAxios.get().catch((error) => setError(true));
     if (recursos.status === 200) {
+      setError(false);
       setRecursos(
         recursos.data.map((t) => {
           return { label: t.legajo, value: t.Nombre };
         })
       );
+    } else {
+      setError(true);
     }
   };
 
   useEffect(() => {
     const getComentarios = async () => {
-      var response = await comentario.get();
+      var response = await comentario.get().catch((error) => setError(true));
       if (response.status === 200) {
+        setError(false);
         setComentarios(
           response.data?.sort((a, b) =>
             a.lastModifiedDatetime < b.lastModifiedDatetime ? 1 : -1
           )
         );
+      } else {
+        console.log("entre a wrong");
+        setError(true);
       }
     };
 
     getComentarios();
   }, [comentario]);
 
-  return (
-    <div className={styles.container}>
-      <div className={styles.ticketContainer}>
-        <div className={styles.ticket}>
-          <div className={styles.sectionOne}>
-            <div className={styles.headerSection}>
-              <div className={styles.titleSection}>
-                {ticket.title}
-                {ticket.type === "Consulta" ? (
-                  <BsQuestionCircleFill
-                    onMouseEnter={() => setTypeHovered(true)}
-                    onMouseLeave={() => setTypeHovered(false)}
-                    className={styles.type}
-                    size={"1.3vw"}
-                    color={"rgba(106, 176, 249, 1)"}
-                  />
-                ) : (
-                  <BsFillExclamationCircleFill
-                    onMouseEnter={() => setTypeHovered(true)}
-                    onMouseLeave={() => setTypeHovered(false)}
-                    className={styles.type}
-                    size={"1.3vw"}
-                    color={"red"}
-                  />
-                )}
-                {typeHovered && (
-                  <div className={styles.showType}>
-                    <BsFillCaretLeftFill
-                      className={styles.arrow}
-                      size={"1.5vw"}
-                      color={
-                        ticket.type === "Consulta"
-                          ? "rgba(106, 176, 249, 1)"
-                          : "red"
-                      }
+  var component;
+
+  if (error) {
+    component = <ErrorPage />;
+  } else {
+    component = (
+      <div className={styles.container}>
+        <div className={styles.ticketContainer}>
+          <div className={styles.ticket}>
+            <div className={styles.sectionOne}>
+              <div className={styles.headerSection}>
+                <div className={styles.titleSection}>
+                  {ticket.title}
+                  {ticket.type === "Consulta" ? (
+                    <BsQuestionCircleFill
+                      onMouseEnter={() => setTypeHovered(true)}
+                      onMouseLeave={() => setTypeHovered(false)}
+                      className={styles.type}
+                      size={"1.3vw"}
+                      color={"rgba(106, 176, 249, 1)"}
                     />
-                    <div
-                      className={
-                        (ticket.type === "Consulta"
-                          ? styles.blue
-                          : styles.red) +
-                        " " +
-                        styles.showTypeText
-                      }
-                    >
-                      {ticket.type}
+                  ) : (
+                    <BsFillExclamationCircleFill
+                      onMouseEnter={() => setTypeHovered(true)}
+                      onMouseLeave={() => setTypeHovered(false)}
+                      className={styles.type}
+                      size={"1.3vw"}
+                      color={"red"}
+                    />
+                  )}
+                  {typeHovered && (
+                    <div className={styles.showType}>
+                      <BsFillCaretLeftFill
+                        className={styles.arrow}
+                        size={"1.5vw"}
+                        color={
+                          ticket.type === "Consulta"
+                            ? "rgba(106, 176, 249, 1)"
+                            : "red"
+                        }
+                      />
+                      <div
+                        className={
+                          (ticket.type === "Consulta"
+                            ? styles.blue
+                            : styles.red) +
+                          " " +
+                          styles.showTypeText
+                        }
+                      >
+                        {ticket.type}
+                      </div>
                     </div>
-                  </div>
+                  )}
+                </div>
+                <div
+                  onClick={() => {
+                    getRecursos();
+                    setEscalarSelected(true);
+                  }}
+                  className={styles.escalar}
+                >
+                  Escalar ticket
+                  <ImMoveUp size={"1.5vw"} color={"white"} />
+                </div>
+              </div>
+              <div className={styles.descripcion}>{ticket.description}</div>
+              <div className={styles.footerSection}>
+                {ticket.origin === "Teléfono" ? (
+                  <HiPhone size={"1.2vw"} color={"rgba(0,53,108,1)"} />
+                ) : (
+                  <HiMail size={"1.4vw"} color={"rgba(0,53,108,1)"} />
                 )}
+                <div className={styles.marginLeft}>{ticket.clientId}</div>
+                <div className={styles.marginLeft}>-</div>
+                <div className={styles.marginLeft}>
+                  Emitido: {ticket.createdDatetime}
+                </div>
+                <div className={styles.marginLeft}>-</div>
+                <div className={styles.marginLeft}>
+                  Modificado: {ticket.lastModifiedDatetime}
+                </div>
+              </div>
+            </div>
+            <div className={styles.sectionTwo}>
+              <div className={styles.estado + " " + getState(ticket.status)}>
+                {ticket.status}
+              </div>
+              <div className={styles.item}>
+                {ticket.sla}
+                <BsCircleFill size={"1.3vw"} color={getSLA(ticket.sla)} />
+              </div>
+              <div className={styles.item}>
+                {recurso === "" ? "-" : recurso}
+                <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
               </div>
               <div
                 onClick={() => {
-                  getRecursos();
-                  setEscalarSelected(true);
+                  getTareas();
+                  setTareaSelected(true);
                 }}
-                className={styles.escalar}
+                className={styles.tarea}
               >
-                Escalar ticket
-                <ImMoveUp size={"1.5vw"} color={"white"} />
-              </div>
-            </div>
-            <div className={styles.descripcion}>{ticket.description}</div>
-            <div className={styles.footerSection}>
-              {ticket.origin === "Teléfono" ? (
-                <HiPhone size={"1.2vw"} color={"rgba(0,53,108,1)"} />
-              ) : (
-                <HiMail size={"1.4vw"} color={"rgba(0,53,108,1)"} />
-              )}
-              <div className={styles.marginLeft}>{ticket.clientId}</div>
-              <div className={styles.marginLeft}>-</div>
-              <div className={styles.marginLeft}>
-                Emitido: {ticket.createdDatetime}
-              </div>
-              <div className={styles.marginLeft}>-</div>
-              <div className={styles.marginLeft}>
-                Modificado: {ticket.lastModifiedDatetime}
+                {tarea === "" ? "Asociar tarea" : tarea}
+                <FaPlus size={"1.5vw"} color={"white"} />
               </div>
             </div>
           </div>
-          <div className={styles.sectionTwo}>
-            <div className={styles.estado + " " + getState(ticket.status)}>
-              {ticket.status}
-            </div>
-            <div className={styles.item}>
-              {ticket.sla}
-              <BsCircleFill size={"1.3vw"} color={getSLA(ticket.sla)} />
-            </div>
-            <div className={styles.item}>
-              {recurso === "" ? "-" : recurso}
-              <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
-            </div>
-            <div
-              onClick={() => {
-                getTareas();
-                setTareaSelected(true);
-              }}
-              className={styles.tarea}
-            >
-              {tarea === "" ? "Asociar tarea" : tarea}
-              <FaPlus size={"1.5vw"} color={"white"} />
-            </div>
+          <div
+            onClick={() => {
+              setEditSelected(true);
+            }}
+            className={
+              editSelected ? styles.edit + " " + styles.selected : styles.edit
+            }
+          >
+            <MdEdit
+              size={"1.5vw"}
+              color={editSelected ? "white" : "rgba(0,53,108,1)"}
+            />
           </div>
+          {editSelected ? (
+            <div className={styles.editSelected}>
+              <div
+                className={styles.editCancel}
+                onClick={() => setEditSelected(false)}
+              >
+                <IoClose size={"2vw"} color={"white"} />
+              </div>
+              <div className={styles.editConfirm}>
+                <HiCheck size={"2vw"} color={"white"} />
+              </div>
+            </div>
+          ) : (
+            <div className={styles.delete} onClick={() => deleteTicket()}>
+              <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+            </div>
+          )}
         </div>
-        <div
-          onClick={() => {
-            setEditSelected(true);
-          }}
-          className={
-            editSelected ? styles.edit + " " + styles.selected : styles.edit
-          }
-        >
-          <MdEdit
-            size={"1.5vw"}
-            color={editSelected ? "white" : "rgba(0,53,108,1)"}
-          />
-        </div>
-        {editSelected ? (
-          <div className={styles.editSelected}>
-            <div
-              className={styles.editCancel}
-              onClick={() => setEditSelected(false)}
-            >
-              <IoClose size={"2vw"} color={"white"} />
+        <Comentarios comentarios={comentarios} id={ticket.id} />
+        {tareaSelected && (
+          <div className={styles.escalarSelectedContainer}>
+            <div className={styles.escalarSelected}>
+              <div className={styles.selection + " " + styles.item1}>
+                <div className={styles.marginLeftEscalar}>Tarea</div>
+                <TicketSelect
+                  placeHolder={"Seleccione una tarea"}
+                  options={tareas}
+                  style={styles.selectItem}
+                  setter={setTarea}
+                  setterId={setTareaId}
+                  value={tarea}
+                />
+              </div>
             </div>
-            <div className={styles.editConfirm}>
-              <HiCheck size={"2vw"} color={"white"} />
+            <div className={styles.escalarHeight}>
+              <div
+                onClick={() => {
+                  setTareaSelected(false);
+                  setTarea("");
+                  setTareaId(ticket.taskId);
+                }}
+                className={styles.editEscalarCancel}
+              >
+                <IoClose size={"2vw"} color={"white"} />
+              </div>
+              <div
+                onClick={() => {
+                  updateTicket();
+                  setTareaSelected(false);
+                }}
+                className={styles.editEscalarConfirm}
+              >
+                <HiCheck size={"2vw"} color={"white"} />
+              </div>
             </div>
           </div>
-        ) : (
-          <div className={styles.delete} onClick={() => deleteTicket()}>
-            <MdDelete size={"1.5vw"} color={"rgba(0,53,108,1)"} />
+        )}
+        {escalarSelected && (
+          <div className={styles.escalarSelectedContainer}>
+            <div className={styles.escalarSelected}>
+              <div className={styles.selection + " " + styles.item2}>
+                <div className={styles.marginLeftEscalar}>Recurso</div>
+                <TicketSelect
+                  placeHolder={"Seleccione un recurso"}
+                  options={recursos}
+                  style={styles.selectItem}
+                  setter={setRecurso}
+                  setterId={setUserId}
+                  value={recurso}
+                />
+              </div>
+            </div>
+            <div className={styles.escalarHeight}>
+              <div
+                onClick={() => {
+                  setEscalarSelected(false);
+                  setRecurso("");
+                }}
+                className={styles.editEscalarCancel}
+              >
+                <IoClose size={"2vw"} color={"white"} />
+              </div>
+              <div
+                onClick={() => {
+                  updateTicket();
+                  setEscalarSelected(false);
+                }}
+                className={styles.editEscalarConfirm}
+              >
+                <HiCheck size={"2vw"} color={"white"} />
+              </div>
+            </div>
           </div>
         )}
       </div>
-      <Comentarios comentarios={comentarios} id={ticket.id} />
-      {tareaSelected && (
-        <div className={styles.escalarSelectedContainer}>
-          <div className={styles.escalarSelected}>
-            <div className={styles.selection + " " + styles.item1}>
-              <div className={styles.marginLeftEscalar}>Tarea</div>
-              <TicketSelect
-                placeHolder={"Seleccione una tarea"}
-                options={tareas}
-                style={styles.selectItem}
-                setter={setTarea}
-                setterId={setTareaId}
-                value={tarea}
-              />
-            </div>
-          </div>
-          <div className={styles.editSelected + " " + styles.escalarHeight}>
-            <div
-              onClick={() => {
-                setTareaSelected(false);
-                setTarea("");
-                setTareaId(ticket.taskId);
-              }}
-              className={styles.editCancel}
-            >
-              <IoClose size={"2vw"} color={"white"} />
-            </div>
-            <div
-              onClick={() => {
-                updateTicket();
-                setTareaSelected(false);
-              }}
-              className={styles.editConfirm}
-            >
-              <HiCheck size={"2vw"} color={"white"} />
-            </div>
-          </div>
-        </div>
-      )}
-      {escalarSelected && (
-        <div className={styles.escalarSelectedContainer}>
-          <div className={styles.escalarSelected}>
-            <div className={styles.selection + " " + styles.item2}>
-              <div className={styles.marginLeftEscalar}>Recurso</div>
-              <TicketSelect
-                placeHolder={"Seleccione un recurso"}
-                options={recursos}
-                style={styles.selectItem}
-                setter={setRecurso}
-                setterId={setUserId}
-                value={recurso}
-              />
-            </div>
-          </div>
-          <div className={styles.escalarHeight}>
-            <div
-              onClick={() => {
-                setEscalarSelected(false);
-                setRecurso("");
-              }}
-              className={styles.editEscalarCancel}
-            >
-              <IoClose size={"2vw"} color={"white"} />
-            </div>
-            <div
-              onClick={() => {
-                updateTicket();
-                setEscalarSelected(false);
-              }}
-              className={styles.editEscalarConfirm}
-            >
-              <HiCheck size={"2vw"} color={"white"} />
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
+    );
+  }
+
+  return component;
 }
 
 export default Ticket;
