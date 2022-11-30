@@ -9,6 +9,7 @@ import imagenModificar from "./../../Img/RecursosHumanos/modificar_icon.png";
 import imagenBorrar from "./../../Img/RecursosHumanos/borrar_icon.png";
 import imagenValidar from "./../../Img/RecursosHumanos/yes_icon.png";
 import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
+import imagenEnviar from "./../../Img/RecursosHumanos/enviar_icon.png";
 
 import EmpleadoInfo from "../../Components/RecursosHumanos/FichaEmpleado";
 
@@ -145,7 +146,7 @@ function Tareas() {
                     </div>
                 </div>
                 <div className="border-button">
-                    <img src={imagenModificar} alt="" />
+                    <img src={imagenEnviar} alt="" />
                 </div>
             </div>
 
@@ -207,12 +208,9 @@ function Tareas() {
                     <div className="border-task-end">
                     </div>
                 </div>
-                <div className="border-button">
-                    <img src={imagenModificar} alt="" />
-                </div>
             </div>
         </div>
-        <div id="edit" className="hidden" onClick={ocultarModoEditar}>
+        <div id="edit" className="hidden" >
             <div className="not-clickeable">
                 <div className="edit-title">
                     <p>Editar tarea</p>

@@ -6,22 +6,37 @@ import trabajadores from "./../Img/RecursosHumanos/personas_icon.png";
 import reportes from "./../Img/RecursosHumanos/reportes_icon.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import ReactLoading from "react-loading";
 
 import EmpleadoElement from "../Components/RecursosHumanos/Empleado";
 
 import EmpleadosList from "../Data/RecursosHumanos/empleados.json";
 function RecursosHumanos() {
-  /*const [name, setName] = useState(null);
-
-
+  const [isLoading, setLoading] = useState(true);
+  const [empleados, setPost] = useState(null);
+  
 
   useEffect(() => {
-    axios.get("https://squad1220222c-production.up.railway.app/recursos")
+    /*axios.get("https://squad1220222c-production.up.railway.app/recursos")
     .then((res) => {
-      setName(res.data.name);
-    })
-  }, []);
-*/
+      console.log(res.data);
+      setPost(res.data);
+    })*/
+    const getEmpleados = async () => {
+      await axios.get("https://squad1220222c-production.up.railway.app/recursos")
+      .then((res) => {
+        console.log(res.data);
+        setPost(res.data);
+        setLoading(false);
+      })
+    }
+
+    getEmpleados();
+        
+    
+}, []);
+
+  
   
 
   let navigate = useNavigate();
@@ -38,6 +53,15 @@ function RecursosHumanos() {
     navigate("/recursos-humanos/GenerarReportesProyecto");
   }
 
+  if(isLoading){
+    return (
+      <div>
+        <ReactLoading type={"bars"} color={"rgba(0,53,108,1)"} height={667} width={375} />
+      </div>
+    )
+    
+  }
+
   return (
     <div className="body">
       <div className="recursos-humanos-container trabajadores">
@@ -51,7 +75,8 @@ function RecursosHumanos() {
             <div><p>Apellido</p></div>
             <div><p>Legajo</p></div>
           </div>
-          {EmpleadosList.map((empleado) => {
+          
+          {empleados.map((empleado) => {
               return <EmpleadoElement key={empleado.id} empleado={empleado} />
             })}
         </div>

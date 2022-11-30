@@ -18,7 +18,6 @@ function SegmentoTarea(estadoTarea){
                 <div className="task-div">
                     <div className="task-name-div">
                         <p className="task-name">Tarea 1</p>
-                        <div className="status-dot grey"></div>
                     </div>
                 </div>
 
