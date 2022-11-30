@@ -3,7 +3,7 @@ import { AiOutlineComment } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import axios from "axios";
-import ErrorPage from "./../ErrorPage";
+// import ErrorPage from "./../ErrorPage";
 import Comentario from "./Comentario";
 
 function Comentarios({ comentarios, id }) {
@@ -11,27 +11,19 @@ function Comentarios({ comentarios, id }) {
   const [coment, setComent] = useState("");
 
   const sendComent = async () => {
-    await axios
-      .post(
-        "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments",
-        {
-          ticketId: id,
-          body: coment,
-        }
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    await axios.post(
+      "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments",
+      {
+        ticketId: id,
+        body: coment,
+      }
+    );
   };
 
   const deleteComents = async () => {
-    await axios
-      .delete(
-        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/ticket-id/${id}`
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    await axios.delete(
+      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/ticket-id/${id}`
+    );
   };
 
   return (

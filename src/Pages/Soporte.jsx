@@ -7,7 +7,7 @@ import TicketCreate from "../Components/Soporte/Tickets/TicketCreate";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactLoading from "react-loading";
-import ErrorPage from "../Components/Soporte/ErrorPage";
+// import ErrorPage from "../Components/Soporte/ErrorPage";
 
 function Soporte() {
   const [addButtonClicked, setAddButtonClicked] = useState(false);
@@ -98,26 +98,20 @@ function Soporte() {
             setTimeout(() => {
               setLoading(false);
             }, 2000)
-          )
-          .catch((error) => {
-            return <ErrorPage />;
-          });
+          );
       } else {
-        response = await ticket
-          .get()
-          .then(
-            setTimeout(() => {
-              setLoading(false);
-            }, 2000)
-          )
-          .catch((error) => {
-            return <ErrorPage />;
-          });
+        response = await ticket.get().then(
+          setTimeout(() => {
+            setLoading(false);
+          }, 2000)
+        );
       }
-      if (sortBy.length > 1) {
-        sort(response.data);
-      } else {
-        setTickets(response.data);
+      if (response.status === 200) {
+        if (sortBy.length > 1) {
+          sort(response.data);
+        } else {
+          setTickets(response.data);
+        }
       }
     };
     getTickets();

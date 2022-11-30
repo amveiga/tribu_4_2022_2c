@@ -499,7 +499,7 @@
   top: 0;
   left: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   z-index: 1000;
@@ -507,7 +507,7 @@
 
 .escalarSelected {
   width: 25%;
-  height: 25vh;
+  height: 10vh;
   background-color: white;
   border: 2px solid rgba(0, 53, 108, 1);
   border-radius: 25px;
@@ -522,16 +522,36 @@
 }
 
 .escalarHeight {
-  width: 8%;
-  height: 29vh;
-  padding-right: 0;
-  padding-top: 0;
-  padding-bottom: 0;
-  flex-direction: column;
-  align-items: flex-end;
+  width: 31%;
+  height: 8vh;
+  margin-top: -2%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   justify-content: center;
   border: none;
   z-index: 0;
+}
+
+.editEscalarConfirm,
+.editEscalarCancel {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 2%;
+  cursor: pointer;
+}
+
+.editEscalarConfirm {
+  border-bottom-right-radius: 23px;
+  background-color: #1dcc2e;
+}
+
+.editEscalarCancel {
+  border-bottom-left-radius: 23px;
+  background-color: #ff0000;
 }
 
 .selection {

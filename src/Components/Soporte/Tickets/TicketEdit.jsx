@@ -10,7 +10,7 @@ import Filtros from "./../../../Data/Filtros.json";
 import TicketSelect from "./TicketSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ErrorPage from "../ErrorPage";
+// import ErrorPage from "../ErrorPage";
 
 function TicketEdit({ ticket, setEditSelected }) {
   const [title, setTitle] = useState(ticket.title);
@@ -24,18 +24,17 @@ function TicketEdit({ ticket, setEditSelected }) {
 
   useEffect(() => {
     const getClients = async () => {
-      var response = await axios
-        .get(
-          "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
-        )
-        .catch((error) => {
-          return <ErrorPage />;
-        });
-      setClients(
-        response.data.map((client) => {
-          return { label: client.CUIT, value: client.CUIT };
-        })
+      var response = await axios.get(
+        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
       );
+
+      if (response.status === 200) {
+        setClients(
+          response.data.map((client) => {
+            return { label: client.CUIT, value: client.CUIT };
+          })
+        );
+      }
     };
     getClients();
   }, []);
@@ -57,14 +56,10 @@ function TicketEdit({ ticket, setEditSelected }) {
           sla: sla,
           clientId: client,
           userId: ticket.userId,
-          areaId: ticket.areaId,
           taskId: ticket.taskId,
         }
       )
-      .then(setEditSelected(false))
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+      .then(setEditSelected(false));
   };
 
   return (

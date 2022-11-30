@@ -2,34 +2,26 @@ import axios from "axios";
 import { useState } from "react";
 import { MdEdit, MdDelete, MdClose, MdCheck } from "react-icons/md";
 import styles from "./../../../Styles/Soporte/Comentarios.module.css";
-import ErrorPage from "../ErrorPage";
+// import ErrorPage from "../ErrorPage";
 
 function Comentario({ comentarioIncluido, coment, id }) {
   const [editSelected, setEditSelected] = useState(false);
   const [comentEdited, setComentEdited] = useState(coment);
 
   const deleteComent = async (commentId) => {
-    await axios
-      .delete(
-        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    await axios.delete(
+      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`
+    );
   };
 
   const updateComent = async (commentId) => {
-    axios
-      .put(
-        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`,
-        {
-          ticketId: id,
-          body: comentEdited,
-        }
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    axios.put(
+      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`,
+      {
+        ticketId: id,
+        body: comentEdited,
+      }
+    );
   };
 
   return (

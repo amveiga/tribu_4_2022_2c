@@ -5,7 +5,7 @@ import TicketSelect from "./TicketSelect";
 import Filtros from "./../../../Data/Filtros.json";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import ErrorPage from "../ErrorPage";
+// import ErrorPage from "../ErrorPage";
 
 function TicketCreate({ setCrearTicket }) {
   const [title, setTitle] = useState("");
@@ -25,42 +25,36 @@ function TicketCreate({ setCrearTicket }) {
 
   useEffect(() => {
     const getClients = async () => {
-      var response = await axios
-        .get(
-          "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
-        )
-        .catch((error) => {
-          return <ErrorPage />;
-        });
-      setClients(
-        response.data.map((client) => {
-          return { label: client.CUIT, value: client.CUIT };
-        })
+      var response = await axios.get(
+        "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
       );
+
+      if (response.status === 200) {
+        setClients(
+          response.data.map((client) => {
+            return { label: client.CUIT, value: client.CUIT };
+          })
+        );
+      }
     };
     getClients();
   }, []);
 
   const createTicket = () => {
-    axios
-      .post(
-        "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
-        {
-          title: title,
-          description: description,
-          status: status,
-          type: type,
-          origin: origin,
-          sla: sla,
-          clientId: client,
-          userId: "",
-          areaId: "",
-          taskId: "",
-        }
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    axios.post(
+      "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
+      {
+        title: title,
+        description: description,
+        status: status,
+        type: type,
+        origin: origin,
+        sla: sla,
+        clientId: client,
+        userId: "",
+        taskId: "",
+      }
+    );
   };
 
   return (

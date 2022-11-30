@@ -7,20 +7,19 @@ import {
 } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
-import { HiPhone, HiMail, HiOutlineUserGroup, HiCheck } from "react-icons/hi";
+import { HiPhone, HiMail, HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import axios from "axios";
-import ErrorPage from "../ErrorPage";
+// import ErrorPage from "../ErrorPage";
 import Comentarios from "../Comentarios/Comentarios";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
   const [typeHovered, setTypeHovered] = useState(false);
   const [escalarSelected, setEscalarSelected] = useState(false);
-  const [areaId, setAreaId] = useState("");
   const [recurso, setRecurso] = useState("");
   const [userId, setUserId] = useState(ticket.userId);
   const [tarea, setTarea] = useState("");
@@ -61,35 +60,26 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   };
 
   const deleteTicket = async () => {
-    await axios
-      .delete(
-        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    await axios.delete(
+      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`
+    );
   };
 
   const updateTicket = async () => {
-    await axios
-      .put(
-        `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`,
-        {
-          title: ticket.title,
-          description: ticket.description,
-          status: ticket.status,
-          type: ticket.type,
-          origin: ticket.origin,
-          sla: ticket.sla,
-          clientId: ticket.clientId,
-          userId: userId,
-          areaId: areaId,
-          taskId: tareaId,
-        }
-      )
-      .catch((error) => {
-        return <ErrorPage />;
-      });
+    await axios.put(
+      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`,
+      {
+        title: ticket.title,
+        description: ticket.description,
+        status: ticket.status,
+        type: ticket.type,
+        origin: ticket.origin,
+        sla: ticket.sla,
+        clientId: ticket.clientId,
+        userId: userId,
+        taskId: tareaId,
+      }
+    );
   };
 
   const comentario = axios.create({
@@ -105,37 +95,37 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
   });
 
   const getTareas = async () => {
-    var tareas = await tareaAxios.get().catch((error) => {
-      return <ErrorPage />;
-    });
-    setTareas(
-      tareas.data.map((t) => {
-        return { label: t._id, value: t.name };
-      })
-    );
+    var tareas = await tareaAxios.get();
+    if (tareas.status === 200) {
+      setTareas(
+        tareas.data.map((t) => {
+          return { label: t._id, value: t.name };
+        })
+      );
+    }
   };
 
   const getRecursos = async () => {
-    var recursos = await recursosAxios.get().catch((error) => {
-      return <ErrorPage />;
-    });
-    setRecursos(
-      recursos.data.map((t) => {
-        return { label: t.legajo, value: t.Nombre };
-      })
-    );
+    var recursos = await recursosAxios.get();
+    if (recursos.status === 200) {
+      setRecursos(
+        recursos.data.map((t) => {
+          return { label: t.legajo, value: t.Nombre };
+        })
+      );
+    }
   };
 
   useEffect(() => {
     const getComentarios = async () => {
-      var response = await comentario.get().catch((error) => {
-        return <ErrorPage />;
-      });
-      setComentarios(
-        response.data?.sort((a, b) =>
-          a.lastModifiedDatetime < b.lastModifiedDatetime ? 1 : -1
-        )
-      );
+      var response = await comentario.get();
+      if (response.status === 200) {
+        setComentarios(
+          response.data?.sort((a, b) =>
+            a.lastModifiedDatetime < b.lastModifiedDatetime ? 1 : -1
+          )
+        );
+      }
     };
 
     getComentarios();
@@ -232,10 +222,6 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               {recurso === "" ? "-" : recurso}
               <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />
             </div>
-            <div className={styles.item}>
-              {ticket.areaId === "" ? "-" : ticket.areaId}
-              <HiOutlineUserGroup size={"1.5vw"} color={"rgba(0,53,108,1)"} />
-            </div>
             <div
               onClick={() => {
                 getTareas();
@@ -321,21 +307,6 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
       {escalarSelected && (
         <div className={styles.escalarSelectedContainer}>
           <div className={styles.escalarSelected}>
-            <div className={styles.selection + " " + styles.item1}>
-              <div className={styles.marginLeftEscalar}>Área</div>
-              <TicketSelect
-                placeHolder={"Seleccione un área"}
-                options={[
-                  { value: "Marketing", label: "Marketing" },
-                  { value: "Desarollo", label: "Desarollo" },
-                  { value: "Recursos Humanos", label: "Recursos Humanos" },
-                  { value: "Administración", label: "Administración" },
-                ]}
-                style={styles.selectItem}
-                setter={setAreaId}
-                value={areaId}
-              />
-            </div>
             <div className={styles.selection + " " + styles.item2}>
               <div className={styles.marginLeftEscalar}>Recurso</div>
               <TicketSelect
@@ -348,10 +319,13 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
               />
             </div>
           </div>
-          <div className={styles.editSelected + " " + styles.escalarHeight}>
+          <div className={styles.escalarHeight}>
             <div
-              onClick={() => setEscalarSelected(false)}
-              className={styles.editCancel}
+              onClick={() => {
+                setEscalarSelected(false);
+                setRecurso("");
+              }}
+              className={styles.editEscalarCancel}
             >
               <IoClose size={"2vw"} color={"white"} />
             </div>
@@ -360,7 +334,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
                 updateTicket();
                 setEscalarSelected(false);
               }}
-              className={styles.editConfirm}
+              className={styles.editEscalarConfirm}
             >
               <HiCheck size={"2vw"} color={"white"} />
             </div>
