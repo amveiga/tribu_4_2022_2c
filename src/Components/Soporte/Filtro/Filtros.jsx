@@ -5,9 +5,8 @@ import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
 import MenuOrden from "../Orden/MenuOrder";
 import axios from "axios";
-import ErrorPage from "../ErrorPage";
 
-function Filtros({ setFiltros, setSortBy }) {
+function Filtros({ setFiltros, setSortBy, error, setError }) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
   const [clientId, setClientId] = useState("");
@@ -15,7 +14,6 @@ function Filtros({ setFiltros, setSortBy }) {
   const [sla, setSla] = useState("");
   const [type, setType] = useState("");
   const [origin, setOrigin] = useState("");
-  const [error, setError] = useState(false);
   const [clients, setClients] = useState([]);
 
   const handleFilterClick = () => {
@@ -48,60 +46,53 @@ function Filtros({ setFiltros, setSortBy }) {
     }
   };
 
-  var component;
-
-  if (error) {
-    component = <ErrorPage />;
-  } else {
-    component = (
-      <div className={styles.filtros}>
-        <div
-          className={filtroAbierto ? styles.filtroSelected : styles.filtro}
-          onClick={handleFilterClick}
-        >
-          <div className={styles.textIcon}>
-            {filtroAbierto ? (
-              <HiFilter size={"1.5vw"} color={"rgba(106, 176, 249, 1)"} />
-            ) : (
-              <HiOutlineFilter size={"1.5vw"} color={"white"} />
-            )}
-            Filtro
-          </div>
+  return (
+    <div className={styles.filtros}>
+      <div
+        className={filtroAbierto ? styles.filtroSelected : styles.filtro}
+        onClick={handleFilterClick}
+      >
+        <div className={styles.textIcon}>
+          {filtroAbierto ? (
+            <HiFilter size={"1.5vw"} color={"rgba(106, 176, 249, 1)"} />
+          ) : (
+            <HiOutlineFilter size={"1.5vw"} color={"white"} />
+          )}
+          Filtro
         </div>
-        {filtroAbierto && (
-          <MenuFiltro
-            setFiltroAbierto={setFiltroAbierto}
-            setFiltros={setFiltros}
-            clientId={clientId}
-            status={status}
-            type={type}
-            sla={sla}
-            origin={origin}
-            setClientId={setClientId}
-            setStatus={setStatus}
-            setSla={setSla}
-            setType={setType}
-            setOrigin={setOrigin}
-            clients={clients}
-          />
-        )}
-        <div
-          className={ordenAbierto ? styles.ordenSelected : styles.orden}
-          onClick={handleOrdenClick}
-        >
-          <div className={styles.textIcon}>
-            <BiSort
-              size={"1.5vw"}
-              color={ordenAbierto ? "rgba(106, 176, 249, 1)" : "white"}
-            />
-            Orden
-          </div>
-        </div>
-        {ordenAbierto && <MenuOrden setSortBy={setSortBy} />}
       </div>
-    );
-  }
-  return component;
+      {filtroAbierto && (
+        <MenuFiltro
+          setFiltroAbierto={setFiltroAbierto}
+          setFiltros={setFiltros}
+          clientId={clientId}
+          status={status}
+          type={type}
+          sla={sla}
+          origin={origin}
+          setClientId={setClientId}
+          setStatus={setStatus}
+          setSla={setSla}
+          setType={setType}
+          setOrigin={setOrigin}
+          clients={clients}
+        />
+      )}
+      <div
+        className={ordenAbierto ? styles.ordenSelected : styles.orden}
+        onClick={handleOrdenClick}
+      >
+        <div className={styles.textIcon}>
+          <BiSort
+            size={"1.5vw"}
+            color={ordenAbierto ? "rgba(106, 176, 249, 1)" : "white"}
+          />
+          Orden
+        </div>
+      </div>
+      {ordenAbierto && <MenuOrden setSortBy={setSortBy} />}
+    </div>
+  );
 }
 
 export default Filtros;

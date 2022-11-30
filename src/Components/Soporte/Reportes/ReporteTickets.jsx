@@ -6,10 +6,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ErrorPage from "../ErrorPage";
+import ReactLoading from "react-loading";
 
 function ReporteTickets() {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const ticket = axios.create({
     baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
@@ -21,6 +23,7 @@ function ReporteTickets() {
       if (response.status === 200) {
         setError(false);
         setTickets(response.data);
+        setLoading(false);
       } else {
         setError(true);
       }
@@ -87,6 +90,17 @@ function ReporteTickets() {
 
   if (error) {
     component = <ErrorPage />;
+  } else if (loading) {
+    component = (
+      <div className={styles.loading}>
+        <ReactLoading
+          type={"bars"}
+          color={"rgba(0,53,108,1"}
+          height={"10%"}
+          width={"10%"}
+        />
+      </div>
+    );
   } else {
     component = (
       <div className={styles.reporteContainer}>
@@ -101,32 +115,44 @@ function ReporteTickets() {
             Total tickets: {tickets.length}
           </div>
         </div>
-        <div className={styles.chartSection}>
-          <PieChart
-            label={"Estado"}
-            data={getData("Estado")}
-            labels={getLabels("Estado")}
-            colorScale={["#ff9900", "#0085ff", "#ad00ff", "#1dcc2e", "#ff0000"]}
-          />
-          <PieChart
-            label={"SLA"}
-            data={getData("SLA")}
-            labels={getLabels("SLA")}
-            colorScale={["#A8FF64", "#FFED47", "#FFB155", "#FF6262"]}
-          />
-        </div>
-        <div className={styles.chartSection}>
-          <PieChart
-            label={"Tipo"}
-            data={getData("Tipo")}
-            labels={getLabels("Tipo")}
-          />
-          <PieChart
-            label={"Medio"}
-            data={getData("Medio")}
-            labels={getLabels("Medio")}
-          />
-        </div>
+        {tickets.length === 0 ? (
+          <div className={styles.noTickets}>No hay tickets cargados</div>
+        ) : (
+          <div className={styles.showCharts}>
+            <div className={styles.chartSection}>
+              <PieChart
+                label={"Estado"}
+                data={getData("Estado")}
+                labels={getLabels("Estado")}
+                colorScale={[
+                  "#ff9900",
+                  "#0085ff",
+                  "#ad00ff",
+                  "#1dcc2e",
+                  "#ff0000",
+                ]}
+              />
+              <PieChart
+                label={"SLA"}
+                data={getData("SLA")}
+                labels={getLabels("SLA")}
+                colorScale={["#A8FF64", "#FFED47", "#FFB155", "#FF6262"]}
+              />
+            </div>
+            <div className={styles.chartSection}>
+              <PieChart
+                label={"Tipo"}
+                data={getData("Tipo")}
+                labels={getLabels("Tipo")}
+              />
+              <PieChart
+                label={"Medio"}
+                data={getData("Medio")}
+                labels={getLabels("Medio")}
+              />
+            </div>
+          </div>
+        )}
       </div>
     );
   }

@@ -8,6 +8,15 @@
   font-size: 1.2vw;
 }
 
+.loading {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
 .totalTicketsContainer {
   width: 100%;
   height: 5vh;
@@ -19,6 +28,14 @@
   justify-content: flex-start;
   padding: 0.5%;
   position: relative;
+}
+
+.showCharts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 @keyframes desplegar {
@@ -114,5 +131,17 @@
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  color: rgba(0, 53, 108, 1);
+}
+
+.noTickets {
+  width: 100%;
+  height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: sans-serif, "Manrope";
+  font-weight: 600;
+  font-size: 4vw;
   color: rgba(0, 53, 108, 1);
 }

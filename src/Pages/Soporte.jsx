@@ -25,65 +25,63 @@ function Soporte() {
   });
 
   useEffect(() => {
-    const sort = (data) => {
+    const sortMinToMax = (data) => {
       switch (sortBy[0]) {
         case "lastModifiedDate":
-          if (sortBy[1] === 1) {
-            setTickets(
-              data.sort((a, b) =>
-                a.lastModifiedDate > b.lastModifiedDate ? 1 : -1
-              )
-            );
-          } else if (sortBy[1] === 2) {
-            setTickets(
-              data.sort((a, b) =>
-                a.lastModifiedDate < b.lastModifiedDate ? 1 : -1
-              )
-            );
-          } else {
-            setTickets(data);
-          }
+          setTickets(
+            data.sort((a, b) =>
+              a.lastModifiedDate > b.lastModifiedDate ? -1 : 1
+            )
+          );
           break;
         case "status":
-          if (sortBy[1] === 1) {
-            setTickets(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
-          } else if (sortBy[1] === 2) {
-            setTickets(data.sort((a, b) => (a.status < b.status ? 1 : -1)));
-          } else {
-            setTickets(data);
-          }
+          setTickets(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
           break;
         case "sla":
-          if (sortBy[1] === 1) {
-            setTickets(data.sort((a, b) => (a.sla > b.sla ? 1 : -1)));
-          } else if (sortBy[1] === 2) {
-            setTickets(data.sort((a, b) => (a.sla < b.sla ? 1 : -1)));
-          } else {
-            setTickets(data);
-          }
+          setTickets(data.sort((a, b) => (a.sla > b.sla ? 1 : -1)));
           break;
         case "type":
-          if (sortBy[1] === 1) {
-            setTickets(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
-          } else if (sortBy[1] === 2) {
-            setTickets(data.sort((a, b) => (a.type < b.type ? 1 : -1)));
-          } else {
-            setTickets(data);
-          }
+          setTickets(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
           break;
         default:
-          if (sortBy[1] === 1) {
-            setTickets(
-              data.sort((a, b) => (a.createdDate > b.createdDate ? 1 : -1))
-            );
-          } else if (sortBy[1] === 2) {
-            setTickets(
-              data.sort((a, b) => (a.createdDate < b.createdDate ? 1 : -1))
-            );
-          } else {
-            setTickets(data);
-          }
+          setTickets(
+            data.sort((a, b) => (a.createdDate > b.createdDate ? -1 : 1))
+          );
           break;
+      }
+    };
+
+    const sortMaxToMin = (data) => {
+      switch (sortBy[0]) {
+        case "lastModifiedDate":
+          setTickets(
+            data.sort((a, b) =>
+              a.lastModifiedDate > b.lastModifiedDate ? 1 : -1
+            )
+          );
+          break;
+        case "status":
+          setTickets(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
+          break;
+        case "sla":
+          setTickets(data.sort((a, b) => (a.sla > b.sla ? -1 : 1)));
+          break;
+        case "type":
+          setTickets(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
+          break;
+        default:
+          setTickets(
+            data.sort((a, b) => (a.createdDate > b.createdDate ? 1 : -1))
+          );
+          break;
+      }
+    };
+
+    const sort = (data) => {
+      if (sortBy[1] === 1) {
+        sortMinToMax(data);
+      } else {
+        sortMaxToMin(data);
       }
     };
 
@@ -113,10 +111,10 @@ function Soporte() {
       }
       if (response.status === 200) {
         setError(false);
-        if (sortBy.length > 1) {
-          sort(response.data);
-        } else {
+        if (sortBy.length === 0) {
           setTickets(response.data);
+        } else {
+          sort(response.data);
         }
       } else {
         setError(true);
@@ -143,13 +141,25 @@ function Soporte() {
           </div>
         ) : (
           <div className={styles.soporteContainer}>
-            <Filtros setSortBy={setSortBy} setFiltros={setFiltros} />
+            <Filtros
+              setSortBy={setSortBy}
+              setFiltros={setFiltros}
+              error={error}
+              setError={setError}
+            />
             <div className={styles.tickets}>
               {tickets.length === 0 ? (
                 <div className={styles.noTickets}>No hay tickets cargados</div>
               ) : (
                 tickets.map((ticket) => {
-                  return <TicketSelector key={ticket.id} ticket={ticket} />;
+                  return (
+                    <TicketSelector
+                      error={error}
+                      setError={setError}
+                      key={ticket.id}
+                      ticket={ticket}
+                    />
+                  );
                 })
               )}
             </div>
@@ -187,7 +197,13 @@ function Soporte() {
                 </div>
               </div>
             )}
-            {crearTicket && <TicketCreate setCrearTicket={setCrearTicket} />}
+            {crearTicket && (
+              <TicketCreate
+                error={error}
+                setError={setError}
+                setCrearTicket={setCrearTicket}
+              />
+            )}
           </div>
         )}
       </div>

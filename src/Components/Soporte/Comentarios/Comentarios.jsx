@@ -3,10 +3,9 @@ import { AiOutlineComment } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import axios from "axios";
-// import ErrorPage from "./../ErrorPage";
 import Comentario from "./Comentario";
 
-function Comentarios({ comentarios, id }) {
+function Comentarios({ comentarios, id, error, setError }) {
   const [comentarioSelected, setComentarioSelected] = useState(false);
   const [coment, setComent] = useState("");
 
@@ -62,6 +61,8 @@ function Comentarios({ comentarios, id }) {
                     id={id}
                     coment={coment}
                     comentarioIncluido={comentarioIncluido}
+                    error={error}
+                    setError={setError}
                   />
                 );
               })}

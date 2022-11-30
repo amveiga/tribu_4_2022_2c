@@ -25,11 +25,11 @@ function OrdenItem({ name, setSortBy, order }) {
 
   const handleClick = () => {
     if (selected === 2) {
+      setSortBy([]);
       setSelected(0);
-      setSortBy([order, 0]);
     } else {
-      setSelected(selected + 1);
       setSortBy([order, selected + 1]);
+      setSelected(selected + 1);
     }
   };
 
