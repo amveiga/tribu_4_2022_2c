@@ -47,7 +47,12 @@ function Comentarios({ comentarios, id }) {
         <div className={styles.title}>Comentarios</div>
         <AiOutlineComment size={"1.5vw"} color={"white"} />
         {comentarioSelected && (
-          <div onClick={() => deleteComents()} className={styles.eliminar}>
+          <div
+            onClick={() => deleteComents()}
+            className={
+              comentarios.length === 0 ? styles.escondido : styles.eliminar
+            }
+          >
             Eliminar comentarios
           </div>
         )}

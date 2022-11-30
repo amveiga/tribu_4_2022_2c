@@ -243,3 +243,17 @@
   border-bottom-right-radius: 20px;
   cursor: pointer;
 }
+
+.escondido {
+  z-index: 1000;
+  padding: 1%;
+  position: absolute;
+  top: -30%;
+  right: 2%;
+  background-color: white;
+  font-family: sans-serif, "Manrope";
+  font-size: 1vw;
+  color: rgba(0, 53, 108, 1);
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}

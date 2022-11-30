@@ -132,7 +132,7 @@ function Ticket({ ticket, editSelected, setEditSelected }) {
         return <ErrorPage />;
       });
       setComentarios(
-        response.data.sort((a, b) =>
+        response.data?.sort((a, b) =>
           a.lastModifiedDatetime < b.lastModifiedDatetime ? 1 : -1
         )
       );
