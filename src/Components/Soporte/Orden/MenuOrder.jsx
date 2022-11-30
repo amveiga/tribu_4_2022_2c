@@ -1,5 +1,5 @@
-import styles from "./../../Styles/Soporte/MenuOrden.module.css";
-import Orden from "../../Data/Orden.json";
+import styles from "./../../../Styles/Soporte/MenuOrden.module.css";
+import Orden from "../../../Data/Orden.json";
 import OrdenItem from "./OrdenItem";
 
 function MenuOrden({ setSortBy }) {

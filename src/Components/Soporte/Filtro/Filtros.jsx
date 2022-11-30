@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./../../Styles/Soporte/Filtros.module.css";
+import styles from "./../../../Styles/Soporte/Filtros.module.css";
 import { BiSort } from "react-icons/bi";
 import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";

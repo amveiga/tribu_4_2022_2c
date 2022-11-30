@@ -1,5 +1,5 @@
 import { VictoryLabel, VictoryPie } from "victory";
-import styles from "./../../Styles/Soporte/Reportes.module.css";
+import styles from "./../../../Styles/Soporte/Reportes.module.css";
 
 function PieChart({ label, data, labels }) {
   return (

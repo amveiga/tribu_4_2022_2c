@@ -11,11 +11,11 @@ import { HiPhone, HiMail, HiOutlineUserGroup, HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
-import Comentarios from "../Comentarios";
-import styles from "./../../Styles/Soporte/Ticket.module.css";
+import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import axios from "axios";
 import ErrorPage from "../ErrorPage";
+import Comentarios from "../Comentarios/Comentarios";
 
 function Ticket({ ticket, editSelected, setEditSelected }) {
   const [typeHovered, setTypeHovered] = useState(false);

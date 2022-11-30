@@ -1,13 +1,13 @@
 import styles from "./../Styles/Soporte/Soporte.module.css";
-import Filtros from "../Components/Filtro/Filtros";
+import Filtros from "../Components/Soporte/Filtro/Filtros";
 import { FaPlus } from "react-icons/fa";
-import TicketSelector from "../Components/Tickets/TicketSelector";
+import TicketSelector from "../Components/Soporte/Tickets/TicketSelector";
 import { useEffect, useState } from "react";
-import TicketCreate from "../Components/Tickets/TicketCreate";
+import TicketCreate from "../Components/Soporte/Tickets/TicketCreate";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import ReactLoading from "react-loading";
-import ErrorPage from "../Components/ErrorPage";
+import ErrorPage from "../Components/Soporte/ErrorPage";
 
 function Soporte() {
   const [addButtonClicked, setAddButtonClicked] = useState(false);

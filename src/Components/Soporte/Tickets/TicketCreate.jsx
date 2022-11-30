@@ -1,8 +1,8 @@
 import { HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
-import styles from "./../../Styles/Soporte/Ticket.module.css";
+import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
-import Filtros from "./../../Data/Filtros.json";
+import Filtros from "./../../../Data/Filtros.json";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import ErrorPage from "../ErrorPage";

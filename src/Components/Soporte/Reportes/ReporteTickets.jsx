@@ -1,5 +1,5 @@
-import Filtros from "./../../Data/Filtros.json";
-import styles from "./../../Styles/Soporte/Reportes.module.css";
+import Filtros from "./../../../Data/Filtros.json";
+import styles from "./../../../Styles/Soporte/Reportes.module.css";
 import PieChart from "./PieChart";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
@@ -27,7 +27,9 @@ function ReporteTickets() {
   const getLabels = (label) => {
     var labels = Filtros.find((filter) => filter.Nombre === label).Options.map(
       (option) => {
-        return option.value + ": " + getCantidad(label, option.value);
+        return getCantidad(label, option.value) === 0
+          ? ""
+          : option.value + ": " + getCantidad(label, option.value);
       }
     );
     return labels;

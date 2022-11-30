@@ -1,4 +1,4 @@
-import styles from "./../Styles/Soporte/ErrorPage.module.css";
+import styles from "./../../Styles/Soporte/ErrorPage.module.css";
 import { RiAlertFill } from "react-icons/ri";
 
 function ErrorPage() {

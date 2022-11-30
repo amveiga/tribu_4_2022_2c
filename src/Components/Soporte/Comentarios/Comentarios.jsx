@@ -1,10 +1,10 @@
-import styles from "./../Styles/Soporte/Comentarios.module.css";
+import styles from "./../../../Styles/Soporte/Comentarios.module.css";
 import { AiOutlineComment } from "react-icons/ai";
 import { IoSend } from "react-icons/io5";
 import { useState } from "react";
 import axios from "axios";
+import ErrorPage from "./../ErrorPage";
 import Comentario from "./Comentario";
-import ErrorPage from "./ErrorPage";
 
 function Comentarios({ comentarios, id }) {
   const [comentarioSelected, setComentarioSelected] = useState(false);

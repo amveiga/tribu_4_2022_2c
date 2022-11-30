@@ -1,7 +1,7 @@
 // import Calendario from "../Calendario";
-import Filtros from "./../../Data/Filtros.json";
+import Filtros from "./../../../Data/Filtros.json";
 import Select from "./Select";
-import styles from "./../../Styles/Soporte/MenuFiltro.module.css";
+import styles from "./../../../Styles/Soporte/MenuFiltro.module.css";
 
 function MenuFiltro({
   setFiltroAbierto,

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaLongArrowAltUp, FaLongArrowAltDown } from "react-icons/fa";
 import { BiSort } from "react-icons/bi";
-import styles from "./../../Styles/Soporte/MenuOrden.module.css";
+import styles from "./../../../Styles/Soporte/MenuOrden.module.css";
 
 function OrdenItem({ name, setSortBy, order }) {
   const [selected, setSelected] = useState(0);

@@ -5,8 +5,8 @@ import {
 import { HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
-import styles from "./../../Styles/Soporte/Ticket.module.css";
-import Filtros from "./../../Data/Filtros.json";
+import styles from "./../../../Styles/Soporte/Ticket.module.css";
+import Filtros from "./../../../Data/Filtros.json";
 import TicketSelect from "./TicketSelect";
 import { useEffect, useState } from "react";
 import axios from "axios";

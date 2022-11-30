@@ -1,4 +1,4 @@
-import styles from "./../../Styles/Soporte/Select.module.css";
+import styles from "./../../../Styles/Soporte/Select.module.css";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
 import { FaUser, FaWifi } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";

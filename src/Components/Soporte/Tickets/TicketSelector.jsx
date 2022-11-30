@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Ticket from "./Ticket";
 import TicketEdit from "./TicketEdit";
-import styles from "./../../Styles/Soporte/Ticket.module.css";
+import styles from "./../../../Styles/Soporte/Ticket.module.css";
 
 function TicketSelector({ ticket }) {
   const [editSelected, setEditSelected] = useState(false);

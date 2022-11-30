@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
 import { MdEdit, MdDelete, MdClose, MdCheck } from "react-icons/md";
-import styles from "./../Styles/Soporte/Comentarios.module.css";
-import ErrorPage from "./ErrorPage";
+import styles from "./../../../Styles/Soporte/Comentarios.module.css";
+import ErrorPage from "../ErrorPage";
 
 function Comentario({ comentarioIncluido, coment, id }) {
   const [editSelected, setEditSelected] = useState(false);

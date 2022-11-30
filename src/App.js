@@ -5,7 +5,7 @@ import Header from "./Components/Header";
 import Proyectos from "./Pages/Proyectos";
 import Soporte from "./Pages/Soporte";
 import RecursosHumanos from "./Pages/RecursosHumanos";
-import ReporteTickets from "./Components/Reportes/ReporteTickets";
+import ReporteTickets from "./Components/Soporte/Reportes/ReporteTickets";
 import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
