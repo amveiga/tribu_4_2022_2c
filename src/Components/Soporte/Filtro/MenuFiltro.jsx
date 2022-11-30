@@ -16,6 +16,7 @@ function MenuFiltro({
   setSla,
   setType,
   setOrigin,
+  clients,
 }) {
   const getStyle = (nombre) => {
     var style;
@@ -87,14 +88,6 @@ function MenuFiltro({
 
   return (
     <div className={styles.menuFiltro}>
-      {/* <div className={styles.filtrado}>
-        Fecha de Creación
-        <Calendario />
-      </div>
-      <div className={styles.filtrado}>
-        Última Modificación
-        <Calendario />
-      </div> */}
       {Filtros.map((filtro) => {
         return (
           <div
@@ -104,7 +97,7 @@ function MenuFiltro({
             {filtro.Nombre}
             <Select
               placeHolder={filtro.Placeholder}
-              options={filtro.Options}
+              options={filtro.Nombre === "Cliente" ? clients : filtro.Options}
               icon={filtro.Icon}
               setter={getSetter(filtro.Nombre)}
               value={getValue(filtro.Nombre)}
