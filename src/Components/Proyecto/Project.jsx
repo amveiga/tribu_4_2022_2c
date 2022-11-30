@@ -81,7 +81,7 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                         </div>
                         <div className={styles.item}>
                             <FiClock size={"1.5vw"} color={"rgba(0,53,108,1)"} title="Horas invertidas del proyecto" />
-                            {project.invertedHours}
+                            {project.invertedHours} h
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import {FaPlus} from "react-icons/fa"
-import styles from "../../Styles/Proyectos/Proyectos.module.css"
-import CreateProject from "./CreateProject";
+import { FaPlus } from "react-icons/fa";
+import styles from "../../Styles/Proyectos/Proyectos.module.css";
+import TaskController from "./TaskController";
 
-function ButtonCreateTask({id, data}) {
+function ButtonCreateTask({ projectID, listRecursos }) {
   const [addButtonClicked, setAddButtonClicked] = useState(false);
   const [rotateActivate, setRotateActivate] = useState(false);
   const [optionActivate, setOptionActivate] = useState(false);
@@ -32,18 +32,24 @@ function ButtonCreateTask({id, data}) {
       </div>
       {addButtonClicked && (
         <div className={styles.options}>
-          <div className={styles.option}
-               onClick={ () => {
-                  // postTask(id, {
-
-                  // })
-               }}
-            >
+          <div
+            className={styles.option}
+            onClick={() => {
+              setCrearTask(true);
+            }}
+          >
             Crear Tarea
           </div>
         </div>
       )}
-      {crearTask}
+      {crearTask && 
+      <TaskController
+          id={""}
+          task={[]}
+          listRecursos={listRecursos}
+          projectID={projectID}
+          method={"Post"}
+      />}
     </div>
   );
 }

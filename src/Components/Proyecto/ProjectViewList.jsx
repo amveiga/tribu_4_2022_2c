@@ -4,7 +4,7 @@ const getUrl = "https://squad11-proyectos.onrender.com/api/projects"
 const getUrlTask = "https://squad11-proyectos.onrender.com/api/tasks/project"
 const getUrlTaskId = "https://squad11-proyectos.onrender.com/api/tasks"
 const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
-const apiRecursos = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/recursos-psa/1.0.0/m/api/recursos"
+const apiRecursos = "https://squad1220222c-production.up.railway.app/recursos"
 
 export async function ProjectViewAPI(state) {
     const list = await axios.get(getUrl);
@@ -98,7 +98,31 @@ export async function addInvertedHours(taskId, hours){
     .then((res) => {
         window.location.reload()
     })
+}
 
-    await axios.get()
+export async function updateTask(id, data){
+
+    await axios({
+        method:"put",
+        url: getUrlTaskId.concat("/",id),
+        data: data
+    })
+    .then((res) => {
+        window.location.reload()
+    })
+    .catch((err) => console.log(err))
+
+}
+
+export async function postTask(data) {
+    await axios({
+        method : "post",
+        url: getUrlTaskId,
+        data : data
+    })
+    .then( (res) => {
+        window.location.reload()
+    })
+
 
 }

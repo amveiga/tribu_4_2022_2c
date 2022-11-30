@@ -120,11 +120,13 @@
     margin-right: 0;
     border-right: solid #ACC0D8 5px;
 }
+
 .linkTop {
   
   height: 1px;
   border-top: solid #ACC0D8 5px;
 }
+
 .etiquetaTarea{
   font-size: 35px;
   width: 65%;
@@ -263,4 +265,12 @@
   background-color: #f7efef;
 }
 
+.titleAndBBcontainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.titulo{
+  padding-left: 5%;
+}
