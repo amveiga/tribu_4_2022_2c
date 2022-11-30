@@ -8,6 +8,7 @@ import PopUpProject from "./PopUp";
 import { useState } from "react";
 
 function Project({ project, editSelected, setEditSelected, setClient, setRecurso }) {
+    // eslint-disable-next-line
     const [deleteSelected, setDeleteSelected] = useState(false);
     
     const parseDate = (fecha) => {

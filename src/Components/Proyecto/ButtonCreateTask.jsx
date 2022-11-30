@@ -9,6 +9,7 @@ function ButtonCreateTask({ projectID, listRecursos }) {
   const [optionActivate, setOptionActivate] = useState(false);
   const [crearTask, setCrearTask] = useState(false);
 
+
   return (
     <div className={styles.proyectosContainer}>
       <div
@@ -42,13 +43,13 @@ function ButtonCreateTask({ projectID, listRecursos }) {
           </div>
         </div>
       )}
-      {crearTask && 
-      <TaskController
-          id={""}
-          task={[]}
-          listRecursos={listRecursos}
-          projectID={projectID}
-          method={"Post"}
+      {crearTask && <TaskController
+                        id={""}
+                        task={[]}
+                        listRecursos={listRecursos}
+                        projectID={projectID}
+                        method={"Post"}
+                        setStateCreate={setCrearTask}
       />}
     </div>
   );

@@ -6,24 +6,25 @@ import { useParams } from "react-router-dom";
 
 function SeccionTareas({projectID, listRecursos}) {
     const [tareas, setTareas] = useState([]);
-    const {id} = useParams();
+    const { id } = useParams();
 
     const getTareasFilter = (statusTask) => {
         return tareas.filter( tarea=>
             tarea.status === statusTask
         )
     }
-
     return (        
-        <div>
-            <div className={styles.linkTop}></div>
-                {useEffect(() => {
-                    GetAllTask(id, setTareas);
-                },[])}
-                Tareas
+        <div className={styles.linkTop}>
+            {useEffect(() => {
+                GetAllTask(id, setTareas);
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+            },[])}
+            Tareas
             <div className={styles.seccionTareas}>
                 <div className={styles.columnaTareas}>
-                    <div className={styles.etiquetaTarea + " "+ styles.pendiente}>Pendiente </div> 
+                    <div className={styles.etiquetaTarea + " "+ styles.pendiente}>
+                        Pendiente 
+                    </div> 
                     {getTareasFilter("pending").map((tarea) =>{
                         return  <TarjetaTarea tarea={tarea}/>
                     })}    
@@ -38,7 +39,7 @@ function SeccionTareas({projectID, listRecursos}) {
                 </div>
                 <div className={styles.columnaTareas}>
                     <div className={styles.etiquetaTarea  + " "+ styles.completado}>
-                    Completada
+                        Completada
                     </div>
                     {getTareasFilter("complete").map((tarea) =>{
                         return  <TarjetaTarea  tarea={tarea}/>
@@ -52,12 +53,9 @@ function SeccionTareas({projectID, listRecursos}) {
                         return  <TarjetaTarea  tarea={tarea}/>
                     })}
                 </div>
-            </div>
+            </div>    
         </div>
-       
-    
-    
-  );
+    );
 }
 
 

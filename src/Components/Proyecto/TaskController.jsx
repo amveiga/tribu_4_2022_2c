@@ -8,12 +8,10 @@ import Filtros from "../../Data/FiltrosTarea.json";
 import Select from "react-select";
 import { updateTask, postTask } from "./ProjectViewList";
 
-export function TaskController({ id, task, listRecursos, projectID, method }) {
-
-  console.log(projectID);
+export function TaskController({ id, task, listRecursos, projectID, method, setStateCreate }) {
 
   const [description, setdescription] = useState(
-    task.description ? task.descripcion : ""
+    task.description ? task.description : ""
   );
   const handleDescriptionChange = (event) => {
     setdescription(event.target.value);
@@ -35,15 +33,9 @@ export function TaskController({ id, task, listRecursos, projectID, method }) {
   const [stateSelected, setStateSelected] = useState(
     task.status ? task.status : ""
   );
-  const [showTask, setShowTask] = useState(false);
-
   const getOptions = (dato) => {
     return Filtros.find((e) => e.Nombre === dato).Options;
   };
-
-  console.log(selectedResources.map((resource) => ({"id" : resource.value})))
-
-
   return (
     <div className={styles.projectCreateContainer}>
       <div className={styles.projectCreate}>
@@ -143,8 +135,7 @@ export function TaskController({ id, task, listRecursos, projectID, method }) {
       <div className={styles.editSelected + " " + styles.createSelected}>
         <div
           onClick={() => {
-            setShowTask(false);
-            window.location.reload();
+            setStateCreate(false);
           }}
           className={styles.editCancel}
         >
@@ -153,36 +144,34 @@ export function TaskController({ id, task, listRecursos, projectID, method }) {
         <div
           className={styles.editConfirm}
           onClick={() => {
-            setShowTask(true);
-          }}
+            switch (method){
+              case "Put" :  updateTask(id, {
+                              name: name,
+                              description: description,
+                              idealInitDate: initFechaSelect,
+                              idealEndDate: endFechaSelect,
+                              status: stateSelected,
+                              responsible: selectedResources.map((resource) => {
+                                              return {"id" : resource.value}})
+                            });
+                            break;
+              case "Post":  postTask({
+                              "name": name,
+                              "description": description,
+                              "idealInitDate": initFechaSelect,
+                              "idealEndDate": endFechaSelect,
+                              "responsible": selectedResources.map( (resource) => {
+                                  return {"id" : resource.value}
+                              }),
+                              "projectID" : projectID
+                            });
+                            break;
+              default: ;
+            }
+            }}
         >
           <HiCheck size={"2vw"} color={"white"} />
         </div>
-        { method === "Put" &&
-          showTask &&
-          updateTask(id, {
-            name: name,
-            description: description,
-            idealInitDate: initFechaSelect,
-            idealEndDate: endFechaSelect,
-            status: stateSelected,
-            responsible: selectedResources.map((resource) => {
-                return {"id" : resource.value}})
-          })}
-
-          {method==="Post" &&
-           showTask &&
-           postTask({
-            "name": name,
-            "description": description,
-            "idealInitDate": initFechaSelect,
-            "idealEndDate": endFechaSelect,
-            "responsible": selectedResources.map( (resource) => {
-                return {"id" : resource.value}
-            }),
-            "projectID" : projectID
-           })  
-          }
       </div>
     </div>
   );

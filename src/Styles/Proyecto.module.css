@@ -3,12 +3,10 @@
     height: 85vh;
     font-family: sans-serif, "Manrope";
     text-align: center;
-    font-size: 4vw;
+    font-size: 3vw;
     color: rgba(0, 53, 108, 1);
     font-weight: bolder;
     display: flex;
     flex-direction: column;
-   
     justify-content: flex-start;
-    
-  }
+}

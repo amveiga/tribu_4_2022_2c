@@ -1,6 +1,8 @@
 import styles from "./../../Styles/Proyectos/Tarea.module.css";
 import {useEffect, useState} from 'react'
 import {GetProjectId} from "../../Components/Proyecto/ProjectViewList"
+import { useNavigate } from "react-router-dom"
+import { BsArrowLeftCircleFill } from "react-icons/bs"
 
 function ProyectoHeader({id}) {
     const [project, setProject] = useState([]);
@@ -32,14 +34,22 @@ function ProyectoHeader({id}) {
       }
    }
 
+   const navigate = useNavigate();
+
    return (
 
           <div className={styles.proyectoHeader}>
             <div className={styles.bloqueHeader}>
                {useEffect(() => {
                         GetProjectId(id, setProject)
+                        // eslint-disable-next-line react-hooks/exhaustive-deps
                },[])}
-             <div className={styles.titulo}>{project.name}</div>
+             <div>
+               <div className={styles.backButton} title="Volver" onClick={() => navigate(-1)}>
+                                <BsArrowLeftCircleFill/>
+               </div>
+               <div className={styles.titulo}>{project.name}</div>
+             </div>
              <div className={styles.datos}>{project._id}</div>
              <div className={styles.column}>
                 <div>Tipo: </div>
