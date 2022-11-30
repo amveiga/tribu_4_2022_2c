@@ -3,8 +3,8 @@ import { IoClose } from "react-icons/io5";
 import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import Filtros from "./../../../Data/Filtros.json";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { GetClientes, PostTicket } from "../../../Utils/SoporteApi";
 
 function TicketCreate({ setCrearTicket, error, setError }) {
   const [title, setTitle] = useState("");
@@ -24,11 +24,7 @@ function TicketCreate({ setCrearTicket, error, setError }) {
 
   useEffect(() => {
     const getClients = async () => {
-      var response = await axios
-        .get(
-          "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
-        )
-        .catch((e) => setError(true));
+      var response = await GetClientes(setError);
 
       if (response.status === 200) {
         setError(false);
@@ -45,20 +41,18 @@ function TicketCreate({ setCrearTicket, error, setError }) {
   }, [setError]);
 
   const createTicket = () => {
-    axios.post(
-      "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
-      {
-        title: title,
-        description: description,
-        status: status,
-        type: type,
-        origin: origin,
-        sla: sla,
-        clientId: client,
-        userId: "",
-        taskId: "",
-      }
-    );
+    var body = {
+      title: title,
+      description: description,
+      status: status,
+      type: type,
+      origin: origin,
+      sla: sla,
+      clientId: client,
+      userId: "",
+      taskId: "",
+    };
+    PostTicket(body);
   };
 
   return (

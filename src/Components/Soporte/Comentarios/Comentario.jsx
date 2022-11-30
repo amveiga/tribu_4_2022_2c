@@ -1,26 +1,22 @@
-import axios from "axios";
 import { useState } from "react";
 import { MdEdit, MdDelete, MdClose, MdCheck } from "react-icons/md";
+import { DeleteComentario, UpdateComentario } from "../../../Utils/SoporteApi";
 import styles from "./../../../Styles/Soporte/Comentarios.module.css";
 
 function Comentario({ comentarioIncluido, coment, id, error, setError }) {
   const [editSelected, setEditSelected] = useState(false);
   const [comentEdited, setComentEdited] = useState(coment);
 
-  const deleteComent = async (commentId) => {
-    await axios.delete(
-      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`
-    );
+  const deleteComentario = async (commentId) => {
+    await DeleteComentario(commentId);
   };
 
   const updateComent = async (commentId) => {
-    axios.put(
-      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${commentId}`,
-      {
-        ticketId: id,
-        body: comentEdited,
-      }
-    );
+    var body = {
+      ticketId: id,
+      body: comentEdited,
+    };
+    await UpdateComentario(commentId, body);
   };
 
   return (
@@ -68,7 +64,7 @@ function Comentario({ comentarioIncluido, coment, id, error, setError }) {
               onClick={() => setEditSelected(true)}
             />
             <MdDelete
-              onClick={() => deleteComent(comentarioIncluido.id)}
+              onClick={() => deleteComentario(comentarioIncluido.id)}
               className={styles.icon}
               size={"1.5vw"}
               color={"rgba(0,53,108,1)"}

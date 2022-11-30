@@ -13,8 +13,14 @@ import { ImMoveUp } from "react-icons/im";
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
-import axios from "axios";
 import Comentarios from "../Comentarios/Comentarios";
+import {
+  DeleteTicket,
+  GetComentarios,
+  GetRecursos,
+  GetTareas,
+  UpdateTicket,
+} from "../../../Utils/SoporteApi";
 
 function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
   const [typeHovered, setTypeHovered] = useState(false);
@@ -59,42 +65,26 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
   };
 
   const deleteTicket = async () => {
-    await axios.delete(
-      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`
-    );
+    await DeleteTicket(ticket.id);
   };
 
   const updateTicket = async () => {
-    await axios.put(
-      `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets/${ticket.id}`,
-      {
-        title: ticket.title,
-        description: ticket.description,
-        status: ticket.status,
-        type: ticket.type,
-        origin: ticket.origin,
-        sla: ticket.sla,
-        clientId: ticket.clientId,
-        userId: userId,
-        taskId: tareaId,
-      }
-    );
+    var body = {
+      title: ticket.title,
+      description: ticket.description,
+      status: ticket.status,
+      type: ticket.type,
+      origin: ticket.origin,
+      sla: ticket.sla,
+      clientId: ticket.clientId,
+      userId: userId,
+      taskId: tareaId,
+    };
+    await UpdateTicket(ticket.id, body);
   };
 
-  const comentario = axios.create({
-    baseURL: `https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments/${ticket.id}`,
-  });
-
-  const tareaAxios = axios.create({
-    baseURL: `https://squad11-proyectos.onrender.com/api/tasks`,
-  });
-
-  const recursosAxios = axios.create({
-    baseURL: `https://squad1220222c-production.up.railway.app/recursos`,
-  });
-
   const getTareas = async () => {
-    var tareas = await tareaAxios.get().catch((error) => setError(true));
+    var tareas = await GetTareas(setError);
     if (tareas.status === 200) {
       setError(false);
       setTareas(
@@ -108,7 +98,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
   };
 
   const getRecursos = async () => {
-    var recursos = await recursosAxios.get().catch((error) => setError(true));
+    var recursos = await GetRecursos();
     if (recursos.status === 200) {
       setError(false);
       setRecursos(
@@ -123,7 +113,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
 
   useEffect(() => {
     const getComentarios = async () => {
-      var response = await comentario.get().catch((e) => setError(true));
+      var response = await GetComentarios(setError, ticket.id);
       if (response.status === 200) {
         setError(false);
         setComentarios(
@@ -137,7 +127,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
     };
 
     getComentarios();
-  }, [comentario, setError]);
+  });
 
   return (
     <div className={styles.container}>

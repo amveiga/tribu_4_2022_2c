@@ -20,71 +20,67 @@ function Soporte() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  const sortMinToMax = (data) => {
+    switch (sortBy[0]) {
+      case "lastModifiedDate":
+        setTickets(
+          data.sort((a, b) =>
+            a.lastModifiedDatetime > b.lastModifiedDatetime ? 1 : -1
+          )
+        );
+        break;
+      case "status":
+        setTickets(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
+        break;
+      case "sla":
+        setTickets(data.sort((a, b) => (a.sla > b.sla ? 1 : -1)));
+        break;
+      case "type":
+        setTickets(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
+        break;
+      default:
+        setTickets(
+          data.sort((a, b) => (a.createdDatetime > b.createdDatetime ? 1 : -1))
+        );
+        break;
+    }
+  };
+
+  const sortMaxToMin = (data) => {
+    switch (sortBy[0]) {
+      case "lastModifiedDate":
+        setTickets(
+          data.sort((a, b) =>
+            a.lastModifiedDatetime > b.lastModifiedDatetime ? -1 : 1
+          )
+        );
+        break;
+      case "status":
+        setTickets(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
+        break;
+      case "sla":
+        setTickets(data.sort((a, b) => (a.sla > b.sla ? -1 : 1)));
+        break;
+      case "type":
+        setTickets(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
+        break;
+      default:
+        setTickets(
+          data.sort((a, b) => (a.createdDatetime > b.createdDatetime ? -1 : 11))
+        );
+        break;
+    }
+  };
+
+  const sort = (data) => {
+    if (sortBy[1] === 1) {
+      sortMinToMax(data);
+    } else {
+      sortMaxToMin(data);
+    }
+  };
+
   useEffect(() => {
-    const sortMinToMax = (data) => {
-      switch (sortBy[0]) {
-        case "lastModifiedDate":
-          setTickets(
-            data.sort((a, b) =>
-              a.lastModifiedDatetime > b.lastModifiedDatetime ? 1 : -1
-            )
-          );
-          break;
-        case "status":
-          setTickets(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
-          break;
-        case "sla":
-          setTickets(data.sort((a, b) => (a.sla > b.sla ? 1 : -1)));
-          break;
-        case "type":
-          setTickets(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
-          break;
-        default:
-          setTickets(
-            data.sort((a, b) =>
-              a.createdDatetime > b.createdDatetime ? 1 : -1
-            )
-          );
-          break;
-      }
-    };
-
-    const sortMaxToMin = (data) => {
-      switch (sortBy[0]) {
-        case "lastModifiedDate":
-          setTickets(
-            data.sort((a, b) =>
-              a.lastModifiedDatetime > b.lastModifiedDatetime ? -1 : 1
-            )
-          );
-          break;
-        case "status":
-          setTickets(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
-          break;
-        case "sla":
-          setTickets(data.sort((a, b) => (a.sla > b.sla ? -1 : 1)));
-          break;
-        case "type":
-          setTickets(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
-          break;
-        default:
-          setTickets(
-            data.sort((a, b) =>
-              a.createdDatetime > b.createdDatetime ? -1 : 11
-            )
-          );
-          break;
-      }
-    };
-
-    const sort = (data) => {
-      if (sortBy[1] === 1) {
-        sortMinToMax(data);
-      } else {
-        sortMaxToMin(data);
-      }
-    };
-
     const getTicketsEffect = async () => {
       var response = await GetTickets(setLoading, setError, filtros);
       if (response.status !== 200) {
