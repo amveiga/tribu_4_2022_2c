@@ -1,4 +1,3 @@
-// import Calendario from "../Calendario";
 import Filtros from "./../../../Data/Filtros.json";
 import Select from "./Select";
 import styles from "./../../../Styles/Soporte/MenuFiltro.module.css";

@@ -4,32 +4,27 @@ import PieChart from "./PieChart";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import ErrorPage from "../ErrorPage";
 import ReactLoading from "react-loading";
+import { GetTickets } from "../../../Utils/SoporteApi";
 
 function ReporteTickets() {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const ticket = axios.create({
-    baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
-  });
-
   useEffect(() => {
     const getTickets = async () => {
-      const response = await ticket.get().catch((error) => setError(true));
+      const response = await GetTickets(setLoading, setError);
       if (response.status === 200) {
         setError(false);
         setTickets(response.data);
-        setLoading(false);
       } else {
         setError(true);
       }
     };
     getTickets();
-  }, [ticket]);
+  }, []);
 
   const getLabels = (label) => {
     var labels = Filtros.find((filter) => filter.Nombre === label).Options.map(

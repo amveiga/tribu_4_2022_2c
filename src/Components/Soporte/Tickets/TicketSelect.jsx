@@ -65,19 +65,23 @@ function TicketSelect({
       </div>
       {selected && (
         <div className={styles.menu}>
-          {options.map((option) => {
-            return (
-              <div
-                onClick={() => {
-                  handleClick(option);
-                }}
-                className={styles.optionTicket}
-                key={option.label}
-              >
-                {option.value}
-              </div>
-            );
-          })}
+          {options.length === 0 ? (
+            <div>No hay contenido</div>
+          ) : (
+            options.map((option) => {
+              return (
+                <div
+                  onClick={() => {
+                    handleClick(option);
+                  }}
+                  className={styles.optionTicket}
+                  key={option.label}
+                >
+                  {option.value}
+                </div>
+              );
+            })
+          )}
         </div>
       )}
     </div>

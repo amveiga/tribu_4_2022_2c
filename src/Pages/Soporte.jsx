@@ -5,9 +5,9 @@ import TicketSelector from "../Components/Soporte/Tickets/TicketSelector";
 import { useEffect, useState } from "react";
 import TicketCreate from "../Components/Soporte/Tickets/TicketCreate";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import ReactLoading from "react-loading";
 import ErrorPage from "../Components/Soporte/ErrorPage";
+import { GetTickets } from "../Utils/SoporteApi";
 
 function Soporte() {
   const [addButtonClicked, setAddButtonClicked] = useState(false);
@@ -20,17 +20,13 @@ function Soporte() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const ticket = axios.create({
-    baseURL: "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets",
-  });
-
   useEffect(() => {
     const sortMinToMax = (data) => {
       switch (sortBy[0]) {
         case "lastModifiedDate":
           setTickets(
             data.sort((a, b) =>
-              a.lastModifiedDate > b.lastModifiedDate ? -1 : 1
+              a.lastModifiedDatetime > b.lastModifiedDatetime ? 1 : -1
             )
           );
           break;
@@ -45,7 +41,9 @@ function Soporte() {
           break;
         default:
           setTickets(
-            data.sort((a, b) => (a.createdDate > b.createdDate ? -1 : 1))
+            data.sort((a, b) =>
+              a.createdDatetime > b.createdDatetime ? 1 : -1
+            )
           );
           break;
       }
@@ -56,7 +54,7 @@ function Soporte() {
         case "lastModifiedDate":
           setTickets(
             data.sort((a, b) =>
-              a.lastModifiedDate > b.lastModifiedDate ? 1 : -1
+              a.lastModifiedDatetime > b.lastModifiedDatetime ? -1 : 1
             )
           );
           break;
@@ -71,7 +69,9 @@ function Soporte() {
           break;
         default:
           setTickets(
-            data.sort((a, b) => (a.createdDate > b.createdDate ? 1 : -1))
+            data.sort((a, b) =>
+              a.createdDatetime > b.createdDatetime ? -1 : 11
+            )
           );
           break;
       }
@@ -85,43 +85,21 @@ function Soporte() {
       }
     };
 
-    const getTickets = async () => {
-      var response;
-      if (filtros !== "") {
-        response = await axios
-          .get(
-            "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/tickets?" +
-              filtros
-          )
-          .then(
-            setTimeout(() => {
-              setLoading(false);
-            }, 2000)
-          )
-          .catch((error) => setError(true));
+    const getTicketsEffect = async () => {
+      var response = await GetTickets(setLoading, setError, filtros);
+      if (response.status !== 200) {
+        setError(true);
       } else {
-        response = await ticket
-          .get()
-          .then(
-            setTimeout(() => {
-              setLoading(false);
-            }, 2000)
-          )
-          .catch((error) => setError(true));
-      }
-      if (response.status === 200) {
         setError(false);
         if (sortBy.length === 0) {
           setTickets(response.data);
         } else {
           sort(response.data);
         }
-      } else {
-        setError(true);
       }
     };
-    getTickets();
-  }, [ticket, filtros, sortBy.length, sortBy]);
+    getTicketsEffect();
+  });
 
   var component;
 
