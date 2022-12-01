@@ -61,7 +61,7 @@
 .calendar,
 .project-task,
 .hours-select,
-input {
+.input {
   width: 230px;
   margin-left: 30px;
   background-color: rgb(222, 222, 222);

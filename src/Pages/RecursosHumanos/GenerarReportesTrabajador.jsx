@@ -60,9 +60,9 @@ function GenerarReportesTrabajador() {
                         <p>Indique entre  que fechas desea generar el reporte:</p>
                         <div className="date-div">
                             <p>Entre</p>
-                            <input type="date" name="" id="" />
+                            <input className="input" type="date" name="" id="" />
                             <p>y</p>
-                            <input type="date" name="" id="" />
+                            <input className="input" type="date" name="" id="" />
                         </div>
                     </div>
                 </div>

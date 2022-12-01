@@ -136,10 +136,10 @@
 }
 
 .link {
-  text-decoration: none;
-  color: rgba(0, 53, 108, 1);
+  text-decoration: none !important;
+  color: rgba(0, 53, 108, 1) !important;
 }
 
 .link:focus {
-  color: rgba(0, 53, 108, 1);
+  color: rgba(0, 53, 108, 1) !important;
 }

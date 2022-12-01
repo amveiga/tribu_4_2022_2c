@@ -163,7 +163,7 @@ function Tareas() {
 
         <div className="button-container">
           <input
-            className="task-button back-button"
+            className="task-button back-button input"
             type="button"
             value="Volver"
             onClick={volver}
@@ -269,7 +269,7 @@ function Tareas() {
               <input
                 disabled={true}
                 type="date"
-                className="edit-input"
+                className="edit-input input"
                 value={
                   tareaEditable
                     ? tareaEditable.fechaDeLaTareaACargar.split("T")[0]

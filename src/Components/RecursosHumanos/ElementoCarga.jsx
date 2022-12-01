@@ -92,6 +92,7 @@ function ElementoCarga({
             <div className="div-section">
               <div className="work-mode-div">
                 <input
+                  className="input"
                   type="number"
                   placeholder="Cantidad de horas"
                   defaultValue={cantidadHoras}
@@ -169,6 +170,7 @@ function ElementoCarga({
             <div className="div-section">
               <div className="work-mode-div">
                 <input
+                  className="input"
                   type="number"
                   placeholder="Cantidad de horas"
                   defaultValue={cantidadHoras}
@@ -209,6 +211,7 @@ function ElementoCarga({
             <div className="div-section">
               <div className="work-mode-div">
                 <input
+                  className="input"
                   type="number"
                   placeholder="Cantidad de horas"
                   defaultValue={cantidadHoras}
@@ -225,6 +228,7 @@ function ElementoCarga({
           <div className="div-section">
             <div className="work-mode-div">
               <input
+                className="input"
                 type="number"
                 placeholder="Cantidad de horas"
                 defaultValue={cantidadHoras}
@@ -263,6 +267,7 @@ function ElementoCarga({
             <div className="div-section">
               <div className="work-mode-div">
                 <input
+                className="input"
                   type="number"
                   placeholder="Cantidad de horas"
                   defaultValue={cantidadHoras}

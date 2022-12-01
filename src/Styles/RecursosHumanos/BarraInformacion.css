@@ -94,8 +94,10 @@
   right: 5%;
   top: 10%;
   width: 70px;
+  height: 70px;
   border-radius: 50px;
   cursor: pointer;
+  border: none;
 }
 
 .add-button,

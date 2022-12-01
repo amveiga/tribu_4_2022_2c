@@ -55,9 +55,9 @@ function GenerarReportesProyecto() {
                         <p>Indique entre que fechas desea generar el reporte:</p>
                         <div className="date-div">
                             <p>Entre</p>
-                            <input type="date" name="" id="calendar-min" onChange={establecerMinimo}/>
+                            <input className="input" type="date" name="" id="calendar-min" onChange={establecerMinimo}/>
                             <p>y</p>
-                            <input type="date" name="" id="calendar-max" onChange={establecerMaximo}/>
+                            <input className="input" type="date" name="" id="calendar-max" onChange={establecerMaximo}/>
                         </div>
                     </div>
                 </div>
