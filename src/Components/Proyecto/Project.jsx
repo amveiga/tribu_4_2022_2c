@@ -6,6 +6,7 @@ import { MdEdit } from "react-icons/md";
 import styles from "./../../Styles/Proyectos/Project.module.css";
 import PopUpProject from "./PopUp";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Project({ project, editSelected, setEditSelected, setClient, setRecurso }) {
     // eslint-disable-next-line
@@ -45,9 +46,9 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                     <div className={styles.sectionOne}>
                         <div className={styles.headerSection}>
                             <div className={styles.titleSection} >
-                                <a href={"/proyectos/" + project._id}>    
+                                <NavLink to={"/proyectos/"+project._id}>
                                     {project.name}
-                                </a>
+                                </NavLink>
                             </div>
                         </div>
                         <div className={styles.descripcion}>
