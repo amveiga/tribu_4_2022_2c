@@ -1,4 +1,5 @@
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const getUrl = "https://squad11-proyectos.onrender.com/api/projects"
 const getUrlTask = "https://squad11-proyectos.onrender.com/api/tasks/project"
@@ -33,14 +34,14 @@ export async function updateProject(id, data){
         data: data
     })
     .then((res) => {
-        window.location.reload()
+        <NavLink to={"/proyecto"}/>
     })
 }
 
 export async function DeleteProject(id) {
     await axios.delete(`${getUrl}/${id}`)
     .then((res) => {
-        window.location.reload();
+        <NavLink to={"/proyecto"}/>
     })   
 }
 
@@ -66,7 +67,7 @@ export async function postProject(data){
         data : data
     })
     .then( (res) => {
-        window.location.reload();
+        <NavLink to={"/proyecto"}/>
     })
 
 }
@@ -108,9 +109,7 @@ export async function addInvertedHours(taskId, hours){
         url : getUrlTaskId.concat("/", taskId, "/", "hours"),
         data: { "hours": parseInt(hours, 10) }
     })
-    .then((res) => {
-        window.location.reload()
-    })
+    
 }
 
 export async function updateTask(id, data){
@@ -121,7 +120,7 @@ export async function updateTask(id, data){
         data: data
     })
     .then((res) => {
-        window.location.reload()
+        <NavLink to={"/tarea/"+id}/>
     })
     .catch((err) => console.log(err))
 
@@ -134,7 +133,7 @@ export async function postTask(data) {
         data : data
     })
     .then( (res) => {
-        window.location.reload()
+        <NavLink to={"/proyectos/"+data.projectID}/>
     })
 
 
