@@ -8,14 +8,19 @@ function Proyectos() {
     const [clients, setClients] = useState([]);
     const [recursos, setRecursos] = useState([]);
     const [loading, setLoading] = useState(true);
-
+    const clientes= [];
     const clientsName = [];
     const recursosName = [];
+    
     clients.map((cliente) => {
         return  clientsName.push({"value": cliente["id"], 
             "label": cliente["razon social"]})}     
     )
 
+    clients.map((client) => {
+        return clientes.push({ label: client["razon social"], value: client["id"] });
+    })
+    
     recursos.map((recurso) => {
         return recursosName.push({"value": recurso["legajo"],
             "label" : `${recurso["Nombre"]}, ${recurso["Apellido"]}`})
@@ -23,10 +28,7 @@ function Proyectos() {
   
     useEffect(() => {
       GetClients(setClients, setLoading);
-      if(!setLoading) {
-        setLoading(true)
-        GetRecursos(setRecursos, setLoading);
-      }
+      GetRecursos(setRecursos, setLoading);  
     }, [])
   
   return (
@@ -41,12 +43,16 @@ function Proyectos() {
                     />
                 </div>
             ) : (
-                <ProjectList 
-                    listClient={clientsName}
-                    clientes={clients}
-                    listRecursos={recursosName}
-                    recursos={recursos}
-                />)}
+                <div  className={styles.proyectosContainer}>    
+                    <ProjectList 
+                        listClient={clientsName}
+                        clientes={clients}
+                        listRecursos={recursosName}
+                        recursos={recursos}
+                        clientesR={clientes}
+                    />
+                </div>
+                )}
     </div>
   )
 }

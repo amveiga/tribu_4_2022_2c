@@ -44,8 +44,11 @@ export async function DeleteProject(id) {
     })   
 }
 
-export async function GetAllTask(id, state) {
-    const list = await axios.get(`${getUrlTask}/${id}`);
+export async function GetAllTask(id, state, loading) {
+    const list = await axios.get(`${getUrlTask}/${id}`)
+                            .then(
+                                 setTimeout(() => {loading(false)}, 2000)
+                            );
     state(list.data)
 }
 
@@ -69,17 +72,21 @@ export async function postProject(data){
 }
 
 export async function GetRecursos(state, loading) {
-    const recursos = await axios.get(apiRecursos)
-            .then(
+    await axios.get(apiRecursos)
+            .then( async (res) => {
+                await state(res.data);
                 setTimeout(() => {loading(false)}, 2000)
-            )          
-    state(recursos.data);
+            })
 }
 
-export async function GetTaskId(id, state, stateList) {
-    const list = await axios.get(`${getUrlTaskId}/${id}`)
-    await state(list.data);
-    return await stateList(list.data.responsible);
+export async function GetTaskId(id, state, stateList, loading) {
+    await axios.get(`${getUrlTaskId}/${id}`)
+                            .then(  async (res)  => {
+                                await state(res.data);
+                                await stateList(res.data.responsible);
+                                setTimeout(() => {loading(false)}, 2000)
+                    })
+  
 }
 
 export async function addInvertedHours(taskId, hours){
@@ -133,7 +140,10 @@ export async function postTask(data) {
 
 }
 
-export async function PutHourProject(id, data) {
+export async function PutHourProject(id, data, loading) {
     await axios.put(`${getUrl}/${id}/hours`, {"hours": data })
+    .then(
+        setTimeout(() => {loading(false)}, 2000)
+    )
 }
 

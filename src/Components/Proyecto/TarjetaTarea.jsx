@@ -1,6 +1,6 @@
 //import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./../../Styles/Proyectos/Tarea.module.css";
+import styles from "./../../Styles/Proyecto.module.css";
 
 
 function TarjetaTarea({tarea}) {
@@ -20,13 +20,13 @@ function TarjetaTarea({tarea}) {
         to={"/tarea/"+tarea._id}
         
       >
-        <div className={styles.tarea}>
+        <div className={styles.tarjetaTarea}>
            
-            <div className={styles.headerContainer}>
+            <div className={styles.tarjetaTareaHeader}>
                 
                 {tarea.name ? tarea.name : "Tarea"} 
             </div>
-            <div className={styles.descripcion}>
+            <div className={styles.tarjetaTareaDescripcion}>
             
                 {tarea.description}
                 

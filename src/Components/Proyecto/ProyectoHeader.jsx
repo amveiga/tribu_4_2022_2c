@@ -1,4 +1,4 @@
-import styles from "./../../Styles/Proyectos/Tarea.module.css";
+import styles from "./../../Styles/Proyecto.module.css";
 import {useEffect, useState} from 'react'
 import {GetProjectId } from "../../Components/Proyecto/ProjectViewList"
 import { useNavigate } from "react-router-dom"

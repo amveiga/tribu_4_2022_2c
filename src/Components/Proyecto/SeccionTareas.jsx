@@ -1,5 +1,5 @@
 // import { useState, useEffect } from "react";
-import styles from "./../../Styles/Proyectos/Tarea.module.css";
+import styles from "./../../Styles/Proyecto.module.css";
 import TarjetaTarea from "./TarjetaTarea";
 // import { GetAllTask } from "./ProjectViewList";
 // import { useParams } from "react-router-dom";
