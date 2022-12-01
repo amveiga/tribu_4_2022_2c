@@ -45,18 +45,18 @@ function ProyectoHeader({id, tareas }) {
                },[])}
                <div className={styles.titulo}>
                   <div className={styles.backButton} title="Volver" onClick={() => navigate(-1)}>
-                     <BsArrowLeftCircleFill/>
+                     <BsArrowLeftCircleFill style={{ paddingTop:"5px",marginRight:"5px"}}/>
                   </div>
-                  {project.name}
+                  {project.name ? project.name : "Projecto"}
                </div>
-             <div className={styles.datos}>{project._id}</div>
+             <div className={styles.datos}>{project._id ? project._id : "00000000000000000000"}</div>
              <div className={styles.column}>
                 <div>Tipo: </div>
-                <div className={styles.estado + " " + getType(project.type)}>{project.type}</div>
+                <div className={styles.estado + " " + getType(project.type)}>{project.type ? project.type : "Tipo"}</div>
              </div>
              <div className={styles.column}>
                 <div>Estado: </div>
-                <div className={styles.estado + " " + getState(project.status)}>{project.status}</div>
+                <div className={styles.estado + " " + getState(project.status)}>{project.status ? project.status :"Estado"}</div>
              </div>
             </div>
 
@@ -69,11 +69,11 @@ function ProyectoHeader({id, tareas }) {
                <div className={styles.bloqueHeader}>
                <div >Informacion de proyecto</div>
                <div >Fecha de inicio ideal</div>
-                <div className={styles.datos}>{parseDate(project.idealInitDate)}</div>
+                <div className={styles.datos}>{project.idealInitDate ? parseDate(project.idealInitDate) : "dd/mm/yyyy"}</div>
                 <div >Fecha fin ideal</div>
-                <div className={styles.datos}>{parseDate(project.idealEndDate)}</div>
+                <div className={styles.datos}>{project.idealEndDate ? parseDate(project.idealEndDate): "dd/mm/yyyy"}</div>
                 <div >Total de hs invertidas</div>
-                <div className={styles.datos}>{project.invertedHours} hs</div>
+                <div className={styles.datos}>{project.invertedHours ? project.invertedHours : "0"} hs</div>
                </div>
          </div>
     );

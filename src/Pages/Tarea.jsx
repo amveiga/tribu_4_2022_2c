@@ -49,6 +49,16 @@ function Tarea() {
             default: return ""
         }
     }; 
+
+    const getStyle = (state) =>  {
+        switch(state) {
+            case "pending": return styles.pendiente;
+            case "inProgress": return styles.enProgreso;
+            case "canceled": return styles.cancelado;
+            case "complete": return styles.completado;
+            default: return ""
+        }
+    }; 
     
     useEffect(() => {
         GetRecursos(setListRecursos, setLoading);
@@ -74,7 +84,7 @@ function Tarea() {
                             <div className={styles.bloqueHeaderTarea}>
                                 <div className={styles.titleAndBBcontainer}>
                                     <div className={styles.backButton} title="Volver" onClick={() => navigate(-1)}>
-                                        <BsArrowLeftCircleFill/>
+                                        <BsArrowLeftCircleFill style={{ paddingTop:"5px",marginRight:"5px"}}/>
                                     </div>
                                     <div className={styles.titulo}> 
                                         {task.name}
@@ -84,6 +94,7 @@ function Tarea() {
                                             }
                                             size={"1.5vw"}
                                             title = "Editar tarea"
+                                            style={{ marginLeft:"5px"}}
                                         />
                                     <div>
                                 </div>
@@ -104,8 +115,8 @@ function Tarea() {
                             <div>
                                 Estado:
                             </div>
-                            <div className={styles.estado + " " + styles.analisis}>
-                                {getOptions(task.status)}
+                            <div className={styles.estado + " " + getStyle(task.status)}>
+                                { getOptions(task.status)}
                             </div>
                         </div>
                     </div>
@@ -145,12 +156,12 @@ function Tarea() {
                             })}
                         </div>
                         <div className={styles.descripcionTareas}>
-                            Descrpicion de la tarea
+                            Descripción de la tarea
                             <div className={styles.datos}>
                                 {task.description}
                             </div>
                         </div>
-                        <input
+                        {/* <input
                             type={"text"}
                             value={hours}
                             onChange={handleHoursChange}
@@ -162,7 +173,7 @@ function Tarea() {
                             }}
                         >
                             Agregar Horas Invertidas
-                        </button>
+                        </button> */}
                     </div>
                 </div>
             )}

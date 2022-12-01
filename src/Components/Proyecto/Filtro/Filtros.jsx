@@ -5,15 +5,22 @@ import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
 import MenuOrden from "../Orden/MenuOrden"
 
-function Filtros({ setFiltros, setSortBy, error, setError, client }) {
+function Filtros({ 
+    setFiltros,
+    setSortBy,
+    error,
+    setError,
+    client,
+    idClient,
+    type,
+    status,
+    setClientId,
+    setType,
+    setStatus }) {
+
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
-  const [clientId, setClientId] = useState("");
-  const [status, setStatus] = useState("");
-  const [sla, setSla] = useState("");
-  const [type, setType] = useState("");
-  const [origin, setOrigin] = useState("");
-
+  
   const handleFilterClick = () => {
     setFiltroAbierto(!filtroAbierto);
     setOrdenAbierto(false);
@@ -31,7 +38,6 @@ function Filtros({ setFiltros, setSortBy, error, setError, client }) {
         onClick={handleFilterClick}
       >
         <div className={styles.textIcon}>
-          {console.log(client)}
           {filtroAbierto ? (
             <HiFilter size={"1.5vw"} color={"rgba(106, 176, 249, 1)"} />
           ) : (
@@ -44,7 +50,7 @@ function Filtros({ setFiltros, setSortBy, error, setError, client }) {
         <MenuFiltro
           setFiltroAbierto={setFiltroAbierto}
           setFiltros={setFiltros}
-          clientId={clientId}
+          clientId={idClient}
           status={status}
           type={type}
           setClientId={setClientId}

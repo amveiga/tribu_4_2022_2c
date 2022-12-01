@@ -5,11 +5,13 @@ import { useEffect, useState } from "react";
 import ButtonCreate from "./ButtonCreate"
 import Filtros from "./Filtro/Filtros"
 
-function ProjectList({ listClient, clientes, listRecursos, recursos, clientesR }) {
-    const [projects, setProjects] = useState([]);
+function ProjectList({ projects, listClient, clientes, listRecursos, recursos, clientesR }) {
+    const [projectsFilter, setProjectsFilter] = useState([]);
     const [sortBy, setSortBy] = useState([]);
-    const [error, setError] = useState(false);
     const [filtros, setFiltros] = useState("");
+    const [idClient, setIdClient] = useState("");
+    const [type, setType] = useState("");
+    const [status, setStatus] = useState("");
     const cliente = clientesR
 
     const getRazonSocial = (id) => {
@@ -27,10 +29,10 @@ function ProjectList({ listClient, clientes, listRecursos, recursos, clientesR }
     const sortMaxToMin = (data) => {
         switch (sortBy[0]) {
             case "status":
-                setProjects(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
+                setProjectsFilter(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
                 break;
             case "type":
-                setProjects(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
+                setProjectsFilter(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
                 break;
           default: return "asdasd"
         }
@@ -38,12 +40,11 @@ function ProjectList({ listClient, clientes, listRecursos, recursos, clientesR }
 
     const sortMinToMax = (data) => {
         switch (sortBy[0]) {
-            
             case "status":
-                setProjects(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
+                setProjectsFilter(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
                 break;
             case "type":
-                setProjects(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
+                setProjectsFilter(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
                 break;
             default: return ""
         }
@@ -56,25 +57,42 @@ function ProjectList({ listClient, clientes, listRecursos, recursos, clientesR }
             sortMaxToMin(data);
         }
     };
+
+    const filtarProjectos = (projects) =>{
+        console.log("dsaukdghsajkdh")
+        if(filtros !== "") {
+            if (idClient !== "") {
+            const clientProjects = projects.map((project) => (project.assignedClient === idClient))
+            setProjectsFilter(clientProjects)
+            }
+            if (type !== ""){
+                const clientProjects = projects.map((project) => (project.type === type))
+                console.log("dsaukdghsajkdh")
+                setProjectsFilter(clientProjects)
+            }
+        } else {
+            setProjectsFilter(projects) 
+        }
+    }
     
     useEffect(() => {
-        ProjectViewAPI(setProjects)
-        if (sortBy.length !== 0) {
-            sort(projects);
-        }
-    }, [])
+        filtarProjectos(projects)
+    })
 
     return (
         <div className={styles.proyectosContainer}>
-            <Filtros 
-                        setSortBy={setSortBy}
-                        setFiltros={setFiltros}
-                        error={error}
-                        setError={setError}
-                        client={cliente}
-            />
+            {/* <Filtros 
+                setFiltros={setFiltros}
+                client={cliente}
+                idClient={idClient}
+                type={type}
+                status={status}
+                setIdClient={setIdClient}
+                setType={setType}
+                setStatus={setStatus}
+            /> */}
             <div className={styles.projects}>
-                {projects.map((project) => {
+                {projectsFilter.map((project) => {
                     return <ProjectSelector 
                                 key={project._id} 
                                 project={project} 

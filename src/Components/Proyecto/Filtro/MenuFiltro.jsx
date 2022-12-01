@@ -63,7 +63,7 @@ function MenuFiltro({
       status === "" ? "" : "status=" + status,
       type === "" ? "" : "type=" + type,
     ];
-    setFiltros(filtros.filter((filtro) => filtro !== "").join("&"));
+    setFiltros("Se filtro");
     setFiltroAbierto(false);
   };
 

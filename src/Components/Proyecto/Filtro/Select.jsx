@@ -11,7 +11,7 @@ function Select({ placeHolder, options, icon, style, setter, value }) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = (val) => {
-    setter(val);
+    setter(val.value);
     setSelected(false);
   };
 
@@ -70,7 +70,7 @@ function Select({ placeHolder, options, icon, style, setter, value }) {
             return (
               <div
                 onClick={() => {
-                  handleClick(option.value);
+                  handleClick(option);
                 }}
                 className={styles.option}
                 key={option.value}

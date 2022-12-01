@@ -1,6 +1,6 @@
 import ProjectList from "../Components/Proyecto/ProjectList"
 import { useEffect, useState } from "react";
-import { GetClients, GetRecursos } from "../Components/Proyecto/ProjectViewList"
+import { GetClients, GetRecursos, ProjectViewAPI } from "../Components/Proyecto/ProjectViewList"
 import styles from "./../Styles/Proyectos/Proyectos.module.css"
 import ReactLoading from "react-loading";
 
@@ -8,6 +8,7 @@ function Proyectos() {
     const [clients, setClients] = useState([]);
     const [recursos, setRecursos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [projects, setProjects] = useState([]);
     const clientes= [];
     const clientsName = [];
     const recursosName = [];
@@ -28,7 +29,8 @@ function Proyectos() {
   
     useEffect(() => {
       GetClients(setClients, setLoading);
-      GetRecursos(setRecursos, setLoading);  
+      GetRecursos(setRecursos, setLoading);
+      ProjectViewAPI(setProjects)
     }, [])
   
   return (
@@ -44,7 +46,8 @@ function Proyectos() {
                 </div>
             ) : (
                 <div  className={styles.proyectosContainer}>    
-                    <ProjectList 
+                    <ProjectList
+                        projects={projects}
                         listClient={clientsName}
                         clientes={clients}
                         listRecursos={recursosName}
