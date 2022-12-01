@@ -34,14 +34,18 @@ export async function updateProject(id, data){
         data: data
     })
     .then((res) => {
-        <NavLink to={"/proyectos"}/>
+        <NavLink to={"/proyectos"}>
+            {window.location.reload()}
+        </NavLink>
     })
 }
 
 export async function DeleteProject(id) {
     await axios.delete(`${getUrl}/${id}`)
     .then((res) => {
-        <NavLink to={"/proyectos"}/>
+        <NavLink to={"/proyectos"}>
+            {window.location.reload()}
+        </NavLink>
     })   
 }
 
@@ -67,7 +71,9 @@ export async function postProject(data){
         data : data
     })
     .then( (res) => {
-        <NavLink to={"/proyectos"}/>
+        <NavLink to={"/proyectos"}>
+            {window.location.reload()}
+        </NavLink>
     })
 
 }
@@ -120,7 +126,9 @@ export async function updateTask(id, data){
         data: data
     })
     .then((res) => {
-        <NavLink to={"/tarea/"+id}/>
+        <NavLink to={"/tarea/"+id}>
+            {window.location.reload()}
+        </NavLink>
     })
     .catch((err) => console.log(err))
 
@@ -133,7 +141,9 @@ export async function postTask(data) {
         data : data
     })
     .then( (res) => {
-        <NavLink to={"/proyectos/"+data.projectID}/>
+        <NavLink to={"/proyectos/"+data.projectID}>
+            {window.location.reload()}
+        </NavLink>
     })
 
 
