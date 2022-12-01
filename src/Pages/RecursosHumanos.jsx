@@ -1,12 +1,6 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-} from "react-router-dom";
-import styles from "./../Styles/RecursosHumanos/RecursosHumanos.css";
-import buttonStyle from "./../Styles/RecursosHumanos/Botones.css";
+import { useNavigate } from "react-router-dom";
+import "./../Styles/RecursosHumanos/RecursosHumanos.css";
+import "./../Styles/RecursosHumanos/Botones.css";
 
 import trabajadores from "./../Img/RecursosHumanos/personas_icon.png";
 import reportes from "./../Img/RecursosHumanos/reportes_icon.png";
@@ -35,10 +29,6 @@ function RecursosHumanos() {
   }, []);
 
   let navigate = useNavigate();
-
-  function verTareas() {
-    navigate("/recursos-humanos/tareas");
-  }
 
   function generarReporteTrabajador() {
     navigate("/recursos-humanos/GenerarReportesTrabajador");

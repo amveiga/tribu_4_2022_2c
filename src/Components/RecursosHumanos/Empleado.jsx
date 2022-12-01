@@ -1,9 +1,4 @@
-import { useEffect } from "react";
 import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
   useNavigate,
 } from "react-router-dom";
 
