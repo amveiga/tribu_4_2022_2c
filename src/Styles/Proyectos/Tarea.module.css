@@ -1,0 +1,220 @@
+.tareaContainerPrincipal {
+  width: 100%;
+  height: 85vh;
+  font-family: sans-serif, "Manrope";
+  text-align: center;
+  font-size: 3vw;
+  color: rgba(0, 53, 108, 1);
+  font-weight: bolder;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+
+.tareaContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+
+
+
+  .titulo{
+    font-size: 40px;
+  }
+
+  .datos{
+    color:grey;
+  }
+
+  .column{
+    margin-top: 10px;
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+.linkRight {
+    width: 5px;
+    height: 80%;
+    margin-right: 0;
+    border-right: solid #ACC0D8 5px;
+}
+
+.linkTop { 
+  height: 1px;
+  border-top: solid #ACC0D8 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.etiquetaTarea{
+  font-size: 35px;
+  width: 65%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex;
+  border-radius: 25px;
+  justify-content: center;
+  background-color: rgba(0, 53, 108, 1);
+  color: white;
+}
+
+  
+.estado {
+  width: 64%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  border-radius: 25px;
+  color: white;
+}
+
+.pendiente {
+  background-color: #ff9900;
+}
+.analisis {
+  background-color: #0085ff;
+}
+.enProgreso {
+  background-color: #0085ff;
+}
+.completado {
+  background-color: #1dcc2e;
+}
+.cancelado {
+  background-color: #ff0000;
+}
+
+.notStarted  {
+  background-color: #b6b1aa;
+}
+.initiated {
+  background-color: #0085ff;
+}
+.analisys {
+  background-color: #bda145;
+}
+.developed {
+  background-color: #ac1f99;
+}
+.tested {
+  background-color: #9c1e2e;
+}
+.production {
+  background-color: #2df500;
+}
+.pproduction {
+  background-color: #3a7818;
+}
+.canceled {
+  background-color: #ff0000;
+}
+.implementation {
+  background-color: blueviolet;
+}
+.dev {
+  background-color: #0085ff;
+}
+
+.paginaTarea{
+  width: 100%;
+  height: 100%;
+  
+}
+
+.headerTarea{
+  width: 100%;
+  height: 250px;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  color: rgba(0, 53, 108, 1);
+  font-size: 25px;
+
+}
+
+.contenidoTarea{
+  
+  width: 98%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+
+  padding:1%;
+  
+}
+
+.bloqueHeaderTarea{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 2%;
+  padding-right: 2%;
+  justify-content: center;
+  text-align: left;
+  font-size: 25px;
+}
+
+.personasAsignadas{
+  width: 40%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 25px;
+  background-color: #bebebe;
+  padding: 1%;
+}
+
+.descripcionTareas{
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  justify-content: flex-start;
+  padding:1%;
+  font-size: 25px;
+  background-color: #f7efef;
+}
+
+.titleAndBBcontainer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.titulo{
+  font-size: 20pt;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.backButton:hover{
+  filter:drop-shadow(3px 3px 3px rgba(0, 53, 154, 0.7));
+}
+
+.loading {
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}

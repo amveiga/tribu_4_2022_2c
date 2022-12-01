@@ -1,0 +1,13 @@
+[
+    {
+        "Nombre": "Estado",
+        "Placeholder": "Seleccione un estado",
+        "Options": [
+            { "value": "pending", "label": "Pendiente" },
+            { "value": "inProgress", "label": "En Progreso" },
+            { "value": "complete", "label": "Completado"},
+            { "value": "canceled", "label": "Cancelada" }
+        ],
+        "Icon": "estado"
+    }
+]

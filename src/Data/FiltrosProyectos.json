@@ -1,0 +1,36 @@
+[
+    {
+        "Nombre": "Cliente",
+        "Placeholder": "Seleccione un cliente",
+        "Options": [
+          { "value": "Cliente 1", "label": "Cliente 1" },
+          { "value": "Cliente 2", "label": "Cliente 2" },
+          { "value": "Cliente 3", "label": "Cliente 3" }
+        ],
+        "Icon": "cliente"
+    },
+    {
+        "Nombre": "Estado",
+        "Placeholder": "Seleccione un estado",
+        "Options": [
+            { "value": "No Iniciado", "label": "No Iniciado" },
+            { "value": "Iniciado", "label": "Iniciado" },
+            { "value": "Analisis", "label": "Analisis"},
+            { "value": "Desarrollo", "label": "Desarrollo" },
+            { "value": "Pruebas", "label": "Pruebas" },
+            { "value": "Produccion", "label": "Produccion" },
+            { "value": "Post-Produccion", "label": "Post-Produccion"},
+            { "value" : "Cancelado" , "label": "Cancelado"}
+        ],
+        "Icon": "estado"
+    },
+    {
+        "Nombre": "Tipo",
+        "Placeholder": "Seleccione un tipo",
+        "Options": [
+            { "value": "Desarrollo", "label": "Desarrollo" },
+            { "value": "Implementacion", "label": "Implementacion" }
+        ],
+        "Icon": "estado"
+    }
+]
