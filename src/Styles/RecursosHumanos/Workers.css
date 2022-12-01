@@ -1,0 +1,49 @@
+.body{
+    margin: 0;
+    width: 100%;
+}
+
+.trabajadores-separator{
+    font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 3em;
+    margin-left: 3%;
+    color: rgb(0, 53, 108);
+}
+
+.workers-list{
+    width: 25%;
+    margin-left: 7%;
+}
+
+.header-list, .list-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.3em;
+}
+
+.header-list{
+    font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header-list div, .list-element div{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+.list-element{
+    border: rgb(0, 53, 108) solid 1px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.loading {
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}

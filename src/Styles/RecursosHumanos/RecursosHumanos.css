@@ -1,0 +1,164 @@
+.recursos-humanos-container{
+    background-color: rgb(211, 224, 238);
+    border-radius: 30px;
+    filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.11));
+    position: fixed;
+    top: 20%;
+    width: 37%;
+    height: 74%;
+    
+}
+
+.trabajadores{
+    left: 5%;
+}
+
+.reportes{
+    right: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.recursos-humanos-title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-title{
+    font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 45px;
+    color: rgb(0, 53, 108);
+    /*position: fixed;
+    top: 6%;
+    right: 40%;*/
+}
+
+.recursos-icon{
+    /*position: fixed;
+    top: 6%;
+    right: 20%;*/
+}
+
+.workers-list{
+    height: 65%;
+    margin: 0 17%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: none;
+}
+
+.list-element div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.workers-list p{
+    height: 2.5em;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.header-list{
+    margin-bottom: 1%;
+    font-family: 'Franklin Gothic medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.header-list,
+.list-element{
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    height: 3em;
+}
+
+.list-element{
+    border: rgb(0, 53, 108) solid 2px;
+    border-radius: 7px;
+    margin-top: 10px;
+    background-color: rgb(255, 255, 255);
+}
+
+.list-element div p{
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+}
+
+.list-element:hover{
+    background-color: rgb(218, 218, 218);
+    cursor: pointer;
+}
+
+.recursos-button{
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
+    margin: 5% 10% 0;
+    background-color: rgb(233,239,246);
+    font-size: 30px;
+    height: 3em;
+    word-wrap: normal;
+    border: 2px solid rgb(132, 160, 190);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+
+.recursos-button p{
+    text-align: center;
+}
+
+.recursos-button:nth-child(3){
+    top: 35%;
+}
+
+.recursos-button:nth-child(4){
+    top: 47%;
+}
+
+.recursos-button:hover{
+    background-color: rgb(190, 187, 218);
+    cursor: pointer;
+}
+
+@media (max-height: 760px){
+    .workers-list{
+        overflow-y: scroll;
+        margin: inherit 20%;
+    }
+
+    
+
+    .recursos-button:nth-child(3){
+        top: 40%;
+    }
+    
+    .recursos-button:nth-child(4){
+        top: 60%;
+    }
+}
+
+@media(max-height: 570px){
+    .recursos-button p{
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 1300px){
+    .section-title{
+        font-size: 30px;
+    }
+
+    .recursos-icon{
+        height: 80px;
+    }
+
+    .header-list p,
+    .recursos-button p{
+        font-size: 20px;
+    }
+}
