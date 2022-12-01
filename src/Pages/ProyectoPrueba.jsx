@@ -30,6 +30,8 @@ function ProyectoPrueba() {
 
     return  ( 
         <div className={styles.proyectoContainer}>
+            {console.log(id)}    
+                                    
             {loading ? (
                 <div className={styles.loading}>
                     <ReactLoading
