@@ -7,6 +7,7 @@ import ProjectSelect from "./ProjectSelect";
 import { updateProject } from "./ProjectViewList";
 import { useState } from "react";
 import {KeyboardDatePicker} from '@material-ui/pickers'; 
+import { useNavigate } from "react-router-dom";
 
 
 function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRecursos, setRecurso }) {
@@ -22,7 +23,8 @@ function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRec
     const [name, setName] = useState(project.name);
     const handleNameChange = event => {
       setName(event.target.value);
-  };
+    };
+    const navigate =  useNavigate();
 
     const [statusSelected, setStatusSelected] = useState(project.status);
     const [clientSelected, setClientSelected] = useState(project.assignedClient)
@@ -166,8 +168,7 @@ function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRec
                     "idealEndDate" : endFechaSelect,
                     "type": typeSelected,
                     "projectLeader": leaderSelected
-                  })
-                setEditSelected(false)
+                  }, navigate)
               }
             }
           

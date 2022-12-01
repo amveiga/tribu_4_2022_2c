@@ -2,10 +2,12 @@ import { MdDelete } from "react-icons/md";
 import styles from "../../Styles/Proyectos/Project.module.css"
 import Popup from 'reactjs-popup';
 import {DeleteProject} from "./ProjectViewList";
+import { useNavigate } from "react-router-dom"
 
 function PopUpProject({ message, setDeleteSelected, id }) {
 
     setDeleteSelected(false);
+    const navigate = useNavigate();
 
     return (
         <Popup trigger={
@@ -23,7 +25,7 @@ function PopUpProject({ message, setDeleteSelected, id }) {
                         <button 
                             className={styles.buttonModal}
                             onClick={() => {
-                                DeleteProject(id);
+                                DeleteProject(id, navigate);
                                 close();
                             }}> 
                             Aceptar 

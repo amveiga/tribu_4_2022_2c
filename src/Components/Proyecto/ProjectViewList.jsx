@@ -19,7 +19,7 @@ export async function GetClients(state, loading) {
     state(listClient.data)
 }
 
-export async function updateProject(id, data){ 
+export async function updateProject(id, data, navigate){ 
     if (data.status === "Iniciado"){
         data["initDate"] = Date.now()
     }
@@ -32,20 +32,12 @@ export async function updateProject(id, data){
         url: getUrl.concat("/", id),
         data: data
     })
-    // .then((res) => {
-    //     <NavLink to={"/proyectos"}>
-    //         {window.location.reload()}
-    //     </NavLink>
-    // })
+    .then(navigate("/"))
 }
 
-export async function DeleteProject(id) {
+export async function DeleteProject(id,navigate) {
     await axios.delete(`${getUrl}/${id}`)
-    // .then((res) => {
-    //     <NavLink to={"/proyectos"}>
-    //         {window.location.reload()}
-    //     </NavLink>
-    // })   
+    .then(navigate("/"))
 }
 
 export async function GetAllTask(id, state, loading) {
@@ -69,13 +61,7 @@ export async function postProject(data, navigate){
         url : getUrl,
         data : data
     })
-    .then("/")
-    // .then( (res) => {
-    //     <NavLink to={"/proyectos"}>
-    //         {window.location.reload()}
-    //     </NavLink>
-    // })
-
+    .then(navigate("/"))
 }
 
 export async function GetRecursos(state, loading) {
@@ -118,18 +104,14 @@ export async function addInvertedHours(taskId, hours){
     
 }
 
-export async function updateTask(id, data){
+export async function updateTask(id, data, navigate){
 
     await axios({
         method:"put",
         url: getUrlTaskId.concat("/",id),
         data: data
     })
-    // .then((res) => {
-    //     <NavLink to={"/tarea/"+id}>
-    //         {window.location.reload()}
-    //     </NavLink>
-    // })
+    .then(navigate("/"))
     .catch((err) => console.log(err))
 
 }
@@ -141,13 +123,8 @@ export async function postTask(data, navigate) {
         data : data
     })
     .then(() => {
-        navigate(0)
+        navigate("/")
     })
-    // .then( (res) => {
-    //     <NavLink to={"/proyectos/"+data.projectID}>
-    //         {window.location.reload()}
-    //     </NavLink>
-    // })
 
 
 }

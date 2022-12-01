@@ -177,7 +177,7 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
                               status: stateSelected,
                               responsible: selectedResources.map((resource) => {
                                               return {"id" : resource.value}})
-                            });
+                            }, navigate);
                             break;
               case "Post":  postTask({
                               "name": name,
