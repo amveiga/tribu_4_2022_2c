@@ -1,12 +1,27 @@
 [
-    {
-        "id": 1,
-        "Nombre": "Estado",
-        "order": "status"
-    },
-    {
-        "id": 2,
-        "Nombre": "Tipo",
-        "order": "type"
-    }
+  {
+    "id": 0,
+    "Nombre": "Fecha de Creación",
+    "order": "createdDate"
+  },
+  {
+    "id": 1,
+    "Nombre": "Última Modificación",
+    "order": "lastModifiedDate"
+  },
+  {
+    "id": 2,
+    "Nombre": "Estado",
+    "order": "status"
+  },
+  {
+    "id": 3,
+    "Nombre": "SLA",
+    "order": "sla"
+  },
+  {
+    "id": 4,
+    "Nombre": "Tipo",
+    "order": "type"
+  }
 ]
