@@ -181,6 +181,7 @@ function Tarea() {
                                 id={id}
                                 task={task}
                                 listRecursos = {recursosName}
+                                listaEmpleados={recursosList}
                                 projectID={""}
                                 method={"Put"}
                                 setStateCreate={setUpdateTask}

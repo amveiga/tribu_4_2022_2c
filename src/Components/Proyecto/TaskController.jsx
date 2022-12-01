@@ -8,7 +8,7 @@ import Filtros from "../../Data/FiltrosTarea.json";
 import Select from "react-select";
 import { updateTask, postTask } from "./ProjectViewList";
 
-export function TaskController({ id, task, listRecursos, projectID, method, setStateCreate }) {
+export function TaskController({ id, task, listRecursos, listaEmpleados, projectID, method, setStateCreate }) {
 
   const [description, setdescription] = useState(
     task.description ? task.description : ""
@@ -33,9 +33,27 @@ export function TaskController({ id, task, listRecursos, projectID, method, setS
   const [stateSelected, setStateSelected] = useState(
     task.status ? task.status : ""
   );
-  const getOptions = (dato) => {
-    return Filtros.find((e) => e.Nombre === dato).Options;
+
+  const getStatus = (dato) =>  {
+    switch(dato) {
+        case "pending": return "Pendiente";
+        case "inProgress": return "En Progreso";
+        case "canceled": return "Cancelado";
+        case "complete": return "Completado";
+        default: return ""
+    }
   };
+
+    const getOptions = (dato) => {
+        return Filtros.find((e) => e.Nombre === dato).Options;
+    };
+
+    const findRecursoById = (id) => {
+        const recurso = listRecursos.find((recurso) => (recurso.value === id));
+        return recurso ? (`${recurso.label}`) : (" ");
+    }
+
+
   return (
     <div className={styles.projectCreateContainer}>
       <div className={styles.projectCreate}>
@@ -71,7 +89,7 @@ export function TaskController({ id, task, listRecursos, projectID, method, setS
             >
             Estado
             <ProjectSelect
-              placeHolder={"Seleccione status del proyecto"}
+              placeHolder={(method==="Post") ? ("Seleccione status del proyecto") : getStatus(task.status)}
               options={getOptions("Estado")}
               style={styles.selectEstado}
               setState={setStateSelected}
@@ -80,11 +98,14 @@ export function TaskController({ id, task, listRecursos, projectID, method, setS
           <div className={styles.item + " " + styles.item3}>
             Recurso
             <Select
-              className={styles.widthCompleto}
-              placeholder={"Seleccionar recursos asignados"}
-              options={listRecursos}
-              isMulti={true}
-              onChange={setSelectedResources}
+                className={styles.widthCompleto}
+                placeholder={(method==="Post") ? ("Seleccionar recursos asignados"):("")}
+                defaultValue={(method==="Post") ? (null) : (listaEmpleados.map(recurso => (
+                    listRecursos[(recurso.id - 1)]
+                )))}
+                options={listRecursos}
+                isMulti={true}
+                onChange={setSelectedResources}
             />
           </div>
           <div className={styles.item + " " + styles.item4}>

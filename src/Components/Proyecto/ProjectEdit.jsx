@@ -26,8 +26,8 @@ function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRec
 
     const [statusSelected, setStatusSelected] = useState(project.status);
     const [clientSelected, setClientSelected] = useState(project.assignedClient)
-    const [initFechaSelect, setInitFechaSelect] = useState(new Date())
-    const [endFechaSelect, setEndFechaSelect] = useState(new Date())
+    const [initFechaSelect, setInitFechaSelect] = useState(project.idealInitDate)
+    const [endFechaSelect, setEndFechaSelect] = useState(project.idealEndDate)
     const [typeSelected, setTypeSelected] = useState(project.type)
     const [leaderSelected, setLeaderSelected] = useState(project.projectLeader);
 

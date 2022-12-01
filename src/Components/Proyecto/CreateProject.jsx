@@ -54,7 +54,7 @@ function CreateProject({ setCrearProject, listClient, listRecursos }) {
                 type={"text"}
                 value={ description }
                 onChange= { handleDescriptionChange }
-                placeholder={"Ingrese una descripción del ticket"}
+                placeholder={"Ingrese una descripción del proyecto"}
                 className={styles.inputDescription}
                 />
             </div>

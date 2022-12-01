@@ -144,9 +144,9 @@
   }
 
   .tarjetaTarea{
-    width: 30vh;
+    width: 40vh;
     height: 30vh;
-    font-size: 2vw;
+    font-size: 12pt;
     /* padding: 2%; */
     border-radius: 25px;
     border: 2px solid rgba(0, 53, 108, 1);
@@ -172,7 +172,6 @@
   justify-content: space-around;
   color: white;
   font-size:medium;
-  
   overflow: auto;
 }
 
