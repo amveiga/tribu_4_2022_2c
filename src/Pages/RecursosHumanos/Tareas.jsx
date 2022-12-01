@@ -1,19 +1,10 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import "./../../Styles/RecursosHumanos/BarraInformacion.css";
 import "./../../Styles/RecursosHumanos/Botones.css";
 import "./../../Styles/RecursosHumanos/Tareas.css";
 
 import fotoPerfil from "./../../Img/RecursosHumanos/perfil.png";
-import imagenModificar from "./../../Img/RecursosHumanos/modificar_icon.png";
-import imagenBorrar from "./../../Img/RecursosHumanos/borrar_icon.png";
 import imagenValidar from "./../../Img/RecursosHumanos/yes_icon.png";
 import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
 import imagenEnviar from "./../../Img/RecursosHumanos/enviar_icon.png";
@@ -21,11 +12,9 @@ import imagenEnviar from "./../../Img/RecursosHumanos/enviar_icon.png";
 import FichaEmpleado from "../../Components/RecursosHumanos/FichaEmpleado";
 
 import ContenedorTareas from "../../Components/RecursosHumanos/ContenedorTareas";
-import SegmentoTarea from "../../Components/RecursosHumanos/SegmentoTarea";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ReactLoading from "react-loading";
 
 function Tareas() {
   const [isLoading, setLoading] = useState(true);
@@ -85,11 +74,6 @@ function Tareas() {
 
   function volver() {
     navigate("/recursos-humanos/");
-  }
-
-  function mostrarModoEditar() {
-    var editMenu = document.getElementById("edit");
-    editMenu.classList.remove("hidden");
   }
 
   function ocultarModoEditar() {

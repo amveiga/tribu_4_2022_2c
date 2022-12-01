@@ -30,11 +30,6 @@ function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
     setProyectName(res.data.name);
   };
 
-  function mostrarModoEditar() {
-    var editMenu = document.getElementById("edit");
-    editMenu.classList.remove("hidden");
-  }
-
   var segmento = (
     <div className="task-element">
       <div className="sub-task-element">
