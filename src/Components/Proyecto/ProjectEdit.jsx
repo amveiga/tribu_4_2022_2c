@@ -167,7 +167,7 @@ function ProjectEdit({ project, setEditSelected, clientsName, setClient, listRec
                     "type": typeSelected,
                     "projectLeader": leaderSelected
                   })
-                  setEditSelected(false)
+                setEditSelected(false)
               }
             }
           

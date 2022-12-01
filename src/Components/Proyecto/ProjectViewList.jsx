@@ -62,7 +62,7 @@ export async function GetProjectId(id, state) {
     state(result.data)
 }
 
-export async function postProject(data){
+export async function postProject(data, navigate){
     data["status"] = "No Iniciado";
 
     await axios({
@@ -70,6 +70,7 @@ export async function postProject(data){
         url : getUrl,
         data : data
     })
+    .then(navigate(0))
     // .then( (res) => {
     //     <NavLink to={"/proyectos"}>
     //         {window.location.reload()}

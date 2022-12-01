@@ -7,6 +7,7 @@ import { KeyboardDatePicker } from "@material-ui/pickers";
 import Filtros from "../../Data/FiltrosTarea.json";
 import Select from "react-select";
 import { updateTask, postTask } from "./ProjectViewList";
+import { useNavigate } from "react-router-dom"
 
 export function TaskController({ id, task, listRecursos, listaEmpleados, projectID, method, setStateCreate }) {
 
@@ -16,6 +17,8 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
   const handleDescriptionChange = (event) => {
     setdescription(event.target.value);
   };
+
+  const navigate = useNavigate()
 
   const [selectedResources, setSelectedResources] = useState([]);
 
@@ -185,7 +188,7 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
                                   return {"id" : resource.value}
                               }),
                               "projectID" : projectID
-                            });
+                            }, navigate);
                             break;
               default: ;
             }
