@@ -45,7 +45,7 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                 <div className={styles.project}>
                     <div className={styles.sectionOne}>
                         <div className={styles.headerSection}>
-                            <div className={styles.titleSection} >
+                            <div className={styles.titleSection} onClick={()=>{}}>
                                 <NavLink to={"/proyectos/"+project._id}>
                                     {project.name}
                                 </NavLink>
