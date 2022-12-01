@@ -18,9 +18,9 @@
     "react-icons": "^4.6.0",
     "react-loading": "^2.0.3",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.8",
     "react-select": "^3.2.0",
     "reactjs-popup": "^2.0.5",
-    "react-scroll": "^1.8.8",
     "victory": "^36.6.8",
     "web-vitals": "^2.1.4"
   },
