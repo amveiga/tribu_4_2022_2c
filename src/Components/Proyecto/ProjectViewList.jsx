@@ -34,14 +34,14 @@ export async function updateProject(id, data){
         data: data
     })
     .then((res) => {
-        <NavLink to={"/proyecto"}/>
+        <NavLink to={"/proyectos"}/>
     })
 }
 
 export async function DeleteProject(id) {
     await axios.delete(`${getUrl}/${id}`)
     .then((res) => {
-        <NavLink to={"/proyecto"}/>
+        <NavLink to={"/proyectos"}/>
     })   
 }
 
@@ -67,7 +67,7 @@ export async function postProject(data){
         data : data
     })
     .then( (res) => {
-        <NavLink to={"/proyecto"}/>
+        <NavLink to={"/proyectos"}/>
     })
 
 }
