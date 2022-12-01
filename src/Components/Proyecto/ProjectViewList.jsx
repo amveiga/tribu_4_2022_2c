@@ -1,5 +1,4 @@
 import axios from "axios";
-import { NavLink } from "react-router-dom";
 
 const getUrl = "https://squad11-proyectos.onrender.com/api/projects"
 const getUrlTask = "https://squad11-proyectos.onrender.com/api/tasks/project"
@@ -70,7 +69,7 @@ export async function postProject(data, navigate){
         url : getUrl,
         data : data
     })
-    .then(navigate(0))
+    .then("/")
     // .then( (res) => {
     //     <NavLink to={"/proyectos"}>
     //         {window.location.reload()}
