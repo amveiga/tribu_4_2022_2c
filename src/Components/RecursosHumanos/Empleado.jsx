@@ -5,6 +5,8 @@ function Empleado(empleado) {
 
     let navigate = useNavigate();
 
+    //console.log(empleado.empleado.legajo)
+
     const verTareas = (empleadoID) => {
         navigate("/recursos-humanos/" + empleado.empleado.legajo + "/tareas");
     }

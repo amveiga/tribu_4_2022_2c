@@ -20,7 +20,7 @@ function RecursosHumanos() {
     const getEmpleados = async () => {
       await axios.get("https://squad1220222c-production.up.railway.app/recursos")
       .then((res) => {
-        console.log(res.data);
+        //console.log(res.data);
         setPost(res.data);
         setLoading(false);
       })
@@ -72,6 +72,7 @@ function RecursosHumanos() {
           </div>
           
           {empleados.map((empleado) => {
+              //console.log(empleado)
               return <EmpleadoElement key={empleado.id} empleado={empleado} />
             })}
         </div>

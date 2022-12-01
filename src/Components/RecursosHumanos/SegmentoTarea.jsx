@@ -1,10 +1,12 @@
 import BotoneraTareas from "./BotoneraTareas";
 
-function SegmentoTarea(estadoTarea){
-    var nombreTarea = "Tarea 1";
-    var cantidadHoras = "5Hs";
-
+function SegmentoTarea(parametro){
+    console.log(parametro)
     
+    var miNombreTarea = parametro.nombreTarea;
+    var cantidadHoras = parametro.miDato.cantidadDeHorasTrabajadas + " Hs";
+
+    console.log(parametro.nombreTarea)
 
     function mostrarModoEditar(){
         var editMenu = document.getElementById("edit");
@@ -17,31 +19,13 @@ function SegmentoTarea(estadoTarea){
 
                 <div className="task-div">
                     <div className="task-name-div">
-                        <p className="task-name">Tarea 1</p>
+                        <p className="task-name">{miNombreTarea}</p>
                     </div>
                 </div>
 
-                <p className="hours-amount">Cantidad de horas</p>
+                <p className="hours-amount">{cantidadHoras}</p>
 
-                <BotoneraTareas estadoTarea={estadoTarea.estadoTarea}/>
-            </div>
-        </div>
-    );
-
-    var segmentoEditar = (
-        <div className="task-element">
-            <div className="sub-task-element">
-
-                <div className="task-div">
-                    <div className="task-name-div">
-                        <input className="task-name-edit" type="text" value={nombreTarea} />
-                        <div className="status-dot grey"></div>
-                    </div>
-                </div>
-
-                <input className="hours-amount-edit" type="text" value={cantidadHoras}/>
-
-                <BotoneraTareas estadoTarea={estadoTarea.estadoTarea}/>
+                <BotoneraTareas estadoTarea={parametro.estadoTarea}/>
             </div>
         </div>
     );

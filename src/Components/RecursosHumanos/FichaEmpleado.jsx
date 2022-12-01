@@ -1,19 +1,10 @@
 //import empleados from "../../Data/RecursosHumanos/empleados.json"
 
-function FichaEmpleado(empleadoID, listaEmpl){
-    console.log("despues de renderizar: " + listaEmpl);
-
-    var empleadoActual;
-    listaEmpl.map((empl => {
-        if(empl["legajo"] == empleadoID.empleadoID){
-            empleadoActual = empl;
-        }
-    }))
-
+function FichaEmpleado(empleado){
     return (
     <div>
-        <p className="name-person">{empleadoActual["Nombre"]} {empleadoActual["Apellido"]}</p>
-        <p className="id-person">Legajo: {empleadoID.empleadoID}</p>
+        <p className="name-person">{empleado.empleado["Nombre"]} {empleado.empleado["Apellido"]}</p>
+        <p className="id-person">Legajo: {empleado.empleado["legajo"]}</p>
     </div>
     )
 }
