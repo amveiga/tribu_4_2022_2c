@@ -1,62 +1,66 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import BotoneraTareas from "./BotoneraTareas";
 
-function SegmentoTarea(estadoTarea){
-    var nombreTarea = "Tarea 1";
-    var cantidadHoras = "5Hs";
+function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
+  const [task, setTarea] = useState();
+  const [proyectName, setProyectName] = useState("");
+  var cantidadHoras = tarea.cantidadDeHorasTrabajadas + " horas";
 
-    
+  useEffect(() => {
+    const getTarea = async () => {
+      if (tarea.tareaId !== "") {
+        var res = await axios.get(
+          "https://squad11-proyectos.onrender.com/api/tasks/" + tarea.tareaId
+        );
+        if (res.data.projectID !== "") {
+          setProyect(res.data.projectID);
+        }
+        setTarea(res.data);
+      }
+    };
 
-    function mostrarModoEditar(){
-        var editMenu = document.getElementById("edit");
-        editMenu.classList.remove("hidden");
-    }
+    getTarea();
+  }, []);
 
-    var segmento = (
-        <div className="task-element">
-            <div className="sub-task-element">
-
-                <div className="task-div">
-                    <div className="task-name-div">
-                        <p className="task-name">Tarea 1</p>
-                    </div>
-                </div>
-
-                <p className="hours-amount">Cantidad de horas</p>
-
-                <BotoneraTareas estadoTarea={estadoTarea.estadoTarea}/>
-            </div>
-        </div>
+  const setProyect = async (proyectId) => {
+    var res = await axios.get(
+      "https://squad11-proyectos.onrender.com/api/projects/" + proyectId
     );
+    setProyectName(res.data.name);
+  };
 
-    var segmentoEditar = (
-        <div className="task-element">
-            <div className="sub-task-element">
+  function mostrarModoEditar() {
+    var editMenu = document.getElementById("edit");
+    editMenu.classList.remove("hidden");
+  }
 
-                <div className="task-div">
-                    <div className="task-name-div">
-                        <input className="task-name-edit" type="text" value={nombreTarea} />
-                        <div className="status-dot grey"></div>
-                    </div>
-                </div>
-
-                <input className="hours-amount-edit" type="text" value={cantidadHoras}/>
-
-                <BotoneraTareas estadoTarea={estadoTarea.estadoTarea}/>
-            </div>
+  var segmento = (
+    <div className="task-element">
+      <div className="sub-task-element">
+        <div className="task-div">
+          <div className="task-name-div">
+            <p className="task-name">
+              {tarea.tareaId === "" ? tarea.descripcion : task?.name}
+            </p>
+          </div>
+          <p className="hours-amount">{proyectName}</p>
         </div>
-    );
 
-    var segmentoVacio = (
-        <div className="task-element">
-            <div className="sub-task-empty-element">
-                <p>No hay subtareas disponibles</p>
-            </div>
-        </div>
-    );
+        <p className="hours-amount">{cantidadHoras}</p>
 
-    var segmentoActual = segmento;
+        <BotoneraTareas
+          estadoTarea={estadoTarea}
+          tarea={tarea}
+          setTareaEditable={setTareaEditable}
+        />
+      </div>
+    </div>
+  );
 
-    return segmentoActual;
+  var segmentoActual = segmento;
+
+  return segmentoActual;
 }
 
 export default SegmentoTarea;
