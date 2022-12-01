@@ -47,7 +47,7 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
     const getOptions = (dato) => {
         return Filtros.find((e) => e.Nombre === dato).Options;
     };
-
+    // eslint-disable-next-line
     const findRecursoById = (id) => {
         const recurso = listRecursos.find((recurso) => (recurso.value === id));
         return recurso ? (`${recurso.label}`) : (" ");

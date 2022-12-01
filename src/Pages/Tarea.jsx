@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import styles from "./../Styles/Proyectos/Tarea.module.css";
 import { useState, useEffect } from "react";
-import { addInvertedHours, GetRecursos, GetTaskId } from "./../Components/Proyecto/ProjectViewList";
+import { GetRecursos, GetTaskId } from "./../Components/Proyecto/ProjectViewList";
 import { TaskController } from "../Components/Proyecto/TaskController"
 import { BsArrowLeftCircleFill } from "react-icons/bs"
 import { useNavigate } from "react-router-dom"
@@ -11,7 +11,7 @@ import ReactLoading from "react-loading";
 function Tarea() {
     let { id } = useParams();
     const [task, setTask] = useState([]);
-
+    // eslint-disable-next-line
     const [hours, setHours] = useState(0);
     
     const [updateTask, setUpdateTask] = useState(false);
@@ -21,7 +21,7 @@ function Tarea() {
     const recursosName = [];
 
     const navigate = useNavigate();
-
+    // eslint-disable-next-line
     const handleHoursChange = (event) => {
         setHours(event.target.value);
     };

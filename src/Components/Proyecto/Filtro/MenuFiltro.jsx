@@ -58,6 +58,7 @@ function MenuFiltro({
   };
 
   const filtrar = () => {
+    // eslint-disable-next-line
     var filtros = [
       clientId === "" ? "" : "clientId=" + clientId,
       status === "" ? "" : "status=" + status,

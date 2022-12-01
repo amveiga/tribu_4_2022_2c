@@ -1,8 +1,7 @@
 import styles from "./../../../Styles/Proyectos/Select.module.css";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
-import { FaUser, FaWifi } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { BsExclamationCircleFill } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { MdContactSupport } from "react-icons/md";
 import { useState } from "react";
