@@ -6,7 +6,7 @@ import { useState } from "react";
 import {KeyboardDatePicker} from '@material-ui/pickers'
 import {postProject} from "./ProjectViewList" 
 import Filtros from "../../Data/FiltrosProyectos.json"
-
+import { useNavigate } from "react-router-dom"
 
 function CreateProject({ setCrearProject, listClient, listRecursos }) {
     const [clientSelected, setClientSelected] = useState("");
@@ -20,6 +20,8 @@ function CreateProject({ setCrearProject, listClient, listRecursos }) {
     const handleNameChange = event => {
       setName(event.target.value);
   };
+
+    const navigate = useNavigate();
     
     const [initFechaSelect, setInitFechaSelect] = useState(new Date());
     const [endFechaSelect, setEndFechaSelect] = useState(new Date());
@@ -156,7 +158,8 @@ function CreateProject({ setCrearProject, listClient, listRecursos }) {
                             "assignedClient" : clientSelected,
                             "projectLeader" : leaderSelected,
                             "type" : typeSelected
-                        }
+                        },
+                        navigate
                     )
                  }}
             >

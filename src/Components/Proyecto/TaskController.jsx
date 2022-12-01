@@ -189,6 +189,7 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
                             break;
               default: ;
             }
+            setStateCreate(false);
             }}
         >
           <HiCheck size={"2vw"} color={"white"} />
