@@ -19,7 +19,7 @@ function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
         setTarea(res.data);
       }
     };
-
+    console.log(tarea, task);
     getTarea();
   }, []);
 
@@ -41,7 +41,7 @@ function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
         <div className="task-div">
           <div className="task-name-div">
             <p className="task-name">
-              {tarea.tareaId === "" ? tarea.descripcion : task?.name}
+              {tarea.descripcion === "" ? task?.name : tarea?.descripcion}
             </p>
           </div>
           <p className="hours-amount">{proyectName}</p>
