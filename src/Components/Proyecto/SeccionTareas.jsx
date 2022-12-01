@@ -1,24 +1,25 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import styles from "./../../Styles/Proyectos/Tarea.module.css";
 import TarjetaTarea from "./TarjetaTarea";
-import { GetAllTask } from "./ProjectViewList";
-import { useParams } from "react-router-dom";
+// import { GetAllTask } from "./ProjectViewList";
+// import { useParams } from "react-router-dom";
 
-function SeccionTareas({projectID, listRecursos}) {
-    const [tareas, setTareas] = useState([]);
-    const { id } = useParams();
+function SeccionTareas({projectID, listRecursos, tareas}) {
+    // const [tareas, setTareas] = useState([]);
+    // const { id } = useParams();
 
     const getTareasFilter = (statusTask) => {
         return tareas.filter( tarea=>
             tarea.status === statusTask
         )
     }
+
     return (        
         <div className={styles.linkTop}>
-            {useEffect(() => {
+            {/* {useEffect(() => {
                 GetAllTask(id, setTareas);
                 // eslint-disable-next-line react-hooks/exhaustive-deps
-            },[])}
+            },[])} */}
             Tareas
             <div className={styles.seccionTareas}>
                 <div className={styles.columnaTareas}>

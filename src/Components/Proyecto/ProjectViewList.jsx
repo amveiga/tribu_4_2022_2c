@@ -11,13 +11,15 @@ export async function ProjectViewAPI(state) {
     state(list.data)
 }
 
-export async function GetClients(state) {
+export async function GetClients(state, loading) {
     const listClient = await axios.get(apiClient)
+        .then(
+            setTimeout(() => {loading(false)}, 2000)
+        )
     state(listClient.data)
 }
 
-export async function updateProject(id, data){
-    
+export async function updateProject(id, data){ 
     if (data.status === "Iniciado"){
         data["initDate"] = Date.now()
     }
@@ -66,14 +68,18 @@ export async function postProject(data){
 
 }
 
-export async function GetRecursos(state) {
-    const recursos = await axios.get(apiRecursos);   
+export async function GetRecursos(state, loading) {
+    const recursos = await axios.get(apiRecursos)
+            .then(
+                setTimeout(() => {loading(false)}, 2000)
+            )          
     state(recursos.data);
 }
 
-export async function GetTaskId(id, state) {
-    const list = await axios.get(`${getUrlTaskId}/${id}`);
-    state(list.data)
+export async function GetTaskId(id, state, stateList) {
+    const list = await axios.get(`${getUrlTaskId}/${id}`)
+    await state(list.data);
+    return await stateList(list.data.responsible);
 }
 
 export async function addInvertedHours(taskId, hours){
@@ -126,3 +132,8 @@ export async function postTask(data) {
 
 
 }
+
+export async function PutHourProject(id, data) {
+    await axios.put(`${getUrl}/${id}/hours`, {"hours": data })
+}
+

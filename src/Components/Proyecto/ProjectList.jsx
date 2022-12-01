@@ -9,15 +9,14 @@ function ProjectList({ listClient, clientes, listRecursos, recursos }) {
 
     const getRazonSocial = (id) => {
         const a = (clientes.find((cliente) => (cliente.id === id)))
-        // console.log(a);
         return (a["razon social"]);
     }
 
     const getRecurso = (id) => {
         const a = (recursos.find((recurso) => (
-            recurso.legajo === id
+            recurso['legajo'] === id
         )))
-        console.log(`${a.Nombre}, ${a.Apellido}`)
+        console.log(a)
         return (`${a.Nombre}, ${a.Apellido}`);
     }
 

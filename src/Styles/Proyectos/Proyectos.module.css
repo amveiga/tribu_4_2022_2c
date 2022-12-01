@@ -11,6 +11,15 @@
 	/* justify-content: flex-start; */
 }
 
+.loading {
+	width: 100%;
+	height: 85vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+}
+
 .proyectosContainer::-webkit-scrollbar {
     width: 1px;
 }

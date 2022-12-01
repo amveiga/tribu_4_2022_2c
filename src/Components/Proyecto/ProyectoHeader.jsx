@@ -1,12 +1,12 @@
 import styles from "./../../Styles/Proyectos/Tarea.module.css";
 import {useEffect, useState} from 'react'
-import {GetProjectId} from "../../Components/Proyecto/ProjectViewList"
+import {GetProjectId } from "../../Components/Proyecto/ProjectViewList"
 import { useNavigate } from "react-router-dom"
 import { BsArrowLeftCircleFill } from "react-icons/bs"
 
-function ProyectoHeader({id}) {
-    const [project, setProject] = useState([]);
-  
+function ProyectoHeader({id, tareas }) {
+   const [project, setProject] = useState([]);
+   
    const parseDate = (fecha) => {
       return (fecha ? 
          ((new Date(fecha)).toLocaleDateString()) : (""))
@@ -37,19 +37,18 @@ function ProyectoHeader({id}) {
    const navigate = useNavigate();
 
    return (
-
           <div className={styles.proyectoHeader}>
             <div className={styles.bloqueHeader}>
                {useEffect(() => {
-                        GetProjectId(id, setProject)
-                        // eslint-disable-next-line react-hooks/exhaustive-deps
+                  GetProjectId(id, setProject)
+                  // eslint-disable-next-line react-hooks/exhaustive-deps
                },[])}
-             <div>
-               <div className={styles.backButton} title="Volver" onClick={() => navigate(-1)}>
-                                <BsArrowLeftCircleFill/>
+               <div className={styles.titulo}>
+                  <div className={styles.backButton} title="Volver" onClick={() => navigate(-1)}>
+                     <BsArrowLeftCircleFill/>
+                  </div>
+                  {project.name}
                </div>
-               <div className={styles.titulo}>{project.name}</div>
-             </div>
              <div className={styles.datos}>{project._id}</div>
              <div className={styles.column}>
                 <div>Tipo: </div>
@@ -73,8 +72,6 @@ function ProyectoHeader({id}) {
                 <div className={styles.datos}>{parseDate(project.idealInitDate)}</div>
                 <div >Fecha fin ideal</div>
                 <div className={styles.datos}>{parseDate(project.idealEndDate)}</div>
-                <div >Personal asignado</div>
-                <div className={styles.datos}>15 </div>
                 <div >Total de hs invertidas</div>
                 <div className={styles.datos}>{project.invertedHours} hs</div>
                </div>

@@ -16,6 +16,7 @@ function Tarea() {
     
     const [updateTask, setUpdateTask] = useState(false);
     const [listRecursos, setListRecursos] = useState([]);
+    const [recursosList, setRecursosList] = useState([]);
 
     const recursosName = [];
 
@@ -34,24 +35,30 @@ function Tarea() {
             "label" : `${recurso["Nombre"]}, ${recurso["Apellido"]}`})
     })
 
-    // const findRecursoById = (id) => {
-    //     const recurso = recursosName.find((recurso) => (recurso.value === id));
-    //     return recurso ? (recurso.label) : (" ");
-    // }
+    const findRecursoById = (id) => {
+        const recurso = recursosName.find((recurso) => (recurso.value === id));
+        return recurso ? (recurso.label) : (" ");
+    }
 
-    // const mapearRecursos = (lista) => {
-    //     const list = lista
-    //     console.log("tarea", list)
-        
-    // }
+    const getOptions = (dato) =>  {
+        switch(dato) {
+            case "pending": return "Pendiente";
+            case "inProgress": return "En Progreso";
+            case "canceled": return "Cancelado";
+            case "complete": return "Completado";
+            default: return ""
+        }
+    }; 
+    
+
 
     return (
         <div className={styles.proyectoContainer}>
             {useEffect(() => {
                 GetRecursos(setListRecursos);
-                GetTaskId(id, setTask);
+                GetTaskId(id, setTask, setRecursosList);            
                 // eslint-disable-next-line react-hooks/exhaustive-deps
-            }, [])}
+            }, [])}           
             <div className={stylesT.paginaTarea}>
                 <div className={stylesT.headerTarea}>
                     <div className={stylesT.bloqueHeaderTarea}>
@@ -59,13 +66,16 @@ function Tarea() {
                             <div className={stylesT.backButton} title="Volver" onClick={() => navigate(-1)}>
                                 <BsArrowLeftCircleFill/>
                             </div>
-                                <div className={stylesT.titulo}>
-                                    {task.name}
-                                <div>
+                            <div className={stylesT.titulo}> 
+                                {task.name}
                                 <MdEdit
+                                    onClick={() =>
+                                        (setUpdateTask(true))
+                                    }
                                     size={"1.5vw"}
-                                    title = "Editar proyecto"
+                                    title = "Editar tarea"
                                 />
+                            <div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +95,7 @@ function Tarea() {
                         Estado:
                     </div>
                     <div className={stylesT.estado + " " + stylesT.analisis}>
-                        {task.status ? task.status : "estado"}
+                        {getOptions(task.status)}
                     </div>
                 </div>
             </div>
@@ -109,18 +119,6 @@ function Tarea() {
             </div>
             <div className={stylesT.bloqueHeaderTarea}>
                 <div>
-                    Horas estimadas
-                </div>
-                <div className={stylesT.datos}>
-                    12 hs
-                </div>
-                <div>
-                    Personal asignado
-                </div>
-                <div className={stylesT.datos}>
-                
-                </div>
-                <div>
                     Total de hs invertidas
                 </div>
                 <div className={stylesT.datos}>
@@ -132,15 +130,9 @@ function Tarea() {
             <div className={stylesT.contenidoTarea}>
                 <div className={stylesT.personasAsignadas}>
                     Personas asignadas
-                    {/* {task['responsible'].map((recursoId) => {
-                        console.log(recursoId)
-                        return  (<div> {findRecursoById(recursoId["id"])} </div>)
-                    })} */}
-                        {/* <div>
-                    {findRecursoById(1)}
-                    </div> */}
-
-                    { console.log(task.responsible) }
+                    {recursosList.map((recurso)=>{
+                        return (<div>{findRecursoById(recurso.id)}</div>)
+                    })}
                 </div>
                 <div className={stylesT.descripcionTareas}>
                     Descrpicion de la tarea
@@ -162,14 +154,6 @@ function Tarea() {
                     Agregar Horas Invertidas
                 </button>
             </div>
-            <button
-                className="updateTask"
-                onClick={() => {
-                    setUpdateTask(true)
-                }}
-            >
-                Actualizar Tarea
-            </button>    
         </div>
         {updateTask && <TaskController
                             id={id}
