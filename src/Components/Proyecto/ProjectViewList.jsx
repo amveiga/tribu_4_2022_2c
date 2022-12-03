@@ -39,7 +39,9 @@ export async function updateProject(id, data, navigate){
 
 export async function DeleteProject(id,navigate) {
     await axios.delete(`${getUrl}/${id}`)
-    .then(navigate("/"))
+    .then(() => {
+        window.location.reload()
+    })
 }
 
 export async function GetAllTask(id, state, loading) {
@@ -63,7 +65,9 @@ export async function postProject(data, navigate){
         url : getUrl,
         data : data
     })
-    .then(navigate("/proyectos"))
+    .then(() => {
+        window.location.reload()
+    })
 }
 
 export async function GetRecursos(state, loading) {
@@ -113,7 +117,9 @@ export async function updateTask(id, data, navigate){
         url: getUrlTaskId.concat("/",id),
         data: data
     })
-    .then(navigate("/"))
+    .then(() => {
+        window.location.reload()
+    })
     .catch((err) => console.log(err))
 
 }
@@ -125,7 +131,7 @@ export async function postTask(data, navigate) {
         data : data
     })
     .then(() => {
-        navigate("/")
+        window.location.reload()
     })
 
 
