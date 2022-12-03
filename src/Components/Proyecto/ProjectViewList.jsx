@@ -61,7 +61,7 @@ export async function postProject(data, navigate){
         url : getUrl,
         data : data
     })
-    .then(navigate("/"))
+    .then(navigate("/proyectos"))
 }
 
 export async function GetRecursos(state, loading) {
