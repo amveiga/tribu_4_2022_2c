@@ -12,7 +12,13 @@ export async function ProjectViewAPI(state) {
 }
 
 export async function GetClients(state, loading) {
-    const listClient = await axios.get(apiClient)
+    const listClient = await axios({
+        method:"get", 
+        url: apiClient,
+        headers: {
+            "Access-Control-Allow-Origin":"*"
+        }
+    })
         .then(
             setTimeout(() => {loading(false)}, 2000)
         )
