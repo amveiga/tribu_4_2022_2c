@@ -22,10 +22,17 @@ import {
   UpdateTicket,
 } from "../../../Utils/SoporteApi";
 
-function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
+function Ticket({
+  ticket,
+  editSelected,
+  setEditSelected,
+  setError,
+  setUpdate,
+}) {
   const [typeHovered, setTypeHovered] = useState(false);
   const [escalarSelected, setEscalarSelected] = useState(false);
   const [recurso, setRecurso] = useState("");
+  const [recursoAux, setRecursoAux] = useState("");
   const [userId, setUserId] = useState(ticket.userId);
   const [tarea, setTarea] = useState("");
   const [tareaId, setTareaId] = useState(ticket.taskId);
@@ -33,6 +40,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
   const [tareaSelected, setTareaSelected] = useState(false);
   const [comentarios, setComentarios] = useState([]);
   const [recursos, setRecursos] = useState([]);
+  const [updateComentarios, setUpdateComentarios] = useState(true);
 
   const getState = (estado) => {
     var style;
@@ -66,6 +74,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
 
   const deleteTicket = async () => {
     await DeleteTicket(ticket.id);
+    setUpdate(true);
   };
 
   const updateTicket = async () => {
@@ -77,10 +86,12 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
       origin: ticket.origin,
       sla: ticket.sla,
       clientId: ticket.clientId,
-      userId: userId,
+      userId: userId.toString(),
       taskId: tareaId,
     };
     await UpdateTicket(ticket.id, body);
+    setRecurso(recursoAux);
+    setUpdate(true);
   };
 
   const getTareas = async () => {
@@ -98,14 +109,22 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
   };
 
   const getRecursos = async () => {
-    var recursos = await GetRecursos();
-    if (recursos.status === 200) {
+    var rec = await GetRecursos();
+    if (rec.status === 200) {
       setError(false);
       setRecursos(
-        recursos.data.map((t) => {
-          return { label: t.legajo, value: t.Nombre };
+        rec.data.map((t) => {
+          return { label: t.legajo, value: t.Nombre + " " + t.Apellido };
         })
       );
+      if (ticket.userId === "") {
+        setRecurso("");
+      } else {
+        var recurso = rec.data.find((r) => {
+          return r.legajo.toString() === ticket.userId;
+        });
+        setRecursoAux(recurso.Nombre + " " + recurso.Apellido);
+      }
     } else {
       setError(true);
     }
@@ -126,8 +145,12 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
       }
     };
 
+    if (updateComentarios) {
+      setUpdateComentarios(false);
+    }
+
     getComentarios();
-  });
+  }, [setError, ticket.id, updateComentarios]);
 
   return (
     <div className={styles.container}>
@@ -136,7 +159,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
           <div className={styles.sectionOne}>
             <div className={styles.headerSection}>
               <div className={styles.titleSection}>
-                {ticket.title}
+                <div className={styles.titleTicket}>{ticket.title}</div>
                 {ticket.type === "Consulta" ? (
                   <BsQuestionCircleFill
                     onMouseEnter={() => setTypeHovered(true)}
@@ -264,8 +287,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
         )}
       </div>
       <Comentarios
-        error={error}
-        setError={setError}
+        setUpdateComentarios={setUpdateComentarios}
         comentarios={comentarios}
         id={ticket.id}
       />
@@ -316,9 +338,9 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
                 placeHolder={"Seleccione un recurso"}
                 options={recursos}
                 style={styles.selectItem}
-                setter={setRecurso}
+                setter={setRecursoAux}
                 setterId={setUserId}
-                value={recurso}
+                value={recursoAux}
               />
             </div>
           </div>
@@ -327,6 +349,7 @@ function Ticket({ ticket, editSelected, setEditSelected, error, setError }) {
               onClick={() => {
                 setEscalarSelected(false);
                 setRecurso(recurso);
+                setRecursoAux(recurso);
               }}
               className={styles.editEscalarCancel}
             >

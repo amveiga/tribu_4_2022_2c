@@ -6,7 +6,7 @@ import Filtros from "./../../../Data/Filtros.json";
 import { useEffect, useState } from "react";
 import { GetClientes, PostTicket } from "../../../Utils/SoporteApi";
 
-function TicketCreate({ setCrearTicket, error, setError }) {
+function TicketCreate({ setCrearTicket, setError, setUpdate }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [status, setStatus] = useState("");
@@ -53,6 +53,7 @@ function TicketCreate({ setCrearTicket, error, setError }) {
       taskId: "",
     };
     PostTicket(body);
+    setUpdate(true);
   };
 
   return (

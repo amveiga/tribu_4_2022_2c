@@ -12,6 +12,7 @@ function ReporteTickets() {
   const [tickets, setTickets] = useState([]);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [update, setUpdate] = useState(true);
 
   useEffect(() => {
     const getTickets = async () => {
@@ -23,8 +24,13 @@ function ReporteTickets() {
         setError(true);
       }
     };
+
+    if (update) {
+      setUpdate(false);
+    }
+
     getTickets();
-  }, []);
+  }, [update]);
 
   const getLabels = (label) => {
     var labels = Filtros.find((filter) => filter.Nombre === label).Options.map(

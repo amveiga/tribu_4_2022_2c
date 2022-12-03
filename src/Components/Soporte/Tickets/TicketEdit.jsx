@@ -1,7 +1,3 @@
-import {
-  BsQuestionCircleFill,
-  BsFillExclamationCircleFill,
-} from "react-icons/bs";
 import { HiCheck } from "react-icons/hi";
 import { IoClose } from "react-icons/io5";
 import { MdEdit } from "react-icons/md";
@@ -11,7 +7,7 @@ import TicketSelect from "./TicketSelect";
 import { useEffect, useState } from "react";
 import { GetClientes, UpdateTicket } from "../../../Utils/SoporteApi";
 
-function TicketEdit({ ticket, setEditSelected, error, setError }) {
+function TicketEdit({ ticket, setEditSelected, setError, setUpdate, update }) {
   const [title, setTitle] = useState(ticket.title);
   const [description, setDescription] = useState(ticket.description);
   const [status, setStatus] = useState(ticket.status);
@@ -56,6 +52,7 @@ function TicketEdit({ ticket, setEditSelected, error, setError }) {
       taskId: ticket.taskId,
     };
     await UpdateTicket(ticket.id, body);
+    setUpdate(true);
     setEditSelected(false);
   };
 
@@ -70,19 +67,6 @@ function TicketEdit({ ticket, setEditSelected, error, setError }) {
               className={styles.input}
               onChange={(event) => setTitle(event.target.value)}
             />
-            {type === "Consulta" ? (
-              <BsQuestionCircleFill
-                className={styles.type}
-                size={"1.3vw"}
-                color={"rgba(106, 176, 249, 1)"}
-              />
-            ) : (
-              <BsFillExclamationCircleFill
-                className={styles.type}
-                size={"1.3vw"}
-                color={"red"}
-              />
-            )}
             <TicketSelect
               placeHolder={"Seleccione un tipo"}
               options={getOptions("Tipo")}

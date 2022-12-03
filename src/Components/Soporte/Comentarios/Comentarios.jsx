@@ -5,7 +5,7 @@ import { useState } from "react";
 import Comentario from "./Comentario";
 import { DeleteComentarios, PostComentario } from "../../../Utils/SoporteApi";
 
-function Comentarios({ comentarios, id, error, setError }) {
+function Comentarios({ comentarios, id, setUpdateComentarios }) {
   const [comentarioSelected, setComentarioSelected] = useState(false);
   const [coment, setComent] = useState("");
 
@@ -15,10 +15,12 @@ function Comentarios({ comentarios, id, error, setError }) {
       body: coment,
     };
     await PostComentario(body);
+    setUpdateComentarios(true);
   };
 
   const deleteComents = async () => {
     await DeleteComentarios(id);
+    setUpdateComentarios(true);
   };
 
   return (
@@ -57,8 +59,7 @@ function Comentarios({ comentarios, id, error, setError }) {
                     id={id}
                     coment={coment}
                     comentarioIncluido={comentarioIncluido}
-                    error={error}
-                    setError={setError}
+                    setUpdateComentarios={setUpdateComentarios}
                   />
                 );
               })}

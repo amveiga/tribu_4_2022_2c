@@ -3,12 +3,13 @@ import { MdEdit, MdDelete, MdClose, MdCheck } from "react-icons/md";
 import { DeleteComentario, UpdateComentario } from "../../../Utils/SoporteApi";
 import styles from "./../../../Styles/Soporte/Comentarios.module.css";
 
-function Comentario({ comentarioIncluido, coment, id, error, setError }) {
+function Comentario({ comentarioIncluido, coment, id, setUpdateComentarios }) {
   const [editSelected, setEditSelected] = useState(false);
   const [comentEdited, setComentEdited] = useState(coment);
 
   const deleteComentario = async (commentId) => {
     await DeleteComentario(commentId);
+    setUpdateComentarios(true);
   };
 
   const updateComent = async (commentId) => {
@@ -17,6 +18,7 @@ function Comentario({ comentarioIncluido, coment, id, error, setError }) {
       body: comentEdited,
     };
     await UpdateComentario(commentId, body);
+    setUpdateComentarios(true);
   };
 
   return (

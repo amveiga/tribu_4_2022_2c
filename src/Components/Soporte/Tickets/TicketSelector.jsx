@@ -3,7 +3,7 @@ import Ticket from "./Ticket";
 import TicketEdit from "./TicketEdit";
 import styles from "./../../../Styles/Soporte/Ticket.module.css";
 
-function TicketSelector({ ticket, error, setError }) {
+function TicketSelector({ ticket, setError, setUpdate }) {
   const [editSelected, setEditSelected] = useState(false);
 
   return (
@@ -12,16 +12,16 @@ function TicketSelector({ ticket, error, setError }) {
         <TicketEdit
           ticket={ticket}
           setEditSelected={setEditSelected}
-          error={error}
           setError={setError}
+          setUpdate={setUpdate}
         />
       ) : (
         <Ticket
           ticket={ticket}
           editSelected={editSelected}
           setEditSelected={setEditSelected}
-          error={error}
           setError={setError}
+          setUpdate={setUpdate}
         />
       )}
     </div>

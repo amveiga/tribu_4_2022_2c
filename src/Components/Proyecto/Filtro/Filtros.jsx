@@ -3,24 +3,22 @@ import styles from "./../../../Styles/Proyectos/Filtros.module.css";
 import { BiSort } from "react-icons/bi";
 import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
-import MenuOrden from "../Orden/MenuOrden"
+import MenuOrden from "../Orden/MenuOrden";
 
-function Filtros({ 
-    setFiltros,
-    setSortBy,
-    error,
-    setError,
-    client,
-    idClient,
-    type,
-    status,
-    setClientId,
-    setType,
-    setStatus }) {
-
+function Filtros({
+  setFiltros,
+  setSortBy,
+  client,
+  idClient,
+  type,
+  status,
+  setClientId,
+  setType,
+  setStatus,
+}) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
-  
+
   const handleFilterClick = () => {
     setFiltroAbierto(!filtroAbierto);
     setOrdenAbierto(false);

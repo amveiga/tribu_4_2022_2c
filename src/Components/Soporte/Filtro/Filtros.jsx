@@ -6,7 +6,7 @@ import MenuFiltro from "./MenuFiltro";
 import MenuOrden from "../Orden/MenuOrder";
 import { GetClientes } from "../../../Utils/SoporteApi";
 
-function Filtros({ setFiltros, setSortBy, error, setError }) {
+function Filtros({ setFiltros, setSortBy, setError }) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
   const [clientId, setClientId] = useState("");
