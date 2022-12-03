@@ -16,7 +16,8 @@ export async function GetClients(state, loading) {
         method:"get", 
         url: apiClient,
         headers: {
-            "Access-Control-Allow-Origin":"*"
+            "Access-Control-Allow-Origin":"*",
+            "Access-Control-Allow-Methods": "PUT, GET, HEAD, POST, DELETE, OPTIONS"
         }
     })
         .then(
