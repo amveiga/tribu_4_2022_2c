@@ -32,7 +32,7 @@ export async function updateProject(id, data, navigate){
         url: getUrl.concat("/", id),
         data: data
     })
-    .then(navigate("/"))
+    .then(navigate(0))
 }
 
 export async function DeleteProject(id,navigate) {
