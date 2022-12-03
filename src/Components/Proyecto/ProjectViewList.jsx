@@ -16,9 +16,10 @@ export async function GetClients(state, loading) {
         method:"get", 
         url: apiClient,
         headers: {
-            "Access-Control-Allow-Origin":"*",
-            "Access-Control-Allow-Methods": "GET"
-        }
+            "Access-Control-Allow-Origin":"*"
+        },
+        withCredentials: true,
+        
     })
         .then(
             setTimeout(() => {loading(false)}, 2000)
