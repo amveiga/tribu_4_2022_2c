@@ -17,6 +17,7 @@ import Comentarios from "../Comentarios/Comentarios";
 import {
   DeleteTicket,
   GetComentarios,
+  GetRecurso,
   GetRecursos,
   GetTareas,
   UpdateTicket,
@@ -145,12 +146,24 @@ function Ticket({
       }
     };
 
+    const getRecurso = async () => {
+      var recurso = await GetRecurso(ticket.userId);
+      if (recurso.status === 200) {
+        setError(false);
+        setRecurso(recurso.data.Nombre + " " + recurso.data.Apellido);
+      }
+      return;
+    };
+
     if (updateComentarios) {
       setUpdateComentarios(false);
     }
 
+    if (ticket.userId !== "") {
+      getRecurso();
+    }
     getComentarios();
-  }, [setError, ticket.id, updateComentarios]);
+  }, [setError, ticket.id, ticket.userId, updateComentarios]);
 
   return (
     <div className={styles.container}>

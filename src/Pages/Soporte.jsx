@@ -101,9 +101,9 @@ function Soporte() {
     };
 
     if (update) {
+      getTicketsEffect();
       setUpdate(false);
     }
-    getTicketsEffect();
   }, [filtros, sortBy, sortBy.length, update]);
 
   var component;

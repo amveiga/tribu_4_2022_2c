@@ -81,6 +81,13 @@ export async function GetRecursos(setError) {
   return response;
 }
 
+export async function GetRecurso(id, setError) {
+  var response = await axios
+    .get(URL_RECURSOS + "/" + id)
+    .catch((error) => setError(true));
+  return response;
+}
+
 //Tareas
 export async function GetTareas(setError) {
   var response = await axios.get(URL_TAREAS).catch((error) => setError(true));
