@@ -5,10 +5,14 @@ function ElementoCarga({
   setFecha,
   setTipo,
   setProyecto,
+  setProyectoName,
+  setTareaName,
   setTarea,
   setCantidadHoras,
   setDescripcion,
   proyecto,
+  proyectoName,
+  tareaName,
   tarea,
   cantidadHoras,
   tipo,
@@ -41,6 +45,21 @@ function ElementoCarga({
     getProyectos();
   }, []);
 
+
+  async function getProyectoName (idProyecto) {
+    const response = await axios.get(
+        "https://squad11-proyectos.onrender.com/api/projects/" + idProyecto
+    );
+    setProyectoName(response.data.name);
+  }
+
+  async function getTareaName (idTarea) {
+    const response = await axios.get(
+        "https://squad11-proyectos.onrender.com/api/tasks/" + idTarea
+    );
+    setTareaName(response.data.name);
+  }
+
   const Seccion = ({ value }) => {
     if (value === "tarea_proyecto") {
       return (
@@ -54,6 +73,7 @@ function ElementoCarga({
                 value={proyecto}
                 onChange={(event) => {
                   setProyecto(event.target.value);
+                  getProyectoName(event.target.value);
                   getTareas(event.target.value);
                 }}
               >
@@ -75,7 +95,11 @@ function ElementoCarga({
                 id="project-task"
                 className="hours-select"
                 value={tarea}
-                onChange={(event) => setTarea(event.target.value)}
+                onChange={(event) => {
+                  setTarea(event.target.value);
+                  getTareaName(event.target.value);
+                }
+              }
               >
                 <option disabled selected value="">
                   Nombre de la tarea
@@ -191,6 +215,7 @@ function ElementoCarga({
                 value={proyecto}
                 onChange={(event) => {
                   setProyecto(event.target.value);
+                  getProyectoName(event.target.value);
                   getTareas(event.target.value);
                 }}
               >
