@@ -12,6 +12,15 @@
     justify-content: space-between;
 }
 
+#select-report{
+    margin-left: 30px;
+    background-color: rgb(222, 222, 222);
+    border: 2px solid rgb(0, 53, 108);
+    border-radius: 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+}
+
 .report-title{
     display: flex;
     height: 100%;
@@ -71,7 +80,7 @@
 
 .date-div input{
     background-color: rgb(222, 222, 222);
-    
+    height: 30px;
     border-radius: 15px;
     text-align: center;
     color: rgb(79, 79, 79);
@@ -113,23 +122,8 @@
 }
 
 .report-grid{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
     width: 90%;
     margin-top: 80px;
-}
-
-.report-grid div{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 80%;
-    background-color: rgb(238, 238, 238);
-    height: 30px;
-    margin-bottom: 10px;
-    margin-left: 10%;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-weight: 500;
 }
 
 .type-task-grid{
@@ -148,12 +142,32 @@
     grid-column: 4;
 }
 
-.type-task-grid:nth-child(1),
-.task-grid:nth-of-type(2),
-.time-grid:nth-of-type(3),
-.total-time-grid:nth-of-type(4){
+table{
+    width: 90%;
+    margin-top: 80px;
+    border-spacing:10px
+}
+
+th{
+    height: 30px;
+}
+
+tr:nth-of-type(1n){
+    background-color: rgb(238, 238, 238);
+}
+
+tr:first-of-type{
     background-color: rgb(0, 53, 108);
     color: white;
+}
+
+.generarButton{
+    cursor: pointer;
+}
+
+.generarButton:active{
+    background-color: rgb(189, 189, 189);
+
 }
 
 @media (max-width: 1430px){

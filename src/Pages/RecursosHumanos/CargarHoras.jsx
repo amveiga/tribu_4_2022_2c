@@ -1,13 +1,24 @@
-import { useNavigate, useParams } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 import "./../../Styles/RecursosHumanos/BarraInformacion.css";
 import "./../../Styles/RecursosHumanos/Botones.css";
 import "./../../Styles/RecursosHumanos/Cargas.css";
 
+import fotoPerfil from "./../../Img/RecursosHumanos/perfil.png";
 import enviarIcon from "./../../Img/RecursosHumanos/enviar_icon.png";
 import borradorIcon from "./../../Img/RecursosHumanos/borrador_icon.png";
 import cancelarIcon from "./../../Img/RecursosHumanos/cancelar_icon.png";
+import sumarIcon from "./../../Img/RecursosHumanos/sumar_icon.png";
+import restarIcon from "./../../Img/RecursosHumanos/restar_icon.png";
 
+import FichaEmpleado from "../../Components/RecursosHumanos/FichaEmpleado";
 import ElementoCarga from "../../Components/RecursosHumanos/ElementoCarga";
 import { useState } from "react";
 import axios from "axios";

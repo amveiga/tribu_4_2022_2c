@@ -1,4 +1,10 @@
 import SegmentoTarea from "./SegmentoTarea";
+import SegmentoTareaMayor from "./SegmentoTareaMayor";
+
+import { Link, animateScroll as scroll } from "react-scroll";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function ContenedorTareas({ tareas, setTareaEditable }) {
   return (
@@ -15,6 +21,12 @@ function ContenedorTareas({ tareas, setTareaEditable }) {
           );
         })}
       </div>
+    </div>
+  );
+
+  var contenedorVacio = (
+    <div className="task-element-container">
+      <div>No hay tareas</div>
     </div>
   );
 }
