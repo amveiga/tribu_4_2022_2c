@@ -163,6 +163,20 @@ function Tareas() {
             tipoDeParteDeHoras: pendiente.tipoDeParteDeHoras,
           }
         );
+        if(estado === "APROBADO"){
+          await axios.put(
+            `https://squad11-proyectos.onrender.com/api/projects/${pendiente.proyectoId}/hours`, 
+            {
+              hours: pendiente.cantidadDeHorasTrabajadas,
+            }
+          );
+          await axios.put(
+            `https://squad11-proyectos.onrender.com/api/tasks/${pendiente.tareaId}/hours`,
+            {
+              hours: pendiente.cantidadDeHorasTrabajadas,
+            }
+          )
+        }
       });
     }
   }
