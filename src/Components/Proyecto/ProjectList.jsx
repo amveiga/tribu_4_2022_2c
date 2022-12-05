@@ -58,11 +58,9 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
     const filtrarProjectos = (projects) =>{
         var filtrado = [];
         if (filtros.length !== 0) {
-            console.log("filtros multiples")
             filtrado = filtradoInclusivo(filtros, projects, clientes);
             setProjectsFilter(filtrado)
         } else {
-            console.log("proyectos originales")
             setProjectsFilter(projects)
         }
         setFiltroActivado(false);
