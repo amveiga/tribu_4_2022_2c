@@ -1,10 +1,22 @@
-function ElementoParcialReporte(){
-    return(
-        <tr>
-            <th className="task-grid">Tarea 7</th>
-            <th className="time-grid">12 Hs</th>
-        </tr>
-    )
+function ElementoParcialReporte(dato){
+    console.log(dato)
+    if(dato.dato.tipoDeTarea === "TAREA_PROYECTO"){
+        return(
+            <tr>
+                <th className="task-grid">{dato.dato.nombreTarea}</th>
+                <th className="time-grid">{dato.dato.cantidadDeHorasTrabajadas} Hs</th>
+            </tr>
+        )
+    }
+    else{
+        return(
+            <tr>
+                <th className="task-grid">{dato.dato.descripcion}</th>
+                <th className="time-grid">{dato.dato.cantidadDeHorasTrabajadas} Hs</th>
+            </tr>
+        )
+    }
+    
 }
 
 export default ElementoParcialReporte;

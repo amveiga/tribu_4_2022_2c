@@ -11,7 +11,7 @@ function Header() {
       </a>
       <ul className={styles.headerList}>
         {sections.map((section) => {
-          return <ListButton key={section.id} section={section} />;
+          return <ListButton section={section} />;
         })}
       </ul>
     </div>
