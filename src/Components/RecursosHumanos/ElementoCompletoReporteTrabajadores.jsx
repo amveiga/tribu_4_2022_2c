@@ -1,4 +1,4 @@
-function ElementoCompletoReporte(cantidadElementos, dato, horasSumadas){
+function ElementoCompletoReporteTrabajadores(cantidadElementos, dato, horasSumadas){
     //console.log(cantidadElementos)
     if(cantidadElementos.dato.tipoDeTarea === "TAREA_PROYECTO"){
         return(
@@ -22,4 +22,4 @@ function ElementoCompletoReporte(cantidadElementos, dato, horasSumadas){
     }
 }
 
-export default ElementoCompletoReporte;
+export default ElementoCompletoReporteTrabajadores;

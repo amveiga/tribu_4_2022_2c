@@ -6,8 +6,9 @@ import reportes from "./../../Img/RecursosHumanos/reportes_icon.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-import ElementoCompletoReporte from "../../Components/RecursosHumanos/ElementoCompletoReporte";
-import ElementoParcialReporte from "../../Components/RecursosHumanos/ElementoParcialReporte";
+import ElementoHeaderReporteTrabajadores from "../../Components/RecursosHumanos/ElementoHeaderReporteTrabajadores";
+import ElementoCompletoReporteTrabajadores from "../../Components/RecursosHumanos/ElementoCompletoReporteTrabajadores";
+import ElementoParcialReporteTrabajadores from "../../Components/RecursosHumanos/ElementoParcialReporteTrabajadores";
 
 function GenerarReportesTrabajador() {
     const [empleados, setEmpleados] = useState([])
@@ -50,28 +51,19 @@ function GenerarReportesTrabajador() {
             return
         }
         //console.log("reporte realizado!!")
-        console.log(empleadoActual)
+        //console.log(empleadoActual)
         var operation = await axios.get(
             /*"https://squad1220222c-production.up.railway.app/reportes/tareas/fechas?fechaFin=" +  + "&fechaInicio=" + fechaMinima*/
             "https://squad1220222c-production.up.railway.app/reportes/?fechaFin=" + fechaMaxima + "&fechaInicio=" + fechaMinima + "&legajo=" + empleadoActual
         )
         .then(res =>{
-            //console.log(res)
+            //console.log(Array.from(res.data).filter((tarea) => tarea.estado === "APROBADO"))
             //setDatos(res)
-            ordenarDatos(res.data)
+            ordenarDatos(Array.from(res.data).filter((tarea) => tarea.estado === "APROBADO"))
         }
         
         )
         
-        
-    }
-
-    function graficarDatos(datos){
-        if(datos){
-            datos.map((dato) => {
-                return <ElementoCompletoReporte/>
-            })
-        }
         
     }
 
@@ -128,12 +120,7 @@ function GenerarReportesTrabajador() {
 
     const cargarTabla = (listaDatos) =>{
         var listaElementos = [[
-            <tr>
-                <th className="type-task-grid">Tipo de tarea</th>
-                <th className="task-grid">Tareas</th>
-                <th className="time-grid">Tiempo total por tareas</th>
-                <th className="total-time-grid">Tiempo total</th>
-            </tr>
+            <ElementoHeaderReporteTrabajadores/>
         ]]
         listaDatos.forEach(lista => {
             var primerElemento = true
@@ -141,17 +128,18 @@ function GenerarReportesTrabajador() {
                 var horasSumadas = sumarHoras(lista)
                 for(var i = 0; i < lista.length; i++){
                     if((lista[i][0] != null)){
-                        //index = 0
+                        primerElemento = true
+                        var horasSumadas = sumarHoras(lista[i])
                         for(var j = 0; j < lista[i].length; j++){
                                 //console.log(lista[i][j])
                                 //console.log("un proyecto")
                                 //setElementosTabla([...elementosTabla, <ElementoCompletoReporte dato={lista[i]}/>])
                                 if(primerElemento){
-                                    listaElementos.push(<ElementoCompletoReporte cantidadElementos={lista[i].length} dato={lista[i][j]} horasSumadas={horasSumadas}/>)
+                                    listaElementos.push(<ElementoCompletoReporteTrabajadores cantidadElementos={lista[i].length} dato={lista[i][j]} horasSumadas={horasSumadas}/>)
                                     primerElemento = false
                                 }
                                 else{
-                                    listaElementos.push(<ElementoParcialReporte dato={lista[i][j]}/>)
+                                    listaElementos.push(<ElementoParcialReporteTrabajadores dato={lista[i][j]}/>)
                                 }
 
                                 
@@ -161,11 +149,11 @@ function GenerarReportesTrabajador() {
                     else{
                         //console.log(lista[i])
                         if(primerElemento){
-                            listaElementos.push(<ElementoCompletoReporte cantidadElementos={lista.length} dato={lista[i]} horasSumadas={horasSumadas}/>)
+                            listaElementos.push(<ElementoCompletoReporteTrabajadores cantidadElementos={lista.length} dato={lista[i]} horasSumadas={horasSumadas}/>)
                             primerElemento = false
                         }
                         else{
-                            listaElementos.push(<ElementoParcialReporte dato={lista[i]}/>)
+                            listaElementos.push(<ElementoParcialReporteTrabajadores dato={lista[i]}/>)
                         }
                         //index+=1
                         //setElementosTabla((elementosTabla) => [...elementosTabla, <ElementoCompletoReporte dato={lista[i]}/>])

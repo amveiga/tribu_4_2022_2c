@@ -163,8 +163,8 @@ tr:first-of-type{
 
 .generarButton{
     cursor: pointer;
+    height: 36px;
 }
-
 .generarButton:active{
     background-color: rgb(189, 189, 189);
 

@@ -1,4 +1,4 @@
-function ElementoHeaderReporte(){
+function ElementoHeaderReporteTrabajadores(){
     //console.log(dato)
     return(
     <tr>
@@ -10,4 +10,4 @@ function ElementoHeaderReporte(){
     )
 }
 
-export default ElementoHeaderReporte;
+export default ElementoHeaderReporteTrabajadores;

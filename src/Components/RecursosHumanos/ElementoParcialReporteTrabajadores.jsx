@@ -1,4 +1,4 @@
-function ElementoParcialReporte(dato){
+function ElementoParcialReporteTrabajadores(dato){
     console.log(dato)
     if(dato.dato.tipoDeTarea === "TAREA_PROYECTO"){
         return(
@@ -19,4 +19,4 @@ function ElementoParcialReporte(dato){
     
 }
 
-export default ElementoParcialReporte;
+export default ElementoParcialReporteTrabajadores;
