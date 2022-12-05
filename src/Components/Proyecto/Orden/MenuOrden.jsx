@@ -1,5 +1,5 @@
 import styles from "../../../Styles/Proyectos/MenuOrden.module.css"
-import Orden from "../../../Data/Orden.json";
+import Orden from "../../../Data/OrdenProyectos.json";
 import OrdenItem from "./OrdenItem";
 
 function MenuOrden({ setSortBy }) {

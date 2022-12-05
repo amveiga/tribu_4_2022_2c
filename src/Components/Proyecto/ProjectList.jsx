@@ -1,19 +1,15 @@
 import styles from "../../Styles/Proyectos/Proyectos.module.css"
-// import { ProjectViewAPI } from "./ProjectViewList"
 import ProjectSelector from "./ProjectSelector";
 import { useEffect, useState } from "react";
 import ButtonCreate from "./ButtonCreate"
-// import Filtros from "./Filtro/Filtros"
+import Filtros from "./Filtro/Filtros"
+import { filtradoInclusivo } from "./Filtro/utils";
 
 function ProjectList({ projects, listClient, clientes, listRecursos, recursos, clientesR }) {
     const [projectsFilter, setProjectsFilter] = useState([]);
-    // const [sortBy, setSortBy] = useState([]);
-    // const [filtros, setFiltros] = useState("");
-    // const [idClient, setIdClient] = useState("");
-    // const [type, setType] = useState("");
-    // const [status, setStatus] = useState("");
-    // eslint-disable-next-line
-    const cliente = clientesR
+    const [sortBy, setSortBy] = useState([]);
+    const [filtros, setFiltros] = useState("");
+    const [filtradoActivado, setFiltroActivado] = useState(false);
 
     const getRazonSocial = (id) => {
         const cliente = (clientes.find((cliente) => (cliente.id === id)))
@@ -27,72 +23,70 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
         return (`${recurso.Nombre}, ${recurso.Apellido}`)
     }
 
-    // const sortMaxToMin = (data) => {
-    //     switch (sortBy[0]) {
-    //         case "status":
-    //             setProjectsFilter(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
-    //             break;
-    //         case "type":
-    //             setProjectsFilter(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
-    //             break;
-    //       default: return "asdasd"
-    //     }
-    //   };
+    const sortMaxToMin = (data) => {
+        switch (sortBy[0]) {
+            case "status":
+                setProjectsFilter(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
+                break;
+            case "type":
+                setProjectsFilter(data.sort((a, b) => (a.type > b.type ? -1 : 1)));
+                break;
+          default: return "asdasd"
+        }
+      };
 
-    // const sortMinToMax = (data) => {
-    //     switch (sortBy[0]) {
-    //         case "status":
-    //             setProjectsFilter(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
-    //             break;
-    //         case "type":
-    //             setProjectsFilter(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
-    //             break;
-    //         default: return ""
-    //     }
-    // };
+    const sortMinToMax = (data) => {
+        switch (sortBy[0]) {
+            case "status":
+                setProjectsFilter(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
+                break;
+            case "type":
+                setProjectsFilter(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
+                break;
+            default: return ""
+        }
+    };
 
-    // const sort = (data) => {
-    //     if (sortBy[1] === 1) {
-    //         sortMinToMax(data);
-    //     } else {
-    //         sortMaxToMin(data);
-    //     }
-    // };
+    const sort = (data) => {
+        if (sortBy[1] === 1) {
+            sortMinToMax(data);
+        } else {
+            sortMaxToMin(data);
+        }
+    };
 
-    const filtarProjectos = (projects) =>{
-        // if(filtros !== "") {
-        //     if (idClient !== "") {
-        //     const clientProjects = projects.map((project) => (project.assignedClient === idClient))
-        //     setProjectsFilter(clientProjects)
-        //     }
-        //     if (type !== ""){
-        //         const clientProjects = projects.map((project) => (project.type === type))
-        //         console.log("dsaukdghsajkdh")
-        //         setProjectsFilter(clientProjects)
-        //     }
-        // } else {
-            setProjectsFilter(projects) 
-        // }
+    const filtrarProjectos = (projects) =>{
+        var filtrado = [];
+        if (filtros.length !== 0) {
+            console.log("filtros multiples")
+            filtrado = filtradoInclusivo(filtros, projects, clientes);
+            setProjectsFilter(filtrado)
+        } else {
+            console.log("proyectos originales")
+            setProjectsFilter(projects)
+        }
+        setFiltroActivado(false);
     }
-    
+
     useEffect(() => {
-        filtarProjectos(projects)
-    })
+        filtrarProjectos(projects)
+    }, [filtradoActivado])
 
     return (
         <div className={styles.proyectosContainer}>
-            {/* <Filtros 
+            <Filtros 
                 setFiltros={setFiltros}
-                client={cliente}
-                idClient={idClient}
-                type={type}
-                status={status}
-                setIdClient={setIdClient}
-                setType={setType}
-                setStatus={setStatus}
-            /> */}
+                setSortBy={setSortBy}
+                clients={clientesR}
+                setFiltroActivado={setFiltroActivado}
+            />
+            
             <div className={styles.projects}>
-                {projectsFilter.map((project) => {
+                {projectsFilter.length === 0 ? 
+                
+                (<div className={styles.noProjects}> No hay proyectos disponibles</div>)
+                
+                :( projectsFilter.map((project) => {
                     return <ProjectSelector 
                                 key={project._id} 
                                 project={project} 
@@ -101,7 +95,7 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
                                 listRecursos={listRecursos}
                                 recurso={getRecurso(project.projectLeader)}
                             />
-                })}
+                }))}
             </div>
             <ButtonCreate listClient={listClient} listRecursos={listRecursos}/>
         </div>

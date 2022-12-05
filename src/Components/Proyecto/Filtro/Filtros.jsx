@@ -1,25 +1,16 @@
 import { useState } from "react";
-import styles from "./../../../Styles/Proyectos/Filtros.module.css";
+import styles from "./../../../Styles/Soporte/Filtros.module.css";
 import { BiSort } from "react-icons/bi";
 import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
-import MenuOrden from "../Orden/MenuOrden"
+import MenuOrden from "../Orden/MenuOrden";
 
-function Filtros({ 
-    setFiltros,
-    setSortBy,
-    error,
-    setError,
-    client,
-    idClient,
-    type,
-    status,
-    setClientId,
-    setType,
-    setStatus }) {
-
+function Filtros({ setFiltros, setSortBy, clients, setFiltroActivado }) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
+  const [clientId, setClientId] = useState("");
+  const [status, setStatus] = useState("");
+  const [type, setType] = useState("");
   
   const handleFilterClick = () => {
     setFiltroAbierto(!filtroAbierto);
@@ -50,13 +41,14 @@ function Filtros({
         <MenuFiltro
           setFiltroAbierto={setFiltroAbierto}
           setFiltros={setFiltros}
-          clientId={idClient}
+          clientId={clientId}
           status={status}
           type={type}
           setClientId={setClientId}
           setStatus={setStatus}
           setType={setType}
-          clients={client}
+          clients={clients}
+          setFiltroActivado={setFiltroActivado}
         />
       )}
       <div

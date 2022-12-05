@@ -1,0 +1,13 @@
+[
+    {
+      "id": 1,
+      "Nombre": "Estado",
+      "order": "status"
+    },
+    {
+      "id": 2,
+      "Nombre": "Tipo",
+      "order": "type"
+    }
+]
+  

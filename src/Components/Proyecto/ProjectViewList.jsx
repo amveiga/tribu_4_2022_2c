@@ -7,6 +7,8 @@ const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange
 const apiRecursos = "https://squad1220222c-production.up.railway.app/recursos"
 const corsAnywhere = 'https://cors-anywhere.herokuapp.com/';
  
+// axios.defaults.headers.get["Access-Control-Allow-Origin"]= "*"; // update to match the domain you will make the request from
+// axios.defaults.headers.("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 export async function ProjectViewAPI(state) {
     const list = await axios.get(getUrl);
@@ -16,13 +18,9 @@ export async function ProjectViewAPI(state) {
 export async function GetClients(state, loading) {
     const listClient = await axios({
         method:"get", 
-        url: corsAnywhere + apiClient,
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': "*"  
-        }
-})
-        .then(
+        url: apiClient
+    })
+    .then(
             setTimeout(() => {loading(false)}, 2000)
         )
     state(listClient.data)

@@ -1,7 +1,8 @@
 import styles from "./../../../Styles/Proyectos/Select.module.css";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi";
-import { FaUser } from "react-icons/fa";
+import { FaUser, FaWifi } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
+import { BsExclamationCircleFill } from "react-icons/bs";
 import { GrStatusGoodSmall } from "react-icons/gr";
 import { MdContactSupport } from "react-icons/md";
 import { useState } from "react";
@@ -10,7 +11,7 @@ function Select({ placeHolder, options, icon, style, setter, value }) {
   const [selected, setSelected] = useState(false);
 
   const handleClick = (val) => {
-    setter(val.value);
+    setter(val);
     setSelected(false);
   };
 
@@ -20,8 +21,14 @@ function Select({ placeHolder, options, icon, style, setter, value }) {
       component = <FaUser size={"1vw"} color={"rgba(0,53,108,1)"} />;
     } else if (icon === "estado") {
       component = <GrStatusGoodSmall size={"1vw"} color={"rgba(0,53,108,1)"} />;
+    } else if (icon === "SLA") {
+      component = (
+        <BsExclamationCircleFill size={"1vw"} color={"rgba(0,53,108,1)"} />
+      );
     } else if (icon === "tipo") {
       component = <MdContactSupport size={"1vw"} color={"rgba(0,53,108,1)"} />;
+    } else {
+      component = <FaWifi size={"1vw"} color={"rgba(0,53,108,1)"} />;
     }
     return component;
   };
@@ -34,7 +41,7 @@ function Select({ placeHolder, options, icon, style, setter, value }) {
     if (selected) {
       component2 = <HiChevronUp size={"1.5vw"} color={"rgba(0,53,108,1)"} />;
     }
-    if (value !== '') {
+    if (value !== "") {
       component1 = (
         <IoClose
           onClick={() => setter("")}
@@ -69,7 +76,7 @@ function Select({ placeHolder, options, icon, style, setter, value }) {
             return (
               <div
                 onClick={() => {
-                  handleClick(option);
+                  handleClick(option.value);
                 }}
                 className={styles.option}
                 key={option.value}

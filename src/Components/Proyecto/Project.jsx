@@ -116,11 +116,11 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                         onClick={() => {
                             setDeleteSelected(true)
                         }}>
-                            <PopUpProject 
+                            {/* <PopUpProject 
                                 message={"¿Desea eliminar el proyecto?"}
                                 setDeleteSelected={setDeleteSelected}
                                 id={project._id}
-                            />
+                            /> */}
                     </div>
                 )}
             </div>
