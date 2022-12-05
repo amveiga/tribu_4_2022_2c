@@ -71,11 +71,17 @@ function Project({ project, editSelected, setEditSelected, setClient, setRecurso
                         </div>
                     </div>
                     <div className={styles.sectionTwo}>
-                        <div className={styles.estado + " " + getType(project.type)} title="Tipo de proyecto">
-                            {project.type}
+                        <div>
+                            Tipo
+                            <div className={styles.estado + " " + getType(project.type)} title="Tipo de proyecto">
+                                {project.type}
+                            </div>
                         </div>
-                        <div className={styles.estado + " " + getState(project.status)} title="Estado actual del proyecto">
-                            {project.status}
+                        <div>
+                            Estado
+                            <div className={styles.estado + " " + getState(project.status)} title="Estado actual del proyecto">
+                                {project.status}
+                            </div>
                         </div>
                         <div className={styles.item + " " + styles.item3} title="Lider del proyecto">
                             <FiUser size={"1.5vw"} color={"rgba(0,53,108,1)"} />

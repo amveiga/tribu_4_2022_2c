@@ -10,6 +10,7 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
     const [sortBy, setSortBy] = useState([]);
     const [filtros, setFiltros] = useState("");
     const [filtradoActivado, setFiltroActivado] = useState(false);
+    const [ordenActivado, setOrdenActivado] = useState(false);
 
     const getRazonSocial = (id) => {
         const cliente = (clientes.find((cliente) => (cliente.id === id)))
@@ -25,6 +26,12 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
 
     const sortMaxToMin = (data) => {
         switch (sortBy[0]) {
+            case "idealInitDate":
+                setProjectsFilter(data.sort((a, b) => (a.idealInitDate > b.idealInitDate ? -1 : 1)))
+                break;
+            case "idealEndDate":
+                setProjectsFilter(data.sort((a, b) => (a.idealEndDate > b.idealEndDate ? -1 : 1)))
+                break;
             case "status":
                 setProjectsFilter(data.sort((a, b) => (a.status > b.status ? -1 : 1)));
                 break;
@@ -36,23 +43,33 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
       };
 
     const sortMinToMax = (data) => {
+        var ordenado = []
         switch (sortBy[0]) {
+            case "idealInitDate":
+                ordenado = data.sort((a, b) => (a.idealInitDate > b.idealInitDate ? 1 : -1));
+                break;
+            case "idealEndDate":
+                ordenado = data.sort((a, b) => (a.idealEndDate > b.idealEndDate ? 1 : -1));
+                break;
             case "status":
-                setProjectsFilter(data.sort((a, b) => (a.status > b.status ? 1 : -1)));
+                ordenado = data.sort((a, b) => (a.status > b.status ? 1 : -1));
                 break;
             case "type":
-                setProjectsFilter(data.sort((a, b) => (a.type > b.type ? 1 : -1)));
+                ordenado = data.sort((a, b) => (a.type > b.type ? 1 : -1));
                 break;
             default: return ""
         }
+        setProjectsFilter(ordenado)
     };
 
     const sort = (data) => {
+        console.log("orden", sortBy)
         if (sortBy[1] === 1) {
             sortMinToMax(data);
         } else {
             sortMaxToMin(data);
         }
+        setOrdenActivado(false)
     };
 
     const filtrarProjectos = (projects) =>{
@@ -63,12 +80,13 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
         } else {
             setProjectsFilter(projects)
         }
-        setFiltroActivado(false);
+        setFiltroActivado(false)
     }
 
     useEffect(() => {
         filtrarProjectos(projects)
-    }, [filtradoActivado])
+        sort(projectsFilter)
+    }, [filtradoActivado, ordenActivado])
 
     return (
         <div className={styles.proyectosContainer}>
@@ -77,6 +95,7 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
                 setSortBy={setSortBy}
                 clients={clientesR}
                 setFiltroActivado={setFiltroActivado}
+                setOrdenActivado={setOrdenActivado}
             />
             
             <div className={styles.projects}>

@@ -5,7 +5,7 @@ import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
 import MenuOrden from "../Orden/MenuOrden";
 
-function Filtros({ setFiltros, setSortBy, clients, setFiltroActivado }) {
+function Filtros({ setFiltros, setSortBy, clients, setFiltroActivado, setOrdenActivado }) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
   const [clientId, setClientId] = useState("");
@@ -63,7 +63,7 @@ function Filtros({ setFiltros, setSortBy, clients, setFiltroActivado }) {
           Orden
         </div>
       </div>
-      {ordenAbierto && <MenuOrden setSortBy={setSortBy} />}
+      {ordenAbierto && <MenuOrden setSortBy={setSortBy} setOrdenActivado={setOrdenActivado} />}
     </div>
   );
 }

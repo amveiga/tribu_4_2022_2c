@@ -2,7 +2,7 @@ import styles from "../../../Styles/Proyectos/MenuOrden.module.css"
 import Orden from "../../../Data/OrdenProyectos.json";
 import OrdenItem from "./OrdenItem";
 
-function MenuOrden({ setSortBy }) {
+function MenuOrden({ setSortBy, setOrdenActivado }) {
   return (
     <div className={styles.menuOrden}>
       {Orden.map((o) => {
@@ -12,6 +12,7 @@ function MenuOrden({ setSortBy }) {
             setSortBy={setSortBy}
             name={o.Nombre}
             order={o.order}
+            setOrdenActivado={setOrdenActivado}
           />
         );
       })}
