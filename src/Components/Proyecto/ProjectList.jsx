@@ -63,7 +63,6 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
     };
 
     const sort = (data) => {
-        console.log("orden", sortBy)
         if (sortBy[1] === 1) {
             sortMinToMax(data);
         } else {
