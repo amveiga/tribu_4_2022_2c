@@ -11,12 +11,9 @@ import ElementoParcialReporte from "../../Components/RecursosHumanos/ElementoPar
 
 function GenerarReportesTrabajador() {
     const [empleados, setEmpleados] = useState([])
-    const [loading, setLoading] = useState(true)
     const [empleadoActual, setEmpleadoActual] = useState(null)
     const [fechaMinima, setFechaMinima] = useState("")
     const [fechaMaxima, setFechaMaxima] = useState("")
-    const [datos, setDatos] = useState(null)
-    const [listaDatos, setListaDatos] = useState([])
     const [elementosTabla, setElementosTabla] = useState([])
 
     let navigate = useNavigate();
@@ -27,7 +24,6 @@ function GenerarReportesTrabajador() {
             .get("https://squad1220222c-production.up.railway.app/recursos")
             .then((res) => {
                 setEmpleados(res.data);
-                setLoading(false);
             });
         };
     
@@ -54,8 +50,10 @@ function GenerarReportesTrabajador() {
             return
         }
         //console.log("reporte realizado!!")
+        console.log(empleadoActual)
         var operation = await axios.get(
-            "https://squad1220222c-production.up.railway.app/reportes/tareas/fechas?fechaFin=" + fechaMaxima + "&fechaInicio=" + fechaMinima
+            /*"https://squad1220222c-production.up.railway.app/reportes/tareas/fechas?fechaFin=" +  + "&fechaInicio=" + fechaMinima*/
+            "https://squad1220222c-production.up.railway.app/reportes/?fechaFin=" + fechaMaxima + "&fechaInicio=" + fechaMinima + "&legajo=" + empleadoActual
         )
         .then(res =>{
             //console.log(res)
@@ -122,31 +120,78 @@ function GenerarReportesTrabajador() {
             }
         }
 
-        setListaDatos(listaCompleta)
+        //setListaDatos(listaCompleta)
         cargarTabla(listaCompleta)
     }
 
     
 
     const cargarTabla = (listaDatos) =>{
-        
+        var listaElementos = [[
+            <tr>
+                <th className="type-task-grid">Tipo de tarea</th>
+                <th className="task-grid">Tareas</th>
+                <th className="time-grid">Tiempo total por tareas</th>
+                <th className="total-time-grid">Tiempo total</th>
+            </tr>
+        ]]
         listaDatos.forEach(lista => {
+            var primerElemento = true
             if(lista.length > 0) {
+                var horasSumadas = sumarHoras(lista)
                 for(var i = 0; i < lista.length; i++){
                     if((lista[i][0] != null)){
+                        //index = 0
                         for(var j = 0; j < lista[i].length; j++){
-                                console.log(lista[i][j])
+                                //console.log(lista[i][j])
                                 //console.log("un proyecto")
+                                //setElementosTabla([...elementosTabla, <ElementoCompletoReporte dato={lista[i]}/>])
+                                if(primerElemento){
+                                    listaElementos.push(<ElementoCompletoReporte cantidadElementos={lista[i].length} dato={lista[i][j]} horasSumadas={horasSumadas}/>)
+                                    primerElemento = false
+                                }
+                                else{
+                                    listaElementos.push(<ElementoParcialReporte dato={lista[i][j]}/>)
+                                }
+
+                                
+                                //index+=1
                             }
                         }
                     else{
-                        console.log(lista[i])
-                        setElementosTabla([...elementosTabla, <ElementoCompletoReporte dato={listaDatos}/>])
+                        //console.log(lista[i])
+                        if(primerElemento){
+                            listaElementos.push(<ElementoCompletoReporte cantidadElementos={lista.length} dato={lista[i]} horasSumadas={horasSumadas}/>)
+                            primerElemento = false
+                        }
+                        else{
+                            listaElementos.push(<ElementoParcialReporte dato={lista[i]}/>)
+                        }
+                        //index+=1
+                        //setElementosTabla((elementosTabla) => [...elementosTabla, <ElementoCompletoReporte dato={lista[i]}/>])
                     }
                 }
                 
             }
         });
+        //console.log(listaElementos)
+        setElementosTabla(listaElementos)
+    }
+
+    function sumarHoras(lista){
+        var horasSumadas = 0;
+        for(var i = 0; i < lista.length; i++){
+            if((lista[i][0] != null)){
+                for(var j = 0; j < lista[i].length; j++){
+                    horasSumadas += lista[i][j].cantidadDeHorasTrabajadas
+                }
+            }
+            else{
+                horasSumadas += lista[i].cantidadDeHorasTrabajadas
+            }
+        }
+        //console.log(horasSumadas)
+        return horasSumadas
     }
 
     function verTareas(){
@@ -164,10 +209,10 @@ function GenerarReportesTrabajador() {
                     <div className="option-section">
                         <p>Indique el/la trabajor/a del cual desea generar el reporte:</p>
                         <select name="" id="select-report" onChange={(event) => setEmpleadoActual(event.target.value)}>
-                        <option disabled selected onChange={(event) => setEmpleadoActual(event.target.value)} value="">Seleccione el trabajador</option>
-                        {empleados.map((empleado) => {
-                            return <option value="">{empleado.legajo} - {empleado.Nombre} {empleado.Apellido}</option>;
-                            })}
+                            <option disabled selected value="">Seleccione el trabajador</option>
+                            {empleados.map((empleado) => {
+                                return <option value={empleado.legajo}>{empleado.legajo} - {empleado.Nombre} {empleado.Apellido}</option>;
+                                })}
                         </select>
                     </div>
                     <div className="option-section">
@@ -184,21 +229,17 @@ function GenerarReportesTrabajador() {
             </div>
 
             <table>
-                <tr>
-                    <th className="type-task-grid">Tipo de tarea</th>
-                    <th className="task-grid">Tareas</th>
-                    <th className="time-grid">Tiempo total por tareas</th>
-                    <th className="total-time-grid">Tiempo total</th>
-                </tr>
+                
                 {/*listaDatos?.map((listaDatos) => {
                     cargarTabla(listaDatos)
                 })*/}
-                {console.log(elementosTabla)}
+                {/*console.log(elementosTabla)*/}
                 
                 {elementosTabla?.map((elemento) =>{
                     //console.log(elemento)
                     return elemento
                 })}
+                {/* 
                 <tr>
                     <th className="type-task-grid" rowSpan={3}>Nombre del proyecto 2</th>
                     <th className="task-grid">Tarea 5</th>
@@ -243,7 +284,7 @@ function GenerarReportesTrabajador() {
                 <tr>
                     <th className="task-grid">Licencia diaria</th>
                     <th className="time-grid">2 Hs</th>
-                </tr>
+                </tr>*/}
             </table>
         </div>
     )}
