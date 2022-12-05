@@ -26,7 +26,10 @@ function Comentarios({ comentarios, id, setUpdateComentarios }) {
   return (
     <div className={styles.container}>
       <div
-        onClick={() => setComentarioSelected(!comentarioSelected)}
+        onClick={() => {
+          setUpdateComentarios(true);
+          setComentarioSelected(!comentarioSelected);
+        }}
         className={
           comentarioSelected
             ? styles.comentariosContainer + " " + styles.selected

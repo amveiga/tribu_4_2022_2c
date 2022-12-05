@@ -15,13 +15,15 @@ import styles from "./../../../Styles/Soporte/Ticket.module.css";
 import TicketSelect from "./TicketSelect";
 import Comentarios from "../Comentarios/Comentarios";
 import {
+  DeleteTarea,
   DeleteTicket,
   GetComentarios,
   GetRecurso,
   GetRecursos,
-  GetTareas,
+  GetTarea,
   UpdateTicket,
 } from "../../../Utils/SoporteApi";
+import CrearTarea from "../CreateTarea";
 
 function Ticket({
   ticket,
@@ -37,11 +39,11 @@ function Ticket({
   const [userId, setUserId] = useState(ticket.userId);
   const [tarea, setTarea] = useState("");
   const [tareaId, setTareaId] = useState(ticket.taskId);
-  const [tareas, setTareas] = useState([]);
   const [tareaSelected, setTareaSelected] = useState(false);
   const [comentarios, setComentarios] = useState([]);
   const [recursos, setRecursos] = useState([]);
   const [updateComentarios, setUpdateComentarios] = useState(true);
+  const [updateTarea, setUpdateTarea] = useState(false);
 
   const getState = (estado) => {
     var style;
@@ -88,25 +90,11 @@ function Ticket({
       sla: ticket.sla,
       clientId: ticket.clientId,
       userId: userId.toString(),
-      taskId: tareaId,
+      taskId: ticket.taskId,
     };
     await UpdateTicket(ticket.id, body);
     setRecurso(recursoAux);
     setUpdate(true);
-  };
-
-  const getTareas = async () => {
-    var tareas = await GetTareas(setError);
-    if (tareas.status === 200) {
-      setError(false);
-      setTareas(
-        tareas.data.map((t) => {
-          return { label: t._id, value: t.name };
-        })
-      );
-    } else {
-      setError(true);
-    }
   };
 
   const getRecursos = async () => {
@@ -131,6 +119,22 @@ function Ticket({
     }
   };
 
+  const deleteTarea = async () => {
+    await DeleteTarea(tareaId, setError);
+  };
+
+  const handleTareaClick = () => {
+    if (tareaId === "") {
+      getRecursos();
+      setTareaSelected(true);
+    } else {
+      deleteTarea();
+      setTarea("");
+      setTareaId("");
+      setUpdateTarea(true);
+    }
+  };
+
   useEffect(() => {
     const getComentarios = async () => {
       var response = await GetComentarios(setError, ticket.id);
@@ -147,12 +151,39 @@ function Ticket({
     };
 
     const getRecurso = async () => {
-      var recurso = await GetRecurso(ticket.userId);
+      var recurso = await GetRecurso(ticket.userId, setError);
       if (recurso.status === 200) {
         setError(false);
         setRecurso(recurso.data.Nombre + " " + recurso.data.Apellido);
       }
       return;
+    };
+
+    const getTarea = async () => {
+      var tarea = await GetTarea(ticket.taskId, setError);
+      if (tarea.status === 200) {
+        setError(false);
+        setTarea(tarea.data.name);
+      }
+      return;
+    };
+
+    const agregarTarea = async () => {
+      var body = {
+        title: ticket.title,
+        description: ticket.description,
+        status: ticket.status,
+        type: ticket.type,
+        origin: ticket.origin,
+        sla: ticket.sla,
+        clientId: ticket.clientId,
+        userId: userId.toString(),
+        taskId: tareaId,
+      };
+      await UpdateTicket(ticket.id, body);
+      setRecurso(recursoAux);
+      setUpdateTarea(false);
+      setUpdate(true);
     };
 
     if (updateComentarios) {
@@ -162,8 +193,35 @@ function Ticket({
     if (ticket.userId !== "") {
       getRecurso();
     }
+
+    if (updateTarea) {
+      agregarTarea();
+    }
+
+    if (ticket.taskId !== "" && tareaId !== "") {
+      getTarea();
+    }
+
     getComentarios();
-  }, [setError, ticket.id, ticket.userId, updateComentarios]);
+  }, [
+    recursoAux,
+    setError,
+    setUpdate,
+    tareaId,
+    ticket.clientId,
+    ticket.description,
+    ticket.id,
+    ticket.origin,
+    ticket.sla,
+    ticket.status,
+    ticket.taskId,
+    ticket.title,
+    ticket.type,
+    ticket.userId,
+    updateComentarios,
+    updateTarea,
+    userId,
+  ]);
 
   return (
     <div className={styles.container}>
@@ -258,13 +316,18 @@ function Ticket({
             </div>
             <div
               onClick={() => {
-                getTareas();
-                setTareaSelected(true);
+                handleTareaClick();
               }}
               className={styles.tarea}
             >
-              {tarea === "" ? "Asociar tarea" : tarea}
-              <FaPlus size={"1.5vw"} color={"white"} />
+              <div className={styles.showTarea}>
+                {tarea === "" ? "Agregar tarea" : tarea}
+              </div>
+              {tareaId === "" ? (
+                <FaPlus size={"1.5vw"} color={"white"} />
+              ) : (
+                <IoClose size={"1.8vw"} color={"white"} />
+              )}
             </div>
           </div>
         </div>
@@ -301,46 +364,22 @@ function Ticket({
       </div>
       <Comentarios
         setUpdateComentarios={setUpdateComentarios}
-        comentarios={comentarios}
+        comentarios={comentarios.length === 0 ? [] : comentarios}
         id={ticket.id}
       />
       {tareaSelected && (
-        <div className={styles.escalarSelectedContainer}>
-          <div className={styles.escalarSelected}>
-            <div className={styles.selection + " " + styles.item1}>
-              <div className={styles.marginLeftEscalar}>Tarea</div>
-              <TicketSelect
-                placeHolder={"Seleccione una tarea"}
-                options={tareas}
-                style={styles.selectItem}
-                setter={setTarea}
-                setterId={setTareaId}
-                value={tarea}
-              />
-            </div>
-          </div>
-          <div className={styles.escalarHeight}>
-            <div
-              onClick={() => {
-                setTareaSelected(false);
-                setTarea(tarea);
-                setTareaId(ticket.taskId);
-              }}
-              className={styles.editEscalarCancel}
-            >
-              <IoClose size={"2vw"} color={"white"} />
-            </div>
-            <div
-              onClick={() => {
-                updateTicket();
-                setTareaSelected(false);
-              }}
-              className={styles.editEscalarConfirm}
-            >
-              <HiCheck size={"2vw"} color={"white"} />
-            </div>
-          </div>
-        </div>
+        <CrearTarea
+          recursos={recursos}
+          recursoAux={recursoAux}
+          setRecursoAux={setRecursoAux}
+          setUserId={setUserId}
+          setTareaSelected={setTareaSelected}
+          setTareaId={setTareaId}
+          recurso={recurso}
+          userId={userId}
+          setError={setError}
+          setUpdateTarea={setUpdateTarea}
+        />
       )}
       {escalarSelected && (
         <div className={styles.escalarSelectedContainer}>

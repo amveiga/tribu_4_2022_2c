@@ -101,9 +101,9 @@ function Soporte() {
     };
 
     if (update) {
-      getTicketsEffect();
       setUpdate(false);
     }
+    getTicketsEffect();
   }, [filtros, sortBy, sortBy.length, update]);
 
   var component;
@@ -124,7 +124,11 @@ function Soporte() {
           </div>
         ) : (
           <div className={styles.soporteContainer}>
-            <Filtros setSortBy={setSortBy} setFiltros={setFiltros} />
+            <Filtros
+              setSortBy={setSortBy}
+              setFiltros={setFiltros}
+              setError={setError}
+            />
             <div className={styles.tickets}>
               {tickets.length === 0 ? (
                 <div className={styles.noTickets}>No hay tickets cargados</div>

@@ -252,6 +252,12 @@
   cursor: pointer;
 }
 
+.showTarea {
+  max-width: 85%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
 .tarea:hover {
   background-color: rgb(23, 86, 152);
 }

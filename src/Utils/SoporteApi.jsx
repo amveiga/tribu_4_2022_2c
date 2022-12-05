@@ -8,6 +8,7 @@ const URL_RECURSOS = "https://squad1220222c-production.up.railway.app/recursos";
 const URL_TAREAS = "https://squad11-proyectos.onrender.com/api/tasks";
 const URL_CLIENTES =
   "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes";
+const URL_PROYECTOS = "https://squad11-proyectos.onrender.com/api/projects";
 
 //Tickets
 export async function GetTickets(setLoading, setError, filtros) {
@@ -89,13 +90,32 @@ export async function GetRecurso(id, setError) {
 }
 
 //Tareas
-export async function GetTareas(setError) {
-  var response = await axios.get(URL_TAREAS).catch((error) => setError(true));
+export async function GetTarea(id, setError) {
+  var response = await axios
+    .get(URL_TAREAS + "/" + id)
+    .catch((error) => setError(true));
   return response;
+}
+
+export async function PostTarea(body) {
+  var response = await axios.post(URL_TAREAS, body);
+  return response;
+}
+
+export async function DeleteTarea(id, setError) {
+  await axios.delete(URL_TAREAS + "/" + id).catch((error) => setError(true));
 }
 
 //Clientes
 export async function GetClientes(setError) {
   var response = await axios.get(URL_CLIENTES).catch((error) => setError(true));
+  return response;
+}
+
+//Proyectos
+export async function GetProyectos(setError) {
+  var response = await axios
+    .get(URL_PROYECTOS)
+    .catch((error) => setError(true));
   return response;
 }
