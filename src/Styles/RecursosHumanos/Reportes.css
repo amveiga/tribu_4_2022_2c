@@ -163,6 +163,7 @@ tr:first-of-type{
 
 .generarButton{
     cursor: pointer;
+    height: 36px;
 }
 
 .generarButton:active{
