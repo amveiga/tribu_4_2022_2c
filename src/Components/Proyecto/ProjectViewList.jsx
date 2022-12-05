@@ -1,9 +1,9 @@
-import axios, { AxiosHeaders } from "axios";
+import axios from "axios";
 
 const getUrl = "https://squad11-proyectos.onrender.com/api/projects"
 const getUrlTask = "https://squad11-proyectos.onrender.com/api/tasks/project"
 const getUrlTaskId = "https://squad11-proyectos.onrender.com/api/tasks"
-const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+// const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
 const apiRecursos = "https://squad1220222c-production.up.railway.app/recursos"
 const ourApiClient = "https://squad11-proyectos.onrender.com/clientes" 
 

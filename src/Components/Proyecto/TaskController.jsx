@@ -56,8 +56,13 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
         return recurso ? (`${recurso.label}`) : (" ");
     }
 
+    const selectRecursos = () =>{   
+        return (selectedResources.length === 0) ?
+            (listaEmpleados.map(resource => ({"id" : resource.id}))) :
+            (selectedResources.map(resource => ({"id" : resource.value})))
+    } 
 
-  return (
+    return (
     <div className={styles.projectCreateContainer}>
       <div className={styles.projectCreate}>
         <div className={styles.sectionOne}>
@@ -101,7 +106,7 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
           <div className={styles.item + " " + styles.item3}>
             Recurso
             <Select
-                className={styles.widthCompleto}
+                className={styles.multiSelect}
                 placeholder={(method==="Post") ? ("Seleccionar recursos asignados"):("")}
                 defaultValue={(method==="Post") ? (null) : (listaEmpleados.map(recurso => (
                     listRecursos[(recurso.id - 1)]
@@ -175,8 +180,7 @@ export function TaskController({ id, task, listRecursos, listaEmpleados, project
                               idealInitDate: initFechaSelect,
                               idealEndDate: endFechaSelect,
                               status: stateSelected,
-                              responsible: selectedResources.map((resource) => {
-                                              return {"id" : resource.value}})
+                              responsible: selectRecursos(),
                             }, navigate);
                             break;
               case "Post":  postTask({
