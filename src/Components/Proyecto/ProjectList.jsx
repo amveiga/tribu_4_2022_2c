@@ -2,7 +2,7 @@ import styles from "../../Styles/Proyectos/Proyectos.module.css"
 import ProjectSelector from "./ProjectSelector";
 import { useEffect, useState } from "react";
 import ButtonCreate from "./ButtonCreate"
-import Filtros from "./Filtro/Filtros"
+import Filtros from "./Filtro/FiltrosProyectos"
 import { filtradoInclusivo } from "./Filtro/utils";
 
 function ProjectList({ projects, listClient, clientes, listRecursos, recursos, clientesR }) {
