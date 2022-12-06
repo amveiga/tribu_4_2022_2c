@@ -121,7 +121,8 @@ function Tareas() {
   }
 
   async function cambiarEstado(estado) {
-    if (estado === "VALIDACION_PENDIENTE") {
+    
+if (estado === "VALIDACION_PENDIENTE") {
       borradores.forEach(async (borrador) => {
         await axios.put(
           `https://squad1220222c-production.up.railway.app/recursos/${borrador.tareaDelParteDeHoraId}/nuevo_estado`,
@@ -155,6 +156,9 @@ function Tareas() {
         })
     } else {
       pendientes.forEach(async (pendiente) => {
+        if(estado === "APROBADO" && window.confirm("¿Está seguro de aprobar todas las tareas?") == false){
+          return
+        }
         await axios.put(
           `https://squad1220222c-production.up.railway.app/recursos/${pendiente.tareaDelParteDeHoraId}/nuevo_estado`,
           {
