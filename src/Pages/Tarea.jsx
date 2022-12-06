@@ -101,7 +101,7 @@ function Tarea() {
                             </div>
                         </div>
                         <div className={styles.datos}>
-                            {"id: " + task._id}
+                            {"TK-" + task.numTask}
                         </div>
                         <div className={styles.column}>
                             <div>

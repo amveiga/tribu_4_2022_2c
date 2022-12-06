@@ -284,10 +284,17 @@ a {
 .item3 {
     z-index: 8;
     font-size: 10.5pt;
+    height: 10%;
+    justify-items: center;  
 }
 
 .item4 {
     z-index: 7;
+}
+
+.multiSelect {
+    width: 25em;
+    height: 5em;
 }
 
 .item5 {
@@ -295,7 +302,8 @@ a {
 }
 
 .widthCompleto{
-    width:100%;
+    width:80%;
+    height: 20%;
 }
 
 .tarea {

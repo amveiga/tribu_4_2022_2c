@@ -1,0 +1,23 @@
+[
+    { 
+        "id": 0,
+        "Nombre": "Fecha de Inicio",
+        "order": "idealInitDate"
+    },
+    {
+        "id": 1,
+        "Nombre": "Fecha de Fin",
+        "order": "idealEndDate"
+    },
+    {
+        "id": 2,
+        "Nombre": "Estado",
+        "order": "status"
+    },
+    {
+        "id": 3,
+        "Nombre": "Tipo",
+        "order": "type"
+    }
+]
+  

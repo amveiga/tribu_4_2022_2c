@@ -49,7 +49,7 @@ function ProyectoHeader({id, tareas }) {
                   </div>
                   {project.name ? project.name : "Projecto"}
                </div>
-             <div className={styles.datos}>{project._id ? project._id : "00000000000000000000"}</div>
+             <div className={styles.datos}>{project._id ? `PR-${project.numProject}` : ""}</div>
              <div className={styles.column}>
                 <div>Tipo: </div>
                 <div className={styles.estado + " " + getType(project.type)}>{project.type ? project.type : "Tipo"}</div>

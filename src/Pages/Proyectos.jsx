@@ -19,7 +19,7 @@ function Proyectos() {
     )
 
     clients.map((client) => {
-        return clientes.push({ label: client["razon social"], value: client["id"] });
+        return clientes.push({ label: client["razon social"], value: client["razon social"] });
     })
     
     recursos.map((recurso) => {

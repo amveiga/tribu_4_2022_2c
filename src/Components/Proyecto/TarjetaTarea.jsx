@@ -26,6 +26,7 @@ function TarjetaTarea({tarea}) {
                 
                 {tarea.name ? tarea.name : "Tarea"} 
             </div>
+            <div className={styles.numTask}> {`TK-${tarea.numTask}`} </div>
             <div className={styles.tarjetaTareaDescripcion}>
             
                 {tarea.description}

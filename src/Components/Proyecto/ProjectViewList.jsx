@@ -3,8 +3,12 @@ import axios from "axios";
 const getUrl = "https://squad11-proyectos.onrender.com/api/projects"
 const getUrlTask = "https://squad11-proyectos.onrender.com/api/tasks/project"
 const getUrlTaskId = "https://squad11-proyectos.onrender.com/api/tasks"
-const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
+// const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
 const apiRecursos = "https://squad1220222c-production.up.railway.app/recursos"
+const ourApiClient = "https://squad11-proyectos.onrender.com/clientes" 
+
+// axios.defaults.headers.get["Access-Control-Allow-Origin"]= "*"; // update to match the domain you will make the request from
+// axios.defaults.headers.("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 
 export async function ProjectViewAPI(state) {
     const list = await axios.get(getUrl);
@@ -12,8 +16,11 @@ export async function ProjectViewAPI(state) {
 }
 
 export async function GetClients(state, loading) {
-    const listClient = await axios.get(apiClient)
-        .then(
+    const listClient = await axios({
+        method:"get", 
+        url: ourApiClient
+    })
+    .then(
             setTimeout(() => {loading(false)}, 2000)
         )
     state(listClient.data)
@@ -32,12 +39,16 @@ export async function updateProject(id, data, navigate){
         url: getUrl.concat("/", id),
         data: data
     })
-    .then(navigate("/"))
+    .then(() => {
+        window.location.reload()
+    })
 }
 
 export async function DeleteProject(id,navigate) {
     await axios.delete(`${getUrl}/${id}`)
-    .then(navigate("/"))
+    .then(() => {
+        window.location.reload()
+    })
 }
 
 export async function GetAllTask(id, state, loading) {
@@ -61,7 +72,9 @@ export async function postProject(data, navigate){
         url : getUrl,
         data : data
     })
-    .then(navigate("/"))
+    .then(() => {
+        window.location.reload()
+    })
 }
 
 export async function GetRecursos(state, loading) {
@@ -111,7 +124,9 @@ export async function updateTask(id, data, navigate){
         url: getUrlTaskId.concat("/",id),
         data: data
     })
-    .then(navigate("/"))
+    .then(() => {
+        window.location.reload()
+    })
     .catch((err) => console.log(err))
 
 }
@@ -123,7 +138,7 @@ export async function postTask(data, navigate) {
         data : data
     })
     .then(() => {
-        navigate("/")
+        window.location.reload()
     })
 
 
