@@ -17,11 +17,14 @@ import imagenBorrar from "./../../Img/RecursosHumanos/borrar_icon.png";
 import imagenValidar from "./../../Img/RecursosHumanos/yes_icon.png";
 import imagenRechazar from "./../../Img/RecursosHumanos/no_icon.png";
 import imagenEnviar from "./../../Img/RecursosHumanos/enviar_icon.png";
+import imagenNewModificar from "./../../Img/RecursosHumanos/modificar_icon_new.png";
+import imagenNewBorrar from "./../../Img/RecursosHumanos/borrar_icon_new.png";
 
 import FichaEmpleado from "../../Components/RecursosHumanos/FichaEmpleado";
 
 import ContenedorTareas from "../../Components/RecursosHumanos/ContenedorTareas";
 import SegmentoTarea from "../../Components/RecursosHumanos/SegmentoTarea";
+import TareaCarta from "../../Components/RecursosHumanos/TareaCarta";
 
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -135,19 +138,21 @@ function Tareas() {
         );
       });
     } else if (estado === "BORRADOR") {
-      await axios.put(
-        `https://squad1220222c-production.up.railway.app/recursos/${tareaEditable.tareaDelParteDeHoraId}/nuevo_estado`,
-        {
-          cantidadDeHorasTrabajadas: tareaEditable.cantidadDeHorasTrabajadas,
-          estado: estado,
-          fechaDeLaTareaACargar: tareaEditable.fechaDeLaTareaACargar,
-          parteDeHoraId: tareaEditable.parteDeHoraId,
-          proyectoId: tareaEditable.proyectoId,
-          tareaDelParteDeHoraId: tareaEditable.tareaDelParteDeHoraId,
-          tareaId: tareaEditable.tareaId,
-          tipoDeParteDeHoras: tareaEditable.tipoDeParteDeHoras,
-        }
-      );
+        desaprobadas.forEach(async (desaprobado) => {
+          await axios.put(
+            `https://squad1220222c-production.up.railway.app/recursos/${desaprobado.tareaDelParteDeHoraId}/nuevo_estado`,
+            {
+              cantidadDeHorasTrabajadas: desaprobado.cantidadDeHorasTrabajadas,
+              estado: estado,
+              fechaDeLaTareaACargar: desaprobado.fechaDeLaTareaACargar,
+              parteDeHoraId: desaprobado.parteDeHoraId,
+              proyectoId: desaprobado.proyectoId,
+              tareaDelParteDeHoraId: desaprobado.tareaDelParteDeHoraId,
+              tareaId: desaprobado.tareaId,
+              tipoDeParteDeHoras: desaprobado.tipoDeParteDeHoras,
+            }
+          );
+        })
     } else {
       pendientes.forEach(async (pendiente) => {
         await axios.put(
@@ -163,7 +168,7 @@ function Tareas() {
             tipoDeParteDeHoras: pendiente.tipoDeParteDeHoras,
           }
         );
-        if(estado === "APROBADO"){
+        if(estado === "APROBADO" && pendiente.tipoDeTarea === "TAREA_PROYECTO"){
           await axios.put(
             `https://squad11-proyectos.onrender.com/api/projects/${pendiente.proyectoId}/hours`, 
             {
@@ -193,7 +198,7 @@ function Tareas() {
 
         <div className="button-container">
           <input
-            className="task-button back-button"
+            className="back-button"
             type="button"
             value="Volver"
             onClick={volver}
@@ -213,6 +218,7 @@ function Tareas() {
         </div>
 
         {/* Aprobado */}
+        {/* 
         {aprobadas.length !== 0 && (
           <div className="hours-section">
             <div className="hours-section-container">
@@ -286,7 +292,68 @@ function Tareas() {
               <div className="border-task-end"></div>
             </div>
           </div>
-        )}
+        )}*/}
+        {/* BORRADOR */}
+        <div className="task-type-container">
+            <div className="borrador task-type-name">
+              <p>BORRADOR</p>
+            </div>
+            <div className="task-buttons">
+              <div className="task-button pendiente" onClick={() => cambiarEstado("VALIDACION_PENDIENTE")}>Enviar todos a pendiente validacion</div>
+            </div>
+            <div className="task-container">
+              {borradores?.map((tarea) => {
+                return <TareaCarta tarea={tarea} setTareaEditable={setTareaEditable}/>
+              })}
+            </div>
+        </div>
+        {/* PENDIENTE VALIDACION */}
+        <div className="task-type-container">
+          <div className="task-type-name pendiente">
+            <p>PENDIENTE VALIDACIÓN</p>
+          </div>
+          <div className="task-buttons">
+            <div className="task-button aprobado" onClick={() => cambiarEstado("APROBADO")}>Aprobar todos</div>
+            <div className="task-button desaprobado" onClick={() => cambiarEstado("DESAPROBADO")}>Desaprobar todos</div>
+          </div>
+            <div className="task-container">
+                {pendientes?.map((tarea) => {
+                  return <TareaCarta tarea={tarea} setTareaEditable={setTareaEditable}/>
+                })}
+            </div>
+        </div>
+        {/* APROBADO */}
+        <div className="task-type-container">
+          <div className="aprobado task-type-name">
+            <p>APROBADO</p>
+          </div>
+          <div className="task-buttons">
+            
+          </div>
+          <div className="task-container">
+            <div className="task-container">
+                {aprobadas?.map((tarea) => {
+                  return <TareaCarta tarea={tarea} setTareaEditable={setTareaEditable}/>
+                })}
+            </div>
+          </div>
+        </div>
+        {/* DESAPROBADO */}
+        <div className="task-type-container">
+          <div className="task-type-name desaprobado">
+            <p>DESAPROBADO</p>
+          </div>
+          <div className="task-buttons">
+            <div className="task-button borrador" onClick={() => cambiarEstado("BORRADOR")}>Enviar todos a borrador</div>
+          </div>
+          <div className="task-container">
+            <div className="task-container">
+                {desaprobadas?.map((tarea) => {
+                  return <TareaCarta tarea={tarea} setTareaEditable={setTareaEditable}/>
+                })}
+            </div>
+          </div>
+        </div>
       </div>
       <div id="edit" className="hidden">
         <div className="not-clickeable">

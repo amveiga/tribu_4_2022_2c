@@ -51,11 +51,14 @@
   margin-left: 3%;
 }
 
+.div-loader{
+  align-items: center;
+}
+
 .carga-element,
 .sub-div-loader {
   display: flex;
   align-items: center;
-  margin-top: 2%;
 }
 
 .calendar,

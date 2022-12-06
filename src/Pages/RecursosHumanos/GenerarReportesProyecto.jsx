@@ -49,8 +49,8 @@ function GenerarReportesProyecto() {
         setFechaMaxima(calendarioMax.value)
     }
 
-    const generarReporte = async () => {
-        //console.log(fechaMaxima)
+    const generarReporte = async (proyectoActual) => {
+        console.log(proyectoActual)
         if(fechaMinima == null || fechaMaxima == null) {
             return
         }
@@ -64,7 +64,7 @@ function GenerarReportesProyecto() {
         const diffHours = Math.ceil(diffTime/(1000*60*60*24))*8;
         setHorasEstimadas(diffHours);
 
-        setHorasDesvio((proyectos.filter((proyecto) => proyecto._id === proyectoActual)[0].invertedHours)-diffHours)
+        setHorasDesvio(diffHours - (proyectos.filter((proyecto) => proyecto._id === proyectoActual)[0].invertedHours))
 
         console.log("Desvio:" + horasDesvio);
 
@@ -82,6 +82,10 @@ function GenerarReportesProyecto() {
         )
         
         
+    }
+
+    function volver() {
+        navigate("/recursos-humanos/");
     }
 
     function ordenarDatos(datos){
@@ -222,25 +226,21 @@ function GenerarReportesProyecto() {
                     <p>Reportes</p>
                     <img src={reportes} alt="" />
                 </div>
+                <input
+                    className="back-button"
+                    type="button"
+                    value="Volver"
+                    onClick={volver}
+                />
                 <div className="options-div">
                     <div className="option-section">
                         <p>Indique el proyecto del cual desea generar el reporte:</p>
-                        <select name="" id="select-report" onChange={(event) => setProyectoActual(event.target.value)}>
+                        <select name="" id="select-report" onChange={(event) => generarReporte(event.target.value)}>
                             <option disabled selected value="">Seleccione el proyecto</option>
                             {proyectos.map((proyecto) => {
                                 return <option value={proyecto._id}>{proyecto._id} - {proyecto.name}</option>;
                                 })}
                         </select>
-                    </div>
-                    <div className="option-section">
-                        <p>Indique entre  que fechas desea generar el reporte:</p>
-                        <div className="date-div">
-                            <p>Entre</p>
-                            <input type="date" name="" id="calendar-min" onChange={useEstablecerMinimo}/>
-                            <p>y</p>
-                            <input type="date" name="" id="calendar-max" onChange={useEstablecerMaximo}/>
-                        </div>
-                        <input type="button" value="Generar" className="generarButton" onClick={generarReporte}/>
                     </div>
                 </div>
             </div>

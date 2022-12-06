@@ -8,6 +8,7 @@ function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
   var cantidadHoras = tarea.cantidadDeHorasTrabajadas + " horas";
 
   useEffect(() => {
+    /* este get ya no va */
     const getTarea = async () => {
       if (tarea.tareaId !== "") {
         var res = await axios.get(

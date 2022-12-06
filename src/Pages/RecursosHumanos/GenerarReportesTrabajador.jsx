@@ -67,6 +67,10 @@ function GenerarReportesTrabajador() {
         
     }
 
+    function volver() {
+        navigate("/recursos-humanos/");
+    }
+
     function ordenarDatos(datos){
         //console.log(datos.data.length)
         var listaProyectos = []
@@ -193,6 +197,12 @@ function GenerarReportesTrabajador() {
                     <p>Reportes</p>
                     <img src={reportes} alt="" />
                 </div>
+                <input
+                    className="back-button"
+                    type="button"
+                    value="Volver"
+                    onClick={volver}
+                />
                 <div className="options-div">
                     <div className="option-section">
                         <p>Indique el/la trabajor/a del cual desea generar el reporte:</p>
