@@ -20,11 +20,11 @@ function BotoneraCarta({ tarea, setTareaEditable }){
 
     return(
         <div className="task-card-buttons">
-            <div>
-                <img src={imagenNewModificar} alt="" onClick={mostrarModoEditar}/>
+            <div onClick={mostrarModoEditar}>
+                <img src={imagenNewModificar} alt="" />
             </div>
-            <div>
-                <img src={imagenNewBorrar} alt="" onClick={handleEliminar}/>
+            <div onClick={handleEliminar}>
+                <img src={imagenNewBorrar} alt="" />
             </div>
         </div>
     )

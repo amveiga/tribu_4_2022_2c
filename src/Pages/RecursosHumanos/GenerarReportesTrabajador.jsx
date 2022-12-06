@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
-import reportStyle from "./../../Styles/RecursosHumanos/Reportes.css";
+import "./../../Styles/RecursosHumanos/Reportes.css";
 
 import volverIcon from "./../../Img/RecursosHumanos/volver_icon.png"
 import reportes from "./../../Img/RecursosHumanos/reportes_icon.png";
@@ -47,10 +47,25 @@ function GenerarReportesTrabajador() {
     }
 
     const generarReporte = async () => {
-        //console.log(fechaMaxima)
-        if(fechaMinima == null || fechaMaxima == null) {
+        //console.log(empleadoActual)
+        if(empleadoActual == null){
+            window.alert("Seleccione un empleado")
             return
         }
+        if(fechaMinima == "" && fechaMaxima == "") {
+            window.alert("Ingrese el periodo de fechas del que desea generar un reporte")
+            return
+        }
+        if(fechaMaxima == ""){
+            window.alert("Ingrese la fecha final del reporte")
+            return
+        }
+        if(fechaMinima == ""){
+            window.alert("Ingrese la fecha inicial del reporte")
+            return
+        }
+        
+
         //console.log("reporte realizado!!")
         //console.log(empleadoActual)
         var operation = await axios.get(
@@ -231,62 +246,10 @@ function GenerarReportesTrabajador() {
             </div>
 
             <table>
-                
-                {/*listaDatos?.map((listaDatos) => {
-                    cargarTabla(listaDatos)
-                })*/}
-                {/*console.log(elementosTabla)*/}
-                
                 {elementosTabla?.map((elemento) =>{
                     //console.log(elemento)
                     return elemento
                 })}
-                {/* 
-                <tr>
-                    <th className="type-task-grid" rowSpan={3}>Nombre del proyecto 2</th>
-                    <th className="task-grid">Tarea 5</th>
-                    <th className="time-grid">10 Hs</th>
-                    <th className="total-time-grid" rowSpan={3}>24 Hs</th>
-                </tr>
-
-                <tr>
-                    <th className="task-grid">Tarea 7</th>
-                    <th className="time-grid">12 Hs</th>
-                </tr>
-                <tr>
-                    <th className="task-grid">Tarea 10</th>
-                    <th className="time-grid">2 Hs</th>
-                </tr>
-                <tr>
-                <th className="type-task-grid" rowSpan={2}>Guardias</th>
-                    <th className="task-grid">Guardia 3</th>
-                    <th className="time-grid">4 Hs</th>
-                    <th className="total-time-grid" rowSpan={2}>9 Hs</th>
-                </tr>
-                <tr>
-                    <th className="task-grid">Guardia 4</th>
-                    <th className="time-grid">5 Hs</th>
-                </tr>
-                <tr>
-                    <th className="type-task-grid" rowSpan={2}>Administrativas</th>
-                    <th className="task-grid">Reunión Marketing</th>
-                    <th className="hour-grid">2 Hs</th>
-                    <th className="total-hour-grid" rowSpan={2}>3 Hs</th>
-                </tr>
-                <tr>
-                    <th className="task-grid">Curso RCP</th>
-                    <th className="hour-grid">1 Hs</th>
-                </tr>
-                <tr>
-                    <th className="type-task-grid" rowSpan={2}>Licencias</th>
-                    <th className="task-grid">Licencia por enfermedad</th>
-                    <th className="time-grid">48 Hs</th>
-                    <th className="total-time-grid" rowSpan={2}>50 Hs</th>
-                </tr>
-                <tr>
-                    <th className="task-grid">Licencia diaria</th>
-                    <th className="time-grid">2 Hs</th>
-                </tr>*/}
             </table>
         </div>
     )}

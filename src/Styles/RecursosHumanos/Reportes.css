@@ -79,6 +79,10 @@
 }
 
 .date-div input{
+    margin-left: 30px;
+    border: 2px solid rgb(0, 53, 108);
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
     background-color: rgb(222, 222, 222);
     height: 30px;
     border-radius: 15px;
@@ -165,6 +169,13 @@ tr:first-of-type{
 .generarButton{
     cursor: pointer;
     height: 36px;
+    width: 230px;
+    margin-left: 30px;
+    background-color: rgb(222, 222, 222);
+    border: 2px solid rgb(0, 53, 108);
+    border-radius: 15px;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
 }
 .generarButton:active{
     background-color: rgb(189, 189, 189);
@@ -173,7 +184,7 @@ tr:first-of-type{
 
 .report-container{
     width: 85%;
-    margin-top: 5%;
+    
 }
 
 .fixed-data{

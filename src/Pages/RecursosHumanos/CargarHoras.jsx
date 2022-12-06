@@ -54,27 +54,42 @@ function CargarHoras() {
   }
 
   async function guardar(estado) {
-    var body = [
-      {
-        cantidadDeHorasTrabajadas: parseInt(cantidadHoras),
-        descripcion: tipo === "tarea_proyecto" ? "" : getDescripcion(),
-        estado: estado.toString(),
-        fechaDeLaTareaACargar: fecha,
-        parteDeHoraId: 0,
-        nombreProyecto: tipo === "tarea_proyecto" || tipo === "incidencia" ? proyectoName.toString() : "",
-        proyectoId:
-          tipo === "tarea_proyecto" || tipo === "incidencia" ? proyecto : "",
-        tareaDelParteDeHoraId: 0,
-        tareaId: tipo === "tarea_proyecto" ? tarea : "",
-        nombreTarea: tipo === "tarea_proyecto" ? tareaName.toString() : getDescripcion(),
-        tipoDeTarea: tipo.toUpperCase(),
-      },
-    ];
-    await axios.post(
-      `https://squad1220222c-production.up.railway.app/recursos/${empleadoID.empleadoId}/parte_de_horas`,
-      body
-    );
-    volver();
+    try{
+      var body = [
+        {
+          cantidadDeHorasTrabajadas: parseInt(cantidadHoras),
+          descripcion: tipo === "tarea_proyecto" ? "" : getDescripcion(),
+          estado: estado.toString(),
+          fechaDeLaTareaACargar: fecha,
+          parteDeHoraId: 0,
+          nombreProyecto: tipo === "tarea_proyecto" || tipo === "incidencia" ? proyectoName.toString() : "",
+          proyectoId:
+            tipo === "tarea_proyecto" || tipo === "incidencia" ? proyecto : "",
+          tareaDelParteDeHoraId: 0,
+          tareaId: tipo === "tarea_proyecto" ? tarea : "",
+          nombreTarea: tipo === "tarea_proyecto" ? tareaName.toString() : getDescripcion(),
+          tipoDeTarea: tipo.toUpperCase(),
+        },
+      ];
+      await axios.post(
+        `https://squad1220222c-production.up.railway.app/recursos/${empleadoID.empleadoId}/parte_de_horas`,
+        body
+      );
+      volver();
+    }
+    catch(error){
+      if(error instanceof TypeError){
+        window.alert("Por favor, ingrese todos los datos")
+        return
+      }
+      if(error.response.status === 400){
+        window.alert("Ingrese un tipo de tarea a cargar")
+      }
+      if(error.response.status === 403){
+        window.alert(error.response.data.message)
+      }
+      
+    }
   }
 
   return (

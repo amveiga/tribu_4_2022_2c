@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
-import reportStyle from "./../../Styles/RecursosHumanos/Reportes.css";
+import "./../../Styles/RecursosHumanos/Reportes.css";
 
 import volverIcon from "./../../Img/RecursosHumanos/volver_icon.png"
 import reportes from "./../../Img/RecursosHumanos/reportes_icon.png";
@@ -199,23 +199,6 @@ function GenerarReportesProyecto() {
         setElementosTabla(listaElementos)
     }
 
-    /*function sumarHoras(lista){
-        var horasSumadas = 0;
-        console.log()
-        for(var i = 0; i < lista.length; i++){
-            if((lista[i][0] != null)){
-                for(var j = 0; j < lista[i].length; j++){
-                    horasSumadas += lista[i][j].cantidadDeHorasTrabajadas
-                }
-            }
-            else{
-                horasSumadas += lista[i].cantidadDeHorasTrabajadas
-            }
-        }
-        //console.log(horasSumadas)
-        return horasSumadas
-    }*/
-
     function verTareas(){
         navigate("/recursos-humanos/tareas");
     }
@@ -242,7 +225,7 @@ function GenerarReportesProyecto() {
                         <select name="" id="select-report" onChange={(event) => generarReporte(event.target.value)}>
                             <option disabled selected value="">Seleccione el proyecto</option>
                             {proyectos.map((proyecto) => {
-                                return <option value={proyecto._id}>{proyecto._id} - {proyecto.name}</option>;
+                                return <option value={proyecto._id}>{proyecto.numProject} - {proyecto.name}</option>;
                                 })}
                         </select>
                     </div>

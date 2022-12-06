@@ -89,10 +89,6 @@ function Tareas() {
     navigate("/recursos-humanos/");
   }
 
-  function mostrarModoEditar() {
-    var editMenu = document.getElementById("edit");
-    editMenu.classList.remove("hidden");
-  }
 
   function ocultarModoEditar() {
     var editMenu = document.getElementById("edit");
@@ -100,23 +96,28 @@ function Tareas() {
   }
 
   async function guardarCambios() {
-    await axios.put(
-      `https://squad1220222c-production.up.railway.app/recursos/${tareaEditable.tareaDelParteDeHoraId}/horas_trabajadas`,
-      {
-        cantidadDeHorasTrabajadas: horasModificadas,
-        estado: tareaEditable.estado,
-        fechaDeLaTareaACargar: tareaEditable.fechaDeLaTareaACargar,
-        parteDeHoraId: tareaEditable.parteDeHoraId,
-        proyectoId: tareaEditable.proyectoId,
-        tareaDelParteDeHoraId: tareaEditable.tareaDelParteDeHoraId,
-        tareaId: tareaEditable.tareaId,
-        tipoDeParteDeHoras: tareaEditable.tipoDeParteDeHoras,
+    try{
+      await axios.put(
+        `https://squad1220222c-production.up.railway.app/recursos/${tareaEditable.tareaDelParteDeHoraId}/horas_trabajadas`,
+        {
+          cantidadDeHorasTrabajadas: horasModificadas,
+          estado: tareaEditable.estado,
+          fechaDeLaTareaACargar: tareaEditable.fechaDeLaTareaACargar,
+          parteDeHoraId: tareaEditable.parteDeHoraId,
+          proyectoId: tareaEditable.proyectoId,
+          tareaDelParteDeHoraId: tareaEditable.tareaDelParteDeHoraId,
+          tareaId: tareaEditable.tareaId,
+          tipoDeParteDeHoras: tareaEditable.tipoDeParteDeHoras,
+        }
+      );
+      if (tareaEditable.estado === "DESAPROBADO") {
+        cambiarEstado("BORRADOR");
       }
-    );
-    if (tareaEditable.estado === "DESAPROBADO") {
-      cambiarEstado("BORRADOR");
+      ocultarModoEditar();
     }
-    ocultarModoEditar();
+    catch(error){
+      window.alert(error.response.data.message)
+    }
   }
 
   async function cambiarEstado(estado) {
@@ -216,82 +217,7 @@ function Tareas() {
           />
         </div>
 
-        {/* Aprobado */}
-        {/* 
-        {aprobadas.length !== 0 && (
-          <div className="hours-section">
-            <div className="hours-section-container">
-              <div className="border-task-start">
-                <p>Aprobado</p>
-              </div>
-              <ContenedorTareas
-                setTareaEditable={setTareaEditable}
-                tareas={aprobadas}
-              />
-              <div className="border-task-end"></div>
-            </div>
-          </div>
-        )}
-        {borradores.length !== 0 && (
-          <div className="hours-section">
-            <div className="hours-section-container">
-              <div className="border-task-start">
-                <p>Borrador</p>
-              </div>
-              <ContenedorTareas
-                setTareaEditable={setTareaEditable}
-                tareas={borradores}
-              />
-              <div className="border-task-end"></div>
-            </div>
-            <div
-              className="border-button"
-              onClick={() => cambiarEstado("VALIDACION_PENDIENTE")}
-            >
-              <img src={imagenEnviar} alt="" width={"70%"} />
-            </div>
-          </div>
-        )}
-        {pendientes.length !== 0 && (
-          <div className="hours-section">
-            <div className="hours-section-container">
-              <div className="border-task-start">
-                <p>Pendiente Validación</p>
-              </div>
-              <ContenedorTareas
-                setTareaEditable={setTareaEditable}
-                tareas={pendientes}
-              />
-              <div className="border-task-end"></div>
-            </div>
-            <div
-              className="border-button"
-              onClick={() => cambiarEstado("APROBADO")}
-            >
-              <img src={imagenValidar} alt="" />
-            </div>
-            <div
-              className="border-button"
-              onClick={() => cambiarEstado("DESAPROBADO")}
-            >
-              <img src={imagenRechazar} alt="" width={"70%"} />
-            </div>
-          </div>
-        )}
-        {desaprobadas.length !== 0 && (
-          <div className="hours-section">
-            <div className="hours-section-container">
-              <div className="border-task-start">
-                <p>Desaprobado</p>
-              </div>
-              <ContenedorTareas
-                setTareaEditable={setTareaEditable}
-                tareas={desaprobadas}
-              />
-              <div className="border-task-end"></div>
-            </div>
-          </div>
-        )}*/}
+        
         {/* BORRADOR */}
         <div className="task-type-container">
             <div className="borrador task-type-name">
@@ -373,21 +299,10 @@ function Tareas() {
                 }
               />
             </div>
-            {/* <div className="edit-element">
-              <p>Tipo de tarea</p>
-              <select name="" id="" className="edit-input"></select>
-            </div>
-            <div className="edit-element">
-              <p>Nombre del proyecto</p>
-              <select name="" id="" className="edit-input"></select>
-            </div>
-            <div className="edit-element">
-              <p>Nombre de la tarea</p>
-              <select name="" id="" className="edit-input"></select>
-            </div> */}
             <div className="edit-element">
               <p>Cantidad de horas trabajadas</p>
               <input
+                min={1}
                 type="number"
                 className="edit-input"
                 defaultValue={
