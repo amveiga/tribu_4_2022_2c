@@ -3,12 +3,8 @@ import axios from "axios";
 const getUrl = "https://squad11-proyectos.onrender.com/api/projects"
 const getUrlTask = "https://squad11-proyectos.onrender.com/api/tasks/project"
 const getUrlTaskId = "https://squad11-proyectos.onrender.com/api/tasks"
-// const apiClient = "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes"
-const apiRecursos = "https://squad1220222c-production.up.railway.app/recursos"
 const ourApiClient = "https://squad11-proyectos.onrender.com/clientes" 
-
-// axios.defaults.headers.get["Access-Control-Allow-Origin"]= "*"; // update to match the domain you will make the request from
-// axios.defaults.headers.("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+const apiRecursos = "https://squad1220222c-production.up.railway.app/recursos"
 
 export async function ProjectViewAPI(state) {
     const list = await axios.get(getUrl);
@@ -95,30 +91,7 @@ export async function GetTaskId(id, state, stateList, loading) {
   
 }
 
-export async function addInvertedHours(taskId, hours){
-    
-    await axios({
-        method: "get",
-        url: getUrlTaskId.concat("/",taskId)
-    })
-    .then((res) => {
-        axios({
-            method : "put",
-            url: getUrl.concat("/", res.data.projectID,"/hours"),
-            data: { "hours" : parseInt(hours, 10) }
-        })
-    })
-
-    await axios({
-        method: "put",
-        url : getUrlTaskId.concat("/", taskId, "/", "hours"),
-        data: { "hours": parseInt(hours, 10) }
-    })
-    
-}
-
 export async function updateTask(id, data, navigate){
-
     await axios({
         method:"put",
         url: getUrlTaskId.concat("/",id),

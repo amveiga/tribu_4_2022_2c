@@ -38,9 +38,15 @@ const filtro3Parametros = (filtros, filtrado, clientes) => {
 }
 
 const filtro1Parametro = (filtro, filtrado, clientes) => {
-    return filtrado.filter(project => (filtro.includes(project.status) ||
-                                     filtro.includes(project.type) ||
-                                        (project.assignedClient === getId(filtro, clientes))))
+    if (filtro.includes("status=")) {
+        return filtrado.filter(project => (filtro.includes(project.status)))
+    }
+    if (filtro.includes("type=")) {
+        return filtrado.filter(project => (filtro.includes(project.type)))
+    }
+    if (filtro.includes("clientId=")) {
+        return filtrado.filter(project => (project.assignedClient === getId(filtro, clientes)))
+    }
 }
 
 export const filtradoInclusivo = (filtro, filtrado, clientes) => {

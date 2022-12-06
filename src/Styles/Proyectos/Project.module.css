@@ -48,7 +48,7 @@
 }
 
 .projectEdit {
-  width: 150vh;
+  width: 120vh;
   height: 45vh;
   padding: 1%;
   border-radius: 25px;
@@ -339,7 +339,7 @@ a {
 }
 
 .editSelected {
-  width: 8%;
+  width: 28%;
   height: 10vh;
   margin-left: -3%;
   padding-top: 2%;
@@ -362,8 +362,8 @@ a {
 .selected {
   background-color: rgba(0, 53, 108, 1);
   cursor: default;
-  width: 10vh;
-  height: 38vh;
+  width: 9%;
+  height: 265px;
 }
 
 .editSelected {

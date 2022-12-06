@@ -1,12 +1,9 @@
-//import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import styles from "./../../Styles/Proyecto.module.css";
 
 
 function TarjetaTarea({tarea}) {
-  //const [editSelected, setEditSelected] = useState(false);
- 
-
+  
   let element = {
     textDecoration: "none",
     color: "rgba(0, 53, 108, 1)",
