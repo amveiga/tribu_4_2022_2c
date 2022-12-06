@@ -17,6 +17,8 @@ function GenerarReportesProyecto() {
     const [elementosTabla, setElementosTabla] = useState([])
     const [tareas, setTareas] = useState([])
     const [horasTotal, setHorasTotal] = useState(0)
+    const [horasEstimadas, setHorasEstimadas] = useState(0)
+    const [horasDesvio, setHorasDesvio] = useState(0)
 
     let navigate = useNavigate();
 
@@ -55,13 +57,23 @@ function GenerarReportesProyecto() {
         //console.log("reporte realizado!!")
         //console.log(proyectoActual)
         setHorasTotal(proyectos.filter((proyecto) => proyecto._id === proyectoActual)[0].invertedHours)
+
+        const fechaInicial = new Date(proyectos.filter((proyecto) => proyecto._id === proyectoActual)[0].idealInitDate);
+        const fechaFinal = new Date(proyectos.filter((proyecto) => proyecto._id === proyectoActual)[0].idealEndDate);
+        const diffTime = Math.abs(fechaFinal-fechaInicial);
+        const diffHours = Math.ceil(diffTime/(1000*60*60*24))*8;
+        setHorasEstimadas(diffHours);
+
+        setHorasDesvio((proyectos.filter((proyecto) => proyecto._id === proyectoActual)[0].invertedHours)-diffHours)
+
+        console.log("Desvio:" + horasDesvio);
+
         var operation = await axios.get(
             /*"https://squad1220222c-production.up.railway.app/reportes/tareas/fechas?fechaFin=" +  + "&fechaInicio=" + fechaMinima*/
             //"https://squad1220222c-production.up.railway.app/reportes/?fechaFin=" + fechaMaxima + "&fechaInicio=" + fechaMinima + "&legajo=" + empleadoActual
             "https://squad11-proyectos.onrender.com/api/tasks/project/" + proyectoActual
             )
         .then(res =>{
-            console.log(res.data)
             //setDatos(res)
             setTareas(res.data)
             //sumarHoras(res.data)
@@ -241,11 +253,11 @@ function GenerarReportesProyecto() {
                     </div>
                     <div className="fixed-data-section">
                         <div className="fixed-data-section-title">Horas estimadas</div>
-                        <div className="fixed-data-section-data">59 Hs</div>
+                        <div className="fixed-data-section-data">{horasEstimadas} Hs</div>
                     </div>
                     <div className="fixed-data-section">
-                        <div className="fixed-data-section-title">Desvio</div>
-                        <div className="fixed-data-section-data">59 Hs</div>
+                        <div className="fixed-data-section-title">Desvío</div>
+                        <div className="fixed-data-section-data">{horasDesvio} Hs</div>
                     </div>
                 </div>
 
