@@ -5,7 +5,7 @@ import { HiFilter, HiOutlineFilter } from "react-icons/hi";
 import MenuFiltro from "./MenuFiltro";
 import MenuOrden from "../Orden/MenuOrden";
 
-function Filtros({ setFiltros, setSortBy, clients, setFiltroActivado, setOrdenActivado }) {
+function FiltrosProyecto({ setFiltros, setSortBy, clients, setFiltroActivado, setOrdenActivado }) {
   const [filtroAbierto, setFiltroAbierto] = useState(false);
   const [ordenAbierto, setOrdenAbierto] = useState(false);
   const [clientId, setClientId] = useState("");
@@ -68,4 +68,4 @@ function Filtros({ setFiltros, setSortBy, clients, setFiltroActivado, setOrdenAc
   );
 }
 
-export default Filtros;
+export default FiltrosProyecto;

@@ -2,7 +2,7 @@ import styles from "../../Styles/Proyectos/Proyectos.module.css"
 import ProjectSelector from "./ProjectSelector";
 import { useEffect, useState } from "react";
 import ButtonCreate from "./ButtonCreate"
-import Filtros from "./Filtro/FiltrosProyectos"
+import FiltrosProyecto from "./Filtro/FiltrosProyectos"
 import { filtradoInclusivo } from "./Filtro/utils";
 
 function ProjectList({ projects, listClient, clientes, listRecursos, recursos, clientesR }) {
@@ -89,7 +89,7 @@ function ProjectList({ projects, listClient, clientes, listRecursos, recursos, c
 
     return (
         <div className={styles.proyectosContainer}>
-            <Filtros 
+            <FiltrosProyecto 
                 setFiltros={setFiltros}
                 setSortBy={setSortBy}
                 clients={clientesR}
