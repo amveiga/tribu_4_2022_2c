@@ -6,7 +6,6 @@ import {
   useNavigate,
 } from "react-router-dom";
 import styles from "./../Styles/RecursosHumanos/RecursosHumanos.css";
-import buttonStyle from "./../Styles/RecursosHumanos/Botones.css";
 
 import trabajadores from "./../Img/RecursosHumanos/personas_icon.png";
 import reportes from "./../Img/RecursosHumanos/reportes_icon.png";
@@ -16,7 +15,6 @@ import ReactLoading from "react-loading";
 
 import EmpleadoElement from "../Components/RecursosHumanos/Empleado";
 
-//import EmpleadosList from "../Data/RecursosHumanos/empleados.json";
 function RecursosHumanos() {
   const [isLoading, setLoading] = useState(true);
   const [empleados, setPost] = useState(null);

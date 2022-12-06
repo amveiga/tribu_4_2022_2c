@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 
 import "./../../Styles/RecursosHumanos/BarraInformacion.css";
-import "./../../Styles/RecursosHumanos/Botones.css";
 import "./../../Styles/RecursosHumanos/Cargas.css";
 
 import fotoPerfil from "./../../Img/RecursosHumanos/perfil.png";
