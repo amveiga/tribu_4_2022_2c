@@ -1,3 +1,7 @@
+.Header_headerContainer__zzCn2{
+  z-index: 1;
+}
+
 #data-bar {
   background-color: rgb(190, 224, 255);
   height: 100%;
@@ -8,9 +12,8 @@
   align-items: center;
   position: fixed;
   left: 0;
-  top: 15vh;
+  top: 0;
   padding-top: 160px;
-  border-radius: 25px;
 }
 
 #data-bar div {
@@ -47,7 +50,6 @@
 }
 
 .button-container {
-  width: 20%;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -100,13 +102,20 @@
   border: none;
 }
 
+.back-button{
+  position: fixed;
+  cursor: pointer;
+  bottom: 3%;
+  left: 3%;
+}
+
 .add-button,
 .back-button {
   background-color: rgb(0, 53, 108);
   border-radius: 50px;
   color: white;
 }
-
+/*
 .task-button-div {
   width: 100%;
   justify-self: flex-end;
@@ -128,3 +137,4 @@
   margin-bottom: 15%;
   text-align: center;
 }
+*/

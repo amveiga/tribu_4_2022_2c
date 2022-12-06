@@ -8,6 +8,7 @@ function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
   var cantidadHoras = tarea.cantidadDeHorasTrabajadas + " horas";
 
   useEffect(() => {
+    /* este get ya no va */
     const getTarea = async () => {
       if (tarea.tareaId !== "") {
         var res = await axios.get(
@@ -29,6 +30,11 @@ function SegmentoTarea({ estadoTarea, tarea, setTareaEditable }) {
     );
     setProyectName(res.data.name);
   };
+
+  function mostrarModoEditar() {
+    var editMenu = document.getElementById("edit");
+    editMenu.classList.remove("hidden");
+  }
 
   var segmento = (
     <div className="task-element">

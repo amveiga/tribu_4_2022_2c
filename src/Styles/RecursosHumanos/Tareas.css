@@ -1,4 +1,4 @@
-body {
+/*body {
   overflow-x: hidden;
 }
 
@@ -11,6 +11,7 @@ body {
 
 .hours-section {
   display: flex;
+  flex-direction: column;
 }
 
 .task-element-main-container {
@@ -282,4 +283,249 @@ body {
 
 .display-none {
   display: none;
+}
+*/
+
+#main {
+  margin-top: 20px;
+  margin-left: 22%;
+  margin-bottom: 5%;
+  width: 75%;
+  
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+}
+
+.task-type-container{
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-type-name{
+  display: flex;
+  font-size: 1.7em;
+  font-weight: 500;
+  background-color: currentColor;
+  border-radius: 10px;
+  height: 3em;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.task-type-name p{
+  color: white;
+  text-align: center;
+}
+
+.task-buttons{
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 20px 0;
+  height: 35px;
+}
+
+.task-button{
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  text-align: center;
+
+  border: 2px solid currentColor;
+  border-radius: 25px;
+  padding: 2%;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.borrador{
+  color: rgb(170, 170, 170);
+}
+
+.pendiente{
+  color: rgb(255, 153, 0);
+}
+
+.aprobado{
+  color: rgb(29, 204, 46);
+}
+
+.desaprobado{
+  color: rgb(255, 0, 0);
+}
+
+.task-card{
+  border: 4px rgb(0, 53, 108) solid;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.task-card-title{
+  display: flex;
+  background-color: rgb(0, 53, 108);
+  color: white;
+  font-weight: 500;
+  height: 35px;
+  border-radius: 0 0 10px 10px;
+  justify-content: center;
+  align-items: center;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.task-card-description{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 53, 108);
+}
+
+.task-card-description p:nth-of-type(1){
+  font-weight: 400;
+}
+
+.task-card-description p:nth-of-type(2){
+  font-weight: 700;
+}
+
+.task-card-buttons{
+  display: flex;
+  justify-content: space-around;
+  
+}
+
+.task-card-buttons div{
+  border:rgb(0, 53, 108) 2px solid;
+  width: 30%;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  padding: 1% 0;
+  margin-bottom: 2%;
+  cursor: pointer;
+}
+
+.task-card-buttons img{
+  width: 30px;
+}
+
+
+.task-name-edit,
+.hours-amount-edit {
+  width: 120px;
+}
+
+#edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100%;
+}
+
+
+
+.not-clickeable {
+  position: fixed;
+  top: 20%;
+  left: 33%;
+  background-color: white;
+  width: 50%;
+  height: 70%;
+  border: rgb(0, 53, 108) 2px solid;
+  border-radius: 10px;
+  filter: drop-shadow(0px 3px 100px rgba(0, 0, 0, 0.459));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.edit-title {
+  background-color: rgb(0, 53, 108);
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  margin: 20px;
+  width: 200px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+}
+
+.edit-title p {
+  margin: 0.5em;
+  font-size: 28px;
+}
+
+.edit-container div,
+.edit-button-container {
+  display: flex;
+}
+
+.edit-container p,
+.edit-input {
+  width: 50%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.edit-button-container {
+  justify-content: space-between;
+  width: 60%;
+  margin-bottom: 3%;
+}
+
+.edit-cancel-button,
+.edit-save-button {
+  width: 200px;
+  color: white;
+  text-align: center;
+  border-radius: 30px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  filter: drop-shadow(0px 3px 2px rgba(0, 0, 0, 0.459));
+  cursor: pointer;
+}
+
+.edit-cancel-button p,
+.edit-save-button p {
+  margin: 8px;
+}
+
+.edit-cancel-button {
+  background-color: rgb(248, 109, 109);
+}
+
+.edit-save-button {
+  background-color: rgb(29, 204, 46);
+}
+
+.edit-element {
+  margin-bottom: 15px;
+}
+
+
+
+@media (max-width: 1820px){
+  .task-button{
+    height: 2em;
+  }
+}
+
+@media (max-width: 1100px){
+  .task-button{
+    height: 3em;
+  }
 }
