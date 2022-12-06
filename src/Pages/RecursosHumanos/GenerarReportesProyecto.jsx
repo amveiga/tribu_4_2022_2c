@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-route
 
 import reportStyle from "./../../Styles/RecursosHumanos/Reportes.css";
 
+import volverIcon from "./../../Img/RecursosHumanos/volver_icon.png"
 import reportes from "./../../Img/RecursosHumanos/reportes_icon.png";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -226,12 +227,15 @@ function GenerarReportesProyecto() {
                     <p>Reportes</p>
                     <img src={reportes} alt="" />
                 </div>
-                <input
-                    className="back-button"
-                    type="button"
-                    value="Volver"
-                    onClick={volver}
-                />
+                <div className="add-button-container">
+                    <p>Volver</p>
+                    <input
+                        className="add-button contain"
+                        type="image"
+                        src={volverIcon}
+                        onClick={volver}
+                    />
+                </div>
                 <div className="options-div">
                     <div className="option-section">
                         <p>Indique el proyecto del cual desea generar el reporte:</p>

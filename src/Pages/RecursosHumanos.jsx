@@ -50,12 +50,12 @@ function RecursosHumanos() {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="loadingScreen">
         <ReactLoading
           type={"bars"}
-          color={"rgba(0,53,108,1)"}
-          height={200}
-          width={400}
+          color={"rgba(0,53,108,1"}
+          height={"10%"}
+          width={"10%"}
         />
       </div>
     );
