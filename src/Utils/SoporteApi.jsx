@@ -6,8 +6,7 @@ const URL_COMENTARIOS =
   "https://fiuba-memo1-api-soporte.azurewebsites.net/api/v1/comments";
 const URL_RECURSOS = "https://squad1220222c-production.up.railway.app/recursos";
 const URL_TAREAS = "https://squad11-proyectos.onrender.com/api/tasks";
-const URL_CLIENTES =
-  "https://anypoint.mulesoft.com/mocking/api/v1/sources/exchange/assets/754f50e8-20d8-4223-bbdc-56d50131d0ae/clientes-psa/1.0.0/m/api/clientes";
+const URL_CLIENTES = "https://squad11-proyectos.onrender.com/clientes";
 const URL_PROYECTOS = "https://squad11-proyectos.onrender.com/api/projects";
 
 //Tickets
