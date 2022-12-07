@@ -184,17 +184,14 @@ tr:first-of-type{
 
 .report-container{
     width: 85%;
-    
 }
 
 .fixed-data{
     position: fixed;
     width: 19%;
-    
 }
 
 .fixed-data-section{
-    
     margin-bottom: 2em;
 
 }
@@ -203,7 +200,7 @@ tr:first-of-type{
 .fixed-data-section-data{
     padding: 0.5em 0.8em;
     text-align: center;
-    font-size: 1.9em;
+    font-size: 1.2em;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: 500;
 }
@@ -225,9 +222,9 @@ tr:first-of-type{
 
 .project-table th{
     width: 50%;
-    height: 70px;
+    height: 50px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1.8em;
+    font-size: 1.2em;
     font-weight: 500;
 }
 
@@ -273,4 +270,22 @@ tr:first-of-type{
         height: 35px;
         font-size: 15px;
     }
+
 }
+/*
+@media (max-height: 1340px){
+    .project-table th,
+    .fixed-data-section-title,
+    .fixed-data-section-data{
+        font-size: 1em;
+    }
+
+    #select-report{
+        font-size: 0.7em;
+    }
+
+    .report-container{
+        margin-top: -2%;
+    }
+
+}*/
